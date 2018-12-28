@@ -11,4 +11,5 @@ no|command|explanation
 |--|--|--|
 |0|svn update|更新|
 ||svn commit -m"备注" hello1.c hello2.c|上传|
-|1|svn log hello.c -r r666 -v|-r：指定版本 -v:显示变化的文件列表|
+|1|svn log hello.c -r r666 -v|-r：指定(与当前版本比较的)版本 -v:显示变化的文件列表|
+|2|svn diff -r r1000:r999 hello.c|比较hello.c在r999与r1000版本之间的差异|
