@@ -1,13 +1,4 @@
 ```flow
-st=>start: 开始
-op=>operation: My Operation
-cond=>condition: Yes or No?
-e=>end
-st->op->cond
-cond(yes)->e
-cond(no)->op
-
-
 web=>start: WEB set
 chg=>operation: cell_3g_4g_exchange_proc
 pre_init=>operation: at_cmd_pre_init
