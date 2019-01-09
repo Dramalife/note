@@ -1,6 +1,11 @@
 # note
 Dramalife\`s note
 
+#### Dramalife git status
+|no|status|value|
+|--|--|--|
+|0|linked|no|
+
 ### NEW
 |no|date|content|
 |--|--|--|
@@ -9,3 +14,5 @@ Dramalife\`s note
 |no|date|content|
 |--|--|--|
 |0|||
+
+
