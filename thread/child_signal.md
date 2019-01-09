@@ -1,5 +1,10 @@
 ## [linux下的僵尸进程处理SIGCHLD信号](https://www.cnblogs.com/wuchanming/p/4020463.html)
 
+#### Dramalife git status
+|no|status|value|
+|--|--|--|
+|0|linked|yes|
+
 ### 什么是僵尸进程？
 
 首先内核会释放终止进程(调用了exit系统调用)所使用的所有存储区，关闭所有打开的文件等，但内核为每一个终止子进程保存了一定量的信息。
