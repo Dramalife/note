@@ -11,4 +11,4 @@
 ||SIGBUS|Bus error|
 ||SIGILL|Illegal instruction|
 ||SIGFPE|Floating point exception|
-||SIGABRT||
+||SIGABRT|多次free;abort;assert;堆越界|
