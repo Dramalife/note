@@ -3,7 +3,7 @@
 一般察看函数运行时堆栈的方法是使用GDB（bt命令）之类的外部调试器,但是,有些时候为了分析程序的BUG,(主要针对长时间运行程序的分析),在程序出错时打印出函数的调用堆栈是非常有用的。
 ### 函数定义
 在glibc头文件"execinfo.h"中声明了三个函数用于获取当前线程的函数调用堆栈。
-#### backtrace
+#### 1.backtrace
 ```
 int backtrace(void **buffer,int size) 
 ```
@@ -12,7 +12,7 @@ int backtrace(void **buffer,int size)
 在buffer中的指针实际是从堆栈中获取的返回地址,每一个堆栈框架有一个返回地址
 
 注意:某些编译器的优化选项对获取正确的调用堆栈有干扰,另外内联函数没有堆栈框架;删除框架指针也会导致无法正确解析堆栈内容
-#### backtrace_symbols
+#### 2.backtrace_symbols
 
 ```
 char ** backtrace_symbols (void *const *buffer, int size)  
@@ -26,7 +26,7 @@ backtrace_symbols将从backtrace函数获取的信息转化为一个字符串数
 该函数的返回值是通过malloc函数申请的空间,因此调用者必须使用free函数来释放指针.
 
 注意:如果不能为字符串获取足够的空间函数的返回值将会为NULL
-####backtrace_symbols_fd
+#### 3.backtrace_symbols_fd
 
 ```
 void backtrace_symbols_fd (void *const *buffer, int size, int fd)  
