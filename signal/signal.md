@@ -1,5 +1,5 @@
 ## SIGNAL
-|信号数字|信号名|detail|
+|缺省行为|信号名|detail|
 |--|--|--|
 ||SIG_IGN|ignore signal|
 ||SIG_DFL|default signal handling|
@@ -7,7 +7,7 @@
 ||SIGCHLD|子进程退出的时候会向其父进程发送一个SIGCHLD信号，linux下的[僵尸进程处理(Dramalife.git)](https://github.com/Dramalife/note/blob/master/thread/child_signal.md)SIGCHLD信号|
 ||SIGINT|程序终止信号，\[Ctrl+C , kill -2 or kill -SIGINT\]|
 ||SIGSEGV|Segmentation fault|
-||SIGPIPE|Broken pipe|
+|terminate(终止、退出),|SIGPIPE|Broken pipe|
 ||SIGBUS|Bus error|
 ||SIGILL|Illegal instruction|
 ||SIGFPE|Floating point exception|
