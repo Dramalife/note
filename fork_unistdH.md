@@ -14,3 +14,4 @@ pid_t 是一个宏定义，其实质是int 被定义在#include<sys/types.h>中
 3. 为什么不是从#include处开始复制代码的，这是因为fork是把进程当前的情况拷贝一份
 4. 这两个进程执行没有固定的先后顺序,哪个进程先执行要看系统的进程调度策略。
 5. 可以使用wait或 waitpid函数让父进程等待子进程的结束并获取子进程的返回状态。
+#### [原文链接]（https://www.cnblogs.com/jycboy/p/l_fork.html）
