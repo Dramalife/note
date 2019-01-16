@@ -1,9 +1,9 @@
 #### keywords
 |no|key|
 |--|--|
-|0|fork|
-|1|wait|
-|2|exec|
+|0|fork()|
+|1|wait()|
+|2|exec()|
 #### source url
 ```
 https://www.ibm.com/developerworks/cn/linux/kernel/syscall/part3/
@@ -16,13 +16,13 @@ https://www.ibm.com/developerworks/cn/linux/kernel/syscall/part3/
 ### [系统调用跟我学(3)](https://www.ibm.com/developerworks/cn/linux/kernel/syscall/part3/)
 
 ### 1.7 背景
-```
+
 在前面的文章中，我们已经了解了父进程和子进程的概念，并已经掌握了系统调用exit的用法，但可能很少有人意识到，在一个进程调用了exit之后，该进程并非马上就消失掉，而是留下一个称为僵尸进程（Zombie）的数据结构。在Linux进程的5种状态中，僵尸进程是非常特殊的一种，它已经放弃了几乎所有内存空间，没有任何可执行代码，也不能被调度，仅仅在进程列表中保留一个位置，记载该进程的退出状态等信息供其他进程收集，除此之外，僵尸进程不再占有任何内存空间。从这点来看，僵尸进程虽然有一个很酷的名字，但它的影响力远远抵不上那些真正的僵尸兄弟，真正的僵尸总能令人感到恐怖，而僵尸进程却除了留下一些供人凭吊的信息，对系统毫无作用。
 
 也许读者们还对这个新概念比较好奇，那就让我们来看一眼Linux里的僵尸进程究竟长什么样子。
 
 当一个进程已退出，但其父进程还没有调用系统调用wait（稍后介绍）对其进行收集之前的这段时间里，它会一直保持僵尸状态，利用这个特点，我们来写一个简单的小程序：
-```
+
 ```
 /* zombie.c */
 #include <sys/types.h>
@@ -200,13 +200,16 @@ pid_t waitpid(pid_t pid,int *status,int options)
 从本质上讲，系统调用waitpid和wait的作用是完全相同的，但waitpid多出了两个可由用户控制的参数pid和options，从而为我们编程提供了另一种更灵活的方式。下面我们就来详细介绍一下这两个参数：
 
 **pid**
+
 从参数的名字pid和类型pid_t中就可以看出，这里需要的是一个进程ID。但当pid取不同的值时，在这里有不同的意义。
 
 pid>0时，只等待进程ID等于pid的子进程，不管其它已经有多少子进程运行结束退出了，只要指定的子进程还没有结束，waitpid就会一直等下去。
 pid=-1时，等待任何一个子进程退出，没有任何限制，此时waitpid和wait的作用一模一样。
 pid=0时，等待同一个进程组中的任何子进程，如果子进程已经加入了别的进程组，waitpid不会对它做任何理睬。
 pid<-1时，等待一个指定进程组中的任何子进程，这个进程组的ID等于pid的绝对值。
+
 **options**
+
 options提供了一些额外的选项来控制waitpid，目前在Linux中只支持WNOHANG和WUNTRACED两个选项，这是两个常数，可以用"|"运算符把它们连接起来使用，比如：
 
 `et=waitpid(-1,NULL,WNOHANG | WUNTRACED);`
