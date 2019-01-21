@@ -11,10 +11,9 @@ Dramalife\`s note\
 ### NEW
 |no|date|content|
 |--|--|--|
-|0|2019.01.09|Linux C Signal;Thread Child| 
+|0|2019.01.09|Linux C Signal;Thread Child|
+|1|2019.01.21|TCP/IP|
 ### RECALL
 |no|date|content|
 |--|--|--|
 |0|||
-
-
