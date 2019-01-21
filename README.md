@@ -1,7 +1,7 @@
 # note
 Dramalife\`s note\
 \
-[markdown 基本语法](https://www.jianshu.com/p/191d1e21f7ed)
+[markdown 基本语法](https://github.com/Dramalife/note/blob/master/text_tools/markdown.md)
 
 #### Dramalife git status
 |no|status|value|
