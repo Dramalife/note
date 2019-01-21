@@ -39,6 +39,7 @@ install_element (SYSCONFIG_NODE, &cmdname);
 
 ### u-boot
 #### __attribute__((unsused,section(".u_boot_cmd")))
+[attribute](https://github.com/Dramalife/note/blob/master/GNU_C/__attribute__.md)
 CMD的安装：存放在section里面然后对这个section进行遍历
 #### analysis
 |no|keyword|content|
