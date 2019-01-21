@@ -14,6 +14,7 @@ Dramalife\`s note\
 |0|2019.01.09|Linux C Signal;Thread Child|
 |1|2019.01.21|TCP/IP|
 |2|2019.01.21|CLI：u-boot,zebra\(quagga\)|
+|3|2019.01.21|[GNU C:__attribute__](TODO)|
 
 ### RECALL
 |no|date|content|
