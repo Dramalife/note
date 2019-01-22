@@ -1,11 +1,15 @@
 #### referenced Dramalife
-
 |no|path|Remarks|
 |0|/README.md||
 |1|/note/CMD-CLI.md||
 
-### 概述
+### analysis
+|No|Keyword|Content|
+|--|--|--|
+|0|who|Dramalife|
+|1|section|驱动加载__init,,存放在.initlist段|
 
+### 概述
 ```
 GNU C的一大特色（却不被初学者所知）就是__attribute__机制。
 __attribute__可以设置函数属性（Function Attribute）、变量属性（Variable Attribute）和类型属性（Type Attribute）。
@@ -16,7 +20,8 @@ __attribute__可以设置函数属性（Function Attribute）、变量属性（V
 ### unused
 - This attribute, attached to a function, means that the function is meant to be possibly unused. GCC will not produce a warning for this function.
 
-### section [url:sample](https://github.com/Dramalife/note/blob/master/GNU_C/sample/attribute_section.md)
+### section
+[sample-section](https://github.com/Dramalife/note/blob/master/GNU_C/sample/attribute_section.md)
 使用格式为：
 ```
 __attribute__((section("section_name")))
