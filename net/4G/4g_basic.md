@@ -88,13 +88,3 @@ MZ393 模块的 USB 口被映射为多个接口，在 Linux 系统下的端口�
 50|GND|地|/|/
 51|CP_UART_RXD|模块串口接收|I
 52|VDD_PCIE|DC 3.8V|P|范围为： 3.2V~4.2V
-
-### Dial
-AT command
-send,recv,parse
-OK,ERROR,OTHER
-
-TODO
-
-### Driver
-TODO
