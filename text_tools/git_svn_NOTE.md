@@ -1,4 +1,9 @@
 ## GIT
+工作区\(Unstaged Changes\)
+暂存区\(Staged Changes\)
+本地仓库
+远程仓库
+
 no|command|explanation
 --|--|--
 0|git status -uno|简要形式显示状态
