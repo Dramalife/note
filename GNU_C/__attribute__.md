@@ -16,7 +16,7 @@ __attribute__可以设置函数属性（Function Attribute）、变量属性（V
 ### unused
 - This attribute, attached to a function, means that the function is meant to be possibly unused. GCC will not produce a warning for this function.
 
-### section [sample]()
+### section [url:sample](https://github.com/Dramalife/note/blob/master/GNU_C/sample/attribute_section.md)
 使用格式为：
 ```
 __attribute__((section("section_name")))
