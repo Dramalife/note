@@ -11,7 +11,7 @@ add|git rm -r --cached '文件夹名'|删除文件夹
 5|‘/’|github路径中输入'/'新建文件夹 or 移动文件
 |6|tip|当conflict，如果文件内包含“>>>>>>>>>>”，导致fix conflict失败|
 
-#### conflict-GIT
+#### conflict-GIT 删掉冲突注释，重新提交
 - tip:在push不了时，pull之前。在本地创建一个新的分支并commit到local，以保证本地有commit记录，万一出什么问题，可以找回代码，以免代码丢失。
 - <<<<<<< HEAD 到 ======= 中间的内容是local提交的。
 ======= 到 >>>>>>> commit-id 是远程仓库中的内容
@@ -21,18 +21,16 @@ add|git rm -r --cached '文件夹名'|删除文件夹
 
 #### git 撤回
 ##### git checkout -- readme.txt
-让这个 **工作区** 的文件回到最近一次git commit或git add时的状态。
+让这个 **工作区** 的文件回到最近一次git commit或git add时（ **暂存区** ）的状态。\
 命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令
-##### git reset HEAD file
-可以把 **暂存区\(git add\)** 的修改撤销掉（unstage）
 
-#### git 回退
+#### git 版本指针：git reset
 ||||
 |--|--|--|
 |0|git log|可选参数：\-\-pretty=oneline|
 |1|$\(commit id\)|SHA1计算出来的HEX数字|
 |2|HEAD|当前版本，HEAD^上一个版本;HEAD~100：往上100个版本|
-|3|git reset --hard HEAD^/$\(commit id\)|指针：回退一个版本/回退后回到当前|
+|3|git **reset** --hard HEAD^/$\(commit id\)|指针：回退一个版本/回退后回到当前|
 |4|git reflog|记录每一次命令；比如回退后没有最新的版本号，|
 
 ### SVN
