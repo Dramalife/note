@@ -26,6 +26,6 @@ Dramalife\`s note\
 ### TODO List
 |No|Status|Item|Path|Add-Finish|
 |--|--|--|--|--|
-|0|TODO|EoIP|/net/|20190122-|
-|1|TODO|4g|/4G|20190122-|
+|0|TODO|EoIP(usr,kernel)|/net/|20190122-|
+|1|TODO|4g(9507)|/4G|20190122-|
 |2|TODO|vim|/text_tools|20190122-|
