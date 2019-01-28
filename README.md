@@ -30,3 +30,4 @@ Dramalife\`s note\
 |0|TODO|EoIP(usr,kernel)|/net/|20190122-|
 |1|TODO|4g(9507)|/4G|20190122-|
 |2|TODO|vim|/text_tools|20190122-|
+|2|TODO|framebuffer & i2c||201811xx-|
