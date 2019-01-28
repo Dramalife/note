@@ -114,4 +114,6 @@ fi
 alias rm='rm -i'
 alias ll='ls -alhF'
 export EDITOR=/usr/bin/vi
-export PATH="$PATH:/ugreen/wangjianyu/bin_wjy/sh_wjy"
+
+#TODO
+export PATH="$PATH:/bin"
