@@ -45,3 +45,14 @@ int test_wan(void *data)
   ndo_start_xmit(skb,dev);
 }
 ```
+
+### Dramalife
+
+```
+//trace "SIOXXXX"
+//kernel/include/linux/sockxx.h
+#define SIOCBRDELBR 0x8888 /*remove bridge device*/
+/*
+桥接口,EoIP等的具体实现可能也在kernelspace
+*/
+```
