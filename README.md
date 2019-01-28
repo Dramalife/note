@@ -15,7 +15,8 @@ Dramalife\`s note\
 |1|2019.01.21|TCP/IP|
 |2|2019.01.21|CLI：u-boot,zebra\(quagga\)|
 |3|2019.01.21|[GNU C:__attribute__](https://github.com/Dramalife/note/blob/master/GNU_C/__attribute__.md)|
-|4|||
+|4|2019.01.28|ioctl,socket|
+|5|||
 
 ### RECALL
 |no|date|content|

@@ -13,7 +13,7 @@ mmm_factxxx_test(factxxx_test);
 ////////////////////
 fd = socket(AF_INET, SOCK_STREAM, 0);
 ioctl(fd, SIOXXXX, %io_args);
-memcpy(data, &(io_args.xxx),sizeof(factxxx_test_cfg_s))
+memcpy(data, &(io_args.xxx),sizeof(factxxx_test_cfg_s));//TODO: to learn;
 ```
 
 ### kernel
@@ -37,12 +37,12 @@ int ioctl_handler(unsigned int cmd,void __user *arg)
 //kernel/xxx/platform/common/factxxx.c
 int iflist_test(struct factxxx_test_cfg_s *factxxx_test)
 {
-  kernel_thread(test_wan, &packet_info,CLONE_KERNEL);
+  kernel_thread(test_wan, &packet_info,CLONE_KERNEL);//TODO: to learn;
 }
 int test_wan(void *data)
 {
   memcpy(packet_info,(struct packet_info_s *)data);
-  ndo_start_xmit(skb,dev);
+  ndo_start_xmit(skb,dev);//TODO: to learn;
 }
 ```
 
