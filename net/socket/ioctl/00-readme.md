@@ -55,6 +55,10 @@ int test_wan(void *data)
 /*
 桥接口,EoIP等的具体实现可能也在kernelspace
 */
+/*
+userspace <-> kernel_net
+userspace <-> kernel_bootenv
+*/
 ```
 
 Tks(H):47 61 6F  58 75
