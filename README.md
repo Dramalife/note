@@ -27,8 +27,8 @@ Dramalife\`s note\
 ### TODO List
 |No|Status|Item|Path|Add-Finish|
 |--|--|--|--|--|
-|0|TODO|EoIP(usr,kernel)|/net/|20190122-|
-|1|TODO|4g(9507)|/4G|20190122-|
-|2|TODO|vim|/text_tools|20190122-|
+|0|DOING|EoIP(usr,kernel)|/net/|20190122-20190125(socket_ioctl)-|
+|1|DOING|4g(9507_driver)|/4G|20190122-|
+|2|DOING|vim|/text_tools|20190122-Updating-|
 |3|TODO|framebuffer & i2c||201811xx-|
 |4|TODO|mutex_lock||20190130-|
