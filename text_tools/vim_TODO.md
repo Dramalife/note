@@ -9,6 +9,11 @@
 | |0072|b|backward a word||
 |4|2000|:1,$s/old/new/g | replace "old" with "new"||
 |5|2001|ctrl + v , I , (input) , esc*2|block insert||
+|6|0080|*|find current forward||
+| |0081|#|||
+|7|0083|/|find word||
+| |0084|?|find||
+| |0085|/\<WORD\>|full match find "WORD"||
 
 ### Problems
 |No|Description|Reason|Solve|
