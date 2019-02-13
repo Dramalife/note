@@ -32,3 +32,4 @@ Dramalife\`s note\
 |2|DOING|vim|/text_tools|20190122-Updating-|
 |3|TODO|framebuffer & i2c||201811xx-|
 |4|TODO|mutex_lock||20190130-|
+|5|TODO|Relationship of Shell,Stdio and Process||20190211-|
