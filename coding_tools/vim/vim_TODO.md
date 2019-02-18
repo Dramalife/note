@@ -24,6 +24,8 @@ set ignorecase
 set smartcase |||
 | |0085|/\<WORD\>|full match find "WORD"||
 
+|8|0800|set cursorline/nocursorline|在当前行添加下划线||
+
 ### Problems
 |No|Description|Reason|Solve|
 |--|--|--|--|
