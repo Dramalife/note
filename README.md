@@ -23,6 +23,7 @@ Dramalife\`s note\
 |--|--|--|
 |0|2019.01.22|git,svn : shell;git:web|
 |0|2019.01.22|vim快捷键|
+|0|2019.02.23|zebra module communication|
 
 ### TODO List
 |No|Status|Item|Path|Add-Finish|
