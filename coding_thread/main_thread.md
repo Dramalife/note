@@ -14,8 +14,23 @@
 
 
 
-### thread线程间通信
+### 2 thread线程间通信
+1. 全局变量
 
-### process进程同步
+### 3 process进程同步
+1. 信号量
+2. 文件锁,互斥锁
+3. 无锁CAS
+4. 校验方式（CRC32校验）
 
-### thread线程同步
+
+### 4 thread线程同步
+1. 互斥锁（pthread_mutex_t ）
+2. 条件变量（需要与互斥锁结合使用）
+3. 信号量
+4. 无锁CAS
+5. 校验方式（CRC32校验）
+
+reference:
+[process com](https://www.cnblogs.com/melons/p/5791796.html)
+[process sync](https://blog.csdn.net/qq_35396127/article/details/78942245)
