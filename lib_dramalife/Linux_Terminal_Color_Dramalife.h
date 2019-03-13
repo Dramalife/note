@@ -1,3 +1,4 @@
+/*source url : https://www.cnblogs.com/clover-toeic/p/4031618.html*/
 #define NONE                 "\e[0m"
 #define BLACK                "\e[0;30m"
 #define L_BLACK              "\e[1;30m"
