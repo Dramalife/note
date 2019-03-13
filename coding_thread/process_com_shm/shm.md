@@ -30,17 +30,18 @@
       int shmdt(const void *shmaddr);
       int shmctl(int shmid, int cmd, struct shmid_ds *buf);
 ```
-  下面依次介绍一下上述函数的一些使用方法
+下面依次介绍一下上述函数的一些使用方法
 
-  shmget函数
-      功能：用来创建共享内存
-      原型：`intshmget(key_t key, size_t size, intshmflg);`
-      参数：
-          key:这个共享内存段名字
-          size:共享内存大小
-          shmflg:由九个权限标志构成，它们的用法和创建文件时使用的mode模式标志是一样的
-      返回值：成功返回一个非负整数，即该共享内存段的标识码；失败返回-1
-  shmat函数
+**shmget函数**\
+功能：用来创建共享内存\
+原型：`intshmget(key_t key, size_t size, intshmflg);`\
+参数：\
+key:这个共享内存段名字\
+size:共享内存大小\
+shmflg:由九个权限标志构成，它们的用法和创建文件时使用的mode模式标志是一样的\
+返回值：成功返回一个非负整数，即该共享内存段的标识码；失败返回-1\
+
+shmat函数
       功能：将共享内存段连接到进程地址空间
       原型：`void *shmat(intshmid, const void *shmaddr, intshmflg);`
       参数：
