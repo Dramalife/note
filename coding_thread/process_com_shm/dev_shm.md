@@ -22,7 +22,7 @@
 
 如果需要永久修改/dev/shm的值，需要修改/etc/fstab
 
-tmpfs /dev/shm tmpfs defaults,size=1.5G 0 0
+`tmpfs /dev/shm tmpfs defaults,size=1.5G 0 0`
 
 `#mount -o remount /dev/shm`
 
