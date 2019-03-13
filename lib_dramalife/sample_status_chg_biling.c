@@ -1,4 +1,5 @@
 /*
+Title:LED闪烁，用很少的行数表示
 Dramalife@live.com
 Date:2018.12~2019.2
 功能:交替输出A,B（LED闪烁）；
