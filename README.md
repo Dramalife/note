@@ -1,8 +1,7 @@
-# note
-Dramalife\`s note\
-\
-[markdown 基本语法](https://github.com/Dramalife/note/blob/master/text_tools/markdown.md)
-
+# NOTE
+Dramalife\`s note  
+[- markdown 基本语法](https://github.com/Dramalife/note/blob/master/text_tools/markdown.md)
+[m](tools_coding\markdown.md)
 #### Contents
 TODO
 
