@@ -6,7 +6,7 @@
 System V共享内存API:
 
 首先了解一下下面结构体
-```
+```c
 struct shmid_ds {
      struct ipc_perm shm_perm;    /* Ownership and permissions */
      size_t          shm_segsz;   /* Size of segment (bytes) */
@@ -20,7 +20,7 @@ struct shmid_ds {
      };
 ```
 共享内存函数
-```
+```c
 #include <sys/ipc.h>
 #include <sys/shm.h>
 int shmget(key_t key, size_t size, int shmflg);
@@ -32,7 +32,10 @@ int shmctl(int shmid, int cmd, struct shmid_ds *buf);
 
 **shmget函数**\
 功能：用来创建共享内存\
-原型：`intshmget(key_t key, size_t size, intshmflg);`\
+原型：
+```c
+int shmget(key_t key, size_t size, intshmflg);
+```
 参数：\
   key:这个共享内存段名字\
   size:共享内存大小\
@@ -41,7 +44,10 @@ shmflg:由九个权限标志构成，它们的用法和创建文件时使用的m
 
 **shmat函数**\
 功能：将共享内存段连接到进程地址空间\
-原型：`void *shmat(intshmid, const void *shmaddr, intshmflg);`\
+原型：
+```c
+void *shmat(intshmid, const void *shmaddr, intshmflg);
+```
 参数：\
   shmid: 共享内存标识\
   shmaddr:指定连接的地址\
@@ -55,14 +61,20 @@ shmflg=SHM_RDONLY，表示连接操作用来只读共享内存\
 
 **shmdt函数**\
 功能：将共享内存段与当前进程脱离\
-原型：`intshmdt(const void *shmaddr);`\
+原型：
+```c
+int shmdt(const void *shmaddr);
+```
 参数：\
     shmaddr: 由shmat所返回的指针\
 返回值：成功返回0；失败返回-1\
 注意：将共享内存段与当前进程脱离不等于删除共享内存段\
 **shmctl函数**\
 功能：用于控制共享内存\
-原型：`intshmctl(intshmid, intcmd, structshmid_ds *buf);`\
+原型：
+```c
+int shmctl(intshmid, intcmd, structshmid_ds *buf);
+```
 参数：\
     shmid:由shmget返回的共享内存标识码\
     cmd:将要采取的动作（有三个可取值）\
