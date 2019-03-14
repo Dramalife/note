@@ -26,4 +26,5 @@
 　　#mount –bind /dev/shm/tmp /tmp（–bind ）
 ```
 　　在使用 **mount –bind olderdir newerdir** 命令来挂载一个目录到另一个目录后，newerdir的权限和所有者等所有信息会发生变化。挂载后的目录继承了被挂载目录的所有属性，除了名称。Oracle 11g的amm内存管理模式就是使用/dev/shm，所以有时候修改MEMORY_TARGET或者MEMORY_MAX_TARGET会出现ORA-00845的错误
+
 [source url](https://www.linuxidc.com/Linux/2014-05/101818.htm)
