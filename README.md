@@ -1,7 +1,6 @@
 # NOTE
 Dramalife\`s note  
-[- markdown 基本语法](https://github.com/Dramalife/note/blob/master/text_tools/markdown.md)
-[m](tools_coding\markdown.md)
+[- markdown 基本语法](/tools_coding/markdown.md)
 #### Contents
 TODO
 
@@ -16,8 +15,8 @@ TODO
 |0|2019.01.09|Linux C Signal;fork();zombie thread;|
 |1|2019.01.21|TCP/IP|
 |2|2019.01.21|CLI：u-boot,zebra\(quagga\)|
-|3|2019.01.21|[GNU C:__attribute__](https://github.com/Dramalife/note/blob/master/GNU_C/__attribute__.md)|
-|4|2019.01.28|[ioctl,socket](https://github.com/Dramalife/note/tree/master/net/socket/ioctl)|
+|3|2019.01.21|[GNU C:__attribute__](/GNU_C)|
+|4|2019.01.28|[ioctl,socket](/net/socket)|
 |5|2019.03.14|[process&thread \- sync&com](/coding_thread)|
 
 ### RECALL
