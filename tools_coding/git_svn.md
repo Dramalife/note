@@ -4,6 +4,17 @@
 本地仓库
 远程仓库
 
+**update**
+git fetch
+git pull
+**modified**
+$edit	  	(use "git add <file>..." to update what will be committed)
+		(use "git checkout -- <file>..." to discard **changes** in working directory)
+$staged	  	git commit
+		(use "git reset HEAD <file>..." to unstage)
+$commit		git push
+
+
 no|command|explanation
 --|--|--
 0|git status -uno|简要形式显示状态
