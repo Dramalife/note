@@ -19,14 +19,17 @@
 | |0081|#|||
 |7|0083|/|find word||
 | |0084|?|find||
+| |0085|:match diffadd /WORD/|set color of WORD| |
 | |0000|/word\c|\c大小写不敏感，\C大小写敏感||
 | |0000|" 设置默认进行大小写不敏感查找
 set ignorecase
 " 如果有一个大写字母，则切换到大小写敏感查找
 set smartcase |||
 | |0085|/\<WORD\>|full match find "WORD"||
-
 |8|0800|set cursorline/nocursorline|在当前行添加下划线||
+| | | | | |
+| | | | | |
+
 
 ### Problems
 |No|Description|Reason|Solve|
