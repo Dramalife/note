@@ -45,5 +45,5 @@ TODO
 |3|Raspberry Pi |2018.07.xx||
 |4|Orange Pi |2018.12.27|Arm v7|
 
-### Games
-![pvp](/marddown_source/image/pic_dramalife_game_pvp.jpg "wzry")
+### Games  
+![pvp](/marddown_source/image/pic_dramalife_game_pvp.jpg"wzry")
