@@ -46,4 +46,4 @@ TODO
 |4|Orange Pi |2018.12.27|Arm v7|
 
 ### Games  
-![pvp](/marddown_source/image/pic_dramalife_game_pvp.jpg"wzry")
+![pvp](/marddown_source/image/pic_dramalife_game_pvp.jpg 'wzry')
