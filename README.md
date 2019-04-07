@@ -47,7 +47,7 @@ TODO
 |2|Arduino MEGA 2560|2017.05.03||
 | |AIO-3399J| |Drivers:DP83867,LTC2941,|
 | |STM32F107VCT6|ethernet,NB-Iot/GSM|
-|3|Raspberry Pi |2018.07.xx||
+|3|Raspberry Pi |2018.07.xx|Thanks Longlong Xue,|
 |4|Orange Pi |2018.12.27|Arm v7|
 
 ### Games  
