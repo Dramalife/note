@@ -66,3 +66,7 @@ sec=
           If the server requires signing during protocol negotiation, then it may be enabled
           automatically. Packet signing may also be enabled automatically if it's enabled in
           /proc/fs/cifs/SecurityFlags.
+
+#sample
+#mount -t cifs //192.168.0.102/ug2t-root ./ug2t-rpi -o user=,passwd=,sec=ntlmssp
+
