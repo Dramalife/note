@@ -1,4 +1,7 @@
 ### 1 process进程间通信
+```bash
+/linux_dir/ipc/*
+```
 1. [管道\(PIPE\)及有名管道\(FIFO\)](/coding_process_thread/process_com_pipe_fifo)  
 管道可用于具有亲缘关系进程间的通信，有名管道克服了管道没有名字的限制，因此，除具有管道所具有的功能外，它还允许无亲缘关系进程间的通信
 
