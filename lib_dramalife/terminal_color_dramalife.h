@@ -29,3 +29,14 @@ sample:
 #define HIDE                 "\e[8m"
 #define CLEAR                "\e[2J"
 #define CLRLINE              "\r\e[K" //or "\e[1K\r"
+
+//cursor move up
+#define MOVEU(x) printf("\033[%dA", (x))
+//cursor move down
+#define MOVED(x) printf("\033[%dB", (x))
+//cursor move left
+#define MOVEL(y) printf("\033[%dD", (y))
+//cursor move right
+#define MOVER(y) printf("\033[%dC",(y))
+
+
