@@ -1,0 +1,1 @@
+/home/baohua/develop/training/makefile/simple-build-system/apps/example/main.c
