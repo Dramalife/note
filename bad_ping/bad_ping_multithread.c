@@ -18,11 +18,13 @@
 #define MAX_WAIT_TIME   5
 #define MAX_NO_PACKETS  100000
 
+#define IFNAME_MAXLEN	30 /* for example, on device running openmediavault, name of eth is "enxb827ebf521d8" */
+
 static int datalen = 56;
 struct badping
 {
 	char sendpacket[PACKET_SIZE];
-	char arg_ifname[10];
+	char arg_ifname[IFNAME_MAXLEN];
 	char arg_addr[20];
 	int sockfd;
 	int nsend;
@@ -103,7 +105,7 @@ void send_packet(struct badping *bdp)
 }
 
 char add[20];
-char nam[10];
+char nam[IFNAME_MAXLEN];
 int main(int argc, char *argv[])
 {
 	int num;
