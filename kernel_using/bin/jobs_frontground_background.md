@@ -1,0 +1,4 @@
+nohup
+bg
+fg
+jobs
