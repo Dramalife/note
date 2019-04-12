@@ -1,0 +1,10 @@
+#
+# Never ignore these
+#
+!.gitignore
+
+
+
+
+*.swp
+*.out

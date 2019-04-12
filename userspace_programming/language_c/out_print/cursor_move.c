@@ -4,19 +4,34 @@
 #define SP	"*"
 #define L1	5
 #define L2	10
-#define I1	15
+#define L3	15
 struct item_line
 {
-	char hone[L1];
-	char hname[L2];
-	char item1[I1];
+	char *ihead1;
+	char *iname2;
+	char *iitem3;
 };
 
+// 	#######____________ buf 
+//	___________________ total_len
+//	_______		    content_len
+//	#######		    cont1
+//	#		    cont2
+// require total_len = sizeof(buf)
 char *fill_content(int total_len, int content_len, char *buf, char *cont)
 {
 	int tmp;
 	tmp = content_len;
-	printf("cont_len:%d,arg:%d,, buf-size:%d,len:%d,, totallen:%d,   \n",strlen(cont),content_len, sizeof(buf), strlen(buf), total_len );
+	if( (total_len < content_len) 
+			|| (content_len < 1) 
+			//|| (total_len != len(cont)) //TODO
+	  )
+	{
+		printf(CLRED"%s,%d,error \n"CNONE,__func__, __LINE__);
+		while(1);
+	}
+	printf(CLRED"LINE:%d"CNONE "cont_len:%d,arg:%d,, buf-size:%d,len:%d,, totallen:%d,   \n",__LINE__, strlen(cont),content_len, 888, strlen(buf), total_len );
+
 	if(1 == strlen(cont))
 	{
 		while(tmp--)
@@ -24,9 +39,16 @@ char *fill_content(int total_len, int content_len, char *buf, char *cont)
 	}
 	else
 	{
-		while( (sizeof(buf) - strlen(buf)) >= strlen(cont))
+		if(strlen(cont) > content_len)
 		{
-			strncat(buf, cont, strlen(cont));
+			strncpy(buf, cont, content_len);
+		}
+		else
+		{
+			for(tmp = content_len; tmp>= strlen(cont); tmp-=strlen(cont) )
+			{
+				strncat(buf, cont, strlen(cont));
+			}
 		}
 	}
 
@@ -36,56 +58,55 @@ char *fill_content(int total_len, int content_len, char *buf, char *cont)
 
 }
 
+void print_all(struct item_line *itl, int line)
+{
+	printf(CLRED"LINE:%d"CNONE  CLGREEN"L1:"CNONE"%s"  CLGREEN"L2:"CNONE"%s"  CLGREEN"L3:"CNONE"%s\n", line, itl->ihead1, itl->iname2, itl->iitem3);
+	return;
+}
+
 void produce_line(struct item_line *itl, char *outbuf)
 {
 	int tmp;
 	memset(outbuf, 0, sizeof(outbuf));
-	printf("++%d,%d,%d,%d, \n",__LINE__,
-			sizeof(itl->hone ),
-			sizeof(itl->hname),
-			sizeof(itl->item1));
-	fill_content(L1, L1, itl->hone, SP);
-	printf("++###%d__%s__%s__%s__ \n", __LINE__, itl->hone, itl->hname, itl->item1);
+	printf("++%d,%d,%d,%d, \n",__LINE__, sizeof(itl->ihead1 ), sizeof(itl->iname2), sizeof(itl->iitem3));
+	fill_content(L1, L1-2, itl->ihead1, SP);
+	print_all(itl, __LINE__);
 #if 1
-	fill_content(L2, L2, itl->hname, "nxxm");
-	printf("++###%d__%s__%s__%s__ \n", __LINE__, itl->hone, itl->hname, itl->item1);
-	fill_content(I1, I1, itl->item1, "itxx");
-	printf("++###%d__%s__%s__%s__ \n", __LINE__, itl->hone, itl->hname, itl->item1);
 #else
-	strncat(itl->hname, "name", L2);
-	printf("++###%d__%s__%s__%s__ \n", __LINE__, itl->hone, itl->hname, itl->item1);
-	strncat(itl->item1, "value", I1);
-	printf("++###%d__%s__%s__%s__ \n", __LINE__, itl->hone, itl->hname, itl->item1);
+	strncat(itl->iname2, "name", L2);
+	print_all(itl, __LINE__);
+	strncat(itl->iitem3, "value", L3);
+	print_all(itl, __LINE__);
 #endif
-	printf("all___%s___\n",itl);
+	printf(CLRED"LINE:%d,all"CNONE CLGREEN"["CNONE "%s" CLGREEN"]\n"CNONE,__LINE__, itl);
 
-	printf("++###%d__%s__%s__%s__ \n", __LINE__, itl->hone, itl->hname, itl->item1);
-	strcat(outbuf, itl->hone);
-	strcat(outbuf, itl->hname);
-	strcat(outbuf, itl->item1);
-	printf("______%s____\n", outbuf);
+	print_all(itl, __LINE__);
+	strcat(outbuf, itl->ihead1);
+	strcat(outbuf, itl->iname2);
+	strcat(outbuf, itl->iitem3);
+	printf(CLRED"LINE:%d,all"CNONE CLGREEN"["CNONE "%s" CLGREEN"]\n"CNONE,__LINE__, outbuf);
 	return ;
 }
 
 void main(void)
 {
 	struct item_line *itl = malloc(sizeof(struct item_line));
-	memset(itl, 0, sizeof(struct item_line));
 	char *outbufp = malloc(100 * sizeof(char));
+	memset(itl, 0, sizeof(struct item_line));
+	itl->ihead1 = malloc( L1*sizeof(char) );
+	itl->iname2 = malloc( L2*sizeof(char) );
+	itl->iitem3 = malloc( L3*sizeof(char) );
+
+	fill_content(L2, 4, itl->iname2, "nxxm");
+	print_all(itl, __LINE__);
+	fill_content(L3, 4, itl->iitem3, "itxx");
+	print_all(itl, __LINE__);
 	produce_line(itl, outbufp);
 
-
-//	printf("12345678");
-//	fflush(stdout);
-//	sleep(1);
-//	printf("\r");
 //	MOVER(5);
-//	printf("G");
 
 	fflush(stdout);
 	//printf("\n");
 	return;
 }
-
-
 
