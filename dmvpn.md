@@ -1,9 +1,6 @@
-## 
-### 1.1 定义
-dmVPN : Dynamic Multipoint VPN
-### 1.2 技术组成
-1. mGRE-""
-2. NHRP-"下一跳解析协议"
-3. IPSec
-
-
+### 瀹氫箟
+Dynamic Multipoint VPN (DMVPN)
+### 瀹炵幇
+1. mGRE--闅ч亾
+2. NHRP--澶氱偣
+3. IPSec--鍔犲瘑
