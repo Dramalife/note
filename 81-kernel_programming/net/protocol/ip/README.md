@@ -97,7 +97,7 @@
 |94  | IPIP IP 中的 IP 封装协议 |
 |95  | MICP 移动互联控制协议 |
 |96  | SCC-SP 信号通讯安全协议 |
-|97  | ETHERIP IP 中的以太网封装 |
+|97  | EoIP,,ETHERIP IP 中的以太网封装 |
 |98  | ENCAP 封装标头 |
 |99  | 任意专用加密方案 |
 |100 | GMTP GMTP |
