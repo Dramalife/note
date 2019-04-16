@@ -4,4 +4,4 @@ all:
 	./test.out
 
 clean:
-	rm ./*.out
+	rm -rvf ./*.out
