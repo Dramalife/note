@@ -5,6 +5,7 @@
 #define STATIC_CREATE	0
 #define DYNAMIC_CREATE	1
 #define DYNAMIC_ARRAY	1
+#define ITEM_HAS_ATTRIBUTE	0
 
 #define SP	"*"
 #define L1	5
@@ -17,18 +18,38 @@
 #define SW_VARPNT	0x40
 unsigned char debug_switch = 0x80;
 
+#if ITEM_HAS_ATTRIBUTE
+struct xdate_item
+{
+	int *cont_mem_len;
+	char *content_x;
+	unsigned char *cont_type;//FILL, NAME, CONTENT...., for auto inital//TODO
+};
+struct xdate_line
+{
+	int *item_num;
+	struct xdate_item *item_x;
+};
+struct xdate_block
+{
+	int *line_num;
+	struct xdate_line **line_x;
+	char **outbufp;
+};
+#else
 struct item_line
 {
 	char *ihead1;
 	char *iname2;
 	char *iitem3;
 };
-
 struct atarget
 {
 	struct item_line **target;
 	char **outbufp;
 };
+#endif
+
 
 
 struct item_line **format_print_create(int lines)
@@ -93,6 +114,8 @@ char *fill_content(int total_len, int content_len, char *buf, char *cont)
 		debug_out( SW_VARPNT ,CLRED"%s,%d,error \n"CNONE,__func__, __LINE__);
 		while(1);
 	}
+memset(buf, 0, total_len);
+
 	debug_out( SW_VARPNT ,CLRED"LINE:%d"CNONE "cont_len:%d,arg:%d,, buf-size:%d,len:%d,, totallen:%d,   \n",__LINE__, strlen(cont),content_len, 888, strlen(buf), total_len );
 
 	if(1 == strlen(cont))
@@ -209,6 +232,10 @@ void main(void)
 	produce_line( *(att->target) + 0 , *(att->outbufp) + 0 * 100);
 	produce_line( *(att->target) + 1 , *(att->outbufp) + 1 * 100);
 	produce_line( *(att->target) + 2 , *(att->outbufp) + 2 * 100);
+
+	sleep(2);
+	fill_content(L2, 4, (*(att->target) + 1 )->iname2, "haha");
+	//produce_line( *(att->target) + 1 , *(att->outbufp) + 1 * 100);
 #else
 #error: DYNAMIC_ARRAY without DYNAMIC_CREATE is unuseful!
 #endif
@@ -217,4 +244,10 @@ void main(void)
 	fflush(stdout);
 	return;
 }
+
+/*
+line--item--attributes
+
+*/
+
 
