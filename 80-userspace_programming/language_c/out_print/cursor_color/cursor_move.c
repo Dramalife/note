@@ -19,23 +19,91 @@
 unsigned char debug_switch = 0x80;
 
 #if ITEM_HAS_ATTRIBUTE
-struct xdate_item
+/*
+ATTR	: *{size,cont,type}
+ITEM	: *
+LINE	: *******
+BLOCK	: *******
+	  *******
+	  *******
+*/
+struct xdata_item
 {
-	int *cont_mem_len;
-	char *content_x;
-	unsigned char *cont_type;//FILL, NAME, CONTENT...., for auto inital//TODO
+	int 		   *xi_size;//unused
+	char 		   *xi_content;
+	unsigned char 	   *xi_type_i;//FILL, NAME, CONTENT...., for auto inital//TODO
 };
-struct xdate_line
+struct xdata_line
 {
-	int *item_num;
-	struct xdate_item *item_x;
+	int 		   *xl_item_size;
+	struct xdata_item **xl_item;
 };
-struct xdate_block
+struct xdata_block
 {
-	int *line_num;
-	struct xdate_line **line_x;
-	char **outbufp;
+	int 		   *xb_line_size;
+	struct xdata_line **xb_line;
+	char 		  **xb_outbuf;
 };
+
+/************************************************************************
+* DATE	: 2019.04.17;							*
+* RETURN: struct xdata_block *;                                         *
+* ARG0	: int arg_line, line number of this block;                      *
+* ARG1	: int arg_item, item number of each line;                       *
+* ARG2	: int arg_attr, attr number of each item,attr means attribute;  *
+* Dramalife@live.com;                                                   *
+************************************************************************/
+struct xdata_block *create_block(int arg_line, int arg_item, int arg_attr )
+{//arg:**,retrn:*,
+	struct xdata_block *block_r;
+
+	block_r = (struct xdata_block *)malloc(sizeof(struct xdata_block));
+	//block
+	block_r->xb_line_size = (int *)malloc( arg_line * sizeof(int));				 /* LINE SIZE */
+	/*DATA*/*(block_r->xb_line_size) = arg_line * sizeof(struct xdata_line);
+	//block
+	block_r->xb_outbuf = (char **)malloc(sizeof(char *));
+	*(block_r->xb_outbuf) = (char *)malloc( arg_line * 100 * sizeof(char));
+	//block
+	block_r->xb_line = (struct xdata_line **)malloc(sizeof(struct xdata_line *));
+	*(block_r->xb_line) = (struct xdata_line *)malloc( arg_line * sizeof(struct xdata_line));/* LINE SIZE */
+	//line
+	*(block_r->xb_line)->xl_item_size = (int *)malloc( arg_item * sizeof(int));			     /* ITEM SIZE */
+	/*DATA*/*(*(block_r->xb_line)->xl_item_size) = arg_item * sizeof(struct xdata_item);
+	//line
+	*(block_r->xb_line)->xl_item = (struct xdata_item **)malloc(sizeof(struct xdata_item*));
+	*(*(block_r->xb_line)->xl_item) = (struct xdata_item *)malloc( arg_item * sizeof(struct xdata_item));/* ITEM SIZE */
+	//item
+	*(*(block_r->xb_line)->xl_item)->xi_size = (int *)malloc( arg_attr * sizeof(int));			/* ATTR SIZE */
+	/*DATA*///*(*(*(block_r->xb_line)->xl_item)->xi_size) = //TODO
+	*(*(block_r->xb_line)->xl_item)->xi_content = (char *)malloc( arg_attr * 100 * sizeof(char));
+	*(*(block_r->xb_line)->xl_item)->xi_type_i = (unsigned char *)malloc( arg_attr * sizeof(unsigned char));/* ATTR SIZE */
+
+	return block_r;
+}
+struct xdata_block *mod_block_frame_insert(struct xdata_block **blk, int arg_line, int arg_item, int arg_attr )
+{
+	struct xdata_block block_r;
+	block_r = *blk;
+	if(arg_line)
+	{
+		int new_siz = *(block_r->xb_line_size) + arg_line;
+		struct xdata_line *tmp_line = (struct xdata_line *)malloc( new_siz * sizeof(struct xdata_line));
+		memcpy( tmp_line, *(block_r->xb_line), *(block_r->xb_line_size) );
+		free(*(block_r->xb_line));
+		*(block_r->xb_line) = tmp_line;
+		*(block_r->xb_line_size) = new_siz;
+	}
+		
+	return block_r;
+}
+
+struct xdata_block *mod_block_data()
+{
+
+}
+
+
 #else
 struct item_line
 {
