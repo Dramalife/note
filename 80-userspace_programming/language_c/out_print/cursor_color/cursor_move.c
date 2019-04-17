@@ -1,3 +1,10 @@
+/*
+The lib provide API to create,modified or free a block of mem that 
+store formated data who`s size and content can be dynamicly mod.
+
+
+*/
+
 #include<stdio.h>
 #include"../../../../lib_dramalife/terminal_color_dramalife.h"
 
@@ -83,16 +90,34 @@ struct xdata_block *create_block(int arg_line, int arg_item, int arg_attr )
 }
 struct xdata_block *mod_block_frame_insert(struct xdata_block **blk, int arg_line, int arg_item, int arg_attr )
 {
+	int new_siz;
 	struct xdata_block block_r;
+
+	if( (NULL == blk) || (NULL == *blk) )
+	{
+		printf(CLRED"++%s,%d \n"CONOE, __func, __LINE__ );
+		while(1)
+		{
+		}
+	}
 	block_r = *blk;
+	
 	if(arg_line)
 	{
-		int new_siz = *(block_r->xb_line_size) + arg_line;
+		new_siz = *(block_r->xb_line_size) + arg_line;
 		struct xdata_line *tmp_line = (struct xdata_line *)malloc( new_siz * sizeof(struct xdata_line));
 		memcpy( tmp_line, *(block_r->xb_line), *(block_r->xb_line_size) );
 		free(*(block_r->xb_line));
 		*(block_r->xb_line) = tmp_line;
 		*(block_r->xb_line_size) = new_siz;
+	}
+	if(arg_item)
+	{//TODO
+	
+	}
+	if(arg_attr)
+	{//TODO
+	
 	}
 		
 	return block_r;
