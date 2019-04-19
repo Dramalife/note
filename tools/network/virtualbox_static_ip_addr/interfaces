@@ -1,0 +1,17 @@
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+
+#Diff-Add START
+#/etc/network/interfaces
+auto eth0
+iface eth0 inet static
+#IP 地址
+address 172.16.127.201
+# 网络掩码地址
+netmask 255.255.255.0
+# 网关地址
+gateway 172.16.127.231
+# DNS 地址
+dns-nameserver 172.16.8.8  
+#Diff-Add  END
