@@ -5,7 +5,7 @@
 
 
 #tar -zcf - ./$0/* | openssl des3 -salt -k $1 | dd of=$0.des3
-dd if=$1.des3 | openssl des3 -d -k $2 | tar zxf -
+dd if=$1 | openssl des3 -d -k $2 | tar zxf -
 
 
 
