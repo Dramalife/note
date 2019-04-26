@@ -6,7 +6,8 @@ store formated data who`s size and content can be dynamicly mod.
 */
 
 #include<stdio.h>
-#include"../../../../lib_dramalife/terminal_color_dramalife.h"
+//#include"../../../../lib_dramalife/terminal_color_dramalife.h"
+#include"terminal_color_dramalife.h"
 
 #define DEBUG_CURSOR	0
 #define STATIC_CREATE	0
