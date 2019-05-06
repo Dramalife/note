@@ -1,6 +1,8 @@
 # NOTE
 Dramalife\`s note  
 [- markdown 基本语法](/tools_coding/markdown.md)
+[Linux source code online](https://elixir.bootlin.com/linux/latest/source)
+
 #### Contents
 TODO
 
