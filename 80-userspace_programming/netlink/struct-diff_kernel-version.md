@@ -18,7 +18,7 @@ struct msghdr {
 };
 
 ```
-### 1.2 [2.6.31]
+### 1.2 [2.6.31](https://elixir.bootlin.com/linux/v2.6.31/source/include/linux/socket.h)
 ```c
 /*
 *	As we do 4.4BSD message passing we use a 4.4BSD message passing
@@ -36,7 +36,7 @@ struct msghdr {
 	unsigned	msg_flags;
 };
 ```
-### 1.3	[4.1.15]
+### 1.3	[4.1.15](https://elixir.bootlin.com/linux/v4.1.15/source/include/linux/socket.h)
 ```c
 /*
 *	As we do 4.4BSD message passing we use a 4.4BSD message passing
