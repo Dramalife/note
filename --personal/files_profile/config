@@ -1,0 +1,10 @@
+  x Symbol: IP_ROUTE_MULTIPATH [=n]                                                                                                                                                        x  
+    x Type  : boolean                                                                                                                                                                        x  
+      x Prompt: IP: equal cost multipath                                                                                                                                                       x  
+        x   Location:                                                                                                                                                                            x  
+	  x     -> Networking support (NET [=y])                                                                                                                                                   x  
+	    x       -> Networking options                                                                                                                                                            x  
+	      x         -> TCP/IP networking (INET [=y])                                                                                                                                               x  
+	        x (4)       -> IP: advanced router (IP_ADVANCED_ROUTER [=n])                                                                                                                             x  
+		  x   Defined at net/ipv4/Kconfig:81                                                                                                                                                       x  
+		    x   Depends on: NET [=y] && INET [=y] && IP_ADVANCED_ROUTER [=n]    
