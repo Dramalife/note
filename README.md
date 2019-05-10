@@ -20,6 +20,9 @@ TODO
 |3|2019.01.21|[GNU C:__attribute__](/GNU_C)|
 |4|2019.01.28|[ioctl,socket](/net/socket)|
 |5|2019.03.14|[process&thread \- sync&com](/coding_thread)|
+|6|2019.05.09|[compile(gcc),include](/80-userspace_programming/gcc)|
+|7|2019.05.08|[netlink,userspace&](/80-userspace_programming/netlink)|
+| | | |
 
 ### RECALL
 |no|date|content|
@@ -40,7 +43,7 @@ TODO
 | |DONE|git using on command line interface|[git](/tools_coding)|2019.03.28|
 |6|**DOING**|kernel-net driver & protocol| - |2019.03.30-|
 |7|PLAN|if_down,if_up,link_up| |2019.05.06- |
-| | | | | |
+|8|**DOING**|quagga(zebra)|[1.source code](/tools/quagga-1.2.4), |2019.05.04- |
 | | | | | |
 | | | | | |
 
