@@ -1,6 +1,8 @@
 # NOTE
 Dramalife\`s note  
-[- markdown 基本语法](/tools_coding/markdown.md)
+[- markdown 基本语法](/tools_coding/markdown.md)  
+[- Linux source code online](https://elixir.bootlin.com/linux/latest/source)  
+
 #### Contents
 TODO
 
@@ -37,7 +39,10 @@ TODO
 |5|TODO|Relationship of Shell,Stdio and Process| - |20190211-|
 | |DONE|git using on command line interface|[git](/tools_coding)|2019.03.28|
 |6|**DOING**|kernel-net driver & protocol| - |2019.03.30-|
-||||||
+|7|PLAN|if_down,if_up,link_up| |2019.05.06- |
+| | | | | |
+| | | | | |
+| | | | | |
 
 ### Boards
 |No|Name|Date|Details|
