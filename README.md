@@ -1,8 +1,9 @@
 # NOTE
 Dramalife\`s note  
-[- markdown 基本语法](/tools_coding/markdown.md)  
+[- markdown grammar](/tools_coding/markdown.md)  
 [- Linux source code online](https://elixir.bootlin.com/linux/latest/source)  
 [- RFC Search online](https://www.rfc-editor.org/search/rfc_search.php)  
+[- Majordomo lists at VGER.KERNEL.ORG](http://vger.kernel.org/vger-lists.html)  
 
 
 #### Contents
