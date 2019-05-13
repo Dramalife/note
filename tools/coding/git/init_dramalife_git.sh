@@ -14,6 +14,10 @@ git config --global user.email dramalife@live.com
 
 # 3. Clone a respository
 git clone https://github.com/Dramalife/note.git
+# local copy .step1
+git clone ../note/ ./note/
+# local copy .step2
+git remote set-url origin https://github.com/Dramalife/note.git
 
 # 4. Status
 # Untracked files		git add <file>..."	  to include in what will be committed
