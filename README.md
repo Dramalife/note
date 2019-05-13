@@ -1,7 +1,9 @@
 # NOTE
 Dramalife\`s note  
 [- markdown 基本语法](/tools_coding/markdown.md)  
-[- Linux source code online](https://elixir.bootlin.com/linux/latest/source)  
+[- Linux source code online](https://elixir.bootlin.com/linux/latest/source) 
+[- RFC Search online](https://www.rfc-editor.org/search/rfc_search.php)  
+
 
 #### Contents
 TODO
@@ -34,7 +36,7 @@ TODO
 ### TODO List
 |No|Status|Item|Path|Add-Finish|
 |--|--|--|--|--|
-|0|**DOING**|EoIP(usr,kernel)|[EoIP](/net)|20190122-20190125(socket_ioctl)-|
+|0|**DOING**|EoIP(usr,kernel)|[EoIP](/net),[rfc3378](/50-books/rfc_ref/rfc3378.txt)|20190122-20190125(socket_ioctl)-|
 |1|DOING|4g(9507_driver)|[4g](/net/4G)|20190122-|
 |2|DOING|vim|[vim](/tools_coding/vim)|20190122-Updating-|
 |3|TODO|framebuffer & i2c| - |201811xx-|
@@ -44,6 +46,7 @@ TODO
 |6|**DOING**|kernel-net driver & protocol| - |2019.03.30-|
 |7|PLAN|if_down,if_up,link_up| |2019.05.06- |
 |8|**DOING**|quagga(zebra)|[1.source code](/tools/quagga-1.2.4), |2019.05.04- |
+|9|TODO|SSH密钥| [ssh_key](/tools/ssh_key.md)| |
 | | | | | |
 | | | | | |
 
