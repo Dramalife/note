@@ -1,7 +1,10 @@
 # NOTE
 Dramalife\`s note  
-[- markdown 基本语法](/tools_coding/markdown.md)  
+[- markdown grammar](/tools_coding/markdown.md)  
 [- Linux source code online](https://elixir.bootlin.com/linux/latest/source)  
+[- RFC Search online](https://www.rfc-editor.org/search/rfc_search.php)  
+[- Majordomo lists at VGER.KERNEL.ORG](http://vger.kernel.org/vger-lists.html)  
+
 
 #### Contents
 TODO
@@ -17,9 +20,12 @@ TODO
 |0|2019.01.09|Linux C Signal;fork();zombie thread;|
 |1|2019.01.21|TCP/IP|
 |2|2019.01.21|CLI：u-boot,zebra\(quagga\)|
-|3|2019.01.21|[GNU C:__attribute__](/GNU_C)|
-|4|2019.01.28|[ioctl,socket](/net/socket)|
+|3|2019.01.21|[GNU C:__attribute__](/81-kernel_programming/gnu_c/)|
+|4|2019.01.28|[ioctl,socket](/81-kernel_programming/network/socket/)|
 |5|2019.03.14|[process&thread \- sync&com](/coding_thread)|
+|6|2019.05.09|[compile(gcc),include](/80-userspace_programming/gcc)|
+|7|2019.05.08|[netlink,userspace&](/80-userspace_programming/netlink)|
+| | | |
 
 ### RECALL
 |no|date|content|
@@ -31,16 +37,17 @@ TODO
 ### TODO List
 |No|Status|Item|Path|Add-Finish|
 |--|--|--|--|--|
-|0|**DOING**|EoIP(usr,kernel)|[EoIP](/net)|20190122-20190125(socket_ioctl)-|
-|1|DOING|4g(9507_driver)|[4g](/net/4G)|20190122-|
+|0|**DOING**|EoIP(usr,kernel)|[EoIP](/81-kernel_programming/network/ip_protocal/eoip/),[rfc3378](/50-books/rfc_ref/rfc3378.txt)|20190122-20190125(socket_ioctl)-|
+|1|DOING|4g(9507_driver)|[4g](/81-kernel_programming/network/4g_cell)|20190122-|
 |2|DOING|vim|[vim](/tools_coding/vim)|20190122-Updating-|
 |3|TODO|framebuffer & i2c| - |201811xx-|
 |4|TODO|mutex_lock| - |20190130-|
 |5|TODO|Relationship of Shell,Stdio and Process| - |20190211-|
-| |DONE|git using on command line interface|[git](/tools_coding)|2019.03.28|
+| |DONE|git using on command line interface|[git](/tools/coding/git/)|2019.03.28|
 |6|**DOING**|kernel-net driver & protocol| - |2019.03.30-|
 |7|PLAN|if_down,if_up,link_up| |2019.05.06- |
-| | | | | |
+|8|**DOING**|quagga(zebra)|[1.source code](/tools/quagga-1.2.4), |2019.05.04- |
+|9|TODO|SSH密钥| [ssh_key](/tools/ssh_key.md)| |
 | | | | | |
 | | | | | |
 
