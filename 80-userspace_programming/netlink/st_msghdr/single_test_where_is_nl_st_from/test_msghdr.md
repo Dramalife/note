@@ -1,4 +1,8 @@
-## [gcc-include](/80-userspace_programming/gcc/include.md)  
+
+[gcc -v]
+[gcc-include](/80-userspace_programming/gcc/include.md)  
+
+
 
 In source files(*.c),"#include" include files from clearly path such as "../xxx.h" ,  
 specific path given by "gcc -I" and file system path "/usr/include", but will   
