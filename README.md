@@ -1,6 +1,6 @@
 # NOTE
 Dramalife\`s note  
-[- markdown grammar](/tools_coding/markdown.md)  
+[- markdown grammar](/tools_coding/markdown.md), [editor : Typora](https://typora.io/)  
 [- Linux source code online](https://elixir.bootlin.com/linux/latest/source)  
 [- RFC Search online](https://www.rfc-editor.org/search/rfc_search.php)  
 [- Majordomo lists at VGER.KERNEL.ORG](http://vger.kernel.org/vger-lists.html)  
@@ -25,6 +25,8 @@ TODO
 |5|2019.03.14|[process&thread \- sync&com](/coding_thread)|
 |6|2019.05.09|[compile(gcc),include](/80-userspace_programming/gcc)|
 |7|2019.05.08|[netlink,userspace&](/80-userspace_programming/netlink)|
+| | | |
+| | | |
 | | | |
 
 ### RECALL
