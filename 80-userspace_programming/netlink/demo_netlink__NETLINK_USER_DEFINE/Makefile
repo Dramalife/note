@@ -17,7 +17,7 @@ PWD := $(shell pwd)
 all:
 	$(MAKE) -C $(KERNELDIR) M=$(PWD)
 	rm -rvf $(APP_NAME).out
-	gcc -o $(APP_NAME).out $(APP_NAME).c
+	gcc -o $(APP_NAME).out $(APP_NAME).c -v
 
 clean:
 	$(MAKE) -C $(KERNELDIR) M=$(PWD) clean
