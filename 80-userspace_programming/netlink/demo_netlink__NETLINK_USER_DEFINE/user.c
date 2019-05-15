@@ -2,13 +2,15 @@
 source url : https://www.cnblogs.com/wenqiang/p/6306727.html
 ref date : 2019.05.13
 update : none
+------
+date 2019.05.14
 */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/socket.h>
+#include <sys/socket.h>	// /usr/include/i386-linux-gnu/sys/socket.h > bits/socket.h > /usr/include/i386-linux-gnu/bits/socket.h
 #include <string.h>
-#include <linux/netlink.h>
+#include <linux/netlink.h> // /usr/include/linux/netlink.h
 #include <stdint.h>
 #include <unistd.h>
 #include <errno.h>
@@ -29,8 +31,8 @@ int main(int argc, char **argv)
 	int ret;
 	user_msg_info u_info;
 	socklen_t len;
-	struct nlmsghdr *nlh = NULL;
-	struct sockaddr_nl saddr, daddr;
+	struct nlmsghdr *nlh = NULL; // /usr/include/linux/netlink.h +42
+	struct sockaddr_nl saddr, daddr;// /usr/include/linux/netlink.h +35
 	char *umsg = "hello netlink!!";
 
 	/* ´´½¨NETLINK socket */
