@@ -1,5 +1,5 @@
 /*
-/home/baohua/develop/training/kernel/udev/netlink.c
+source : /home/baohua/develop/training/kernel/udev/netlink.c
 */
 #include <stdio.h>
 #include <stdlib.h>
