@@ -1,6 +1,10 @@
 #root@NETAC-SERVER:~/ # vi /etc/resolvconf/resolv.conf.d/base 
 #root@NETAC-SERVER:~/ # vi /etc/resolvconf/resolv.conf.d/head
 
+# /etc/NetworkManager/NetworkManager.conf
+# managed > true
+
+
 echo "clean.."
 mv /etc/resolvconf/resolv.conf.d/base /etc/resolvconf/resolv.conf.d/base_bk$(date "+%Y%m%d")
 mv /etc/resolvconf/resolv.conf.d/head /etc/resolvconf/resolv.conf.d/head_bk$(date "+%Y%m%d")
