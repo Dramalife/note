@@ -11,6 +11,10 @@ autoreconf --force --install
 ./configure --enable-vtysh --enable-user=root --enable-group=root --enable-vty-group=root
 make
 sudo make install
+
+# zebra: error while loading shared libraries: libzebra.so.1: cannot open shared object file: No such file or directory
+#sudo cp /usr/local/lib/libzebra.so.1 /lib
+
 sudo zebra -d
 telnet 127.0.0.1 2601
 
