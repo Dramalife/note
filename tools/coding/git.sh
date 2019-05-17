@@ -42,4 +42,7 @@ git config --global user.email dramalife@live.com
 #    	modified:   test2/test2.txt
 # Your branch is ahead of 'origin/master' by 1 commit.(use "git push" to publish your local commits)
 
+
 git status
+# git status -uno #Show no untracked files
+
