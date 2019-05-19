@@ -70,3 +70,9 @@ sec=
 #sample
 #mount -t cifs //192.168.0.102/ug2t-root ./ug2t-rpi -o user=,passwd=,sec=ntlmssp
 
+
+
+#$ mount --version
+#mount from util-linux 2.29.2 (libmount 2.29.2: selinux, btrfs, assert, debug)
+#$ sudo mount -t cifs //192.168.0.102/ug2t-root ./ug2t-root -o user=xxx,sec=ntlmssp
+
