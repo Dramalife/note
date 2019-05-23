@@ -47,4 +47,5 @@ git config --global user.email dramalife@live.com
 
 git status
 # git status -uno #Show no untracked files
+# git clean -d -n #Del untracked files(-n just show, -i really clean!!)
 
