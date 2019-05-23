@@ -49,3 +49,16 @@ git status
 # git status -uno #Show no untracked files
 # git clean -d -n #Del untracked files(-n just show, -i really clean!!)
 
+
+# Git Local Version Control
+# git clone /sourcepath/note /destpath/
+# cd /destpath/note
+# $edit file
+# git add
+# git commit
+# git branch local_branch
+# git push
+# cd /sourcepath/note
+# git merge local_branch master
+# git push
+
