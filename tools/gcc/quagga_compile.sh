@@ -4,8 +4,6 @@
 sudo apt-get install libreadline-dev
 
 # missing: line 81: aclocal-1.15: command not found
-make maintainer-clean
-
 # libtool: Version mismatch error.  This is libtool 2.4.2 Debian-2.4.2-1.7ubuntu1, but the
 # libtool: definition of this LT_INIT comes from libtool 2.4.6.
 autoreconf --force --install
