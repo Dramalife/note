@@ -1,0 +1,33 @@
+\section{ccl\_\-t Struct Reference}
+\label{structccl__t}\index{ccl_t@{ccl\_\-t}}
+Data structure encapsulating a parsed configuration file.  
+
+
+{\tt \#include $<$ccl.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+char {\bf comment\_\-char}\label{structccl__t_o0}
+
+\begin{CompactList}\small\item\em Character that indicates the start of a comment. \item\end{CompactList}\item 
+char {\bf sep\_\-char}\label{structccl__t_o1}
+
+\begin{CompactList}\small\item\em Character that separates keys from values. \item\end{CompactList}\item 
+char {\bf str\_\-char}\label{structccl__t_o2}
+
+\begin{CompactList}\small\item\em Character that delineates string literals. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Data structure encapsulating a parsed configuration file. 
+
+In the file:\begin{itemize}
+\item comments begin with {\tt comment\_\-char} and continue to a newline\item Keys are separated from values by {\tt sep\_\-char} \item String literals enclosed in {\tt str\_\-char} may contain any character, including spaces. \end{itemize}
+
+
+
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf ccl.h}\end{CompactItemize}

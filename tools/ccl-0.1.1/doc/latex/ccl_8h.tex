@@ -1,0 +1,105 @@
+\section{ccl.h File Reference}
+\label{ccl_8h}\index{ccl.h@{ccl.h}}
+The ccl library interface.  
+
+
+{\tt \#include \char`\"{}ccl/bst.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct {\bf ccl\_\-pair\_\-t}
+\begin{CompactList}\small\item\em A key/value pair found in a configuration file. \item\end{CompactList}\item 
+struct {\bf ccl\_\-t}
+\begin{CompactList}\small\item\em Data structure encapsulating a parsed configuration file. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int {\bf ccl\_\-parse} (struct {\bf ccl\_\-t} $\ast$data, const char $\ast$path)
+\begin{CompactList}\small\item\em Parse a configuration file. \item\end{CompactList}\item 
+void {\bf ccl\_\-release} (struct {\bf ccl\_\-t} $\ast$data)
+\begin{CompactList}\small\item\em Release memory associated with a configuration file. \item\end{CompactList}\item 
+const char $\ast$ {\bf ccl\_\-get} (const struct {\bf ccl\_\-t} $\ast$data, const char $\ast$key)
+\begin{CompactList}\small\item\em Extract a value from a configuration file. \item\end{CompactList}\item 
+const struct {\bf ccl\_\-pair\_\-t} $\ast$ {\bf ccl\_\-iterate} (struct {\bf ccl\_\-t} $\ast$data)
+\begin{CompactList}\small\item\em Iterate through all key/value pairs in a configuration file. \item\end{CompactList}\item 
+void {\bf ccl\_\-reset} (struct {\bf ccl\_\-t} $\ast$data)
+\begin{CompactList}\small\item\em Reset a configuration file iterator. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+The ccl library interface. 
+
+
+
+\subsection{Function Documentation}
+\index{ccl.h@{ccl.h}!ccl_get@{ccl\_\-get}}
+\index{ccl_get@{ccl\_\-get}!ccl.h@{ccl.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ ccl\_\-get (const struct {\bf ccl\_\-t} $\ast$ {\em data}, const char $\ast$ {\em key})}\label{ccl_8h_a3}
+
+
+Extract a value from a configuration file. 
+
+This function searches the parsed configuration file data for {\tt key}, and returns the value associated with that key.\par
+ If {\tt key} was found in the configuration file, the returned value will never be 0.\par
+ The value returned belongs to ccl, and should not be free'd. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em data}]The {\bf ccl\_\-t}{\rm (p.\,\pageref{structccl__t})} to query \item[{\em key}]The key to query \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]The value associated with {\tt key}, or 0 if {\tt key} was not found \end{Desc}
+\index{ccl.h@{ccl.h}!ccl_iterate@{ccl\_\-iterate}}
+\index{ccl_iterate@{ccl\_\-iterate}!ccl.h@{ccl.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const struct {\bf ccl\_\-pair\_\-t}$\ast$ ccl\_\-iterate (struct {\bf ccl\_\-t} $\ast$ {\em data})}\label{ccl_8h_a4}
+
+
+Iterate through all key/value pairs in a configuration file. 
+
+This function allows iteration through all key/value pairs in a configuration file.\par
+ This function maintains internal state; to reset the iterator call ccl\_\-reset.\par
+ The value returned belongs to ccl, and should not be free'd.\par
+ \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em data}]The {\bf ccl\_\-t}{\rm (p.\,\pageref{structccl__t})} to query \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]A key/value pair, or 0 if no more exist in {\tt data} \end{Desc}
+\index{ccl.h@{ccl.h}!ccl_parse@{ccl\_\-parse}}
+\index{ccl_parse@{ccl\_\-parse}!ccl.h@{ccl.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int ccl\_\-parse (struct {\bf ccl\_\-t} $\ast$ {\em data}, const char $\ast$ {\em path})}\label{ccl_8h_a1}
+
+
+Parse a configuration file. 
+
+This function will attempt to parse the configuration file {\tt path}, using the comment, separator, and quote characters specified in {\tt data}. This function allocates memory; use ccl\_\-release to clean up. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em data}]The {\bf ccl\_\-t}{\rm (p.\,\pageref{structccl__t})} in which to store the parsed data \item[{\em path}]The file to parse \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 if successful, nonzero otherwise \end{Desc}
+\index{ccl.h@{ccl.h}!ccl_release@{ccl\_\-release}}
+\index{ccl_release@{ccl\_\-release}!ccl.h@{ccl.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ccl\_\-release (struct {\bf ccl\_\-t} $\ast$ {\em data})}\label{ccl_8h_a2}
+
+
+Release memory associated with a configuration file. 
+
+This function frees any dynamically-allocated memory in {\tt data}. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em data}]The {\bf ccl\_\-t}{\rm (p.\,\pageref{structccl__t})} that is no longer needed \end{description}
+\end{Desc}
+\index{ccl.h@{ccl.h}!ccl_reset@{ccl\_\-reset}}
+\index{ccl_reset@{ccl\_\-reset}!ccl.h@{ccl.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ccl\_\-reset (struct {\bf ccl\_\-t} $\ast$ {\em data})}\label{ccl_8h_a5}
+
+
+Reset a configuration file iterator. 
+
+This function resets the internal iterator in {\tt data} to the first key/value pair. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em data}]The {\bf ccl\_\-t}{\rm (p.\,\pageref{structccl__t})} to reset \end{description}
+\end{Desc}
