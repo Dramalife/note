@@ -1,4 +1,4 @@
-![update](https://img.shields.io/github/commit-activity/w/Dramalife/note.svg?label=commit&logo=Linux&logoColor=black)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/Dramalife/note.svg?label=commit&logo=Linux&logoColor=black)
 
 
 
