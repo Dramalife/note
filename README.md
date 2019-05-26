@@ -1,3 +1,7 @@
+![update](https://img.shields.io/github/commit-activity/w/Dramalife/note.svg?label=commit&logo=Linux&logoColor=black)
+
+
+
 # NOTE
 Dramalife\`s note  
 [- markdown grammar](/tools_coding/markdown.md), [editor : Typora](https://typora.io/)  
@@ -48,7 +52,7 @@ TODO
 | |DONE|git using on command line interface|[git](/tools/coding/git/)|2019.03.28|
 |6|**DOING**|kernel-net driver & protocol| - |2019.03.30-|
 |7|PLAN|if_down,if_up,link_up| |2019.05.06- |
-|8|**DOING**|quagga(zebra)|[1.source code](/tools/quagga-1.2.4), |2019.05.04- |
+|8|![p](http://progressed.io/bar/12?title=DOING)|quagga(zebra)|[1.source code](/tools/quagga-1.2.4), |2019.05.04- |
 |9|TODO|SSH密钥| [ssh_key](/tools/ssh_key.md)| |
 | | | | | |
 | | | | | |
