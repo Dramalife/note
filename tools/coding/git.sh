@@ -50,7 +50,7 @@ git status
 # git clean -d -n #Del untracked files(-n just show, -i really clean!!)
 
 
-# Git Local Version Control
+# Git Local-Version-Control
 # git clone /sourcepath/note /destpath/
 # cd /destpath/note
 # $edit file
@@ -60,5 +60,16 @@ git status
 # git push
 # cd /sourcepath/note
 # git merge local_branch master
+# git push
+
+
+# Git Local Branch Push
+# git branch br_test_local_add	# Add branch at local disk
+# git checkout br_test_local_add	# switch to the branch just added
+# git push origin			# push the branch to remote
+# git push --set-upstream origin br_test_local_add_20190526	# automatic push to remote
+# ---Merge
+# git checkou master
+# git merge br_test_local_add	# this will create a push at master
 # git push
 
