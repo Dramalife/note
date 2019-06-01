@@ -1,3 +1,20 @@
+/* >>> man waitpid <<<
+NOTES
+A  child  that terminates, but has not been waited for becomes a "zombie".  The kernel maintains a minimal set of information about the zombie process (PID, termination
+status, resource usage information) in order to allow the parent to later perform a wait to obtain information about the child.  As long as a zombie is not removed from
+the  system  via  a wait, it will consume a slot in the kernel process table, and if this table fills, it will not be possible to create further processes.  If a parent
+process terminates, then its "zombie" children (if any) are adopted by init(8), which automatically performs a wait to remove the zombies.
+
+POSIX.1-2001 specifies that if the disposition of SIGCHLD is set to SIG_IGN or the SA_NOCLDWAIT flag is set for SIGCHLD (see sigaction(2)), then children that terminate
+do  not  become  zombies  and  a call to wait() or waitpid() will block until all children have terminated, and then fail with errno set to ECHILD.  (The original POSIX
+standard left the behavior of setting SIGCHLD to SIG_IGN unspecified.  Note that even though the default disposition of SIGCHLD is "ignore", explicitly setting the dis‐
+position  to  SIG_IGN results in different treatment of zombie process children.)  Linux 2.6 conforms to this specification.  However, Linux 2.4 (and earlier) does not:
+if a wait() or waitpid() call is made while SIGCHLD is being ignored, the call behaves just as though SIGCHLD were not being ignored, that is, the call blocks until the
+next child terminates and then returns the process ID and status of that child.
+*/
+
+/* Dramalife@live.com, 20190601 */
+
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
@@ -147,7 +164,10 @@ main(int argc, char *argv[])
 	strcpy(pst.ping_des_ip,argv[2]);
 	pst.ping_c = atoi(argv[3]);
 
+/*  */
 //signal(SIGCHLD,SIG_DFL);
+
+/* ignore child signal */
 signal(SIGCHLD,SIG_IGN);
 
 	rc_pxxg_send(argv[1],argv[2],atoi(argv[3]));
