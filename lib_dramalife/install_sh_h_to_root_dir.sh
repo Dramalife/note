@@ -14,7 +14,6 @@ DES_PATH_TO_INSTALL="./sssss"
 # exec ${CMD_W_MKDIR}
 # exec ${CMD_W_CP_SH}
 
-mkdir ~/.note_wjy_lib_sh
-cp ./terminal_color_bash.sh ~/.note_wjy_lib_sh/
-
+sudo cp ./*.h /usr/local/include/
+sudo cp ./*.sh /usr/bin/
 
