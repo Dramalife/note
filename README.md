@@ -9,6 +9,7 @@ Dramalife\`s note
 [- Linux source code online](https://elixir.bootlin.com/linux/latest/source)  
 [- RFC Search online](https://www.rfc-editor.org/search/rfc_search.php)  
 [- Majordomo lists at VGER.KERNEL.ORG](http://vger.kernel.org/vger-lists.html)  
+[- FREE SOFTWARE DIRECTORY](https://directory.fsf.org/wiki/GNU)
 
 
 #### Contents
