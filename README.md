@@ -11,6 +11,10 @@ Dramalife\`s note
 [- Majordomo lists at VGER.KERNEL.ORG](http://vger.kernel.org/vger-lists.html)  
 [- FREE SOFTWARE DIRECTORY](https://directory.fsf.org/wiki/GNU)
 
+### GIT  
+[- subtree](https://help.github.com/en/articles/about-git-subtree-merges#adding-a-new-repository-as-a-subtree)  
+
+
 
 #### Contents
 TODO
