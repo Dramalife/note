@@ -79,4 +79,11 @@ TODO
 Upload and include files in github,funny!
 ! [pvp](/marddown_source/image/pic_dramalife_game_pvp.jpg "wzry")  
 
+![GNU](http://www.gnu.org/graphics/heckert_gnu.transp.small.png)
+![strace](https://strace.io/Straus.png)
+![busybox](https://busybox.net/images/busybox1.png)
+![vim](https://www.vim.org/images/vim_header.gif)
+
+
+
 EOF
