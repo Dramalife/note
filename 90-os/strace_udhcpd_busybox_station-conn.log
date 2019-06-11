@@ -1,0 +1,35 @@
+strace > station_conn > udhcpd process exit(0)
+
+----------------------START
+root@Raisecom:~# ./strace -f -p 25872
+./strace: Process 25872 attached
+_newselect(7, [4 6], NULL, NULL, {tv_sec=7177, tv_usec=2074}) = 1 (in [6], left {tv_sec=7149, tv_usec=358889})
+read(6, "\1\1\6\0m\357\32 \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\264\206U\211"..., 628) = 316
+gettimeofday({tv_sec=317827584, tv_usec=186565}, NULL) = 0
+gettimeofday({tv_sec=317827584, tv_usec=187071}, NULL) = 0
+write(2, "udhcpd: sending OFFER of 192.168"..., 39) = 39
+socket(AF_PACKET, SOCK_DGRAM, htons(ETH_P_IP)) = 7
+bind(7, {sa_family=AF_PACKET, sll_protocol=htons(ETH_P_IP), sll_ifindex=if_nametoindex("wlan0"), sll_hatype=ARPHRD_NETROM, sll_pkttype=PACKET_HOST, sll_halen=6, sll_addr=[0xff, 0xff, 0xff, 0xff, 0xff, 0xff]}, 20) = 0
+sendto(7, "E\0\1H\0\0\0\0@\21<\374\300\250|\1\377\377\377\377\0C\0D\00143\365\2\1\6\0"..., 328, 0, {sa_family=AF_PACKET, sll_protocol=htons(ETH_P_IP), sll_ifindex=if_nametoindex("wlan0"), sll_hatype=ARPHRD_NETROM, sll_pkttype=PACKET_HOST, sll_halen=6, sll_addr=[0xff, 0xff, 0xff, 0xff, 0xff, 0xff]}, 20) = 328
+close(7)                                = 0
+fcntl64(6, F_SETFD, FD_CLOEXEC)         = 0
+clock_gettime(CLOCK_MONOTONIC, {tv_sec=71696, tv_nsec=31523210}) = 0
+_newselect(7, [4 6], NULL, NULL, {tv_sec=7149, tv_usec=0}) = 1 (in [6], left {tv_sec=7148, tv_usec=999975})
+read(6, "\1\1\6\0m\357\32 \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\264\206U\211"..., 628) = 328
+write(2, "udhcpd: sending ACK to 192.168.1"..., 37) = 37
+socket(AF_PACKET, SOCK_DGRAM, htons(ETH_P_IP)) = 7
+bind(7, {sa_family=AF_PACKET, sll_protocol=htons(ETH_P_IP), sll_ifindex=if_nametoindex("wlan0"), sll_hatype=ARPHRD_NETROM, sll_pkttype=PACKET_HOST, sll_halen=6, sll_addr=[0xff, 0xff, 0xff, 0xff, 0xff, 0xff]}, 20) = 0
+sendto(7, "E\0\1H\0\0\0\0@\21<\374\300\250|\1\377\377\377\377\0C\0D\00140\365\2\1\6\0"..., 328, 0, {sa_family=AF_PACKET, sll_protocol=htons(ETH_P_IP), sll_ifindex=if_nametoindex("wlan0"), sll_hatype=ARPHRD_NETROM, sll_pkttype=PACKET_HOST, sll_halen=6, sll_addr=[0xff, 0xff, 0xff, 0xff, 0xff, 0xff]}, 20) = 328
+close(7)                                = 0
+gettimeofday({tv_sec=317827584, tv_usec=320274}, NULL) = 0
+gettimeofday({tv_sec=317827584, tv_usec=320725}, NULL) = 0
+open("/var/udhcpdwlan0.leases", O_WRONLY|O_CREAT|O_TRUNC|O_LARGEFILE, 0666) = 7
+gettimeofday({tv_sec=317827584, tv_usec=322301}, NULL) = 0
+write(7, "\0\0\0\0\22\361\252\0", 8)    = 8
+write(7, "\0\0\250\300\300\250|\2\264\206U\211\361\335HUAWEI_P20-c6b7325"..., 36) = 36
+close(7)                                = 0
+fcntl64(6, F_SETFD, FD_CLOEXEC)         = 0
+clock_gettime(CLOCK_MONOTONIC, {tv_sec=71696, tv_nsec=95595544}) = 0
+_newselect(7, [4 6], NULL, NULL, {tv_sec=7149, tv_usec=0}
+------------------------END
+
