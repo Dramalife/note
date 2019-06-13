@@ -76,7 +76,11 @@ Upload and include files in github,funny!
 ! [pvp](/marddown_source/image/pic_dramalife_game_pvp.jpg "wzry")  
 
 ![GNU](http://www.gnu.org/graphics/heckert_gnu.transp.small.png)
-![strace](https://strace.io/Straus.png)
+! [strace](https://strace.io/Straus.png)
+  
+<img src="https://strace.io/Straus.png" width = "178" height = "343" div align=right />  
+<img src="https://github.com/favicon.ico" width="48">  
+                                                    
 ![busybox](https://busybox.net/images/busybox1.png)
 ![vim](https://www.vim.org/images/vim_header.gif)
 
