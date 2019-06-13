@@ -79,7 +79,8 @@ TODO
 Upload and include files in github,funny!
 ! [pvp](/marddown_source/image/pic_dramalife_game_pvp.jpg "wzry")  
 
-![GNU](http://www.gnu.org/graphics/heckert_gnu.transp.small.png)
+![GNU](http://www.gnu.org/graphics/heckert_gnu.transp.small.png)![Linux](https://www.kernel.org/theme/images/logos/tux.png)
+
 ! [strace](https://strace.io/Straus.png)
   
 <img src="https://strace.io/Straus.png" width = "178" height = "343" div align=right />  
