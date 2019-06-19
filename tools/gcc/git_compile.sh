@@ -11,6 +11,8 @@ sudo make install
 #    ---------
 #  ## need lib-curl, see git/INSTALL +141
 #  ## ref url :(https://blog.csdn.net/zhezhebie/article/details/78035979)
+#  ## ref url :(https://stackoverflow.com/questions/8329485/unable-to-find-remote-helper-for-https-during-git-clone)
+#  ## fatal : "致命的"
 #  baohua@5b2vdev:~/note/tmp/curl-7.65.1 $ git pull
 #  fatal: unable to find remote helper for 'https'
 #  
