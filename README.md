@@ -5,7 +5,7 @@
 
 # NOTE
 Dramalife\`s note  
-[- markdown grammar](/tools_coding/markdown.md), [editor : Typora](https://typora.io/)  
+[- Markdown grammar](/tools/coding/markdown.md), [editor : Typora](https://typora.io/)  
 [- Linux source code online](https://elixir.bootlin.com/linux/latest/source)  
 [- RFC Search online](https://www.rfc-editor.org/search/rfc_search.php)  
 [- Majordomo lists at VGER.KERNEL.ORG](http://vger.kernel.org/vger-lists.html)  
