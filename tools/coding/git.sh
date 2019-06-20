@@ -1,5 +1,17 @@
 #! /bin/sh
-
+#
+# note coding-vim related file
+# Copyright (C) 2019 Dramalife
+# 
+# This file is part of [note](https://github.com/Dramalife/note.git)
+# 
+# note is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+#
+#
+#
 # 1. Base Configuration
 # --------
 # --system : all user(local machine)
@@ -55,7 +67,7 @@ git status
 # git clone /sourcepath/note /destpath/
 # cd /destpath/note
 # $edit file
-# git add
+# git add # -u : update tracked files
 # git commit
 # git branch local_branch
 # git push
