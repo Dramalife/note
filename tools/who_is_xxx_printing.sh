@@ -9,16 +9,14 @@
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
-# Dramalife@live.com
-# 2019.05.24
 
-source ~/.note_wjy_lib_sh/*
+echo "Input tty device(PATH)"
+read tty
+# List open files
+lsof ${tty}
 
-echo "input device path,ex:\"/dev/console\""
-read p_dev
-cmd="lsof | grep \"${p_dev}\""
-
-echo -e ${CLRED}"CMD"${CNONE}":[ ${cmd} ]"
-# exec ${cmd}
-lsof | grep ${p_dev}
+echo "Select one(PID) to trace"
+read one
+# -f : follow forks,
+strace -f -p ${one}
 
