@@ -1,4 +1,4 @@
-# note coding-vim related file
+# note coding-tree related file
 # Copyright (C) 2019 Dramalife
 # 
 # This file is part of [note](https://github.com/Dramalife/note.git)
