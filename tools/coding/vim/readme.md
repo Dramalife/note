@@ -16,6 +16,7 @@
 |1|0060|ctrl + ]|jump to definition,depends on "ctags"||
 |2|0061|ctrl + o|||
 |3|0062|ctrl + i|||
+| | 	|{ { |jump to head of current FUNC | |
 | |0063|ctrl + f/b|向下/上滚动一屏||
 | |0064|ctrl + e/y|... ...一行||
 | |0065|ctrl + d/u|... ...半屏||
