@@ -1,0 +1,17 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+add_if_down2up	link_list.c	/^struct if_down2up *add_if_down2up(struct if_down2up *st, const char *name, int type)$/;"	f
+address_type	link_list.c	/^	int address_type;$/;"	m	struct:if_down2up	file:
+chg_if_down2up	link_list.c	/^int chg_if_down2up(struct if_down2up *st, const char *name, int type)$/;"	f
+debug_if_down2up	link_list.c	/^void debug_if_down2up(struct if_down2up *st)$/;"	f
+find_if_down2up	link_list.c	/^struct if_down2up *find_if_down2up(struct if_down2up *st, const char*name)$/;"	f
+head	link_list.c	/^struct if_down2up *head;$/;"	v	typeref:struct:if_down2up
+if_down2up	link_list.c	/^struct if_down2up$/;"	s	file:
+last	link_list.c	/^	struct if_down2up *last;$/;"	m	struct:if_down2up	typeref:struct:if_down2up::if_down2up	file:
+main	link_list.c	/^int main(void)$/;"	f
+name	link_list.c	/^	char name[20];$/;"	m	struct:if_down2up	file:
+next	link_list.c	/^	struct if_down2up *next;$/;"	m	struct:if_down2up	typeref:struct:if_down2up::if_down2up	file:
