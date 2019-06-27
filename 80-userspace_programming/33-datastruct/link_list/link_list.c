@@ -121,7 +121,7 @@ struct if_down2up *add_if_down2up(struct if_down2up *st, const char *name, int t
 		new->address_type = type;
 #endif
 	}
-	printf("[%4d],last:%d,next:%d,addr:(%8X) ADD\n" ,__LINE__, new->last == NULL ? 0 : 1, new->next == NULL ? 0 : 1 ,new);
+	printf("[%4d],last:%d,next:%d,addr:(%8X) ADD\n" ,__LINE__, new->last == NULL ? 0 : 1, new->next == NULL ? 0 : 1 ,(unsigned int)new);
 	return new;
 }
 
@@ -140,7 +140,7 @@ struct if_down2up *find_if_down2up(struct if_down2up *st, const char*name)
 	{
 		if(0 == strcmp(tmp->name, name))
 		{
-			printf("[%4d],last:%d,next:%d,addr:(%8X) FIND\n" ,__LINE__, tmp->last == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 ,tmp);
+			printf("[%4d],last:%d,next:%d,addr:(%8X) FIND\n" ,__LINE__, tmp->last == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 ,(unsigned int)tmp);
 			return tmp;
 		}
 		tmp = tmp->next;
