@@ -53,6 +53,7 @@ TODO
 |4|TODO|mutex_lock| - |20190130-|
 |5|TODO|Relationship of Shell,Stdio and Process| - |20190211-|
 | |DONE|git using on command line interface|[git](/tools/coding/git/)|2019.03.28|
+| |DONE|git compile|[git-make](/tools/gcc/git_compile.sh)|2019.06.18|
 |6|**DOING**|kernel-net driver & protocol| - |2019.03.30-|
 |7|PLAN|if_down,if_up,link_up| |2019.05.06- |
 |8|**DOING**|quagga(zebra)|[1.source code](/tools/quagga-1.2.4), |2019.05.04- |
