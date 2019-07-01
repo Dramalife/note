@@ -32,7 +32,7 @@ TODO
 |5|2019.03.14|[process&thread \- sync&com](/coding_thread)|
 |6|2019.05.09|[compile(gcc),include](/80-userspace_programming/gcc)|
 |7|2019.05.08|[netlink,userspace&](/80-userspace_programming/netlink)|
-| | | |
+|8|2019.06.20|[lsof(list open files),strace(syscall_strace) at /tools](/tools)|
 | | | |
 | | | |
 
