@@ -9,8 +9,10 @@
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 TODO : 
-[2019.06.26] If already exist an item, which name is same as the item to be added.
-
+[2019.06.26]	If already exist an item, which name is same as the item to be added.
+[2019.07.02]	Fix bug :  Function "find_if_down2up" can not find the last item;
+			   Function "chg_if_down2up" del the last item cause fault;
+		Chg name:  var "struct if_down2up -> last  >> priv";
  */
 #include <stdio.h>
 #include <time.h>
@@ -22,7 +24,7 @@ struct if_down2up
 	char name[20];
 	int address_type;
 	struct if_down2up *next;
-	struct if_down2up *last;
+	struct if_down2up *priv;
 };
 
 struct if_down2up *head;
@@ -37,14 +39,14 @@ int main(void)
 	debug_if_down2up(head);//should not print
 	printf("LINE:%d................\n",__LINE__);
 
-	head = add_if_down2up(head,"aaaa", 1111);/* Add item to the linklist */
+	/*head =*/ add_if_down2up(head,"aaaa", 1111);/* Add item to the linklist */
 	debug_if_down2up(head);
 	printf("LINE:%d................\n",__LINE__);
-
-	head = add_if_down2up(head,"bbbb", 2222);
+#if 0
+	/*head =*/ add_if_down2up(head,"bbbb", 2222);
 	debug_if_down2up(head);
 	printf("LINE:%d................\n",__LINE__);
-
+#endif
 	chg_if_down2up(head,"aaaa",3333);/* Change value of item of the linklist */
 	debug_if_down2up(head);
 	printf("LINE:%d................\n",__LINE__);
@@ -64,15 +66,15 @@ int main(void)
 void debug_if_down2up(struct if_down2up *st)
 {
 	struct if_down2up *tmp = st;
-	printf("[%4d],last:%d,next:%d SHOW\n" ,__LINE__, tmp->last == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 );
-	while(tmp->last != NULL)
+	printf("[%4d],priv:%d,next:%d SHOW\n" ,__LINE__, tmp->priv == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 );
+	while(tmp->priv != NULL)
 	{
-		tmp = tmp->last;
+		tmp = tmp->priv;
 		printf("going to HEAD...\n");
 	}//goto HEAD
 	while(tmp->next != NULL)////while(tmp->next != NULL);
 	{
-		if(tmp->last != NULL)//HEAD
+		if(tmp->priv != NULL)//HEAD
 		{
 			printf("name:%s,type:%d \n", tmp->name, tmp->address_type);
 		}
@@ -99,7 +101,7 @@ struct if_down2up *add_if_down2up(struct if_down2up *st, const char *name, int t
 		memset(new, 0, sizeof(struct if_down2up));
 
 		new->next = NULL;
-		new->last = NULL;
+		new->priv = NULL;
 	}
 	else/* add item */
 	{
@@ -111,7 +113,7 @@ struct if_down2up *add_if_down2up(struct if_down2up *st, const char *name, int t
 		memset(new, 0, sizeof(struct if_down2up));
 
 		tmp->next = new;
-		new->last = tmp;
+		new->priv = tmp;
 		new->next = NULL;
 #if 0
 		sprintf(new->name,"%d",(int)time(NULL));
@@ -121,7 +123,7 @@ struct if_down2up *add_if_down2up(struct if_down2up *st, const char *name, int t
 		new->address_type = type;
 #endif
 	}
-	printf("[%4d],last:%d,next:%d,addr:(%8X) ADD\n" ,__LINE__, new->last == NULL ? 0 : 1, new->next == NULL ? 0 : 1 ,(unsigned int)new);
+	printf("[%4d],priv:%d,next:%d,addr:(%8X) ADD\n" ,__LINE__, new->priv == NULL ? 0 : 1, new->next == NULL ? 0 : 1 ,(unsigned int)new);
 	return new;
 }
 
@@ -132,18 +134,24 @@ struct if_down2up *find_if_down2up(struct if_down2up *st, const char*name)
 	struct if_down2up *tmp;
 	tmp = st;
 
-	while(tmp->last != NULL)
+	while(tmp->priv != NULL)
 	{
-		tmp = tmp->last;
+		tmp = tmp->priv;
 	}
 	while(tmp->next != NULL)
 	{
 		if(0 == strcmp(tmp->name, name))
 		{
-			printf("[%4d],last:%d,next:%d,addr:(%8X) FIND\n" ,__LINE__, tmp->last == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 ,(unsigned int)tmp);
+			printf("[%4d],priv:%d,next:%d,addr:(%8X) FIND\n" ,__LINE__, tmp->priv == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 ,(unsigned int)tmp);
 			return tmp;
 		}
 		tmp = tmp->next;
+	}
+	/* FIX:add check the la_st */
+	if(0 == strcmp(tmp->name, name))
+	{
+		printf("[%4d],priv:%d,next:%d,addr:(%8X) FIND\n" ,__LINE__, tmp->priv == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 ,(unsigned int)tmp);
+		return tmp;
 	}
 	return NULL;
 }
@@ -161,8 +169,15 @@ int chg_if_down2up(struct if_down2up *st, const char *name, int type)
 
 	if(type < 0)//DEL
 	{
-		tmp->last->next = tmp->next;
-		tmp->next->last = tmp->last;
+		if(NULL != tmp->next)
+		{
+			tmp->priv->next = tmp->next;
+			tmp->next->priv = tmp->priv;
+		}
+		else/*  */
+		{
+			tmp->priv->next = NULL;
+		}
 		free(tmp);
 	}
 	else//CHG
