@@ -4,25 +4,29 @@ source url:
 sample:
   printf(L_RED "hello,var:%d\r\n" NONE, var);
 *******************************************************/
+//terminal_color_dramalife.h
+#ifndef TERMINALI_COLOR_DRAMALIFE_H
+#define TERMINALI_COLOR_DRAMALIFE_H
+
 #define 	CNONE                 "\e[0m"
 #define 	CRED                  "\e[0;31m"
 #define 	CLRED                "\e[1;31m"
 #define 	CGREEN                "\e[0;32m"
 #define 	CLGREEN              "\e[1;32m"
 
-#define 	BLACK                "\e[0;30m"
-#define 	L_BLACK              "\e[1;30m"
-#define 	BROWN                "\e[0;33m"
-#define 	YELLOW               "\e[1;33m"
-#define 	BLUE                 "\e[0;34m"
-#define 	L_BLUE               "\e[1;34m"
-#define 	PURPLE               "\e[0;35m"
-#define 	L_PURPLE             "\e[1;35m"
-#define 	CYAN                 "\e[0;36m"
-#define 	L_CYAN               "\e[1;36m"
-#define 	GRAY                 "\e[0;37m"
-#define 	WHITE                "\e[1;37m"
-#define 	BOLD                 "\e[1m"
+#define 	CBLACK                "\e[0;30m"
+#define 	CLBLACK              "\e[1;30m"
+#define 	CBROWN                "\e[0;33m"
+#define 	CYELLOW               "\e[1;33m"
+#define 	CBLUE                 "\e[0;34m"
+#define 	CLBLUE               "\e[1;34m"
+#define 	CPURPLE               "\e[0;35m"
+#define 	CLPURPLE             "\e[1;35m"
+#define 	CCYAN                 "\e[0;36m"
+#define 	CLCYAN               "\e[1;36m"
+#define 	CGRAY                 "\e[0;37m"
+#define 	CWHITE                "\e[1;37m"
+#define 	CBOLD                 "\e[1m"
 #define 	UNDERLINE            "\e[4m"
 #define 	BLINK                "\e[5m"
 #define 	REVERSE              "\e[7m"
@@ -39,4 +43,5 @@ sample:
 //cursor move right
 #define MOVER(y) printf("\033[%dC",(y))
 
+#endif
 
