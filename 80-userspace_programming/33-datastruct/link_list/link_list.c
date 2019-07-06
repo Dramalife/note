@@ -32,8 +32,10 @@ TODO :
 #include <time.h>/* time_t time(time_t *t); */
 #endif
 
-#include "terminal_color_dramalife.h"/* Installed from "note/lib_dramalife" */
+#include <terminal_color_dramalife.h>/* Installed from "note/lib_dramalife" */
 //#include "../datastruct_dramalife.h"
+#include "gcc_related_show.h"
+
 struct if_down2up
 {
        char name[20];
@@ -63,6 +65,8 @@ int find_by_filo_down2up(struct if_down2up *st, struct if_down2up *ret_val);/* G
 int main(void)
 {
 	struct if_down2up tmp;
+
+	gcc_related_show_no_arg_in( GCC_R_SHOW_VERSION | GCC_R_SHOW_DATE | GCC_R_SHOW_TIME );
 
 	head = add_if_down2up(NULL, NULL, 0);/* Init a linklist */
 	debug_if_down2up(head);//should not print
@@ -221,8 +225,8 @@ struct if_down2up *add_if_down2up(struct if_down2up *st, const char *name, int t
 		new->address_type = type;
 #endif
 	}
-	printf("[%4d],priv:%d,next:%d,"AC_LGREEN"addr"AC_NONE":(0x%08X) "AC_YELLOW"ADD"AC_NONE"\n" ,
-			__LINE__, new->priv == NULL ? 0 : 1, new->next == NULL ? 0 : 1 ,(unsigned int)new);
+	printf("[%4d],priv:%d,next:%d,"AC_LGREEN"addr"AC_NONE":(0x%016llX) "AC_YELLOW"ADD"AC_NONE"\n" ,
+			__LINE__, new->priv == NULL ? 0 : 1, new->next == NULL ? 0 : 1 ,(long long unsigned int)new);
 
 	return new;/* NORMAL */
 not_chg:
