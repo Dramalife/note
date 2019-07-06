@@ -33,7 +33,16 @@ TODO :
 #endif
 
 #include "terminal_color_dramalife.h"/* Installed from "note/lib_dramalife" */
-#include "../datastruct_dramalife.h"
+//#include "../datastruct_dramalife.h"
+struct if_down2up
+{
+       char name[20];
+       int address_type;
+       struct if_down2up *next;
+       struct if_down2up *priv;
+};
+
+
 
 #define AC_NONE		CNONE
 #define AC_LRED		CLRED
