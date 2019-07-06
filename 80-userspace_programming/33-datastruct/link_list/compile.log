@@ -1,0 +1,8 @@
+## 1
+a.c
+a.h
+b.c
+$gcc -c a.c
+$gcc -c b.c
+$gcc -o xxx.out *.o
+
