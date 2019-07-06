@@ -217,16 +217,17 @@ struct if_down2up *add_if_down2up(struct if_down2up *st, const char *name, int t
 		tmp->next = new;
 		new->priv = tmp;
 		new->next = NULL;
-#if 0
-		sprintf(new->name,"%d",(int)time(NULL));
-		new->address_type = (int)time(NULL);
-#else
+
 		strcpy(new->name,name);
 		new->address_type = type;
-#endif
 	}
+#if  __WORDSIZE ==  64
 	printf("[%4d],priv:%d,next:%d,"AC_LGREEN"addr"AC_NONE":(0x%016llX) "AC_YELLOW"ADD"AC_NONE"\n" ,
 			__LINE__, new->priv == NULL ? 0 : 1, new->next == NULL ? 0 : 1 ,(long long unsigned int)new);
+#elif  __WORDSIZE ==  32
+	printf("[%4d],priv:%d,next:%d,"AC_LGREEN"addr"AC_NONE":(0x%08X) "AC_YELLOW"ADD"AC_NONE"\n" ,
+			__LINE__, new->priv == NULL ? 0 : 1, new->next == NULL ? 0 : 1 ,(unsigned int)new);
+#endif
 
 	return new;/* NORMAL */
 not_chg:
@@ -263,8 +264,13 @@ struct if_down2up *find_by_name_down2up(struct if_down2up *st, const char*name)
 	return NULL;
 
 done:
+#if  __WORDSIZE ==  64
+	printf("[%4d],priv:%d,next:%d,"AC_LGREEN"addr"AC_NONE":(0x%016llX) "AC_YELLOW"FIND"AC_NONE"\n" ,
+			__LINE__, tmp->priv == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 ,(long long unsigned int)tmp);
+#elif  __WORDSIZE ==  32
 	printf("[%4d],priv:%d,next:%d,"AC_LGREEN"addr"AC_NONE":(0x%08X) "AC_YELLOW"FIND"AC_NONE"\n" ,
 			__LINE__, tmp->priv == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 ,(unsigned int)tmp);
+#endif
 	return tmp;
 }
 /* DATASTRUCT-QUEUE
@@ -336,8 +342,13 @@ int chg_if_down2up(struct if_down2up *st, const char *name, int type)
 		tmp->address_type = type;
 	}
 
+#if  __WORDSIZE ==  64
+	printf("[%4d],priv:%d,next:%d,"  AC_LGREEN  "addr"  AC_NONE  ":(0x%016llX)"  "%s"  " %s"  AC_NONE  "\n",
+			__LINE__, tmp->priv == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 ,(long long unsigned int)tmp, type<0 ? AC_LRED : AC_YELLOW , (type<0) ? "DEL" : "CHG" );
+#elif  __WORDSIZE ==  32
 	printf("[%4d],priv:%d,next:%d,"  AC_LGREEN  "addr"  AC_NONE  ":(0x%08X)"  "%s"  " %s"  AC_NONE  "\n",
 			__LINE__, tmp->priv == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 ,(unsigned int)tmp, type<0 ? AC_LRED : AC_YELLOW , (type<0) ? "DEL" : "CHG" );
+#endif
 	return 0;
 }
 
