@@ -53,6 +53,7 @@ struct if_down2up
 
 struct if_down2up *head;
 void debug_if_down2up(struct if_down2up *st);
+void test_func_down2up(struct if_down2up *st, int times, int interval);
 struct if_down2up *add_if_down2up(struct if_down2up *st, const char *name, int type);
 struct if_down2up *find_by_name_down2up(struct if_down2up *st, const char*name);
 int chg_if_down2up(struct if_down2up *st, const char *name, int type);
@@ -110,16 +111,20 @@ int main(void)
 		printf("FILO---name:%s,type:%d\n",tmp.name, tmp.address_type);
 	debug_if_down2up(head);
 
+test_func_down2up(head, 60000, 0);/* testing */
+
 	return 0;
 }
 
 #if AUTO_TEST_DOWN2UP
+#define RAND_MAX 1
 void test_func_down2up(struct if_down2up *st, int times, int interval)
 {
 	while(times--)
 	{
-		sleep(interval);
-		if( (int)time(NULL) & 0x1 )
+		usleep(interval);
+		//if( (int)time(NULL) & 0x1 )
+		if( rand() & 0x1 )
 		{
 			add_if_down2up(head,"aaaa", (int)time(NULL));/* Add item to the linklist */
 		}
