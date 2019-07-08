@@ -60,9 +60,9 @@ TODO
 |9 |TODO|SSH密钥| [ssh_key](/tools/ssh_key.md)| |
 |10|DONE|link list|[link_list.c](80-userspace_programming/33-datastruct/link_list/link_list.c) |2019.06.26-2019.07.05 |
 |  |**DOING**|link_list(char device Module) | |2019.07.05- |
-|12|**DOING**|gcc:load,link,lib*.so | |2019.07.06- |
+|12|**DOING**|gcc:load,link,lib\*.so | |2019.07.06- |
 |13|**TODO**|Socket sample | |2019.07.07- |
-| | | | | |
+|14|**DOING**|libdramalife:auto allocate COLOR | |2019.07.08- |
 | | | | | |
 | | | | | |
 | | | | | |
