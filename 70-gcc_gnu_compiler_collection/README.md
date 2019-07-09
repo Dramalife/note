@@ -1,3 +1,14 @@
+```
+   note gcc related file
+   Copyright (C) 2019 Dramalife@live.com
+
+   This file is part of [note](https://github.com/Dramalife/note.git)
+
+   note is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+
 #### man gcc -- DESCRIPTION(part)
 When you invoke GCC, it normally does preprocessing, compilation, assembly(汇编) and linking.  The "overall options" allow you to stop this process at an  
 intermediate stage.  For example, the -c option says not to run the linker.  Then the output consists of object files output by the assembler.  
