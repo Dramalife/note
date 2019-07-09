@@ -27,8 +27,8 @@ all:
 	rm -rvf ./*$(BIN_END)
 	gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -I $(LIB_C_DRAMALIFE) -v
 
-	# "make: *** [all] Error 1" 
-	#./$(BIN_NAME)$(BIN_END)
+# "make: *** [all] Error 1" 
+#./$(BIN_NAME)$(BIN_END)
 
 clean:
 	rm -rvf ./*$(BIN_END)
