@@ -31,7 +31,7 @@ TODO
 |0|2019.01.09|Linux C Signal;fork();zombie thread;|
 |1|2019.01.21|TCP/IP|
 |2|2019.01.21|CLI：u-boot,zebra\(quagga\)|
-|3|2019.01.21|[GNU C:__attribute__](/81-kernel_programming/gnu_c/)|
+|3|2019.01.21|[GNU C:__attribute__](//70-gcc_gnu_compiler_collection/gnu_c_attribute)|
 |4|2019.01.28|[ioctl,socket](/81-kernel_programming/network/socket/)|
 |5|2019.03.14|[process&thread \- sync&com](/coding_thread)|
 |6|2019.05.09|[compile(gcc),include](/80-userspace_programming/gcc)|
@@ -54,7 +54,8 @@ TODO
 |1 |DOING|4g(9507_driver)|[4g](/81-kernel_programming/network/4g_cell)|20190122-|
 |2 |DOING|vim|[vim](/tools_coding/vim)|20190122-Updating-|
 |3 |TODO|framebuffer & i2c| - |201811xx-|
-|4 |TODO|mutex_lock| - |20190130-|
+|  |DONE|gcc attribute(section)|[gcc attribute-section](/70-gcc_gnu_compiler_collection/gnu_c_attribute)|2019.01.21-2019.07.09|
+|4 |**TODO**|mutex_lock| - |20190130-|
 |5 |TODO|Relationship of Shell,Stdio and Process| - |20190211-|
 |  |DONE|git using on command line interface|[git](/tools/coding/git/)|2019.03.28|
 |  |DONE|git compile|[git-make](/tools/gcc/git_compile.sh)|2019.06.18|
@@ -63,10 +64,11 @@ TODO
 |8 |**DOING**|quagga(zebra)|[1.source code](/tools/quagga-1.2.4), |2019.05.04- |
 |9 |TODO|SSH密钥| [ssh_key](/tools/ssh_key.md)| |
 |10|DONE|link list|[link_list.c](80-userspace_programming/33-datastruct/link_list/link_list.c) |2019.06.26-2019.07.05 |
-|  |**DOING**|link_list(char device Module) | |2019.07.05- |
-|12|**DOING**|gcc:load,link,lib\*.so | |2019.07.06- |
-|13|**TODO**|Socket sample | |2019.07.07- |
-|14|**DOING**|libdramalife:auto allocate COLOR | |2019.07.08- |
+|  |**DOING**|link_list(char device Module) | - |2019.07.05- |
+|12|**DOING**|gcc:load,link,lib\*.so | - |2019.07.06- |
+|13|**TODO**|Socket sample | - |2019.07.07- |
+|14|CANCLED|libdramalife:auto allocate COLOR | |2019.07.08-2019.07.09|
+| | | | | |
 | | | | | |
 | | | | | |
 | | | | | |
