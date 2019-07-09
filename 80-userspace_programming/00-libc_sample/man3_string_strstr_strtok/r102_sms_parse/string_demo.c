@@ -2,6 +2,8 @@
  Demo for content & area code of Spain.
 */
 #include <stdio.h>
+#include <string.h>
+
 #define CNONE   "\e[0m"
 #define CLGREEN "\e[1;32m"
 #define CLRED   "\e[1;31m"
