@@ -13,6 +13,9 @@ c|clean)
 rm -rvf *.o
 rm -rvf *.out
 ;;
+*)
+echo "em..."
+;;
 
 esac
 

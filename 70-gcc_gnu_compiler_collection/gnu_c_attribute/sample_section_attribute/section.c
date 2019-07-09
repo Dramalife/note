@@ -31,3 +31,10 @@ DECLARE_INIT(C_init);
  *  static init_call _fn_B_init __attribute__((unused, section(".myinit"))) = B_init;
  */
 
+/* Add your init func(s) like this: */
+static void D_init(void)
+{
+	printf("DDDDD_init\n");
+}
+DECLARE_INIT(D_init);
+
