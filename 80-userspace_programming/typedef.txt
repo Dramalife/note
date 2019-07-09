@@ -1,0 +1,10 @@
+
+typedef  unsigned int  UINT32;  // UINT32 类型是unsigned int
+UINT32 sum;                                 // 定义一个变量：int sum;
+
+typedef  int  arr[3];                     // arr 类型是 int[3];（存放int型数据的数组）
+arr a;                                              // 定义一个数组：int a[3];
+
+typedef  void (*pfun)(void);         // pfun 类型是 void(*)(void)
+pfun main;                                       // 定义一个函数：void (*main)(void);
+
