@@ -1,0 +1,23 @@
+#### man gcc -- DESCRIPTION(part)
+When you invoke GCC, it normally does preprocessing, compilation, assembly(汇编) and linking.  The "overall options" allow you to stop this process at an  
+intermediate stage.  For example, the -c option says not to run the linker.  Then the output consists of object files output by the assembler.  
+
+#### Stages
+|Stage|Inputformat|Outputformat|
+|--|--|--|
+|preprocessing  |file.c|file.i|
+|compilation    |file.i| |
+|assembly(汇编) |file.s| |
+|linking        |file.o|file.out|
+
+#### Options(part)
+|Option|Description|
+|--|--|
+|-E          |Preprocess only; do not compile, assemble or link|
+|-S          |Compile only; do not assemble or link            |
+|-c          |Compile and assemble, but do not link            |
+|-o \<file\> |  Place the output into \<file\>                 |
+|-v          |Display the programs invoked by the compiler     |
+
+
+
