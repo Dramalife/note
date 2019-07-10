@@ -1,0 +1,15 @@
+File name : ways_to_develop_drivers.txt
+Ref Url	: https://mp.weixin.qq.com/s/zwyafp_DrMUejiSu2FwnfQ
+
+--------
+1. Traditional Way
+traditional_sample.c
+
+--------
+2. Platform Bus
+platform_bus_sample.c  
+
+--------
+3. Device Tree
+device_tree_sample.c  
+
