@@ -9,6 +9,8 @@
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
+# Ref Url : https://stackoverflow.com/questions/1783405/
+#		how-do-i-check-out-a-remote-git-branch
 
 # {remote_name}/{remote_branch_name}
 git checkout -t origin/$1
