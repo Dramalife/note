@@ -9,7 +9,7 @@ all:
 	rm -rvf ./*$(BIN_END)
 	gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -v
 #	cpp -dM /dev/null
-	# "make: *** [all] Error 1" 
+# "make: *** [all] Error 1" 
 #	./$(BIN_NAME)$(BIN_END)
 
 clean:
