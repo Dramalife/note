@@ -15,21 +15,22 @@
 #			Comment out var of lib "LIB_C_DRAMALIFE" that 
 #			can be installed by running 
 #			"note/lib_dramalife/install_sh_h_to_root_dir.sh";
+# update : 2019.07.11 Del '-I' option;
 #
 
 BIN_NAME=a_demo
 BIN_END=.out
+PRE_COMP=source.i
 SRC=$(wildcard ./*.c)
-
-#LIB_C_DRAMALIFE=~/note/lib_dramalife/
 
 all:
 	rm -rvf ./*$(BIN_END)
-	gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -I $(LIB_C_DRAMALIFE) -v
+	gcc -E $(SRC) >> $(PRE_COMP)
+	gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -v
 
 # "make: *** [all] Error 1" 
 #./$(BIN_NAME)$(BIN_END)
 
 clean:
-	rm -rvf ./*$(BIN_END)
+	rm -rvf ./*$(BIN_END) ./$(PRE_COMP)
 
