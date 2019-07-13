@@ -11,7 +11,7 @@
 
 /*
 Init edit : 2019.07.11 21:53, wjy.
-Update	:
+Update	::: 2019.07.13 17:08, wjy.rc.
 */
 
 #include<stdio.h>	/* man 3 */
@@ -50,12 +50,10 @@ void dump(void)
 
 void signal_handler(int signo)  
 {  
-
-#if 0   /* Show maps */ 
+	/* Show maps */ 
 	char buff[64] = {0};  
 	sprintf(buff,"cat /proc/%d/maps", getpid());  
 	system((const char*) buff);  
-#endif    
 
 	printf("\n##############Backtrace_Start(%d)#############\n", signo);  
 	dump();  
@@ -77,27 +75,46 @@ int sample_segment_err1(void)
 	return ret;  
 }
 
+int sample_syscall_kill1(void)
+{
+	system("kill 0");
+	return 0;
+}
+
+int matched_string(const char *str1, const char *str2)
+{
+	return strncmp(str1, str2, sizeof(str2) - 1) ? 0 : 1;
+}
+
 int main(int argc, char **argv)
 {
 	signal(SIGSEGV, signal_handler); 
 
 	if(argc > 1)
 	{
-		if(0 == strncmp(argv[1], "seg", sizeof("seg") - 1))/* Sample - Segment Fault */
+		if(matched_string(argv[1],"seg"))/* Sample - Segment Fault */
 		{
 			sample_segment_err1();
 		}
-		else if(0 == strncmp(argv[1], "dump", sizeof("dump") - 1))
+		else if(matched_string(argv[1],"kill"))
+		{
+			sample_syscall_kill1();
+		}
+		else if(matched_string(argv[1],"dump"))/* Unuseful, using Makefile now. */
 		{
 			char tmp[100];
 			sprintf(tmp,"objdump -dx %s > %s.dump",argv[0], argv[0]);
 			system(tmp);
 			printf("CMD is [%s] \n", tmp);
 		}
-		else
-		{
-			printf("Help:\nSee line %d of the source code!\n",__LINE__);
-		}
+	}
+	else
+	{
+		printf("Help:\nSee line %d of the source code!\n",__LINE__);
+	}
+
+	while(1)
+	{
 	}
 
 	return 0;
