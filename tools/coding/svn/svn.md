@@ -24,11 +24,4 @@
 | | | |
 | | | |
 
-### svn local backup-备份本地临时版本-\[*, cat, pipe, tar,\]
-```bash
-svn status -q >> status. svn
-cat status.svn | xargs tar czvf  backup.tar.gz
-#其中status.svn是要打包的文件列表
-#edit status.svn first
-```
 
