@@ -18,18 +18,24 @@
 #
 
 BIN_NAME=a_demo
+LIB_NAME=libc
 BIN_END=.out
-PRE_COMP=source.i
+PRE_COMP=.i
+DIS_ASSB=.ass
+
 SRC=$(wildcard ./*.c)
 
 all:
 	rm -rvf ./*$(BIN_END)
-	gcc -E $(SRC) >> $(PRE_COMP)
+# Preprocessing code
+	gcc -E $(SRC) > $(BIN_NAME)$(PRE_COMP)
 	gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -v
+# disassemble bin file
+	objdump -d $(BIN_NAME)$(BIN_END) > ${BIN_NAME}$(DIS_ASSB)
+# disassemble lib file
+	objdump -d /lib/i386-linux-gnu/libc.so.6 > $(LIB_NAME)$(DIS_ASSB)
 
-# "make: *** [all] Error 1" 
-#./$(BIN_NAME)$(BIN_END)
-
+.PHONY : clean
 clean:
-	rm -rvf ./*$(BIN_END) ./$(PRE_COMP)
+	rm -rvf ./*$(BIN_END) ./*$(PRE_COMP) ./*$(DIS_ASSB)
 
