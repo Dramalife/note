@@ -1,0 +1,33 @@
+#
+# note tools git related file
+# Copyright (C) 2019 Dramalife@live.com
+# 
+# This file is part of [note](https://github.com/Dramalife/note.git)
+# 
+# note is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Ref Url : http://blog.csdn.net/xuyaqun/article/details/49275477
+#
+# Init	: 2019.07.14 16:37
+# Update: 
+# 
+
+## step 1
+mkdir tools_a
+cd tools_a/
+git init
+
+## step 2
+git remote add -f origin 
+
+
+## step 3
+git config core.sparsecheckout true
+echo "tools_a" >> .git/info/sparse-checkout
+more .git/info/sparse-checkout
+
+## step 4
+git pull origin master  
+
