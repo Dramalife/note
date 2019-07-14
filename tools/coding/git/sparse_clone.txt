@@ -20,13 +20,11 @@ cd tools_a/
 git init
 
 ## step 2
-git remote add -f origin 
-
+git remote add -f origin https://github.com/Dramalife/tools_note.git
 
 ## step 3
 git config core.sparsecheckout true
 echo "tools_a" >> .git/info/sparse-checkout
-more .git/info/sparse-checkout
 
 ## step 4
 git pull origin master  
