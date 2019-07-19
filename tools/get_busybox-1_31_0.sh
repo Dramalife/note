@@ -1,7 +1,7 @@
 #! /bin/bash
 #
-# note xxx-xxx related file
-# Copyright (C) 2019 Dramalife
+# note tools related
+# Copyright (C) 2019 Dramalife@live.com
 # 
 # This file is part of [note](https://github.com/Dramalife/note.git)
 # 
@@ -10,5 +10,6 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
 
-https://github.com/Dramalife/tools_note.git
+# Getting busybox-1_31_0
+../lib_dramalife/internal_used/sparse_clone_symbol.sh busybox-1_31_0
 
