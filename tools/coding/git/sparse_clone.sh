@@ -14,6 +14,11 @@
 # Update: 
 # 
 
+## step 0
+touch ${1}
+sed -i "/${1}/d" ./.gitignore
+echo "${1}" >> ./.gitignore
+
 ## step 1
 mkdir $1
 cd $1
