@@ -1,0 +1,15 @@
+test modifier "const"
+
+"Segmentation fault" when strcpy to a pointer inited like :
+	const char *ccp0 = "asdfghjkl";
+
+to
+
+add backtrace module, to trace, unknown symbol[vdso]
+
+add vdso_lib_dump module, 
+	00000cac <__kernel_sigreturn>
+
+
+TODO
+
