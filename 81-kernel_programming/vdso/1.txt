@@ -1,0 +1,9 @@
+Linux(kernel 2.6 or upper)环境下执行ldd /bin/sh,
+会发现有个名字叫linux-vdso.so.1(老点的版本是linux-gate.so.1)的动态文件,
+而系统中却找不到它, 它就是VDSO
+
+linux-gate.so.1的地址是0xffffe000. 较新的内核提供了进程随机地址化功能,
+linux-vdso.so.1的地址每次cat /proc/self/maps都会变化,
+想把它从/proc/self/mem中dd出来反汇编请先:
+echo "0" > /proc/sys/kernel/randomize_va_space
+
