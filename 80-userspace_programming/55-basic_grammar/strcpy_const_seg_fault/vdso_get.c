@@ -41,7 +41,6 @@ int vdso_get(int argc, char **argv)
 		perror("Error: fopen() - output file");
 		abort();
 	}
-	printf("file name:%s \n",argv[1]);
 
 	/* Get this process' memory layout */
 	if (!(rd = fopen("/proc/self/maps", "r")))
