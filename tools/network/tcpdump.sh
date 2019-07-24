@@ -26,6 +26,9 @@
 #	 {Don't convert host address to names.}
 # -nn	 {数字的方式显示IP和端口。一个n是ip}
 #	 {Don't convert host address and port numbers to names.}
+#
+#
+# man page : http://www.tcpdump.org/manpages/tcpdump.1.html
 
 sudo tcpdump -i $1 -nn -xx -v -w $2
 
