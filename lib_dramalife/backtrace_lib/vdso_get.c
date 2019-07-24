@@ -11,6 +11,12 @@
    Ref Url:https://blog.csdn.net/maimang1001/article/details/17331731
 
  */
+/*
+  USE: Get vdso from "/proc/self/mem", and disassemble it.
+	char *argv[3]={"program",VDSO_FILE_NAME,"vdso"};
+	vdso_get(3, argv);
+	system("objdump -d /tmp/vdso.txt > vdso.ass");
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
