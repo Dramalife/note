@@ -27,7 +27,6 @@ NOT_LINK=.o
 SRC=$(wildcard ./*.c)
 
 all:
-	make clean
 	rm -rvf ./*$(BIN_END)
 # Preprocessing code
 	gcc -E $(SRC) > $(BIN_NAME)$(PRE_COMP)
