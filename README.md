@@ -82,8 +82,15 @@ TODO
 |2|Arduino MEGA 2560|2017.05.03||
 | |AIO-3399J| |Drivers:DP83867,LTC2941,|
 | |STM32F107VCT6|ethernet,NB-Iot/GSM|
-|3|Raspberry Pi |2018.07.xx|Thanks Longlong Xue,|
+|3|Raspberry Pi |2018.07|Arm v7|
 |4|Orange Pi |2018.12.27|Arm v7|
+| | | | |
+
+### Devices
+|No|Name|Date|Details|
+|--|--|--|--|
+| 0|TFT LCD(ili9486) |2019.07.24- | drivers/staging/fbtft/fb\_ili9486.c|
+| | | | |
 
 ### Games  
 
@@ -101,6 +108,11 @@ Upload and include files in github,funny!
 <div align=right>
   <img src="https://busybox.net/images/busybox1.png">
   <img src="https://www.vim.org/images/vim_header.gif">
+</div>
+
+
+<div align=right>
+  <img src="http://www.tcpdump.org/images/logo.png" width="20%">
 </div>
   
     
