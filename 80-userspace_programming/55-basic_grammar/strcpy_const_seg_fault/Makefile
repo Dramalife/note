@@ -32,6 +32,8 @@ all:
 # Preprocessing code
 	gcc -E $(SRC) > $(BIN_NAME)$(PRE_COMP)
 	gcc -c $(SRC) -v
+	gcc -c ../../../lib_dramalife/backtrace_lib/backtrace_funcs.c
+	gcc -c ../../../lib_dramalife/backtrace_lib/vdso_get.c
 	gcc -o $(BIN_NAME)$(BIN_END) *.o
 # disassemble bin file
 	objdump -d $(BIN_NAME)$(BIN_END) > ${BIN_NAME}$(DIS_ASSB)

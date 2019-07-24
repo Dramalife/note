@@ -12,6 +12,8 @@
 /*
 Init edit : 2019.07.11 21:53, wjy.
 Update	::: 2019.07.13 17:08, wjy.rc.
+	Init : 2019.07.24, COPY from
+	"/70-gcc_gnu_compiler_collection/backtrace/main.c“
 */
 
 #include<stdio.h>	/* man 3 */
@@ -62,61 +64,4 @@ void signal_handler(int signo)
 	signal(signo, SIG_DFL); /* Resume signal handler */  
 	raise(signo);           /* Resend signal */  
 }  
-
-int sample_segment_err1(void)
-{
-	int ret = 0;  
-	int *tmpp = NULL;  
-
-	*tmpp = 1;  /* Causing Segment Fault */  
-
-	ret = *tmpp++;  
-
-	return ret;  
-}
-
-int sample_syscall_kill1(void)
-{
-	system("kill 0");
-	return 0;
-}
-
-int matched_string(const char *str1, const char *str2)
-{
-	return strncmp(str1, str2, sizeof(str2) - 1) ? 0 : 1;
-}
-
-int main_x(int argc, char **argv)
-{
-	signal(SIGSEGV, signal_handler); 
-
-	if(argc > 1)
-	{
-		if(matched_string(argv[1],"seg"))/* Sample - Segment Fault */
-		{
-			sample_segment_err1();
-		}
-		else if(matched_string(argv[1],"kill"))
-		{
-			sample_syscall_kill1();
-		}
-		else if(matched_string(argv[1],"dump"))/* Unuseful, using Makefile now. */
-		{
-			char tmp[100];
-			sprintf(tmp,"objdump -dx %s > %s.dump",argv[0], argv[0]);
-			system(tmp);
-			printf("CMD is [%s] \n", tmp);
-		}
-	}
-	else
-	{
-		printf("Help:\nSee line %d of the source code!\n",__LINE__);
-	}
-
-	while(1)
-	{
-	}
-
-	return 0;
-}
 
