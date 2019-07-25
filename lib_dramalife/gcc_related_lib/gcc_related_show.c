@@ -13,6 +13,9 @@
 #include "gcc_related_show.h"
 
 /*
+USE : 
+gcc_related_show_no_arg_in( GCC_R_SHOW_VERSION | GCC_R_SHOW_DATE |
+GCC_R_SHOW_TIME );
 No arg in,such as "__LINE__"
 */
 void gcc_related_show_no_arg_in(unsigned int options)
