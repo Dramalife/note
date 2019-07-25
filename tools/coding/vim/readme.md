@@ -23,7 +23,7 @@
 | |0071|w|ahead a word||
 | |0072|b|backward a word||
 |4|2000|:1,$s/old/new/g | replace "old" with "new",,:%s/old/new/g全局范围(%)||
-| |0000|:%s/old/new/g|replace||
+| |0000|:%s/old/new/g|replace, g-global, c-||
 | |0000|:%s/keyword/&/g|计数：在全文，"keyword"的数量，"&"表示前边的字符串||
 | |0000|:123,456 y/d|复制/删除123到456行||
 |5|2001|ctrl + v , I , (input) , esc*2|block insert||
