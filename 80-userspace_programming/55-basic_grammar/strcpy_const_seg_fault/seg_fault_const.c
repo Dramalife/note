@@ -29,8 +29,10 @@
 #include<signal.h>
 #include<stdio.h>
 
-/* ccp0 is a pointer to const char */
-const char *ccp0 = "asdfghjkl"; 
+/* ccp0_ptr is a pointer to const char */
+const char *ccp0_ptr = "asdfghjkl"; 
+
+const char ccp0_array[] = "abcabcabc"; 
 
 /* ccp1 is a pointer to const char */
 char const *ccp1;
@@ -45,8 +47,6 @@ extern int vdso_get(int argc, char **argv);
 #define DEFAULT_SIZE (100 * sizeof(char))
 #define VDSO_FILE_NAME "/tmp/vdso.txt"
 
-/* ARG IN DECLARE  : const char *ccp0 = "asdfghjkl"; (Global)
-   ERR SEG FAULT   : No */
 void point_to_new_malloc(void)
 {
 	/*  global_ptr   : gcc-ok, exec-ok;
@@ -83,6 +83,52 @@ void local_int_pointer(void)
 	printf("bufsize = %d\n", bufsize);
 
 	return;
+}
+
+
+const char *gchar_ptr = "8989898989"; 	 //nm-D
+const char gchar_array[] = "9090909090"; //nm-R
+void global_char_pointer(void)
+{
+	char *tmp_ptr = gchar_ptr;
+	char *tmp_array = gchar_array;
+
+	/* gcc-ok, exec-ok 
+	 * D:The symbol is in the initialized data section.*/
+	gchar_ptr = NULL;
+
+	/* gcc-error : incompatible types when assigning to type ‘const
+	 * 		char[11]’ from type ‘void *’ 
+	 * R:The symbol is in a read only data section.*/
+	//gchar_array = NULL;
+
+	/* gcc-ok,exec-error */
+	//sprintf(gchar_ptr, "abc");
+
+	/* gcc-ok,exec-error */
+	//sprintf(tmp_ptr, "abc");
+
+	/* gcc-error : assignment of read-only location ‘*gchar_ptr’ */
+	//gchar_ptr[0] = 'A';
+
+	/* gcc-ok,exec-error */
+	//tmp_ptr[0] = 'A';
+
+	printf("%s,%d(%s) \n",__func__,__LINE__, gchar_ptr);
+
+	/* gcc-ok,exec-error */
+	//sprintf(gchar_array, "abc");
+
+	/* gcc-ok,exec-error */
+	//sprintf(tmp_array, "abc");
+
+	/* gcc-error : assignment of read-only location ‘gchar_array[0]’ */
+	//gchar_array[0] = 'A';
+
+	/* gcc-ok,exec-error */
+	//tmp_array[0] = 'A';
+
+	printf("%s,%d(%s) \n",__func__,__LINE__, gchar_array);
 }
 
 void local_char_pointer(void)
@@ -150,6 +196,8 @@ int main(void)
 	local_char_pointer();
 
 	local_int_pointer();
+
+	global_char_pointer();
 
 	return 0;
 }
