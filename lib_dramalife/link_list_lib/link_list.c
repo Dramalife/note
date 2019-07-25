@@ -16,6 +16,7 @@ TODO :
 [2019.07.04]	Chg name:  func "find_if_down2up >> find_by_name_down2up";
 		Add func:  "goto_end_down2up";
 			   "test_func_down2up";
+[2019.07.25]	Divided
  */
 
 #include "link_list.h"
