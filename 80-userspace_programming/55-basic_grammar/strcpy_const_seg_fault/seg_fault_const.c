@@ -21,7 +21,8 @@
  * 2015 i686 i686 i686 GNU/Linux
  */
 
-/* Ref Url : https://blog.csdn.net/m0_37806112/article/details/81252151 */
+/* Ref Url : https://www.cnblogs.com/liwei0526vip/p/8620595.html
+	     https://www.runoob.com/w3cnote/const-char.html	*/
 
 #include<string.h>
 #include<stdlib.h> /*malloc*/
