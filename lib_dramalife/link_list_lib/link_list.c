@@ -18,107 +18,48 @@ TODO :
 			   "test_func_down2up";
  */
 
-#define AUTO_TEST_DOWN2UP	1
-
-#define MAX_ITEM_NUM_DOWN2UP	256
-
+#include "link_list.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
 
-#if AUTO_TEST_DOWN2UP
+#if (1 == AUTO_TEST_DOWN2UP)
 #include <unistd.h>/* sleep() */
 #include <time.h>/* time_t time(time_t *t); */
 #endif
 
+#if (1 == HAVE_TERM_COLOR_DRAMALIFE)
 #include <terminal_color_dramalife.h>/* Installed from "note/lib_dramalife" */
-//#include "../datastruct_dramalife.h"
-#include "gcc_related_show.h"
-
-struct if_down2up
-{
-       char name[20];
-       int address_type;
-       struct if_down2up *next;
-       struct if_down2up *priv;
-};
-
-
-
 #define AC_NONE		CNONE
 #define AC_LRED		CLRED
 #define AC_LGREEN	CLGREEN
 #define AC_YELLOW	CYELLOW
-
-struct if_down2up *head;
-void debug_if_down2up(struct if_down2up *st);
-void test_func_down2up(struct if_down2up *st, int times, int interval);
-struct if_down2up *add_if_down2up(struct if_down2up *st, const char *name, int type);
-struct if_down2up *find_by_name_down2up(struct if_down2up *st, const char*name);
-int chg_if_down2up(struct if_down2up *st, const char *name, int type);
-
-struct if_down2up *goto_end_down2up(struct if_down2up *st);
-
-int find_by_fifo_down2up(struct if_down2up *st, struct if_down2up *ret_val);/* Get the oldest item */
-int find_by_filo_down2up(struct if_down2up *st, struct if_down2up *ret_val);/* Get the newst  item */
-
-int main(void)
-{
-	struct if_down2up tmp;
-
-	gcc_related_show_no_arg_in( GCC_R_SHOW_VERSION | GCC_R_SHOW_DATE | GCC_R_SHOW_TIME );
-
-	head = add_if_down2up(NULL, NULL, 0);/* Init a linklist */
-	debug_if_down2up(head);//should not print
-	printf("LINE:%d................\n",__LINE__);
-
-	/*head =*/ add_if_down2up(head,"aaaa", 1111);/* Add item to the linklist */
-	debug_if_down2up(head);
-	printf("LINE:%d................\n",__LINE__);
-#if 0
-	/*head =*/ add_if_down2up(head,"bbbb", 2222);
-	debug_if_down2up(head);
-	printf("LINE:%d................\n",__LINE__);
+#else
+#define AC_NONE		""
+#define AC_LRED		""
+#define AC_LGREEN	""
+#define AC_YELLOW	""
 #endif
-	chg_if_down2up(head,"aaaa",3333);/* Change value of item of the linklist */
-	debug_if_down2up(head);
-	printf("LINE:%d................\n",__LINE__);
 
-	chg_if_down2up(head,"aaaa",-1);/* Delete item of the linklist */
-	debug_if_down2up(head);
-	printf("LINE:%d................\n",__LINE__);
+/* Func for test */
+void debug_if_down2up(ll_data_type *st);
+void test_func_down2up(ll_data_type *st, int times, int interval);
 
-	/*head = */add_if_down2up(head,"aaaa", 666);
-	debug_if_down2up(head);
-	printf("LINE:%d................\n",__LINE__);
+/* Core func */
+ll_data_type *add_if_down2up(ll_data_type *st, const char *name, int type);
+ll_data_type *find_by_name_down2up(ll_data_type *st, const char*name);
+int chg_if_down2up(ll_data_type *st, const char *name, int type);
+ll_data_type *goto_end_down2up(ll_data_type *st);
 
-	/* Add some items */
-	int i;
-	for(i = 0;i < 10; i++)
-	{
-		char nameaaa[20];
-		sprintf(nameaaa,"eman%d",i);
-		add_if_down2up(head,nameaaa, i);
-	}
-	debug_if_down2up(head);/* Print out all item(s) */
+/* Additional func */
+int find_by_fifo_down2up(ll_data_type *st, ll_data_type *ret_val);/* Get the oldest item */
+int find_by_filo_down2up(ll_data_type *st, ll_data_type *ret_val);/* Get the newst  item */
 
-	if( 0 == find_by_fifo_down2up(head, &tmp) )
-		printf("FIFO---name:%s,type:%d\n",tmp.name, tmp.address_type);
-	debug_if_down2up(head);
-
-	if( 0 == find_by_filo_down2up(head, &tmp) )
-		printf("FILO---name:%s,type:%d\n",tmp.name, tmp.address_type);
-	debug_if_down2up(head);
-
-test_func_down2up(head, 60000, 0);/* testing */
-
-	return 0;
-}
 
 #if AUTO_TEST_DOWN2UP
 #define RAND_MAX 1
-void test_func_down2up(struct if_down2up *st, int times, int interval)
+void test_func_down2up(ll_data_type *st, int times, int interval)
 {
 	while(times--)
 	{
@@ -126,23 +67,23 @@ void test_func_down2up(struct if_down2up *st, int times, int interval)
 		//if( (int)time(NULL) & 0x1 )
 		if( rand() & 0x1 )
 		{
-			add_if_down2up(head,"aaaa", (int)time(NULL));/* Add item to the linklist */
+			add_if_down2up(st,"aaaa", (int)time(NULL));/* Add item to the linklist */
 		}
 		else
 		{
-			chg_if_down2up(head,"aaaa",-1);/* Delete item of the linklist */
+			chg_if_down2up(st,"aaaa",-1);/* Delete item of the linklist */
 		}
-		debug_if_down2up(head);
+		debug_if_down2up(st);
 	}
 }
 #else
-void test_func_down2up(struct if_down2up *st, int times, int interval);
+void test_func_down2up(ll_data_type *st, int times, int interval);
 #endif
 
 /* Debug func, print all item(s) of the linklist */
-void debug_if_down2up(struct if_down2up *st)
+void debug_if_down2up(ll_data_type *st)
 {
-	struct if_down2up *tmp = st;
+	ll_data_type *tmp = st;
 	printf("[%4d],priv:%d,next:%d SHOW\n" ,__LINE__, tmp->priv == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 );
 	while(tmp->priv != NULL)
 	{
@@ -164,14 +105,14 @@ void debug_if_down2up(struct if_down2up *st)
 	printf("name:%s,type:%d \n", tmp->name, tmp->address_type);
 }
 
-/* FUNC   : struct if_down2up *goto_end_down2up(struct if_down2up *st);
+/* FUNC   : ll_data_type *goto_end_down2up(ll_data_type *st);
  * ARGIN  : A pointer of the link_list.
  * RETURN : The function return a pointer to the ending of the link_list,or NULL
  * 		if the ending is not found or 
  * 		the size of the link_list is bigger than MAX_ITEM_NUM_DOWN2UP;
  * ADDDATE: 2019.07.04;
  */
-struct if_down2up *goto_end_down2up(struct if_down2up *st)
+ll_data_type *goto_end_down2up(ll_data_type *st)
 {
 	int cnt = 0;
 	while(st->next != NULL)
@@ -182,7 +123,7 @@ struct if_down2up *goto_end_down2up(struct if_down2up *st)
 	}
 	return st;
 }
-struct if_down2up *goto_head_down2up(struct if_down2up *st)
+ll_data_type *goto_head_down2up(ll_data_type *st)
 {
 	int cnt = 0;
 	while(st->priv != NULL)
@@ -198,14 +139,14 @@ struct if_down2up *goto_head_down2up(struct if_down2up *st)
 ARGS	: name==NULL -- init, name != NULL -- add item;
 RETURN	: the new */
 /**/
-struct if_down2up *add_if_down2up(struct if_down2up *st, const char *name, int type)
+ll_data_type *add_if_down2up(ll_data_type *st, const char *name, int type)
 {
-	struct if_down2up *tmp,*new;
+	ll_data_type *tmp,*new;
 
 	if(NULL == name)/* init */
 	{
-		new  = (struct if_down2up *)malloc(sizeof(struct if_down2up));
-		memset(new, 0, sizeof(struct if_down2up));
+		new  = (ll_data_type *)malloc(sizeof(ll_data_type));
+		memset(new, 0, sizeof(ll_data_type));
 
 		new->next = NULL;
 		new->priv = NULL;
@@ -215,9 +156,9 @@ struct if_down2up *add_if_down2up(struct if_down2up *st, const char *name, int t
 		if(NULL == (tmp = goto_end_down2up(st)) )/* can not finish looking up ,20190704*/
 			goto not_chg;
 
-		if(NULL == (new = (struct if_down2up *)malloc(sizeof(struct if_down2up))) )
+		if(NULL == (new = (ll_data_type *)malloc(sizeof(ll_data_type))) )
 			goto not_chg;
-		memset(new, 0, sizeof(struct if_down2up));
+		memset(new, 0, sizeof(ll_data_type));
 
 		tmp->next = new;
 		new->priv = tmp;
@@ -243,9 +184,9 @@ not_chg:
 /* Find item by name 
 RETURN : Pointer of the item, or NULL if not found.*/
 /*LINK LIST*/
-struct if_down2up *find_by_name_down2up(struct if_down2up *st, const char*name)
+ll_data_type *find_by_name_down2up(ll_data_type *st, const char*name)
 {
-	struct if_down2up *tmp;
+	ll_data_type *tmp;
 	tmp = st;
 
 	while(tmp->priv != NULL)
@@ -280,10 +221,10 @@ done:
 }
 /* DATASTRUCT-QUEUE
 WARNING : Success only when value returned equal to zero */
-int find_by_fifo_down2up(struct if_down2up *st, struct if_down2up *ret_val)
+int find_by_fifo_down2up(ll_data_type *st, ll_data_type *ret_val)
 {
 	//goto head(priv)
-	struct if_down2up *tmp;
+	ll_data_type *tmp;
 	if(NULL == (tmp = goto_head_down2up(st)) )/* FINDING */
 		return -2;
 
@@ -292,22 +233,22 @@ int find_by_fifo_down2up(struct if_down2up *st, struct if_down2up *ret_val)
 	strcpy(ret_val->name, tmp->name);/* Get data */
 	ret_val->address_type = tmp->address_type;
 
-	chg_if_down2up(head,tmp->name,-1);/* Delete item of the linklist ,TODO:if items have same name*/
+	chg_if_down2up(st,tmp->name,-1);/* Delete item of the linklist ,TODO:if items have same name*/
 	return 0;/* SUCCESS */
 }
 /* DATASTRUCT-STACK 
 WARNING : Success only when value returned equal to zero */
-int find_by_filo_down2up(struct if_down2up *st, struct if_down2up *ret_val)/* and delete it */
+int find_by_filo_down2up(ll_data_type *st, ll_data_type *ret_val)/* and delete it */
 {
 	//goto end(next)
-	struct if_down2up *tmp;
+	ll_data_type *tmp;
 	if(NULL == (tmp = goto_end_down2up(st)) )/* FINDING */
 		return -2;
 
 	strcpy(ret_val->name, tmp->name);/* Get data */
 	ret_val->address_type = tmp->address_type;
 
-	chg_if_down2up(head,tmp->name,-1);/* Delete item of the linklist ,TODO:if items have same name*/
+	chg_if_down2up(st,tmp->name,-1);/* Delete item of the linklist ,TODO:if items have same name*/
 	return 0;/* SUCCESS */
 }
 
@@ -315,9 +256,9 @@ int find_by_filo_down2up(struct if_down2up *st, struct if_down2up *ret_val)/* an
 /* Update or Delete item, found by name
 ARGS	: type < 0 -- del;   type >=0 -- change [type];
 RETURN 	: 0 - SUCCESS */
-int chg_if_down2up(struct if_down2up *st, const char *name, int type)
+int chg_if_down2up(ll_data_type *st, const char *name, int type)
 {
-	struct if_down2up *tmp;
+	ll_data_type *tmp;
 	if(NULL == (tmp = find_by_name_down2up(st,name)))
 	{
 		return 2;//NOT EXIST
@@ -332,7 +273,7 @@ int chg_if_down2up(struct if_down2up *st, const char *name, int type)
 		else if(NULL == tmp->priv)/* The head */
 		{
 			tmp->next->priv = NULL;
-			head = tmp->next;
+			st = tmp->next;
 		}
 		else/* Normal */
 		{
