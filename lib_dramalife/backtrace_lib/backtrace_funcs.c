@@ -22,6 +22,8 @@ Update	::: 2019.07.13 17:08, wjy.rc.
 #include<signal.h>
 #include<stdlib.h> /* EXIT_FAILURE */
 #include<string.h> /* strncmp */
+#include <sys/types.h>
+#include <unistd.h>
 
 void dump(void)  
 {  
