@@ -1,0 +1,32 @@
+route1:world wide wan	(default)
+route2:internal lan	(172.0.0.0/1.1.0.0)
+route1上行为外网，route2上行为内网；
+配置默认路由为route1，此时内网无法访问；
+根据dns解析，添加几条静态路由指向route2，通过IP访问的内网地址正常；
+根据只连内网时的dns解析，添加需要的hosts记录至配置文件，通过域名访问的内网地址正常；
+
+## DNS hosts(Link LAN)
+
+#### Show
+ipconfig /displaydns
+
+#### Setting
+c:\Windows\system32\drivers\etc\hosts
+	172.16.0.16 oa.hahaha.com
+	172.16.8.8 hahaha.com
+	172.16.8.6 hahaha.com
+	172.16.0.6 hahaha.com
+
+
+
+## Windows CMD
+
+#### LAN
+route add 172.16.0.0 mask 255.255.0.0 172.16.127.1 -p
+
+#### OA auth
+route add 1.1.0.0 mask 255.255.0.0 172.16.127.1 -p
+
+#### Del default route
+route del 0.0.0.0 mask 0.0.0.0 172.16.127.1 -p
+
