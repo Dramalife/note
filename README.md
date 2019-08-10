@@ -11,6 +11,7 @@ Dramalife\`s note
 [- Majordomo lists at VGER.KERNEL.ORG](http://vger.kernel.org/vger-lists.html)  
 [- FREE SOFTWARE DIRECTORY](https://directory.fsf.org/wiki/GNU)  
 [- StackOverFlow.com](https://stackoverflow.com/)  
+[- sunxi wiki](http://linux-sunxi.org/Main_Page)
 
 
 #### Contents
@@ -94,22 +95,23 @@ TODO
 Upload and include files in github,funny!
 
 <div align=right>
-  <img src="http://www.gnu.org/graphics/heckert_gnu.transp.small.png">
-  <img src="https://www.kernel.org/theme/images/logos/tux.png">  
+  <img src="http://www.gnu.org/graphics/heckert_gnu.transp.small.png" width="20%">
+  <img src="https://www.kernel.org/theme/images/logos/tux.png" width="20%">  
   <img src="https://strace.io/Straus.png" width="20%">  
-  <img src="https://github.com/favicon.ico">
+  <img src="https://github.com/favicon.ico" width="20%">
   <img src="https://avatars0.githubusercontent.com/u/15922037?s=200&v=4" width="20%">  
 </div>
   
   
 <div align=right>
-  <img src="https://busybox.net/images/busybox1.png">
-  <img src="https://www.vim.org/images/vim_header.gif">
+  <img src="https://busybox.net/images/busybox1.png" width="20%">
+  <img src="https://www.vim.org/images/vim_header.gif" width="20%">
+  <img src="https://www.linux-sunxi.org/images/c/c5/Logo-155x155.png" width="20%" alt="sunxi">
 </div>
 
 
 <div align=right>
-  <img src="http://www.tcpdump.org/images/logo.png" width="20%">
+  <img src="http://www.tcpdump.org/images/logo.png" width="50%" alt="tcmdump">
 </div>
   
     
