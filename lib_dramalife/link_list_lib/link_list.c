@@ -43,19 +43,39 @@ TODO :
 #define AC_YELLOW	""
 #endif
 
-/* Func for test */
-void debug_if_down2up(ll_data_type *st);
-void test_func_down2up(ll_data_type *st, int times, int interval);
 
-/* Core func */
-ll_data_type *add_if_down2up(ll_data_type *st, const char *name, int type);
-ll_data_type *find_by_name_down2up(ll_data_type *st, const char*name);
-int chg_if_down2up(ll_data_type *st, const char *name, int type);
-ll_data_type *goto_end_down2up(ll_data_type *st);
+/* DATASTRUCT-QUEUE
+WARNING : Success only when value returned equal to zero */
+int find_by_fifo_down2up(ll_data_type *st, ll_data_type *ret_val)
+{
+	//goto head(priv)
+	ll_data_type *tmp;
+	if(NULL == (tmp = goto_head_down2up(st)) )/* FINDING */
+		return -2;
 
-/* Additional func */
-int find_by_fifo_down2up(ll_data_type *st, ll_data_type *ret_val);/* Get the oldest item */
-int find_by_filo_down2up(ll_data_type *st, ll_data_type *ret_val);/* Get the newst  item */
+	tmp = tmp->next;/* Skip HEAD node */
+
+	strcpy(ret_val->name, tmp->name);/* Get data */
+	ret_val->address_type = tmp->address_type;
+
+	chg_if_down2up(st,tmp->name,-1);/* Delete item of the linklist ,TODO:if items have same name*/
+	return 0;/* SUCCESS */
+}
+/* DATASTRUCT-STACK 
+WARNING : Success only when value returned equal to zero */
+int find_by_filo_down2up(ll_data_type *st, ll_data_type *ret_val)/* and delete it */
+{
+	//goto end(next)
+	ll_data_type *tmp;
+	if(NULL == (tmp = goto_end_down2up(st)) )/* FINDING */
+		return -2;
+
+	strcpy(ret_val->name, tmp->name);/* Get data */
+	ret_val->address_type = tmp->address_type;
+
+	chg_if_down2up(st,tmp->name,-1);/* Delete item of the linklist ,TODO:if items have same name*/
+	return 0;/* SUCCESS */
+}
 
 
 #if AUTO_TEST_DOWN2UP
@@ -220,39 +240,6 @@ done:
 #endif
 	return tmp;
 }
-/* DATASTRUCT-QUEUE
-WARNING : Success only when value returned equal to zero */
-int find_by_fifo_down2up(ll_data_type *st, ll_data_type *ret_val)
-{
-	//goto head(priv)
-	ll_data_type *tmp;
-	if(NULL == (tmp = goto_head_down2up(st)) )/* FINDING */
-		return -2;
-
-	tmp = tmp->next;/* Skip HEAD node */
-
-	strcpy(ret_val->name, tmp->name);/* Get data */
-	ret_val->address_type = tmp->address_type;
-
-	chg_if_down2up(st,tmp->name,-1);/* Delete item of the linklist ,TODO:if items have same name*/
-	return 0;/* SUCCESS */
-}
-/* DATASTRUCT-STACK 
-WARNING : Success only when value returned equal to zero */
-int find_by_filo_down2up(ll_data_type *st, ll_data_type *ret_val)/* and delete it */
-{
-	//goto end(next)
-	ll_data_type *tmp;
-	if(NULL == (tmp = goto_end_down2up(st)) )/* FINDING */
-		return -2;
-
-	strcpy(ret_val->name, tmp->name);/* Get data */
-	ret_val->address_type = tmp->address_type;
-
-	chg_if_down2up(st,tmp->name,-1);/* Delete item of the linklist ,TODO:if items have same name*/
-	return 0;/* SUCCESS */
-}
-
 
 /* Update or Delete item, found by name
 ARGS	: type < 0 -- del;   type >=0 -- change [type];
