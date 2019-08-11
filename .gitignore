@@ -4,7 +4,13 @@
 !.gitignore
 
 
+#disassembled object code
+*.ass
+#preprocessed
+*.i
 
+#vim cache
+*.swo
 
 *.swp
 *.out
