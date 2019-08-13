@@ -46,7 +46,7 @@ int main(void)
 
 
     memset(snd_buf,0,1024);
-    strcpy(snd_buf,"message from client");
+    strcpy(snd_buf,"xxxxxhahahahah");
 
     for(i=0;i<4;i++)
         write(connect_fd,snd_buf,sizeof(snd_buf));
