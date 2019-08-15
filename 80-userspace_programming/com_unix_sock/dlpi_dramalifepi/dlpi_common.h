@@ -19,6 +19,12 @@
 typedef unsigned char u8_t;
 typedef int (*func_cvi)(char *,void *,int *);
 
+struct ctl_dlpi
+{
+	int cmd_type;
+	char *data;
+};
+
 struct code2func
 {
 	int no;
