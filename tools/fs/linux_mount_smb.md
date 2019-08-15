@@ -76,3 +76,17 @@ sec=
 #mount from util-linux 2.29.2 (libmount 2.29.2: selinux, btrfs, assert, debug)
 #$ sudo mount -t cifs //192.168.0.102/ug2t-root ./ug2t-root -o user=xxx,sec=ntlmssp
 
+
+#### ERR
+```bash
+# root@NETAC-SERVER:~ # sudo mount -t cifs //192.168.0.104/root500 ./root500_disk/ -o user=,sec=ntlmssp
+# mount: wrong fs type, bad option, bad superblock on //192.168.0.104/root500,
+# missing codepage or helper program, or other error
+# (for several filesystems (e.g. nfs, cifs) you might
+#  need a /sbin/mount.<type> helper program)
+# 
+# In some cases useful info is found in syslog - try
+# dmesg | tail or so.
+
+apt-get install cifs-utils
+```
