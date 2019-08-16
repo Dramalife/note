@@ -9,12 +9,16 @@
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
    Init	2019.08.11 Dramalife,ubuntu_64_lenovo.
-   Update 
+   Update 2019.08.14 rc_ubuntu_vbox_32.
 */
 #ifndef _DLPI_COMMON_H
 #define _DLPI_COMMON_H
 
 #define DLPI_UNIX_PROCESS_MAIN "/tmp/.dlpi_socket"
+
+#define DLPI_SOCK_READ_BUF_LEN	10240 /* buffer length */
+
+#define DLPI_BACKTRACE	0 /* USE : "make backtrace" */
 
 typedef unsigned char u8_t;
 typedef int (*func_cvi)(char *,void *,int *);
@@ -33,12 +37,19 @@ struct code2func
 
 typedef struct dlpi_frame
 {
-	char *des_sock_path;	//specific sock path
+#define DLPI_FRAME_MAX_SOCK_PATH_LEN	50
+	char des_sock_path[DLPI_FRAME_MAX_SOCK_PATH_LEN];	//specific sock path
 	u8_t mechine_specific_code[2];	// specific mechine, not useful yet.
 	u8_t lll_type[2];	//(toDES|to_others|)
-	u8_t global_data_struct_code[2];//16 bit.
-	void *buffer;		//(trans_to_datastruct|trans_to_DES_level)
+	u8_t data_struct_type[2];//16 bit.
+	int data_len;
+	//void *buffer;		//(trans_to_datastruct|trans_to_DES_level)
 }dlpi_frame;
+
+typedef struct dlpi_sock_conn_option_st
+{
+	int socket_op[3];/* int socket(int domain, int type, int protocol); */
+}dlpi_sock_op;
 
 #endif
 
