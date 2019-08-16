@@ -1,7 +1,18 @@
 #!/bin/bash
-#By Dramalife@live.com
-#DATE:2018/11/24
+#
+# note en/de-crypt related file
+# Copyright (C) 2019 Dramalife@live.com
+# 
+# This file is part of [note](https://github.com/Dramalife/note.git)
+# 
+# note is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Init DATE:2018/11/24
+# Version : 2019_0816_2321_OLD
 
+########## USE ##########
 #$0:
 #$1:src floder-path/current-path-file ,des file-name
 #$2:passwd
@@ -120,8 +131,6 @@ print_help()
 EOF
 }
 
-
-
 ##start show
 echo -ne "\r"
 printstars_line
@@ -136,9 +145,5 @@ printstars_line
 echo ""
 tar -zcf - ./$1 | openssl des3 -salt -k $2 | dd of=$3$1.des3
 
-
-
-
-#NOTE  ,,,, `-lt' means `>='
-
 #FILE END
+
