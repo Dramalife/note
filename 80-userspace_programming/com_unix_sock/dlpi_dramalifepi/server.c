@@ -10,16 +10,17 @@
 
    server
    Init	2019.08.11 COPY FROM /note/80-userspace_programming/com_unix_sock.
+   Update 2019.08.14 rc_ubuntu_vbox_32.
    Update 
  */
 #include <stdio.h>
 #include <sys/types.h>//umask,
 #include <sys/stat.h>//umask
 #include <sys/socket.h>
+#include <unistd.h>//unlink,close,
 #include <sys/un.h>
+#include <limits.h>
 #include "dlpi_common.h"
-
-#define DLPI_SOCK_READ_BUF_LEN	10240
 
 #define DLPI_UNLINK_AT_START	1
 #define DLPI_UMASK_MASK		0077
@@ -32,16 +33,13 @@ struct code2func c2f[] =
 
 int main()
 {
-	socklen_t clnt_addr_len;
 	int socket_fd;
 	int com_fd;
 	int ret;
-	int i;
-	static char recv_buf[DLPI_SOCK_READ_BUF_LEN];
-	int len;
-	struct sockaddr_un clnt_addr;
 	struct sockaddr_un serv_addr;
 	mode_t old_mask;
+
+	printf("%s:%ld, \n","SSIZE_MAX",SSIZE_MAX);
 
 #if (1 == DLPI_UNLINK_AT_START  )
 	/* Delete a name and possibly the file it refers to */
@@ -87,10 +85,13 @@ int main()
 	}
 	umask(old_mask);//^SOCKET
 
+	struct sockaddr_un clnt_addr;
 	memset(&clnt_addr,0,sizeof(struct sockaddr_un));/* If it is necessary when using glibc ? */
-	len=sizeof(clnt_addr);
-	com_fd=accept(socket_fd,(struct sockaddr*)&clnt_addr,&len);
-	if(com_fd<0){
+
+	socklen_t len;
+	len = sizeof(clnt_addr);
+	com_fd = accept(socket_fd, (struct sockaddr*)&clnt_addr, &len);
+	if(com_fd < 0){
 		perror("cannot accept client connect request");
 		//close(socket_fd);
 #if (0 == DLPI_UNLINK_AT_START	)
@@ -100,13 +101,16 @@ int main()
 	}//^ACCEPT
 
 	printf("\n*****READ FROM CLIENT*****\n");
-	//for(i=0;i<4;i++){
+
+	static char recv_buf[DLPI_SOCK_READ_BUF_LEN];
 	memset(recv_buf,0,DLPI_SOCK_READ_BUF_LEN );
-	int num=read(com_fd,recv_buf, DLPI_SOCK_READ_BUF_LEN);
+
+	/*int num =*/ read(com_fd,recv_buf, DLPI_SOCK_READ_BUF_LEN);
+	dlpi_frame *p_head = (dlpi_frame *)recv_buf;
+
+	printf("type:%d,len:%d \n",p_head->lll_type[0],p_head->data_len);
 	//TODO:handler.
-	//TODO:wirte back to.
-	printf("LEN:%-4d,MSG:%s\n",num,recv_buf);
-	//}
+	//TODO:wirte back.
 	//^READ
 
 	close(com_fd);
