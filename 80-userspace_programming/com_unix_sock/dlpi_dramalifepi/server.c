@@ -11,15 +11,9 @@
    server
    Init	2019.08.11 COPY FROM /note/80-userspace_programming/com_unix_sock.
    Update 2019.08.14 rc_ubuntu_vbox_32.
+   Update 2019.08.17 rpi_omv, split code to dlpi_common.c
    Update 
  */
-#include <stdio.h>
-#include <sys/types.h>//umask,
-#include <sys/stat.h>//umask
-#include <sys/socket.h>
-#include <unistd.h>//unlink,close,
-#include <sys/un.h>
-#include <limits.h>
 #include "dlpi_common.h"
 
 #define DLPI_UNLINK_AT_START	1
@@ -108,10 +102,27 @@ int main()
 	/*int num =*/ read(com_fd,recv_buf, DLPI_SOCK_READ_BUF_LEN);
 	dlpi_frame *p_head = (dlpi_frame *)recv_buf;
 
-	printf("type:%d,len:%d \n",p_head->lll_type[0],p_head->data_len);
-	//TODO:handler.
-	//TODO:wirte back.
-	//^READ
+	if(DLPI_FRAME_FT_SELF == dlpi_get_frame_type(p_head->forward_type))
+	{
+		printf("forward_t:%04X \n", dlpi_get_frame_type( p_head->forward_type ) );
+		if(DLPI_FRAME_DT_STRING == dlpi_get_frame_type(p_head->data_type))
+		{
+			char *data2 = recv_buf + sizeof(dlpi_frame);
+			printf("data_t:%04X,len:%d,data:[%s]\n", dlpi_get_frame_type(p_head->data_type), p_head->data_len, data2);
+			dlpi_set_frame_type(p_head->data_type, 0x1234);
+			printf("data_t:%04X,len:%d,data:[%s]\n", dlpi_get_frame_type(p_head->data_type), p_head->data_len, data2);
+		}
+		else
+		{
+			printf("data_t:%04X,len:%d.\n",dlpi_get_frame_type(p_head->data_type) ,p_head->data_len );
+
+		}
+		//TODO:wirte back.
+	}
+	else
+	{
+		printf("forward_t:%0x04X,TO FORWARD! \n", dlpi_get_frame_type( p_head->forward_type ) );
+	}
 
 	close(com_fd);
 	close(socket_fd);
