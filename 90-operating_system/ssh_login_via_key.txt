@@ -1,0 +1,38 @@
+#
+# note ssh_tips related file
+# Copyright (C) 2019 Dramalife@live.com
+# 
+# This file is part of [note](https://github.com/Dramalife/note.git)
+# 
+# note is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Ref Url : https://www.runoob.com/w3cnote/set-ssh-login-key.html
+
+## 1.Creat Key [SSH Server]
+
+# Your identification has been saved in /root/.ssh/id_rsa.
+# Your public key has been saved in /root/.ssh/id_rsa.pub.
+$ ssh-keygen
+
+## 2.Install Key on SSH Server [SSH Server]
+
+$ cd ~/.ssh
+$ cat id_rsa.pub >> authorized_keys
+$ chmod 600 authorized_keys
+$ chmod 700 ~/.ssh
+
+## 3. Setting SSH to support login via key [SSH Server]
+
+# RSAAuthentication yes
+# PubkeyAuthentication yes
+# PermitRootLogin yes
+#!PasswordAuthentication no
+$ vi /etc/ssh/sshd_config
+$ service sshd restart
+
+## 4. Using key on client [SSH Client]
+
+id_rsa
+

@@ -52,7 +52,11 @@ TODO
 |No|Status|Item|Path|Add-Finish|
 |--|--|--|--|--|
 |0 |HALT|EoIP(usr,kernel)|[EoIP](/81-kernel_programming/network/ip_protocal/eoip/),[rfc3378](/50-books/rfc_ref/rfc3378.txt)|20190122-20190125(socket_ioctl)-|
+<<<<<<< HEAD
 | ^|**TODO** |l2tp |[50_note](/50-books/00-note/l2tp_layer_two_tunneling_protocol/) | |
+=======
+| ^|**TODO** |l2tp |[50_note](/50-books/00-note/l2tp_layer_two_tunneling_protocol/) |2019.08.13- |
+>>>>>>> fc351b9041d413fdf3135455c7690e71b7338277
 |1 |DOING|4g(9507_driver)|[4g](/81-kernel_programming/network/4g_cell)|20190122-|
 |2 |DOING|vim|[vim](/tools_coding/vim)|20190122-Updating-|
 |3 |TODO|framebuffer & i2c| - |201811xx-|

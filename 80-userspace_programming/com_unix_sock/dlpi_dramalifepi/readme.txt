@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+=======
+$ gcc --version
+gcc-4.8.real (Ubuntu 4.8.5-4ubuntu8~14.04.2) 4.8.5
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+$ uname -a
+Linux ubuntu 4.0.0-040000-generic #201504121935 SMP Sun Apr 12 23:58:08 UTC 2015 i686 i686 i686 GNU/Linux
+
+
+
+>>>>>>> fc351b9041d413fdf3135455c7690e71b7338277
 
 typedef struct dlpi_frame
 {
@@ -8,3 +22,7 @@ u8_t global_data_struct_code[2];	//16 bit.
 void *buffer;	//(trans_to_datastruct|trans_to_DES_level)
 }dlpi_frame;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fc351b9041d413fdf3135455c7690e71b7338277

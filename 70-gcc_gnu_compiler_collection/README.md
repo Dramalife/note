@@ -29,6 +29,13 @@ intermediate stage.  For example, the -c option says not to run the linker.  The
 |-c          |Compile and assemble, but do not link            |
 |-o \<file\> |  Place the output into \<file\>                 |
 |-v          |Display the programs invoked by the compiler     |
+<<<<<<< HEAD
 
 
+=======
+|-|-|
+|-|-|
+|--sysroot=<directory>    |Use <directory> as the root directory for headers and libraries	|
+|-print-search-dirs       |Display the directories in the compiler's search path		|
+>>>>>>> fc351b9041d413fdf3135455c7690e71b7338277
 
