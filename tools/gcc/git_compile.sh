@@ -47,3 +47,12 @@ sudo make install
 #  cp git/contrib/completion/git-completion.bash ~/.git-completion.bash
 #  echo "source ~/.git-completion.bash" >> ~/.bashrc
   
+### PROBLEM3 
+#  $ git pull
+#	fatal: unable to find remote helper for 'https'
+#
+# in file "configure" line 1353:
+#	 --with-curl             support http(s):// transports (default is YES)
+#                           ARG can be also prefix for curl library and headers
+#
+
