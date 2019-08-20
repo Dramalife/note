@@ -1,6 +1,4 @@
 #! /bin/bash
-<<<<<<< HEAD
-=======
 #
 # note gcc-git related file
 # Copyright (C) 2019 Dramalife
@@ -15,7 +13,6 @@
 # Update : 2019.08.17 ,Add command line autocomplete.
 # Update : 
 #
->>>>>>> fc351b9041d413fdf3135455c7690e71b7338277
 
 make configure
 ./configure
@@ -23,10 +20,6 @@ make all
 # sudo apt-get purge git #remove old version
 sudo make install
 
-<<<<<<< HEAD
-
-=======
->>>>>>> fc351b9041d413fdf3135455c7690e71b7338277
 #  # PROBLEM 1
 #    ---------
 #  ## need lib-curl, see git/INSTALL +141
@@ -35,10 +28,6 @@ sudo make install
 #  ## fatal : "致命的"
 #  baohua@5b2vdev:~/note/tmp/curl-7.65.1 $ git pull
 #  fatal: unable to find remote helper for 'https'
-<<<<<<< HEAD
-#  
-=======
->>>>>>> fc351b9041d413fdf3135455c7690e71b7338277
 #  ## git/INSTALL +141
 #  	- "libcurl" library is used by git-http-fetch, git-fetch, and, if
 #  	  the curl version >= 7.34.0, for git-imap-send.  You might also
@@ -46,21 +35,10 @@ sudo make install
 #  	  use http:// or https:// repositories, and do not want to put
 #  	  patches into an IMAP mailbox, you do not have to have them
 #  	  (use NO_CURL).
-<<<<<<< HEAD
-#  
-=======
->>>>>>> fc351b9041d413fdf3135455c7690e71b7338277
 #  ## clear configure about curl
 #  vi config.mak.autogen > NO_CURL=   
 #  or 
 #  run ./configure
-<<<<<<< HEAD
-#  
-#  ## install curl
-#  
-#  ## make & install git
-
-=======
 #  ## install curl
 #  ## make & install git
 
@@ -78,4 +56,3 @@ sudo make install
 #                           ARG can be also prefix for curl library and headers
 #
 
->>>>>>> fc351b9041d413fdf3135455c7690e71b7338277

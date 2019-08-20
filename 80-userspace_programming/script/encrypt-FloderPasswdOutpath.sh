@@ -1,9 +1,4 @@
 #!/bin/bash
-<<<<<<< HEAD
-#By Dramalife@live.com
-#DATE:2018/11/24
-
-=======
 #
 # note en/de-crypt related file
 # Copyright (C) 2019 Dramalife@live.com
@@ -18,7 +13,6 @@
 # Version : 2019_0816_2321_OLD
 
 ########## USE ##########
->>>>>>> fc351b9041d413fdf3135455c7690e71b7338277
 #$0:
 #$1:src floder-path/current-path-file ,des file-name
 #$2:passwd
@@ -137,11 +131,6 @@ print_help()
 EOF
 }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> fc351b9041d413fdf3135455c7690e71b7338277
 ##start show
 echo -ne "\r"
 printstars_line
@@ -156,14 +145,5 @@ printstars_line
 echo ""
 tar -zcf - ./$1 | openssl des3 -salt -k $2 | dd of=$3$1.des3
 
-<<<<<<< HEAD
-
-
-
-#NOTE  ,,,, `-lt' means `>='
-
-#FILE END
-=======
 #FILE END
 
->>>>>>> fc351b9041d413fdf3135455c7690e71b7338277

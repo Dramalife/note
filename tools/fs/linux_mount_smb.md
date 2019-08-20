@@ -76,11 +76,6 @@ sec=
 #mount from util-linux 2.29.2 (libmount 2.29.2: selinux, btrfs, assert, debug)
 #$ sudo mount -t cifs //192.168.0.102/ug2t-root ./ug2t-root -o user=xxx,sec=ntlmssp
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 1c135359f8bc690da25f7e65a51337ea35e56fd3
 
 #### ERR
 ```bash
@@ -95,7 +90,3 @@ sec=
 
 apt-get install cifs-utils
 ```
-<<<<<<< HEAD
-=======
->>>>>>> fc351b9041d413fdf3135455c7690e71b7338277
->>>>>>> 1c135359f8bc690da25f7e65a51337ea35e56fd3
