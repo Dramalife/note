@@ -1,0 +1,18 @@
+dramalife@ubuntu14_32:~/http_server_demo $ ls
+http.c  http.h  server.c  util.c  util.h
+dramalife@ubuntu14_32:~/http_server_demo $ gcc -c http.c
+dramalife@ubuntu14_32:~/http_server_demo $ gcc -c server.c
+server.c: In function ¡®handle¡¯:
+server.c:53:2: warning: format ¡®%s¡¯ expects argument of type ¡®char *¡¯, but argument 3 has type ¡®int¡¯ [-Wformat=]
+sprintf(temp,"Content-Type: %s\r\n", getFileType(res.file));
+^
+dramalife@ubuntu14_32:~/http_server_demo $ gcc -c util.c
+dramalife@ubuntu14_32:~/http_server_demo $ ls
+http.c  http.h  http.o  server.c  server.o  util.c  util.h  util.o
+dramalife@ubuntu14_32:~/http_server_demo $ gcc *.o -o sssss.out
+server.o: In function `main':
+server.c:(.text+0x6e1): undefined reference to `pthread_create'
+			collect2: error: ld returned 1 exit status
+dramalife@ubuntu14_32:~/http_server_demo $ gcc *.o -o sssss.out -l pthread
+dramalife@ubuntu14_32:~/http_server_demo $ 
+
