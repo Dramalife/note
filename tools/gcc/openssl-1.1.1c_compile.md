@@ -56,6 +56,7 @@ vi Makefile
 ./libcrypto.so: undefined reference to `makecontext'
 
 # no-async: 交叉编译工具链没有提供GNU C的ucontext库 
-./config no-asm shared --prefix=~/openssl-1.1.1/build_arm --cross-compile-prefix=arm-linux-gnueabihf-  no-async 
+# Directory given with --prefix MUST be absolute
+./config no-asm shared --prefix=/YOUR/INSTALL/PATH --cross-compile-prefix=arm-linux-gnueabihf-  no-async 
 ```
 
