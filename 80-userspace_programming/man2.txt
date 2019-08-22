@@ -1,0 +1,6 @@
+COPY FROM "Linux Programmer's Manual"
+
+uname - get name and information about current kernel
+
+gethostname, sethostname - get/set hostname
+
