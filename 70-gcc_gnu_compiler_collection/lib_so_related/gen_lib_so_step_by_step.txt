@@ -10,3 +10,7 @@ ldconfig
 # linking?
 gcc link_list.o -ldramalife
 
+
+### SAMPLE 1
+gcc -shared hello.c -o libhello.so
+
