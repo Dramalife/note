@@ -32,7 +32,7 @@ SRC=$(wildcard ./*.c)
 LIBNAME_DL=backtrace_funcs
 
 all:
-	gcc -c $(SRC) 
+	gcc -c -fPIC $(SRC) 
 	gcc ./*$(BIN_O) -shared -o lib$(LIBNAME_DL)$(SHD_LIB)
 
 
