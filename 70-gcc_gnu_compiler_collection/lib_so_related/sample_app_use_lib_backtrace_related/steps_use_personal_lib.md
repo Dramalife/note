@@ -66,3 +66,17 @@ ldconfig ../lib_shared
 
 ```
 
+#### 4. ERRORS (that occurred when compiling applications.)
+> [CH]背景：新添加动态链接库，并编译依赖这个库的应用程序。
+> [EN]Background:Add shared library and compile applications depending on it.
+
+```bash
+#[CH]未定义的引用：找不到函数定义（没有ldconfig新添加的动态链接库，）
+#[EN]undefined reference to : 
+app.c:(.text+0x99): undefined reference to `signal_handler'
+
+#[CH]未声明函数：缺少头文件（缺少"extern TYPE FUNC(ARGS...)"）
+#[EN]undeclared:Missing header file(s);(missing "extern TYPE FUNC(ARGS...)")
+./app.c:113:18: error: ‘signal_handler’ undeclared (first use in this function)
+```
+
