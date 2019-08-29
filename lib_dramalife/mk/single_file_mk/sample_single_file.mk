@@ -35,7 +35,7 @@ SRC=$(wildcard ./*.c)
 all:
 	rm -rvf ./*$(BIN_END)
 	gcc -E $(SRC) >> $(PRE_SOURCE)
-	gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -v
+	gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -v -g
 
 
 clean:
