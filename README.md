@@ -70,6 +70,7 @@ TODO
 |13|**DOING**|Socket sample | [sock_spi_i2c_gpio](/50-books/00-note/sock_spi_i2c_gpio/) |2019.07.07- |
 | ^|**DOING**|             ^| [dlpi_socket](/80-userspace_programming/com_unix_sock/dlpi_dramalifepi/) |2019.08.11-(keep)- |
 |14|CANCLED|libdramalife:auto allocate COLOR | |2019.07.08-2019.07.09|
+|15|PLAN |elf-loader(Barry Song) |[elf-loader](/80-userspace_programming/00-libc_sample/man3_dlfcn_dlopen/elf-loader) |2019.08.29- |
 | | | | | |
 | | | | | |
 | | | | | |
