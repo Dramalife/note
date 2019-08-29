@@ -1,0 +1,322 @@
+Source Url : https://www.cnblogs.com/wuheng1991/p/7064067.html
+man 8 service
+
+
+用途说明
+
+service命令用于对系统服务进行管理，比如启动（start）、停止（stop）、重启（restart）、查看状态（status）等。
+相关的命令还包括chkconfig、ntsysv等，chkconfig用于查看、设置服务的运行级别，ntsysv用于直观方便的设置各个服务是否自动启动。
+service命令本身是一个shell脚本，它在/etc/init.d/目录查找指定的服务脚本，然后调用该服务脚本来完成任务。
+
+看看下面的手册页可能更加清楚的了解service的内幕：service运行指定服务（称之为System V初始脚本）时，把大部分环境变量去掉了，
+只保留LANG和TERM两个环境变量，并且把当前路径置为/，也就是说是在一个可以预测的非常干净的环境中运行服务脚本。这种脚本保存在/etc/init.d目录中，它至少要支持start和stop命令。
+
+ 
+man service 写道
+service(8) service(8)
+
+NAME
+service - run a System V init script
+
+SYNOPSIS
+service SCRIPT COMMAND [OPTIONS]
+
+service --status-all
+
+service --help | -h | --version
+
+DESCRIPTION
+service runs a System V init script in as predictable environment as possible, removing most environment vari-
+ables and with current working directory set to /.
+
+The SCRIPT parameter specifies a System V init script, located in /etc/init.d/SCRIPT. The supported values of
+COMMAND depend on the invoked script, service passes COMMAND and OPTIONS it to the init script unmodified. All
+scripts should support at least the start and stop commands. As a special case, if COMMAND is --full-restart,
+the script is run twice, first with the stop command, then with the start command.
+
+service --status-all runs all init scripts, in alphabetical order, with the status command.
+
+FILES
+/etc/init.d
+The directory containing System V init scripts.
+
+ENVIRONMENT
+LANG, TERM
+The only environment variables passed to the init scripts.
+
+SEE ALSO
+chkconfig(8), ntsysv(8)
+
+Jan 2006 service(8)
+
+ 
+常用方式
+
+格式：service <service>
+
+打印指定服务<service>的命令行使用帮助。
+
+ 
+
+格式：service <service> start
+
+启动指定的系统服务<service>
+
+ 
+
+格式：service <service> stop
+
+停止指定的系统服务<service>
+
+ 
+
+格式：service <service> restart
+
+重新启动指定的系统服务<service>，即先停止（stop），然后再启动（start）。
+
+ 
+
+格式：chkconfig --list
+
+查看系统服务列表，以及每个服务的运行级别。
+
+ 
+
+格式：chkconfig <service> on
+
+设置指定服务<service>开机时自动启动。
+
+ 
+
+格式：chkconfig <service> off
+
+设置指定服务<service>开机时不自动启动。
+
+ 
+
+格式：ntsysv
+
+以全屏幕文本界面设置服务开机时是否自动启动。
+
+ 
+使用示例
+示例一 网络重启
+
+当修改了主机名、ip地址等信息时，经常需要把网络重启使之生效。
+
+[root@node34 root]# service network
+用法：/etc/init.d/network {start|stop|restart|reload|status}
+[root@node34 root]# service network status
+配置设备：
+lo eth0
+当前的活跃设备：
+lo eth0
+[root@node34 root]# service network restart
+正在关闭接口 eth0：                                        [  确定  ]
+关闭环回接口：                                             [  确定  ]
+设置网络参数：                                             [  确定  ]
+弹出环回接口：                                             [  确定  ]
+弹出界面 eth0：                                            [  确定  ]
+[root@node34 root]#
+
+ 
+示例二 重启MySQL
+
+[root@node34 root]# service mysql
+mysql: unrecognized service
+[root@node34 root]# service mysqld
+用法：/etc/init.d/mysqld {start|stop|status|condrestart|restart}
+[root@node34 root]# service mysqld status
+mysqld (pid 1638) 正在运行...
+[root@node34 root]# service mysqld restart
+停止 MySQL：                                               [  确定  ]
+启动 MySQL：                                               [  确定  ]
+[root@node34 root]#
+
+ 
+示例三 service脚本源码展示
+
+[root@web ~]# cat /sbin/service 
+#!/bin/sh
+
+. /etc/init.d/functions
+
+VERSION="`basename $0` ver. 0.91"
+USAGE="Usage: `basename $0` < option > | --status-all | \
+[ service_name [ command | --full-restart ] ]"
+SERVICE=
+SERVICEDIR="/etc/init.d"
+OPTIONS=
+
+if [ $# -eq 0 ]; then
+   echo "${USAGE}" >&2
+   exit 1
+fi
+
+cd /
+while [ $# -gt 0 ]; do
+  case "${1}" in
+    --help | -h | --h* )
+       echo "${USAGE}" >&2
+       exit 0
+       ;;
+    --version | -V )
+       echo "${VERSION}" >&2
+       exit 0
+       ;;
+    *)
+       if [ -z "${SERVICE}" -a $# -eq 1 -a "${1}" = "--status-all" ]; then
+          cd ${SERVICEDIR}
+          for SERVICE in * ; do
+            case "${SERVICE}" in
+              functions | halt | killall | single| linuxconf| kudzu)
+                  ;;
+              *)
+                if ! is_ignored_file "${SERVICE}" \
+                    && [ -x "${SERVICEDIR}/${SERVICE}" ]; then
+                  env -i LANG="$LANG" PATH="$PATH" TERM="$TERM" "${SERVICEDIR}/${SERVICE}" status
+                fi
+                ;;
+            esac
+          done
+          exit 0
+       elif [ $# -eq 2 -a "${2}" = "--full-restart" ]; then
+          SERVICE="${1}"
+          if [ -x "${SERVICEDIR}/${SERVICE}" ]; then
+            env -i LANG="$LANG" PATH="$PATH" TERM="$TERM" "${SERVICEDIR}/${SERVICE}" stop
+            env -i LANG="$LANG" PATH="$PATH" TERM="$TERM" "${SERVICEDIR}/${SERVICE}" start
+            exit $?
+          fi
+       elif [ -z "${SERVICE}" ]; then
+         SERVICE="${1}"
+       else
+         OPTIONS="${OPTIONS} ${1}"
+       fi
+       shift
+       ;;
+   esac
+done
+
+if [ -x "${SERVICEDIR}/${SERVICE}" ]; then
+   env -i LANG="$LANG" PATH="$PATH" TERM="$TERM" "${SERVICEDIR}/${SERVICE}" ${OPTIONS}
+else
+   echo $"${SERVICE}: unrecognized service" >&2
+   exit 1
+fi
+[root@web ~]#
+
+ 
+示例四 crond服务的源码
+
+[root@web init.d]# cat /etc/init.d/crond
+#! /bin/bash
+#
+# crond          Start/Stop the cron clock daemon.
+#
+# chkconfig: 2345 90 60
+# description: cron is a standard UNIX program that runs user-specified \
+#              programs at periodic scheduled times. vixie cron adds a \
+#              number of features to the basic UNIX cron, including better \
+#              security and more powerful configuration options.
+# processname: crond
+# config: /etc/crontab
+# pidfile: /var/run/crond.pid
+
+# Source function library.
+. /etc/init.d/functions
+. /etc/sysconfig/crond
+t=${CRON_VALIDATE_MAILRCPTS:-UNSET}
+[ "$t" != "UNSET" ] && export CRON_VALIDATE_MAILRCPTS="$t"
+ 
+# See how we were called.
+  
+prog="crond"
+
+start() {
+        echo -n $"Starting $prog: "
+        if [ -e /var/lock/subsys/crond ]; then
+            if [ -e /var/run/crond.pid ] && [ -e /proc/`cat /var/run/crond.pid` ]; then
+                echo -n $"cannot start crond: crond is already running.";
+                failure $"cannot start crond: crond already running.";
+                echo
+                return 1
+            fi
+        fi
+        daemon crond $CRONDARGS
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && touch /var/lock/subsys/crond;
+        return $RETVAL
+}
+
+stop() {
+        echo -n $"Stopping $prog: "
+        if [ ! -e /var/lock/subsys/crond ]; then
+            echo -n $"cannot stop crond: crond is not running."
+            failure $"cannot stop crond: crond is not running."
+            echo
+            return 1;
+        fi
+        killproc crond
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/crond;
+        return $RETVAL
+}
+
+rhstatus() {
+        status crond
+}
+
+restart() {
+        stop
+        start
+}
+
+reload() {
+        echo -n $"Reloading cron daemon configuration: "
+        killproc crond -HUP
+        RETVAL=$?
+        echo
+        return $RETVAL
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart)
+        restart
+        ;;
+  reload)
+        reload
+        ;;
+  status)
+        rhstatus
+        ;;
+  condrestart)
+        [ -f /var/lock/subsys/crond ] && restart || :
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|status|reload|restart|condrestart}"
+        exit 1
+esac
+[root@web init.d]#
+
+ 
+问题思考
+相关资料
+
+【1】测试人生 linux 中不常用的命令--service
+http://www.51testing.com/?uid-66775-action-viewspace-itemid-78574
+【2】linux大棚 《service》-“linux命令五分钟系列”之二
+http://roclinux.cn/?p=47
+【3】yqh860921 Linux Service 服务管理
+http://blogold.chinaunix.net/u3/95470/showart_1934759.html
+【4】酷勤 Linux system service 注释
+http://www.kuqin.com/linux/20090824/67321.html
+【5】momodog 自定义Linux Service
+http://momodog.iteye.com/blog/286047
