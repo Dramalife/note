@@ -50,7 +50,8 @@ TODO
 |No|Status|Item|Path|Add-Finish|
 |--|--|--|--|--|
 |0 |HALT|EoIP(usr,kernel)|[EoIP](/81-kernel_programming/network/ip_protocal/eoip/),[rfc3378](/50-books/rfc_ref/rfc3378.txt)|20190122-20190125(socket_ioctl)-|
-| ^|**TODO** |l2tp |[50_note](/50-books/00-note/l2tp_layer_two_tunneling_protocol/) |2019.08.13- |
+| ^|**DOING** |l2tp(protocol) |[50_note](/50-books/00-note/l2tp_layer_two_tunneling_protocol/) |2019.08.13-08.28(compile&run)- |
+| ^|PLAN     |pppd |[50_note](/50-books/00-note/l2tp_layer_two_tunneling_protocol/) |2019.08.28- |
 |1 |DOING|4g(9507_driver)|[4g](/81-kernel_programming/network/4g_cell)|20190122-|
 |2 |DOING|vim|[vim](/tools_coding/vim)|20190122-Updating-|
 |3 |TODO|framebuffer & i2c| - |201811xx-|
@@ -67,6 +68,7 @@ TODO
 | ^|HALT|link_list(char device Module) | - |2019.07.05-2019.07.24- |
 |12|DONE|backtrace,objdump |[backtrace_objdump](/70-gcc_gnu_compiler_collection/backtrace/) |2019.07.06-2019.07.24 |
 |13|**DOING**|Socket sample | [sock_spi_i2c_gpio](/50-books/00-note/sock_spi_i2c_gpio/) |2019.07.07- |
+| ^|**DOING**|             ^| [dlpi_socket](/80-userspace_programming/com_unix_sock/dlpi_dramalifepi/) |2019.08.11-(keep)- |
 |14|CANCLED|libdramalife:auto allocate COLOR | |2019.07.08-2019.07.09|
 | | | | | |
 | | | | | |
