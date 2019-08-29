@@ -13,15 +13,9 @@
 
 #### 1. USE LIB
 
-```bash
-# /tmp/ccJO7arr.o: In function `main':
-# app.c:(.text+0x99): undefined reference to `signal_handler'
-# collect2: error: ld returned 1 exit status
-# make: *** [all] Error 1
-```
-
 ```diff
 # vi Makefile
+# Replace "backtrace_funcs" and "../lib_shared" with your library and path.
 -gcc -o $(BIN_NAME)$(BIN_END) $(SRC)
 +gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -lbacktrace_funcs -L../lib_shared
 # -L : Tell gcc the location of YOUR_LIB, if needed(not in default search path, like /lib);
@@ -33,16 +27,20 @@
 # Error occurs:
 #./a_demo.out: error while loading shared libraries: libbacktrace_funcs.so: cannot open shared object file: No such file or directory
 
-# METHOD 1 : Run:   *RECOMMENDED*
+# METHOD 1 : Run:   *NOT RECOMMENDED!!!*
 export LD_LIBRARY_PATH=.:../lib_shared
 
 # METHOD 2.1 : ldconfig 
 ldconfig ../lib_shared
+
 # METHOD 2.2 : ldconfig_config
 # Add "YOUR_LIB_PATH" to /etc/ld.so.conf AND run ldconfig;
 
 # METHOD 3 : 
 # Copy YOUR_LIB.so to "/lib","/usr/lib" ...
+
+# METHOD 4 :	**Dramalife RECOMMENDED for debugging ;)**
+# Add "-L$(PATH_YOUR_LIB_IN)" to YOUR_Makefile .
 
 ```
 
@@ -70,13 +68,31 @@ ldconfig ../lib_shared
 > [CH]背景：新添加动态链接库，并编译依赖这个库的应用程序。
 > [EN]Background:Add shared library and compile applications depending on it.
 
+##### 4.1 "undefined reference to"
+
 ```bash
 #[CH]未定义的引用：找不到函数定义（没有ldconfig新添加的动态链接库，）
 #[EN]undefined reference to : 
-app.c:(.text+0x99): undefined reference to `signal_handler'
+#	Makefile : {gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -v}
+# app.c:(.text+0x99): undefined reference to `signal_handler'
+# collect2: error: ld returned 1 exit status
+# make: *** [all] Error 1
+```
 
+##### 4.2 "error: ‘signal_handler’ undeclared"
+
+```bash
 #[CH]未声明函数：缺少头文件（缺少"extern TYPE FUNC(ARGS...)"）
 #[EN]undeclared:Missing header file(s);(missing "extern TYPE FUNC(ARGS...)")
 ./app.c:113:18: error: ‘signal_handler’ undeclared (first use in this function)
+```
+
+##### 4.3 "cannot find -lbacktrace_funcs"
+
+```bash
+#	Makefile : {gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -lbacktrace_funcs -L../lib_gg -v}
+/usr/bin/ld.bfd.real: cannot find -lbacktrace_funcs
+collect2: error: ld returned 1 exit status
+make: *** [all] Error 1
 ```
 
