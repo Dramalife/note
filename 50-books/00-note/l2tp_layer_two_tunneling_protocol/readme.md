@@ -1,4 +1,6 @@
-#### 1.
+#### 1.Background
+
+```
  _______________
 | IP   		|
 |---------------|
@@ -11,15 +13,17 @@
 | IP   		|
 |---------------|
 | L2/L1		|
-````````````````
+\````````````````
+```
 
-#### 2  
+#### 2.RUNNING  
   
 ##### 2.1 Install & Use  
 
-[Install](/50-books/00-note/l2tp_layer_two_tunneling_protocol/xl2tpd_install.htm)  
-[Use](/50-books/00-note/l2tp_layer_two_tunneling_protocol/xl2tpd_USE_config_sample.md)  
+[Install:xl2tpd_install.htm](/50-books/00-note/l2tp_layer_two_tunneling_protocol/xl2tpd_install.htm)  
+[Use:xl2tpd_USE_config_sample.md](/50-books/00-note/l2tp_layer_two_tunneling_protocol/xl2tpd_USE_config_sample.md)  
 
+Running:   
 ```bash
 /50-books/00-note/l2tp_layer_two_tunneling_protocol/xl2tpd -c ~/note/l2tpd.conf_LNS_dramalife -s ~/note/chapsecrets.sample_dramalife -D
 ```
@@ -43,7 +47,7 @@ internals
 #### 4. DOCs
 
 ```bash
-:~/xl2tpd $ grep "rfc" . -rn
+~/xl2tpd $ grep "rfc" . -rn
 ./doc/xl2tpd.conf.5:121:more information about hidden AVP's and AVP in general, refer to rfc2661    
 ./doc/README.patents:43:The L2TP became an IETF standard, see http://www.ietf.org/rfc/rfc2661.txt    
 ```
