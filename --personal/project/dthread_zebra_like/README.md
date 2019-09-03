@@ -1,6 +1,17 @@
->Edit  
-DATE:2019.03.23(RECALL)  
-AUTH:Dramalife@live.com  
+> \# note "dthread-mcu" related file  
+\# Copyright (C) 2019 Dramalife@live.com  
+\#   
+\# This file is part of [note](https://github.com/Dramalife/note.git)  
+\#   
+\# note is distributed in the hope that it will be useful, but  
+\# WITHOUT ANY WARRANTY; without even the implied warranty of  
+\# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+\#  
+\# Init : DATE:2019.03.23(RECALL);  
+\# Update   
+\#  
+  
+
 
 ### 1 Introduction
 Date：2018.8  
