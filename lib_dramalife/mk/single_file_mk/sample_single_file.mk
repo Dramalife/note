@@ -22,12 +22,17 @@
 #			Use lib "libMakefile.mk" ;
 #
 # Init : COPY FROM "sample_single_file.mk", DATE : TODO;
-# Update 
+# Update : 2019.09.06, "symbol_libk + config.mk" mode;  
 #
 
-# TODO : Update "PATH_ABS";
+# TODO - USE : 
+# STEP 0 : Change dir to path where your code is.
+# STEP 1 : echo "PATH_ABS=RELATIVE/PATH/OF/NOTE-lib_dramalife/" > ./config.mk
+# STEP 2 : ln -s path/to/libMakefile.mk ./Makefile
+# STEP 3 : Enjoy your self :)
 PATH_ABS=../
-include $(PATH_ABS)/libMakefile.mk
+include ./config.mk
+include $(PATH_ABS)libMakefile.mk
 
 PRE_SOURCE=source_pre$(PRE_COMP)
 SRC=$(wildcard ./*.c)
