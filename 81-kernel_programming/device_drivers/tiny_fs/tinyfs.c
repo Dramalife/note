@@ -21,6 +21,8 @@
  * Source :  https://mp.weixin.qq.com/s/Sidfn8CZn4KxKh6xMH2uJQ
  * Init : 2019.09.05, COPY FROM https://github.com/charliekernelmode/tinyfs.git;
  * Update 2019.09.05, Compatibles for "4.0.0-040000-generic"; 
+ * Update 2019.09.06, Add "int tinyfs_readdir4 (...)" to Fix bug that Calling Trace and blocking shell when running "ls" command after touching a file;
+ * Update 2019.09.07, Modified "int tinyfs_readdir4 (...)" to Fix bug that blocking shell when running "ls" command after touching a file;
  * Update 
  *
  */
@@ -56,13 +58,39 @@ static int get_block(void)
 }
 
 static struct inode_operations tinyfs_inode_ops;
-// 读取目录的实现
-int tinyfs_readdir4 (struct file *filp,  struct dir_context *dircp)
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,0,0)
+/*
+ * M-20190907:
+ * 	- pos=filearg->f_pos;
+ * 	+ pos=ctxarg->pos;
+ */
+int tinyfs_readdir4 (struct file *filearg,  struct dir_context *ctxarg)
 {
+	struct file_blk *blk;
+	struct dir_entry *entry;
+	int i;
 
-//int (*filldir_t)(struct dir_context *, const char *, int, loff_t, u64, unsigned);
+	if (ctxarg->pos)
+		return 0;
+
+	blk = (struct file_blk *)file_inode(filearg)->i_private;
+
+	if (!S_ISDIR(blk->mode)) {
+		return -ENOTDIR;
+	}
+
+	entry = (struct dir_entry *)&blk->data[0];
+	for (i = 0; i < blk->dir_children; i++) {
+		ctxarg->actor(ctxarg, entry[i].filename, MAXLEN, ctxarg->pos, entry[i].idx, DT_UNKNOWN);
+		filearg->f_pos += sizeof(struct dir_entry);
+		ctxarg->pos += sizeof(struct dir_entry);
+	}
+
+	return 0;
 }
-
+#else
+//int 	(*readdir) 	 (struct file *,     void *,       filldir_t);/* Linux 3.6 */
 static int tinyfs_readdir(struct file *filp, void *dirent, filldir_t filldir)
 {
 	loff_t pos;
@@ -74,11 +102,7 @@ static int tinyfs_readdir(struct file *filp, void *dirent, filldir_t filldir)
 	if (pos)
 		return 0;
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,0,0)
-	blk = (struct file_blk *)file_inode(filp)->i_private;
-#else
 	blk = (struct file_blk *)filp->f_dentry->d_inode->i_private;
-#endif
 
 	if (!S_ISDIR(blk->mode)) {
 		return -ENOTDIR;
@@ -87,6 +111,7 @@ static int tinyfs_readdir(struct file *filp, void *dirent, filldir_t filldir)
 	// 循环获取一个目录的所有文件的文件名
 	entry = (struct dir_entry *)&blk->data[0];
 	for (i = 0; i < blk->dir_children; i++) {
+		//int (*filldir_t)     (void *, const char *,      int,   loff_t, u64,        unsigned);/* Linux 3.6 */
 		filldir(dirent, entry[i].filename, MAXLEN, pos, entry[i].idx, DT_UNKNOWN);
 		filp->f_pos += sizeof(struct dir_entry);
 		pos += sizeof(struct dir_entry);
@@ -94,6 +119,7 @@ static int tinyfs_readdir(struct file *filp, void *dirent, filldir_t filldir)
 
 	return 0;
 }
+#endif
 
 // read实现
 ssize_t tinyfs_read(struct file * filp, char __user * buf, size_t len, loff_t *ppos)
@@ -144,7 +170,7 @@ const struct file_operations tinyfs_file_operations = {
 const struct file_operations tinyfs_dir_operations = {
 	.owner = THIS_MODULE,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(4,0,0)
-	.iterate = (int *)tinyfs_readdir,
+	.iterate = tinyfs_readdir4,
 #else
 	.readdir = tinyfs_readdir,
 #endif
@@ -358,12 +384,14 @@ static int tinyfs_init(void)
 	if (ret)
 		printk("register tinyfs failed\n");
 
+	printk("########%s,%d######## \n",__func__,__LINE__);
 	return ret;
 }
 
 static void tinyfs_exit(void)
 {
 	unregister_filesystem(&tinyfs_fs_type);
+	printk("########%s,%d######## \n",__func__,__LINE__);
 }
 
 module_init(tinyfs_init);
