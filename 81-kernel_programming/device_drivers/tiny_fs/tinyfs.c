@@ -23,6 +23,7 @@
  * Update 2019.09.05, Compatibles for "4.0.0-040000-generic"; 
  * Update 2019.09.06, Add "int tinyfs_readdir4 (...)" to Fix bug that Calling Trace and blocking shell when running "ls" command after touching a file;
  * Update 2019.09.07, Modified "int tinyfs_readdir4 (...)" to Fix bug that blocking shell when running "ls" command after touching a file;
+ *		      Add "ssize_t tinyfs_read4(...)"______^^^^^^^^^^;
  * Update 
  *
  */
@@ -39,8 +40,8 @@
 #error KERNEL_VERSION undefined !
 #endif
 
-struct file_blk block[MAX_FILES+1];
-int curr_count = 0; // 我勒个去，竟然使用了全局变量！
+struct tiny_file_blk block[MAX_FILES+1];
+int curr_count = 0; //count of dir and file;
 
 // 获得一个尚未使用的文件块，保存新创建的文件或者目录
 static int get_block(void)
@@ -64,70 +65,47 @@ static struct inode_operations tinyfs_inode_ops;
  * M-20190907:
  * 	- pos=filearg->f_pos;
  * 	+ pos=ctxarg->pos;
+ * ex. Running "ls" command will call this func.
  */
 int tinyfs_readdir4 (struct file *filearg,  struct dir_context *ctxarg)
 {
-	struct file_blk *blk;
-	struct dir_entry *entry;
+	struct tiny_file_blk *blk;
+	struct tiny_dir_entry *de;
+	struct inode *inode = file_inode(filearg);/* inode - filearg */
 	int i;
 
-	if (ctxarg->pos)
+	printk("%s,%d:FUNC IN! \n",__func__,__LINE__);
+	if (ctxarg->pos) {
+		printk("%s,%d:FUNC EXIT! \n",__func__,__LINE__);
 		return 0;
+	}
 
-	blk = (struct file_blk *)file_inode(filearg)->i_private;
+	blk = (struct tiny_file_blk *)inode->i_private;/* blk - inode - filearg */
 
 	if (!S_ISDIR(blk->mode)) {
+		printk("%s,%d:FUNC EXIT! \n",__func__,__LINE__);
 		return -ENOTDIR;
 	}
 
-	entry = (struct dir_entry *)&blk->data[0];
+	de = (struct tiny_dir_entry *)&blk->data[0];/* de - blk - inode - filearg */
 	for (i = 0; i < blk->dir_children; i++) {
-		ctxarg->actor(ctxarg, entry[i].filename, MAXLEN, ctxarg->pos, entry[i].idx, DT_UNKNOWN);
-		filearg->f_pos += sizeof(struct dir_entry);
-		ctxarg->pos += sizeof(struct dir_entry);
+		printk("%s,%d,pos:%llu \n",__func__,__LINE__, (long long)ctxarg->pos);
+		ctxarg->actor(ctxarg, de[i].filename, MAXLEN, ctxarg->pos, de[i].idx, DT_UNKNOWN);
+		filearg->f_pos += sizeof(struct tiny_dir_entry);
+		ctxarg->pos += sizeof(struct tiny_dir_entry);
 	}
 
+	printk("%s,%d:FUNC EXIT! \n",__func__,__LINE__);
 	return 0;
 }
-#else
-//int 	(*readdir) 	 (struct file *,     void *,       filldir_t);/* Linux 3.6 */
-static int tinyfs_readdir(struct file *filp, void *dirent, filldir_t filldir)
+
+ssize_t tinyfs_read4(struct file * filp, char __user * buf, size_t len, loff_t *ppos)
 {
-	loff_t pos;
-	struct file_blk *blk;
-	struct dir_entry *entry;
-	int i;
-
-	pos = filp->f_pos;
-	if (pos)
-		return 0;
-
-	blk = (struct file_blk *)filp->f_dentry->d_inode->i_private;
-
-	if (!S_ISDIR(blk->mode)) {
-		return -ENOTDIR;
-	}
-
-	// 循环获取一个目录的所有文件的文件名
-	entry = (struct dir_entry *)&blk->data[0];
-	for (i = 0; i < blk->dir_children; i++) {
-		//int (*filldir_t)     (void *, const char *,      int,   loff_t, u64,        unsigned);/* Linux 3.6 */
-		filldir(dirent, entry[i].filename, MAXLEN, pos, entry[i].idx, DT_UNKNOWN);
-		filp->f_pos += sizeof(struct dir_entry);
-		pos += sizeof(struct dir_entry);
-	}
-
-	return 0;
-}
-#endif
-
-// read实现
-ssize_t tinyfs_read(struct file * filp, char __user * buf, size_t len, loff_t *ppos)
-{
-	struct file_blk *blk;
+	struct tiny_file_blk *blk;
+	struct inode *inode = file_inode(filp);
 	char *buffer;
 
-	blk = (struct file_blk *)filp->f_path.dentry->d_inode->i_private;
+	blk = (struct tiny_file_blk *)inode->i_private;
 	if (*ppos >= blk->file_size)
 		return 0;
 
@@ -141,11 +119,63 @@ ssize_t tinyfs_read(struct file * filp, char __user * buf, size_t len, loff_t *p
 
 	return len;
 }
+#else
+//int 	(*readdir) 	 (struct file *,     void *,       filldir_t);/* Linux 3.6 */
+static int tinyfs_readdir(struct file *filp, void *dirent, filldir_t filldir)
+{
+	loff_t pos;
+	struct tiny_file_blk *blk;
+	struct tiny_dir_entry *entry;
+	int i;
+
+	pos = filp->f_pos;
+	if (pos)
+		return 0;
+
+	blk = (struct tiny_file_blk *)filp->f_dentry->d_inode->i_private;
+
+	if (!S_ISDIR(blk->mode)) {
+		return -ENOTDIR;
+	}
+
+	// 循环获取一个目录的所有文件的文件名
+	entry = (struct tiny_dir_entry *)&blk->data[0];
+	for (i = 0; i < blk->dir_children; i++) {
+		//int (*filldir_t)     (void *, const char *,      int,   loff_t, u64,        unsigned);/* Linux 3.6 */
+		filldir(dirent, entry[i].filename, MAXLEN, pos, entry[i].idx, DT_UNKNOWN);
+		filp->f_pos += sizeof(struct tiny_dir_entry);
+		pos += sizeof(struct tiny_dir_entry);
+	}
+
+	return 0;
+}
+
+// read实现
+ssize_t tinyfs_read(struct file * filp, char __user * buf, size_t len, loff_t *ppos)
+{
+	struct tiny_file_blk *blk;
+	char *buffer;
+
+	blk = (struct tiny_file_blk *)filp->f_path.dentry->d_inode->i_private;
+	if (*ppos >= blk->file_size)
+		return 0;
+
+	buffer = (char *)&blk->data[0];
+	len = min((size_t) blk->file_size, len);
+
+	if (copy_to_user(buf, buffer, len)) {
+		return -EFAULT;
+	}
+	*ppos += len;
+
+	return len;
+}
+#endif
 
 // write实现
 ssize_t tinyfs_write(struct file * filp, const char __user * buf, size_t len, loff_t * ppos)
 {
-	struct file_blk *blk;
+	struct tiny_file_blk *blk;
 	char *buffer;
 
 	blk = filp->f_path.dentry->d_inode->i_private;
@@ -163,7 +193,11 @@ ssize_t tinyfs_write(struct file * filp, const char __user * buf, size_t len, lo
 }
 
 const struct file_operations tinyfs_file_operations = {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,0,0)
+	.read = tinyfs_read4,
+#else
 	.read = tinyfs_read,
+#endif
 	.write = tinyfs_write,
 };
 
@@ -181,8 +215,8 @@ static int tinyfs_do_create(struct inode *dir, struct dentry *dentry, umode_t mo
 {
 	struct inode *inode;
 	struct super_block *sb;
-	struct dir_entry *entry;
-	struct file_blk *blk, *pblk;
+	struct tiny_dir_entry *entry;
+	struct tiny_file_blk *blk, *pblk;
 	int idx;
 
 	sb = dir->i_sb;
@@ -220,9 +254,9 @@ static int tinyfs_do_create(struct inode *dir, struct dentry *dentry, umode_t mo
 	}
 
 	inode->i_private = blk;
-	pblk = (struct file_blk *)dir->i_private;
+	pblk = (struct tiny_file_blk *)dir->i_private;
 
-	entry = (struct dir_entry *)&pblk->data[0];
+	entry = (struct tiny_dir_entry *)&pblk->data[0];
 	entry += pblk->dir_children;
 	pblk->dir_children ++;
 
@@ -249,7 +283,7 @@ static int tinyfs_create(struct inode *dir, struct dentry *dentry, umode_t mode,
 static struct inode *tinyfs_iget(struct super_block *sb, int idx)
 {
 	struct inode *inode;
-	struct file_blk *blk;
+	struct tiny_file_blk *blk;
 
 	inode = new_inode(sb);
 	inode->i_ino = idx;
@@ -272,16 +306,16 @@ static struct inode *tinyfs_iget(struct super_block *sb, int idx)
 struct dentry *tinyfs_lookup(struct inode *parent_inode, struct dentry *child_dentry, unsigned int flags)
 {
 	struct super_block *sb = parent_inode->i_sb;
-	struct file_blk *blk;
-	struct dir_entry *entry;
+	struct tiny_file_blk *blk;
+	struct tiny_dir_entry *entry;
 	int i;
 
-	blk = (struct file_blk *)parent_inode->i_private;
-	entry = (struct dir_entry *)&blk->data[0];
+	blk = (struct tiny_file_blk *)parent_inode->i_private;
+	entry = (struct tiny_dir_entry *)&blk->data[0];
 	for (i = 0; i < blk->dir_children; i++) {
 		if (!strcmp(entry[i].filename, child_dentry->d_name.name)) {
 			struct inode *inode = tinyfs_iget(sb, entry[i].idx);
-			struct file_blk *inner = (struct file_blk *)inode->i_private;
+			struct tiny_file_blk *inner = (struct tiny_file_blk *)inode->i_private;
 			inode_init_owner(inode, parent_inode, inner->mode);
 			d_add(child_dentry, inode);
 			return NULL;
@@ -294,7 +328,7 @@ struct dentry *tinyfs_lookup(struct inode *parent_inode, struct dentry *child_de
 int tinyfs_rmdir(struct inode *dir, struct dentry *dentry)
 {
 	struct inode *inode = dentry->d_inode;
-	struct file_blk *blk = (struct file_blk *)inode->i_private;
+	struct tiny_file_blk *blk = (struct tiny_file_blk *)inode->i_private;
 
 	blk->busy = 0;
 	return simple_rmdir(dir, dentry);
@@ -304,17 +338,17 @@ int tinyfs_unlink(struct inode *dir, struct dentry *dentry)
 {
 	int i;
 	struct inode *inode = dentry->d_inode;
-	struct file_blk *blk = (struct file_blk *)inode->i_private;
-	struct file_blk *pblk = (struct file_blk *)dir->i_private;
-	struct dir_entry *entry;
+	struct tiny_file_blk *blk = (struct tiny_file_blk *)inode->i_private;
+	struct tiny_file_blk *pblk = (struct tiny_file_blk *)dir->i_private;
+	struct tiny_dir_entry *entry;
 
 	// 更新其上层目录
-	entry = (struct dir_entry *)&pblk->data[0];
+	entry = (struct tiny_dir_entry *)&pblk->data[0];
 	for (i = 0; i < pblk->dir_children; i++) {
 		if (!strcmp(entry[i].filename, dentry->d_name.name)) {
 			int j;
 			for (j = i; j < pblk->dir_children - 1; j++) {
-				memcpy(&entry[j], &entry[j+1], sizeof(struct dir_entry));
+				memcpy(&entry[j], &entry[j+1], sizeof(struct tiny_dir_entry));
 			}
 			pblk->dir_children --;
 			break;
