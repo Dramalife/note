@@ -27,7 +27,7 @@
 
 ### 2. ERRORs
 
-see ./errors.md
+see ./errors{VERSION}.md
 
 ### 3. TODO
 
