@@ -26,14 +26,14 @@
 if [ ${#} -gt 0 ]; then
 BK_OUTPUT_FILE=${1}
 else
-BK_OUTPUT_FILE=./$(date +%Y%m%d%H).tgz
+BK_OUTPUT_FILE=/$(date +%Y%m%d%H).tgz
 fi
 
 nohup tar zcvfp ${BK_OUTPUT_FILE} \
 /* \
 --exclude=/proc \
 --exclude=/lost+found \
---exclude=/${BK_OUTPUT_FILE} \
+--exclude=${BK_OUTPUT_FILE} \
 --exclude=/mnt \
 --exclude=/sys \
 --exclude=/sharedfolders \
