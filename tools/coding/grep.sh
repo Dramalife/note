@@ -28,6 +28,8 @@ grep $1 $2 -rn --binary-files=without-match --exclude-dir=\.svn --color=auto
 #	| 	| exclude	| grep "123"./apps --exclude-dir={.svn,.git} -rn|
 #	| 	| include	| grep "123"./apps --include-dir={src,include} -rn|
 #	|7	|列出包含搜索内容的文件|grep -l|	|
+#	|8 	|搜索符号连接指向的文件"-R"	|grep "CONT" /PATH -Rn	|
+#	| 	| 		|		|
 #	| 	| 		|		|
 #	
 #	常用方式
