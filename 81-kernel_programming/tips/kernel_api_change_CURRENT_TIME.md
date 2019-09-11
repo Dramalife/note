@@ -35,8 +35,8 @@ Replace current_time and current_time_sec
 This patch series is aimed at getting rid of CURRENT_TIME and CURRENT_TIME_SEC macros. The macros: CURRENT_TIME and CURRENT_TIME_SEC are primarily used for filesystem timestamps. to the granularity as required by the filesystem. There will also be another series to add range checks and clamping to filesystem time functions that are meant to substitute the above macros:
 
 ```c
-	struct timespec current_fs_time(struct super_block *sb)
-	struct timespec current_fs_time_sec(struct super_block *sb)
+	struct timespec current_fs_time(struct super_block *sb);
+	struct timespec current_fs_time_sec(struct super_block *sb);
 ```
 
 These time functions will also be transitioned along with VFS to use struct timespec64 instead of struct timespec. Any use of these macros outside of filesystem timestamps will be replaced by ktime_get*/ get_seconds functions.
