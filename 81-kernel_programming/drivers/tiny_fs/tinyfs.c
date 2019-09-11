@@ -32,13 +32,18 @@
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <linux/uaccess.h>
+
 #include <linux/version.h>
-
-#include "tinyfs.h"
-
 #if !defined(KERNEL_VERSION) || !defined(LINUX_VERSION_CODE)
 #error KERNEL_VERSION undefined !
 #endif
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0)
+#include <linux/time.h>
+#endif
+
+#include "tinyfs.h"
+
 
 struct tiny_file_blk block[MAX_FILES+1];
 int curr_count = 0; //count of dir and file;
@@ -236,7 +241,11 @@ static int tinyfs_do_create(struct inode *dir, struct dentry *dentry, umode_t mo
 
 	inode->i_sb = sb;
 	inode->i_op = &tinyfs_inode_ops;
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0)
+	inode->i_atime = inode->i_mtime = inode->i_ctime = current_time(inode);
+#else
 	inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
+#endif
 
 	idx = get_block(); // 获取一个空闲的文件块保存新文件
 
@@ -297,7 +306,11 @@ static struct inode *tinyfs_iget(struct super_block *sb, int idx)
 	else if (S_ISREG(blk->mode))
 		inode->i_fop = &tinyfs_file_operations;
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0)
+	inode->i_atime = inode->i_mtime = inode->i_ctime = current_time(inode);
+#else
 	inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
+#endif
 	inode->i_private = blk;
 
 	return inode;
@@ -369,24 +382,28 @@ static struct inode_operations tinyfs_inode_ops = {
 
 int tinyfs_fill_super(struct super_block *sb, void *data, int silent)
 {
-	struct inode *root_inode;
+	struct inode *inode;
 	int mode = S_IFDIR;
 
-	root_inode = new_inode(sb);
-	root_inode->i_ino = 1;
-	inode_init_owner(root_inode, NULL, mode);
-	root_inode->i_sb = sb;
-	root_inode->i_op = &tinyfs_inode_ops;
-	root_inode->i_fop = &tinyfs_dir_operations;
-	root_inode->i_atime = root_inode->i_mtime = root_inode->i_ctime = CURRENT_TIME;
+	inode = new_inode(sb);
+	inode->i_ino = 1;
+	inode_init_owner(inode, NULL, mode);
+	inode->i_sb = sb;
+	inode->i_op = &tinyfs_inode_ops;
+	inode->i_fop = &tinyfs_dir_operations;
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0)
+	inode->i_atime = inode->i_mtime = inode->i_ctime = current_time(inode);
+#else
+	inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
+#endif
 
 	block[1].mode = mode;
 	block[1].dir_children = 0;
 	block[1].idx = 1;
 	block[1].busy = 1;
-	root_inode->i_private = &block[1];
+	inode->i_private = &block[1];
 
-	sb->s_root = d_make_root(root_inode);
+	sb->s_root = d_make_root(inode);
 	curr_count ++;
 
 	return 0;

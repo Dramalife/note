@@ -18,7 +18,9 @@
 # 
 #
 # Init : 2019.09.06, COPY FROM https://github.com/brewHouses/tinyfs.git;
-# Update :
+# Update : 2019.09.11, Add "rm -rvf ./*.o ./*.order ./*.mod* ./*.ko", 
+#			TODO : make it better
+# Update 
 #
 
 
@@ -29,4 +31,6 @@ all :
     
 clean:
 	$(MAKE) -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+	#TODO : why do i need to del these manually ;(
+	rm -rvf ./*.o ./*.order ./*.mod* ./*.ko
 

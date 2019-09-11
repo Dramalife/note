@@ -18,7 +18,6 @@
 [2. kernel changelog - CURRENT_TIME](/81-kernel_programming/tips/kernel_api_change_CURRENT_TIME.md)
 
 
-
 ### 1. Preparing
 
 #### 1.1 Install sanitised kernel headers
@@ -28,6 +27,12 @@ linux $ make help | grep headers
 headers_install - Install sanitised kernel headers to INSTALL_HDR_PATH
 
 $ make headers_install
+```
+
+#### 1.2 sudo apt-get install linux-source-5.0.0
+
+```bash
+sudo apt-get install linux-source-5.0.0
 ```
 
 

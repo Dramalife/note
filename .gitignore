@@ -15,3 +15,7 @@
 *.swp
 *.out
 *.o
+
+# kernel modules
+*.cmd
+*.ko
