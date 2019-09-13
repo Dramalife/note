@@ -23,6 +23,8 @@
 #
 
 
+echo "TODO : umount samba, or add it to exclude-path first !"
+
 if [ ${#} -gt 0 ]; then
 BK_OUTPUT_FILE=${1}
 else

@@ -1,0 +1,36 @@
+make -C /root/root500_disk/source_code_500g/linux-4.14.34 M=/root/note/81-kernel_programming/fs/tiny_fs_symbol modules
+make[1]: Entering directory '/root/root500_disk/source_code_500g/linux-4.14.34'
+
+  WARNING: Symbol version dump ./Module.symvers
+           is missing; modules will have no dependencies and modversions.
+
+  CC [M]  /root/note/81-kernel_programming/fs/tiny_fs_symbol/tinyfs.o
+/root/note/81-kernel_programming/fs/tiny_fs_symbol/tinyfs.c: In function ‘tinyfs_do_create’:
+/root/note/81-kernel_programming/fs/tiny_fs_symbol/tinyfs.c:247:53: error: ‘CURRENT_TIME’ undeclared (first use in this function)
+  inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
+                                                     ^~~~~~~~~~~~
+/root/note/81-kernel_programming/fs/tiny_fs_symbol/tinyfs.c:247:53: note: each undeclared identifier is reported only once for each function it appears in
+/root/note/81-kernel_programming/fs/tiny_fs_symbol/tinyfs.c: In function ‘tinyfs_iget’:
+/root/note/81-kernel_programming/fs/tiny_fs_symbol/tinyfs.c:312:53: error: ‘CURRENT_TIME’ undeclared (first use in this function)
+  inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
+                                                     ^~~~~~~~~~~~
+/root/note/81-kernel_programming/fs/tiny_fs_symbol/tinyfs.c: In function ‘tinyfs_fill_super’:
+/root/note/81-kernel_programming/fs/tiny_fs_symbol/tinyfs.c:397:53: error: ‘CURRENT_TIME’ undeclared (first use in this function)
+  inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
+                                                     ^~~~~~~~~~~~
+scripts/Makefile.build:334: recipe for target '/root/note/81-kernel_programming/fs/tiny_fs_symbol/tinyfs.o' failed
+make[2]: *** [/root/note/81-kernel_programming/fs/tiny_fs_symbol/tinyfs.o] Error 1
+Makefile:1528: recipe for target '_module_/root/note/81-kernel_programming/fs/tiny_fs_symbol' failed
+make[1]: *** [_module_/root/note/81-kernel_programming/fs/tiny_fs_symbol] Error 2
+make[1]: Leaving directory '/root/root500_disk/source_code_500g/linux-4.14.34'
+Makefile:30: recipe for target 'all' failed
+make: *** [all] Error 2
+make -C /root/root500_disk/source_code_500g/linux-4.14.34 M=/root/note/81-kernel_programming/fs/tiny_fs_symbol modules
+make[1]: Entering directory '/root/root500_disk/source_code_500g/linux-4.14.34'
+
+  WARNING: Symbol version dump ./Module.symvers
+           is missing; modules will have no dependencies and modversions.
+
+  Building modules, stage 2.
+  MODPOST 1 modules
+make[1]: Leaving directory '/root/root500_disk/source_code_500g/linux-4.14.34'
