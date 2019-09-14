@@ -1,6 +1,6 @@
 #! /bin/bash
 #
-# note "kernel modules" related file
+# note "uname -r" related file
 # Copyright (C) 2019 Dramalife@live.com
 # 
 # This file is part of [note](https://github.com/Dramalife/note.git)
@@ -17,7 +17,8 @@
 #
 
 
-#linux source tree
-make modules
-make modules_install
+
+显示操作系统发行编号
+# uname -r
+5.0.0-27-generic
 
