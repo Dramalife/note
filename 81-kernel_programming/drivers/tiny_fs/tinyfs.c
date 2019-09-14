@@ -241,7 +241,7 @@ static int tinyfs_do_create(struct inode *dir, struct dentry *dentry, umode_t mo
 
 	inode->i_sb = sb;
 	inode->i_op = &tinyfs_inode_ops;
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0)
+#if LINUX_VERSION_CODE > KERNEL_VERSION(4,0,0)
 	inode->i_atime = inode->i_mtime = inode->i_ctime = current_time(inode);
 #else
 	inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
@@ -306,7 +306,7 @@ static struct inode *tinyfs_iget(struct super_block *sb, int idx)
 	else if (S_ISREG(blk->mode))
 		inode->i_fop = &tinyfs_file_operations;
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0)
+#if LINUX_VERSION_CODE > KERNEL_VERSION(4,0,0)
 	inode->i_atime = inode->i_mtime = inode->i_ctime = current_time(inode);
 #else
 	inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
@@ -391,7 +391,7 @@ int tinyfs_fill_super(struct super_block *sb, void *data, int silent)
 	inode->i_sb = sb;
 	inode->i_op = &tinyfs_inode_ops;
 	inode->i_fop = &tinyfs_dir_operations;
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0)
+#if LINUX_VERSION_CODE > KERNEL_VERSION(4,0,0)
 	inode->i_atime = inode->i_mtime = inode->i_ctime = current_time(inode);
 #else
 	inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
