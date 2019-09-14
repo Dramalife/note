@@ -7,6 +7,8 @@
 \# WITHOUT ANY WARRANTY; without even the implied warranty of  
 \# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
 \#  
+\# Ref Url : https://www.ibm.com/developerworks/cn/linux/l-cn-kernelmodules/ ;     
+\#  
 \# Init : 2019.09.14;  
 \# Update   
 \#  
@@ -42,17 +44,28 @@ then enable "[*]   Source checksum for all modules" options.
 
 vermagic is saved in section ".modinfo" of ELF file.
 String "vermagic" coming from VERMAGIC_STRING that defined at "include/linux/vermagic.h" 
-```
-					|
-					|
-				   ----------------------------------------------------------------------
-(include/linux/vermagic.h)--------| VERMAGIC_STRING |                                                   
-				  | #define VERMAGIC_STRING \                   
-				  |     UTS_RELEASE " " \ ----<KERNELRELEASE>----(include/config/kernel.release) 
-				  |     MODULE_VERMAGIC_SMP MODULE_VERMAGIC_PREEMPT \       
+
+```bash
+						 ----------------------------------
+						| VERSION = 4
+(Makefile)--------------------------------------| PATCHLEVEL = 14
+						| SUBLEVEL = 34
+						| EXTRAVERSION = -v7+ 	# edit manually!
+						 ``````````````````````````````````
+									 |
+									 |
+								  ---------------
+(include/config/kernel.release)----------------------------------| KERNELRELEASE |
+								  ```````````````
+								  	 |
+				   -------------------------		 |
+(include/linux/vermagic.h)--------| VERMAGIC_STRING |                    |
+				  | #define VERMAGIC_STRING \		 |
+				  |     UTS_RELEASE " " \ ---------------'
+				  |     MODULE_VERMAGIC_SMP MODULE_VERMAGIC_PREEMPT \
 				  |     MODULE_VERMAGIC_MODULE_UNLOAD MODULE_VERMAGIC_MODVERSIONS \
 				  |     MODULE_ARCH_VERMAGICLINE                                    
-				  ``````````````````````````````````````````````````````````````````````
+				  ``````````````````````````
 					|
 					|
 			   -------------------------------
@@ -74,9 +87,14 @@ String "vermagic" coming from VERMAGIC_STRING that defined at "include/linux/ver
 
 ```bash
 $ cat include/config/kernel.release 
-5.0.0-27-generic
+4.14.34-v7+
 
 $ uname -r
-5.0.0-27-generic
+4.14.34-v7+
+# VERSION = 4
+# PATCHLEVEL = 14
+# SUBLEVEL = 34
+# EXTRAVERSION = -v7+ 	# edit manually!
+
 ```
 
