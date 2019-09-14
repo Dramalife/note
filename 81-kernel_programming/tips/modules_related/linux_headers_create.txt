@@ -1,0 +1,5 @@
+#linux source tree
+make modules
+make modules_install
+
+
