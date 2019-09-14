@@ -16,6 +16,8 @@
 
 [1. tiny_fs](/81-kernel_programming/device_drivers/tiny_fs)  
 [2. kernel changelog - CURRENT_TIME](/81-kernel_programming/tips/kernel_api_change_CURRENT_TIME.md)
+[3. linux-headers](/81-kernel_programming/tips/modules_related/linux_headers_create.txt)
+[4. modules : vermagic & srcversion](/81-kernel_programming/tips/modules_related/vermagic_srcversion_modinfo.md)
 
 
 ### 1. Preparing
