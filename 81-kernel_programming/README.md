@@ -19,6 +19,15 @@
 [3. linux-headers](/81-kernel_programming/tips/modules_related/linux_headers_create.txt)
 [4. modules : vermagic & srcversion](/81-kernel_programming/tips/modules_related/vermagic_srcversion_modinfo.md)
 
+#### 0.1 Linux kernel stable tree
+
+```
+# Clone
+git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+https://kernel.googlesource.com/pub/scm/linux/kernel/git/stable/linux.git
+```
+
 
 ### 1. Preparing
 
