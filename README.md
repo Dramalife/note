@@ -15,8 +15,11 @@ Dramalife\`s note
 [- sunxi wiki](http://linux-sunxi.org/Main_Page)
 
 
-#### Contents
-TODO
+#### Clone
+
+```bash
+git clone https://github.com/Dramalife/note.git --depth=1
+```
 
 #### Dramalife git status
 |no|status|value|
