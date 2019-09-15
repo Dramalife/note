@@ -1,0 +1,1 @@
+../network/samba/linux_mount_smb.md
