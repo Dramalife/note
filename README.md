@@ -21,11 +21,6 @@ Dramalife\`s note
 git clone https://github.com/Dramalife/note.git --depth=1
 ```
 
-#### Dramalife git status
-|no|status|value|
-|--|--|--|
-|0|linked|null|
-
 ### NEW
 |no|date|content|
 |--|--|--|
@@ -54,7 +49,7 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |No|Status|Item|Path|Add-Finish|
 |--|--|--|--|--|
 |0 |HALT|EoIP(usr,kernel)|[EoIP](/81-kernel_programming/network/ip_protocal/eoip/),[rfc3378](/50-books/rfc_ref/rfc3378.txt)|20190122-20190125(socket_ioctl)-|
-| ^|**DOING** |l2tp(protocol) |[50_note](/50-books/00-note/l2tp_layer_two_tunneling_protocol/) |2019.08.13-08.28(compile&run)- |
+| ^|HALT |l2tp(protocol) |[50_note](/50-books/00-note/l2tp_layer_two_tunneling_protocol/) |2019.08.13-08.28(compile&run)-2019.09.17(halt)- |
 | ^|PLAN     |pppd |[50_note](/50-books/00-note/l2tp_layer_two_tunneling_protocol/) |2019.08.28- |
 |1 |DOING|4g(9507_driver)|[4g](/81-kernel_programming/network/4g_cell)|20190122-|
 |2 |DOING|vim|[vim](/tools_coding/vim)|20190122-Updating-|
@@ -71,12 +66,12 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |10|DONE|link list|[link_list.c](80-userspace_programming/33-datastruct/link_list/link_list.c) |2019.06.26-2019.07.05 |
 | ^|HALT|link_list(char device Module) | - |2019.07.05-2019.07.24- |
 |12|DONE|backtrace,objdump |[backtrace_objdump](/70-gcc_gnu_compiler_collection/backtrace/) |2019.07.06-2019.07.24 |
-|13|**DOING**|Socket sample | [sock_spi_i2c_gpio](/50-books/00-note/sock_spi_i2c_gpio/) |2019.07.07- |
+|13|HALT|Socket sample | [sock_spi_i2c_gpio](/50-books/00-note/sock_spi_i2c_gpio/) |2019.07.07-2019.09.17(halt)- |
 | ^|**DOING**|             ^| [dlpi_socket](/80-userspace_programming/com_unix_sock/dlpi_dramalifepi/) |2019.08.11-(keep)- |
 |14|CANCLED|libdramalife:auto allocate COLOR | |2019.07.08-2019.07.09|
 |15|PLAN |elf-loader(Barry Song) |[elf-loader](/80-userspace_programming/00-libc_sample/man3_dlfcn_dlopen/elf-loader) |2019.08.29- |
 |16|PLAN |ABI/EABI |[note-ABI/EABI](/90-operating_system/ABI) |2019.09.09PAUSE- |
-|17|**DOING**|fs(filesystem,tinyfs) |[tiny_fs](/81-kernel_programming/device_drivers/tiny_fs) |2019.09.06-(keep)- |
+|17|HALT|fs(filesystem,tinyfs) |[tiny_fs](/81-kernel_programming/device_drivers/tiny_fs) |2019.09.06-(keep)-2019.09.17(halt,>network)- |
 | | | | | |
 | | | | | |
 | | | | | |
