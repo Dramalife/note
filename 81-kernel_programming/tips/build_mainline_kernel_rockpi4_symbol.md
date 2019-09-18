@@ -1,0 +1,1 @@
+../../70-gcc_gnu_compiler_collection/81-build_kernel/build_mainline_kernel_rockpi4.md

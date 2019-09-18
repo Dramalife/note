@@ -20,6 +20,10 @@ No arg in,such as "__LINE__"
 */
 void gcc_related_show_no_arg_in(unsigned int options)
 {
+#if __GNUC__ == 4 && __GNUC_MINOR__ == 8 && __GNUC_PATCHLEVEL__ == 5
+#error 4.8.5
+#elif 0
+#endif
 	if( options & GCC_R_SHOW_VERSION)
 		printf("GCC VER:(%s)",__VERSION__);
 	if( options & GCC_R_SHOW_DATE)
@@ -28,6 +32,7 @@ void gcc_related_show_no_arg_in(unsigned int options)
 		printf(" TIME:(%s)",__TIME__);
 
 
+printf("\n VERSION IN INT :(%d)(%d)(%d) \n",__GNUC__,__GNUC_MINOR__,__GNUC_PATCHLEVEL__);
 	printf("\n");
 	return;
 }
