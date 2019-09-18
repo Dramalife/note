@@ -1,7 +1,0 @@
-gcc -c -o libb.o code_for_sample_symbol/gcc_related_show.c
-gcc -c -o main.o code_for_sample_symbol/link_list.c
-objdump -x main.o
-objdump -dx main.o
-
-rm -rvf *.o
-
