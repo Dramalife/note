@@ -9,10 +9,15 @@
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
+# Init : 2019.08.18;
+# Update : 2019.09.18;
+#
 
-find ./ -size -20k -exec rm {} \;
-find ./ -name *.js -exec rm {} \;
-find ./ -name *.css -exec rm {} \;
-find ./ -name *.png -exec rm {} \;
-find ./ -name *.htm -exec rm {} \;
+
+# Using carefully!
+#find ./ -size -20k -exec rm {} \;
+#find ./ -name *.js -exec rm {} \;
+#find ./ -name *.css -exec rm {} \;
+#find ./ -name *.png -exec rm {} \;
+#find ./ -name *.htm -exec rm {} \;
 
