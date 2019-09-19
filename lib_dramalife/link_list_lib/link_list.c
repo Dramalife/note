@@ -79,6 +79,9 @@ int find_by_filo_down2up(ll_data_type *st, ll_data_type *ret_val)/* and delete i
 
 
 #if AUTO_TEST_DOWN2UP
+#ifdef RAND_MAX
+#undef RAND_MAX
+#endif
 #define RAND_MAX 1
 void test_func_down2up(ll_data_type *st, int times, int interval)
 {
