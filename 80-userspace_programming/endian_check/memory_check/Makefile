@@ -20,9 +20,11 @@ OUT1=char
 SOURCE2=endian_int_byte
 OUT2=int
 
+CC := gcc
+
 all:
-	gcc -o $(OUT1).out $(SOURCE1).c
-	gcc -o $(OUT2).out $(SOURCE2).c
+	$(CC) -o $(OUT1).out $(SOURCE1).c
+	$(CC) -o $(OUT2).out $(SOURCE2).c
 ass:
 	objdump -dx $(OUT1).out > $(OUT1).ass
 	objdump -dx $(OUT2).out > $(OUT2).ass
