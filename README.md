@@ -44,6 +44,9 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |0|2019.01.22|git,svn : shell;git:web|
 |0|2019.01.22|vim快捷键|
 |0|2019.02.23|zebra module communication|
+|0|2019.09 19|[endian](/80-userspace_programming/endian_check) |
+| | | |
+| | | |
 
 ### TODO List
 |No|Status|Item|Path|Add-Finish|
