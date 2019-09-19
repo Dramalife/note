@@ -41,4 +41,8 @@ int main(void)
 	 * # ./*int.out
 	 * big endian 
 	 */
+	/* x86-LSB-result:
+	 * $ ./int.out 
+	 * little endian 
+	 */
 }
