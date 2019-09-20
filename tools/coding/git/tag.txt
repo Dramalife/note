@@ -1,0 +1,38 @@
+ * note "git tag" related file
+ * Copyright (C) 2019 Dramalife@live.com
+ * 
+ * This file is part of [note](https://github.com/Dramalife/note.git)
+ * 
+ * note is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * Init : 2019.09.20 ;
+ * Update 
+ *
+
+
+Tips : ":match DiffChange /TAG/"
+
+
+#### Show all tags
+git tag
+
+#### Show "TAG" tag
+git tag -l TAG
+
+#### Add ligit tag "TAG"
+git tag TAG
+
+#### Add annotated tag "TAG", "commit" is optional.
+git tag -a TAG <commit> -m"REMARKS"
+
+#### Push "TAG" to remote after adding
+git push origin TAG
+
+#### Del local "TAG"
+git tag -d TAG
+
+#### Push after deleting "TAG"
+git push origin --delete TAG
+
