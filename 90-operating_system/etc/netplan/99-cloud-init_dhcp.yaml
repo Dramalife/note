@@ -1,0 +1,5 @@
+network:
+    ethernets:
+        enp0s3:
+            dhcp4: true
+    version: 2
