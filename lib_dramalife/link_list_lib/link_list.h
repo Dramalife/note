@@ -30,7 +30,7 @@
 /* VERSION */
 #define DL_LL_VERSION  		1	//Change mood ;)
 #define DL_LL_PATCHLEVEL	0	//Change Interface OR Datastruct;
-#define DL_LL_SUBLEVEL		0	//Change Function name;
+#define DL_LL_SUBLEVEL		1	//Change Function name;
 #define DL_VERSION(a,b,c) (((a)<<16)+((b)<<8)+(c)) /* COPY FROM Linux source tree. */
 /* VERSION NUM CHECK */
 #if DL_LL_VERSION >= 1<<8 || DL_LL_PATCHLEVEL >= 1<<8 || DL_LL_SUBLEVEL >= 1<<8
@@ -70,15 +70,15 @@ typedef struct if_down2up ll_data_type;
 
 #if DL_LL_VERSION > 1 || DL_LL_PATCHLEVEL > 0 || DL_LL_SUBLEVEL > 0
 /* Compatible for version 1.0.0 and version 1.0.1 START */
-#define find_by_fifo_down2up  	/**/
-#define find_by_filo_down2up  	/**/
-#define test_func_down2up     	/**/
-#define debug_if_down2up      	/**/
-#define goto_end_down2up      	/**/
-#define goto_head_down2up     	/**/
-#define add_if_down2up        	/**/
-#define find_by_name_down2up  	/**/
-#define chg_if_down2up        	/**/
+#define find_by_fifo_down2up    /**/    find_fifo_dlll
+#define find_by_filo_down2up    /**/    find_filo_dlll
+#define test_func_down2up       /**/    test_dlll
+#define debug_if_down2up        /**/    debug_dlll
+#define goto_end_down2up        /**/    dlll_go2tail
+#define goto_head_down2up       /**/    dlll_go2head
+#define add_if_down2up          /**/    add_elem_dlll
+#define find_by_name_down2up    /**/    find_name_dlll
+#define chg_if_down2up          /**/    chg_elem_dlll
 /* Compatible for version 1.0.0 and version 1.0.1 END */
 #endif
 
@@ -99,17 +99,17 @@ typedef struct if_down2up ll_data_type;
 
 /* VERSION 1.0.1 */
 #elif DL_LL_VERSION == 1 && DL_LL_PATCHLEVEL == 0 && DL_LL_SUBLEVEL == 1
-/* [Additional] */ int find_by_fifo_down2up(ll_data_type *st, ll_data_type *ret_val);
-/* [Additional] */ int find_by_filo_down2up(ll_data_type *st, ll_data_type *ret_val);
+/* [Additional] */ int find_fifo_dlll(ll_data_type *st, ll_data_type *ret_val);
+/* [Additional] */ int find_filo_dlll(ll_data_type *st, ll_data_type *ret_val);
 
-/* [Func4Test]  */ void test_func_down2up(ll_data_type *st, int times, int interval);
-/* [Func4Test]  */ void debug_if_down2up(ll_data_type *st);
+/* [Func4Test]  */ void test_dlll(ll_data_type *st, int times, int interval);
+/* [Func4Test]  */ void debug_dlll(ll_data_type *st);
 
-/* [Core Func]  */ ll_data_type *goto_end_down2up(ll_data_type *st);
-/* [Core Func]  */ ll_data_type *goto_head_down2up(ll_data_type *st);
-/* [Core Func]  */ ll_data_type *add_if_down2up(ll_data_type *st, const char *name, int type);
-/* [Core Func]  */ ll_data_type *find_by_name_down2up(ll_data_type *st, const char*name);
-/* [Core Func]  */ int chg_if_down2up(ll_data_type *st, const char *name, int type);
+/* [Core Func]  */ ll_data_type *dlll_go2tail(ll_data_type *st);
+/* [Core Func]  */ ll_data_type *dlll_go2head(ll_data_type *st);
+/* [Core Func]  */ ll_data_type *add_elem_dlll(ll_data_type *st, const char *name, int type);
+/* [Core Func]  */ ll_data_type *find_name_dlll(ll_data_type *st, const char*name);
+/* [Core Func]  */ int chg_elem_dlll(ll_data_type *st, const char *name, int type);
 #endif
 
 

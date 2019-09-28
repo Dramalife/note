@@ -11,11 +11,11 @@
 TODO : 
 [2019.06.26]	If already exist an item, which name is same as the item to be added.
 [2019.07.02]	Fix bug :  Function "find_if_down2up" can not find the last item;
-			   Function "chg_if_down2up" del the last item cause fault;
+			   Function "chg_elem_dlll" del the last item cause fault;
 		Chg name:  var "struct if_down2up -> last  >> priv";
-[2019.07.04]	Chg name:  func "find_if_down2up >> find_by_name_down2up";
-		Add func:  "goto_end_down2up";
-			   "test_func_down2up";
+[2019.07.04]	Chg name:  func "find_if_down2up >> find_name_dlll";
+		Add func:  "dlll_go2tail";
+			   "test_dlll";
 [2019.07.25]	Divided
  */
 
@@ -48,15 +48,13 @@ TODO :
 #endif
 
 
-
-
 /* DATASTRUCT-QUEUE
 WARNING : Success only when value returned equal to zero */
-int find_by_fifo_down2up(ll_data_type *st, ll_data_type *ret_val)
+int find_fifo_dlll(ll_data_type *st, ll_data_type *ret_val)
 {
 	//goto head(priv)
 	ll_data_type *tmp;
-	if(NULL == (tmp = goto_head_down2up(st)) )/* FINDING */
+	if(NULL == (tmp = dlll_go2head(st)) )/* FINDING */
 		return -2;
 
 	tmp = tmp->next;/* Skip HEAD node */
@@ -64,22 +62,22 @@ int find_by_fifo_down2up(ll_data_type *st, ll_data_type *ret_val)
 	strcpy(ret_val->name, tmp->name);/* Get data */
 	ret_val->address_type = tmp->address_type;
 
-	chg_if_down2up(st,tmp->name,-1);/* Delete item of the linklist ,TODO:if items have same name*/
+	chg_elem_dlll(st,tmp->name,-1);/* Delete item of the linklist ,TODO:if items have same name*/
 	return 0;/* SUCCESS */
 }
 /* DATASTRUCT-STACK 
 WARNING : Success only when value returned equal to zero */
-int find_by_filo_down2up(ll_data_type *st, ll_data_type *ret_val)/* and delete it */
+int find_filo_dlll(ll_data_type *st, ll_data_type *ret_val)/* and delete it */
 {
 	//goto end(next)
 	ll_data_type *tmp;
-	if(NULL == (tmp = goto_end_down2up(st)) )/* FINDING */
+	if(NULL == (tmp = dlll_go2tail(st)) )/* FINDING */
 		return -2;
 
 	strcpy(ret_val->name, tmp->name);/* Get data */
 	ret_val->address_type = tmp->address_type;
 
-	chg_if_down2up(st,tmp->name,-1);/* Delete item of the linklist ,TODO:if items have same name*/
+	chg_elem_dlll(st,tmp->name,-1);/* Delete item of the linklist ,TODO:if items have same name*/
 	return 0;/* SUCCESS */
 }
 
@@ -89,7 +87,7 @@ int find_by_filo_down2up(ll_data_type *st, ll_data_type *ret_val)/* and delete i
 #undef RAND_MAX
 #endif
 #define RAND_MAX 1
-void test_func_down2up(ll_data_type *st, int times, int interval)
+void test_dlll(ll_data_type *st, int times, int interval)
 {
 	while(times--)
 	{
@@ -97,21 +95,21 @@ void test_func_down2up(ll_data_type *st, int times, int interval)
 		//if( (int)time(NULL) & 0x1 )
 		if( rand() & 0x1 )
 		{
-			add_if_down2up(st,"aaaa", (int)time(NULL));/* Add item to the linklist */
+			add_elem_dlll(st,"aaaa", (int)time(NULL));/* Add item to the linklist */
 		}
 		else
 		{
-			chg_if_down2up(st,"aaaa",-1);/* Delete item of the linklist */
+			chg_elem_dlll(st,"aaaa",-1);/* Delete item of the linklist */
 		}
-		debug_if_down2up(st);
+		debug_dlll(st);
 	}
 }
 #else
-void test_func_down2up(ll_data_type *st, int times, int interval);
+void test_dlll(ll_data_type *st, int times, int interval);
 #endif
 
 /* Debug func, print all item(s) of the linklist */
-void debug_if_down2up(ll_data_type *st)
+void debug_dlll(ll_data_type *st)
 {
 	ll_data_type *tmp = st;
 	printf("[%4d],priv:%d,next:%d SHOW\n" ,__LINE__, tmp->priv == NULL ? 0 : 1, tmp->next == NULL ? 0 : 1 );
@@ -135,14 +133,14 @@ void debug_if_down2up(ll_data_type *st)
 	printf("name:%s,type:%d \n", tmp->name, tmp->address_type);
 }
 
-/* FUNC   : ll_data_type *goto_end_down2up(ll_data_type *st);
+/* FUNC   : ll_data_type *dlll_go2tail(ll_data_type *st);
  * ARGIN  : A pointer of the link_list.
  * RETURN : The function return a pointer to the ending of the link_list,or NULL
  * 		if the ending is not found or 
  * 		the size of the link_list is bigger than MAX_ITEM_NUM_DOWN2UP;
  * ADDDATE: 2019.07.04;
  */
-ll_data_type *goto_end_down2up(ll_data_type *st)
+ll_data_type *dlll_go2tail(ll_data_type *st)
 {
 	int cnt = 0;
 	while(st->next != NULL)
@@ -153,7 +151,7 @@ ll_data_type *goto_end_down2up(ll_data_type *st)
 	}
 	return st;
 }
-ll_data_type *goto_head_down2up(ll_data_type *st)
+ll_data_type *dlll_go2head(ll_data_type *st)
 {
 	int cnt = 0;
 	while(st->priv != NULL)
@@ -169,7 +167,7 @@ ll_data_type *goto_head_down2up(ll_data_type *st)
 ARGS	: name==NULL -- init, name != NULL -- add item;
 RETURN	: the new */
 /**/
-ll_data_type *add_if_down2up(ll_data_type *st, const char *name, int type)
+ll_data_type *add_elem_dlll(ll_data_type *st, const char *name, int type)
 {
 	ll_data_type *tmp,*new;
 
@@ -183,7 +181,7 @@ ll_data_type *add_if_down2up(ll_data_type *st, const char *name, int type)
 	}
 	else/* add item */
 	{
-		if(NULL == (tmp = goto_end_down2up(st)) )/* can not finish looking up ,20190704*/
+		if(NULL == (tmp = dlll_go2tail(st)) )/* can not finish looking up ,20190704*/
 			goto not_chg;
 
 		if(NULL == (new = (ll_data_type *)malloc(sizeof(ll_data_type))) )
@@ -214,7 +212,7 @@ not_chg:
 /* Find item by name 
 RETURN : Pointer of the item, or NULL if not found.*/
 /*LINK LIST*/
-ll_data_type *find_by_name_down2up(ll_data_type *st, const char*name)
+ll_data_type *find_name_dlll(ll_data_type *st, const char*name)
 {
 	ll_data_type *tmp;
 	tmp = st;
@@ -253,10 +251,10 @@ done:
 /* Update or Delete item, found by name
 ARGS	: type < 0 -- del;   type >=0 -- change [type];
 RETURN 	: 0 - SUCCESS */
-int chg_if_down2up(ll_data_type *st, const char *name, int type)
+int chg_elem_dlll(ll_data_type *st, const char *name, int type)
 {
 	ll_data_type *tmp;
-	if(NULL == (tmp = find_by_name_down2up(st,name)))
+	if(NULL == (tmp = find_name_dlll(st,name)))
 	{
 		return 2;//NOT EXIST
 	}
