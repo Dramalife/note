@@ -43,6 +43,12 @@ TODO :
 #define AC_YELLOW	""
 #endif
 
+#ifndef __WORDSIZE 
+#error WORDSIZE undefined!!
+#endif
+
+
+
 
 /* DATASTRUCT-QUEUE
 WARNING : Success only when value returned equal to zero */
