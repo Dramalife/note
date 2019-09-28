@@ -31,7 +31,7 @@ TODO :
 #endif
 
 #if (1 == HAVE_TERM_COLOR_DRAMALIFE)
-#include <terminal_color_dramalife.h>/* Installed from "note/lib_dramalife" */
+#include "../terminal_color_dramalife.h"/* Installed from "note/lib_dramalife" */
 #define AC_NONE		CNONE
 #define AC_LRED		CLRED
 #define AC_LGREEN	CLGREEN
