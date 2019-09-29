@@ -21,3 +21,7 @@ route print
 # del route
 route del 172.16.0.0 mask 255.255.0.0 172.16.127.1 -p
 
+# Windows 10 - PowerShell
+route ADD 172.16.127.0 mask 255.255.255.0 172.16.127.1 -p
+route DELETE 172.16.127.0 mask 255.255.255.0 172.16.127.1 -p
+
