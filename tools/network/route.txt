@@ -1,3 +1,27 @@
+man(8)route
+--------
+gw GW  route packets via a gateway.
+	NOTE: The specified gateway must be reachable first. This usually means that you have to set up a static route to the  gateway  beforehand.  If  you  specify  the
+	address  of  one  of your local interfaces, it will be used to decide about the interface to which the packets should be routed to. This is a BSDism compatibility
+	hack.
+
+EXAMPLES
+	route add -net 192.57.66.0 netmask 255.255.255.0 gw mango
+		This command adds the net "192.57.66.x" to be gatewayed through the former route to the SLIP interface.
+
+	route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
+		This is an obscure one documented so people know how to do it. This sets all of the class D (multicast) IP routes to go via "eth0". This  is  the  correct
+		normal configuration line with a multicasting kernel.
+----------------------end-man(8)route
+
+
+# Default Gateway
 sudo route del default gw 172.16.127.1
 
+# Zebra type(nexthop-type) : NEXTHOP_TYPE_IFINDEX
 route add -net 192.168.0.0 netmask 255.255.255.0 dev eth0
+
+# Zebra type(nexthop-type) : NEXTHOP_TYPE_IPV4_IFINDEX
+route add -net 192.168.10.0 netmask 255.255.255.0 gw 192.168.1.100
+route add -net 192.168.10.0/24 gw 192.168.1.100
+
