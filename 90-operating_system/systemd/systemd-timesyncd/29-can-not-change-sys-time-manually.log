@@ -1,0 +1,41 @@
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ ps aux | grep system
+root       396  0.0  1.5  95500  7768 ?        S<s  Sep29   0:03 /lib/systemd/systemd-journald
+root       426  0.0  0.3  46720  1760 ?        Ss   Sep29   0:04 /lib/systemd/systemd-udevd
+systemd+   462  0.0  0.1 141928   784 ?        Ssl  Sep29   0:02 /lib/systemd/systemd-timesyncd
+systemd+   724  0.0  0.0  71848   344 ?        Ss   Sep29   0:01 /lib/systemd/systemd-networkd
+systemd+   764  0.0  0.4  70892  2108 ?        Ss   Sep29   0:13 /lib/systemd/systemd-resolved
+root       862  0.0  0.4  70584  2024 ?        Ss   Sep29   0:01 /lib/systemd/systemd-logind
+message+   880  0.0  0.3  50164  1940 ?        Ss   Sep29   0:00 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+dramali+  1340  0.0  0.2  76636  1260 ?        Ss   Sep29   0:00 /lib/systemd/systemd --user
+dramali+ 15880  0.0  0.2  13136  1008 pts/1    S+   05:50   0:00 grep --color=auto system
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ date
+Tue Oct  8 05:50:44 UTC 2019
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ sudo date -s 11:11
+Tue Oct  8 11:11:00 UTC 2019
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ date
+Tue Oct  8 05:51:04 UTC 2019
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ date
+Tue Oct  8 05:51:15 UTC 2019
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ systemctl stop systemd-timesyncd.service 
+==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-units ===
+Authentication is required to stop 'systemd-timesyncd.service'.
+Authenticating as: dramalife
+Password: 
+==== AUTHENTICATION COMPLETE ===
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ ps aux | grep systemd-timesyncd
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ date
+Tue Oct  8 05:51:55 UTC 2019
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ sudo date -s 11:11
+Tue Oct  8 11:11:00 UTC 2019
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ date
+Tue Oct  8 11:11:05 UTC 2019
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ date
+Tue Oct  8 11:11:06 UTC 2019
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ systemctl start systemd-timesyncd.service 
+==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-units ===
+Authentication is required to start 'systemd-timesyncd.service'.
+Authenticating as: dramalife
+Password: 
+==== AUTHENTICATION COMPLETE ===
+dramalife@server:~/source_git/tools_note/ctags-5.8 $ date
+Tue Oct  8 05:52:36 UTC 2019
