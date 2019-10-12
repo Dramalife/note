@@ -7,7 +7,7 @@ DIS_ASSB=.ass
 SHD_LIB=.so
 
 # Warning Options
-CFLAGS := -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wundef -Wunused-parameter -Wunused-but-set-variable
+CFLAGS += -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wundef -Wunused-parameter -Wunused-but-set-variable
 
 # Dialect Options
 CFLAGS += -Wno-deprecated-declarations
@@ -33,3 +33,4 @@ CFLAGS += -g -O2
 # -Wno-shift-negative-value
 # -Wno-pointer-compare
 
+#CFLAGS += -v

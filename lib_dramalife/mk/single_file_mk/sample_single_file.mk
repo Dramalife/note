@@ -30,20 +30,58 @@
 # STEP 1 : echo "PATH_ABS=RELATIVE/PATH/OF/NOTE-lib_dramalife/" > ./config.mk
 # STEP 2 : ln -s path/to/libMakefile.mk ./Makefile
 # STEP 3 : Enjoy your self :)
+
+# Sample - config.mk
+# PATH_ABS=../../../lib_dramalife/
+# DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
+
+
+CFLAGS:=
 PATH_ABS=../
+DEF_MACROS:=
+
+#SRC_DIR :=./src
+#BUILD_DIR :=./build
+#OBJ_DIR :=$(BUILD_DIR)/obj
+SRC_DIR :=.
+BUILD_DIR :=.
+OBJ_DIR :=.
+
+CC :=gcc
+LD :=ld
+
 include ./config.mk
 include $(PATH_ABS)libMakefile.mk
 
 PRE_SOURCE=source_pre$(PRE_COMP)
-SRC=$(wildcard ./*.c)
+SRCS := $(wildcard ./*.c)
+OBJS := $(SRCS:./%.c=./%.o)
+BUILD := $(OBJS:./%.o=./%)
+#SRCS := $(wildcard $(SRC_DIR)/*.c)
+#OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+#BUILD := $(OBJS:$(OBJ_DIR)/%.o=$(BUILD_DIR)/%.out)
+.SECONDARY: $(OBJS)
 
+# LD all to the target.
 all:
 	rm -rvf ./*$(BIN_END)
-	gcc -E $(SRC) >> $(PRE_SOURCE)
-	gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -v -g
+	gcc -E $(SRCS) >> $(PRE_SOURCE)
+	@echo "FLAGS : $(CFLAGS) ;"
+	gcc -o $(BIN_NAME)$(BIN_END) $(SRCS) $(CFLAGS) $(DEF_MACROS)
 
+# Ref : https://blog.csdn.net/jinhangdev/article/details/80581408
+all-part: $(BUILD)
+	@$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@echo + $(CC) $<
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c -o $@ $<
+	@$(BUILD_DIR)/%: $(OBJ_DIR)/%.o
+	@echo + $(LD) $@
+	@mkdir -p $(BUILD_DIR)
+	@$(LD) -o $@ $<
+
+.PHONY: all-part clean
 
 clean:
 	rm -rvf ./*$(BIN_END) ./*$(PRE_COMP) ./*$(BIN_O)
 
-.PHONY: clean
