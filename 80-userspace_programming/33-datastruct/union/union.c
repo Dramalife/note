@@ -143,3 +143,7 @@ int main_union(void)
 	return 0;
 }
 
+#if (DL_NOTE_UNION2_PART_BUILD == 3)
+#error Just For Testing.
+#endif
+
