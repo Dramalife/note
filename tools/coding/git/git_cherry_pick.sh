@@ -30,7 +30,9 @@ ARG_FILENAME=git_cherry_pick.man
 # This way to ingore auto generated file not worked :(
 #echo "${ARG_FILENAME}" >> ./.gitignore
 
-man git cherry-pick > ${ARG_FILENAME}
+# MOVED TO "NOTE/tools/manual_pager"
+#man git cherry-pick > ${ARG_FILENAME}
+
 # OR
 #git cherry-pick --help > ${ARG_FILENAME}
 

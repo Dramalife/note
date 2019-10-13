@@ -1,0 +1,44 @@
+root@orangepizero:~/note/tools/coding/git# git cherry-pick cda2e69947f942df0ecdd8b132923b6704da1562
+error: could not apply cda2e699... Support : Split or Combine compile.
+hint: after resolving the conflicts, mark the corrected paths
+hint: with 'git add <paths>' or 'git rm <paths>'
+hint: and commit the result with 'git commit'
+root@orangepizero:~/note/tools/coding/git# git status  
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+(use "git push" to publish your local commits)
+You are currently cherry-picking commit cda2e699.
+(fix conflicts and run "git cherry-pick --continue")
+(use "git cherry-pick --abort" to cancel the cherry-pick operation)
+
+Changes to be committed:
+
+new file:   ../../../lib_dramalife/libMakefile_split.mk
+
+Unmerged paths:
+(use "git add <file>..." to mark resolution)
+
+both modified:   ../../../lib_dramalife/mk/single_file_mk/sample_single_file.mk
+
+Untracked files:
+(use "git add <file>..." to include in what will be committed)
+
+../../../80-userspace_programming/33-datastruct/1ok.mk
+../../../80-userspace_programming/33-datastruct/mk_split_split_ok.mk
+../../../80-userspace_programming/33-datastruct/struct-part_compile_ok.tgz
+../../../81-kernel_programming/drivers/tiny_fs/.tmp_versions/
+../../../81-kernel_programming/drivers/tiny_fs/Makefile_org
+../../../81-kernel_programming/drivers/tiny_fs/Module.symvers
+../../../81-kernel_programming/drivers/tiny_fs/modules.order
+../../../81-kernel_programming/drivers/tiny_fs/tinyfs.mod.c
+../../../git_cherry_pick.man
+git_cherry_pick.man
+
+root@orangepizero:~/note/tools/coding/git# vi ../../../lib_dramalife/mk/single_file_mk/sample_single_file.mk
+root@orangepizero:~/note/tools/coding/git# git add ../../../lib_dramalife/mk/single_file_mk/sample_single_file.mk
+root@orangepizero:~/note/tools/coding/git# git commit 
+[master 69a81ebb] Support : Split or Combine compile.
+	Date: Sun Oct 13 23:10:04 2019 +0800
+2 files changed, 75 insertions(+), 7 deletions(-)
+	create mode 100644 lib_dramalife/libMakefile_split.mk
+
