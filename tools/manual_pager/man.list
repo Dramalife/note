@@ -2,3 +2,4 @@ ldd
 nm
 objdump
 proc
+git cherry-pick

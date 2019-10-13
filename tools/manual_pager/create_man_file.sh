@@ -39,7 +39,8 @@ echo -e "Press anykey to "${CLGREEN}"generated"${CNONE}" file(s) automatically:"
 read var_unuse30
 while read name
 do
-man ${name} > ${name}.man 2>/dev/null
+#${string//substring/replacement}
+man ${name} > ${name// /_}.man 2>/dev/null
 echo "create ${name}.man" 
 done < $1
 echo -e ${BOLD}"Create *.man done."${CNONE}
