@@ -9,7 +9,13 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
 # $ make --version
-# TODO;
+# GNU Make 4.1
+# Built for arm-unknown-linux-gnueabihf
+# Copyright (C) 1988-2014 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+# ;
 #
 # update : 2019.05.13
 # update : 2019.05.20 add gcc -v
@@ -36,16 +42,29 @@
 # DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
 
 
+
+CURRENT_DIR:=$(shell pwd)
+CURRENT_DIR2:=$(shell pwd)/
+PRE_SOURCE=source_pre$(PRE_COMP)
+
+# Source Default - Current Directory.
+#SRCS := $(wildcard $(CURRENT_DIR2)*.c)
+SRCS := $(wildcard ./*.c)
+
+# Flags that Explicitly or Implicitly used by makefile(s).
 CFLAGS:=
-PATH_ABS=../
+
+# When you include "libMakefile_split.mk" in your "config.mk",
+# "DEF_MACROS" will not work if running "make $(TARGET_SP)",
+# "$(TARGET_SP)" are the TARGET(s) defined in "libMakefile_split.mk",
+# BUT you can add your MACROS to "CFLAGS" as subsitute ;-(
 DEF_MACROS:=
 
-#SRC_DIR :=./src
-#BUILD_DIR :=./build
-#OBJ_DIR :=$(BUILD_DIR)/obj
-SRC_DIR :=.
-BUILD_DIR :=.
-OBJ_DIR :=.
+# Path of "libMakefile.mk"
+PATH_ABS=../
+
+# Folders in whitch files to be deleted.
+EXTERA_FILES2DEL=$(CURRENT_DIR)/build
 
 CC :=gcc
 LD :=ld
@@ -53,35 +72,17 @@ LD :=ld
 include ./config.mk
 include $(PATH_ABS)libMakefile.mk
 
-PRE_SOURCE=source_pre$(PRE_COMP)
-SRCS := $(wildcard ./*.c)
-OBJS := $(SRCS:./%.c=./%.o)
-BUILD := $(OBJS:./%.o=./%)
-#SRCS := $(wildcard $(SRC_DIR)/*.c)
-#OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-#BUILD := $(OBJS:$(OBJ_DIR)/%.o=$(BUILD_DIR)/%.out)
-.SECONDARY: $(OBJS)
 
 # LD all to the target.
 all:
-	rm -rvf ./*$(BIN_END)
-	gcc -E $(SRCS) >> $(PRE_SOURCE)
+	$(CC) -E $(SRCS) >> $(PRE_SOURCE)
 	@echo "FLAGS : $(CFLAGS) ;"
-	gcc -o $(BIN_NAME)$(BIN_END) $(SRCS) $(CFLAGS) $(DEF_MACROS)
-
-# Ref : https://blog.csdn.net/jinhangdev/article/details/80581408
-all-part: $(BUILD)
-	@$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@echo + $(CC) $<
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c -o $@ $<
-	@$(BUILD_DIR)/%: $(OBJ_DIR)/%.o
-	@echo + $(LD) $@
-	@mkdir -p $(BUILD_DIR)
-	@$(LD) -o $@ $<
-
-.PHONY: all-part clean
+	@echo "SRCS: \n$(SRCS)"
+	$(CC) -o $(BIN_NAME)$(BIN_END) $(SRCS) $(CFLAGS) $(DEF_MACROS)
 
 clean:
+	@echo "$(CURRENT_DIR)"
 	rm -rvf ./*$(BIN_END) ./*$(PRE_COMP) ./*$(BIN_O)
+	rm -rvf $(EXTERA_FILES2DEL)
 
+.PHONY: clean
