@@ -84,10 +84,12 @@ int size_union(void)
 
 	printf("\n\n[%s,%d]vvvvv \n",__func__,__LINE__);
 
-#if (__SIZE_WIDTH__ == 64)
+#if ( (defined __SIZE_WIDTH__) && (__SIZE_WIDTH__ == 64)) || ( (defined __SIZEOF_POINTER__)&&(__SIZEOF_POINTER__ == 8) )
 	printf( "Memory size occupied by data : %ld\n", sizeof(data));
-#else
+#elif ( (defined __SIZEOF_POINTER__) && ((__SIZEOF_POINTER__ == 4)) )
 	printf( "Memory size occupied by data : %d\n", sizeof(data));
+#else
+#error Get word size failed !
 #endif
 
 	return 0;
