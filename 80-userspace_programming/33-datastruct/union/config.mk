@@ -6,7 +6,7 @@
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-PATH_ABS=../../../lib_dramalife/
+PATH_ABS:=../../../lib_dramalife/
 DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
 
 # Testing - Preprocess err if equal to 3;
