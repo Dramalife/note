@@ -1,1 +1,1 @@
-../../../lib_dramalife/mk/single_file_mk/sample_single_file.mk
+../../../lib_dramalife/mk/multi_files_mk/multi_files.mk
