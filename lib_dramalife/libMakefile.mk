@@ -6,6 +6,7 @@ PRE_COMP=.i
 DIS_ASSB=.ass
 SHD_LIB=.so
 
+ifndef DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE
 # Warning Options
 CFLAGS += -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wundef -Wunused-parameter -Wunused-but-set-variable
 
@@ -34,3 +35,4 @@ CFLAGS += -g -O2
 # -Wno-pointer-compare
 
 #CFLAGS += -v
+endif

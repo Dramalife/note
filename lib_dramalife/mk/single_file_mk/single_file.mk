@@ -55,6 +55,13 @@ SRCS := $(wildcard ./*.c)
 # Flags that Explicitly or Implicitly used by makefile(s).
 CFLAGS:=
 
+# Don`t use FLAGS added in "NOTE/lib_dramalife/libMakefile.mk" if NOT NULL, null-USE, notnull-NOUSE;
+# It may be changed in "*.mk".
+DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=
+
+CC :=gcc
+LD :=ld
+
 # When you include "libMakefile_split.mk" in your "config.mk",
 # "DEF_MACROS" will not work if running "make $(TARGET_SP)",
 # "$(TARGET_SP)" are the TARGET(s) defined in "libMakefile_split.mk",
@@ -66,9 +73,6 @@ PATH_ABS=../
 
 # Folders in whitch files to be deleted.
 EXTERA_FILES2DEL=$(CURRENT_DIR)/build
-
-CC :=gcc
-LD :=ld
 
 include ./config.mk
 include $(PATH_ABS)libMakefile.mk
