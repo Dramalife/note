@@ -73,6 +73,7 @@ include ./config.mk
 include $(PATH_ABS)libMakefile.mk
 
 
+# LD all to the target.
 all:
 	$(CC) -E $(SRCS) >> $(PRE_SOURCE)
 	@echo "FLAGS : $(CFLAGS) ;"
