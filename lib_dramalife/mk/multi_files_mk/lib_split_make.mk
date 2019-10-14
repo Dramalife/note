@@ -16,10 +16,7 @@ BUILD3 := $(OBJS:./%.o=./%.out)
 
 .SECONDARY: $(OBJS)
 
-all-part: $(BUILD)
-	@echo "PART:::$(SRCS):::$(OBJS):::$(BUILD):::"
-
-all-part3: $(BUILD3)
+part-all: $(BUILD3)
 	@echo "SRC,OBJ,BUILD: \n$(SRCS)::: \n$(OBJS)::: \n$(BUILD)::: \n"
 	@echo "PATH \n$(SRC_DIR)::: \n$(OBJ_DIR)::: \n$(BUILD_DIR)::: \n \n"
 	-mkdir ./build/
