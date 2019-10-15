@@ -16,6 +16,8 @@ BUILD3 := $(OBJS:./%.o=./%.out)
 
 .SECONDARY: $(OBJS)
 
+all-part: $(BUILD)
+
 part-all: $(BUILD3)
 	@echo "SRC,OBJ,BUILD: \n$(SRCS)::: \n$(OBJS)::: \n$(BUILD)::: \n"
 	@echo "PATH \n$(SRC_DIR)::: \n$(OBJ_DIR)::: \n$(BUILD_DIR)::: \n \n"
@@ -24,4 +26,4 @@ part-all: $(BUILD3)
 	mv -f $(BUILD) ./build/
 	mv -f $(OBJS) ./obj/
 
-.PHONY: all-part
+.PHONY: part-all
