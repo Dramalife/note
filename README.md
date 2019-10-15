@@ -13,6 +13,7 @@ Dramalife\`s note
 [- FREE SOFTWARE DIRECTORY](https://directory.fsf.org/wiki/GNU)  
 [- StackOverFlow.com](https://stackoverflow.com/)  
 [- sunxi wiki](http://linux-sunxi.org/Main_Page)
+[- gcc-linaro](https://releases.linaro.org/components/toolchain/binaries/)
 
 
 #### Clone
