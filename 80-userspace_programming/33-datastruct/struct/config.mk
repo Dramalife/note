@@ -1,5 +1,10 @@
 PATH_ABS:=../../../lib_dramalife/
-#SRCS := $(wildcard $(CURRENT_DIR)*.c)
-EXTERA_FILES2DEL:=./build/* ./obj/*
-include $(PATH_ABS)mk/multi_files_mk/lib_split_make.mk
-CFLAGS +="-D XXX=1"
+EXTERA_FILES2DEL:=./build/*
+
+include $(PATH_ABS)mk/multi_files_mk/lib_split_make_bh.mk
+
+# Usage : make part-rename1015
+#CFLAGS +="-D DL_NOTE_STRUCT_PART_BUILD=1"
+
+# Usage : make all
+CFLAGS +="-D DL_NOTE_STRUCT_PART_BUILD=0"
