@@ -14,6 +14,7 @@
 #include <arpa/inet.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/time.h>
 #include <unistd.h>
 #include <netinet/in.h>
 #include <netinet/ip.h>
@@ -22,6 +23,7 @@
 #include <setjmp.h>
 #include <errno.h>
 #include <linux/if.h>
+#include <pthread.h>
 
 #define PACKET_SIZE     4096
 #define MAX_WAIT_TIME   5
@@ -78,7 +80,7 @@ unsigned short cal_chksum(unsigned short *addr, int len, struct badping *bdp)
 /*设置ICMP报头*/
 static int pack(int pack_no,struct badping *bdp)
 {
-	int i, packsize;
+	int packsize;
 	struct icmp *icmp;
 	struct timeval *tval;
 
@@ -189,7 +191,6 @@ int main_c(void *arg)
 	struct hostent *host;
 	struct protoent *protocol;
 	unsigned long inaddr = 0l;
-	int waittime = MAX_WAIT_TIME;
 	int size = 50 * 1024;
 	struct ifreq interface;
 
@@ -219,7 +220,7 @@ int main_c(void *arg)
 	bzero(&(bdp->dest_addr), sizeof(bdp->dest_addr));
 	bdp->dest_addr.sin_family = AF_INET;
 	/*判断是主机名还是ip地址 */
-	if (inaddr = inet_addr(bdp->arg_addr) == INADDR_NONE) {
+	if ( (inaddr = inet_addr(bdp->arg_addr)) == INADDR_NONE ) {
 		if ((host = gethostbyname(bdp->arg_addr)) == NULL) {	/*是主机名 */
 			perror("gethostbyname error");
 			exit(1);
