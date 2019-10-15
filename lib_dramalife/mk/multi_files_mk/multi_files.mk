@@ -74,6 +74,9 @@ EXTERA_FILES2DEL=$(CURRENT_DIR)/build
 CC :=gcc
 LD :=ld
 
+default:
+	@echo "Usage: \nmake [TARGET] ! \n"
+
 include ./config.mk
 include $(PATH_ABS)libMakefile.mk
 
