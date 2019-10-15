@@ -1,3 +1,12 @@
+/*
+ * $ uname -a
+ * Linux ubuntu 4.0.0-040000-generic #201504121935 SMP Sun Apr 12 23:58:08 UTC 2015 i686 i686 i686 GNU/Linux
+ * $ gcc --version
+ * gcc-4.8.real (Ubuntu 4.8.5-4ubuntu8~14.04.2) 4.8.5
+ * Copyright (C) 2015 Free Software Foundation, Inc.
+ * This is free software; see the source for copying conditions.  There is NO
+ * warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -141,7 +150,11 @@ void print(struct badping *bdp)
 {
 	while(1)
 	{
+#if (defined __SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4)/* 32 bit */
+		printf("thread%d,%d packets transmitted\n",pthread_self(), bdp->nsend);
+#elif (defined __SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 8)/* 64 bit */
 		printf("thread%lu,%d packets transmitted\n",pthread_self(), bdp->nsend);
+#endif
 		sleep(5);
 	}
 	return;
