@@ -14,6 +14,7 @@ Dramalife\`s note
 [- StackOverFlow.com](https://stackoverflow.com/)  
 [- sunxi wiki](http://linux-sunxi.org/Main_Page)
 [- gcc-linaro](https://releases.linaro.org/components/toolchain/binaries/)
+[- GNU Mirror-tsinghua](https://mirrors.tuna.tsinghua.edu.cn/gnu/)
 
 
 #### Clone
