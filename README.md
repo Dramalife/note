@@ -7,7 +7,7 @@
 Dramalife\`s note  
 [- Markdown grammar](/tools/coding/markdown.md), [editor : Typora](https://typora.io/)  
 [- Linux source code online](https://elixir.bootlin.com/linux/latest/source)  
-[- kernelnewbies.org - kernel changelog](https://kernelnewbies.org)
+[- kernelnewbies.org - kernel changelog](https://kernelnewbies.org)  
 [- RFC Search online](https://www.rfc-editor.org/search/rfc_search.php)  
 [- Majordomo lists at VGER.KERNEL.ORG](http://vger.kernel.org/vger-lists.html)  
 [- FREE SOFTWARE DIRECTORY](https://directory.fsf.org/wiki/GNU)  
@@ -15,6 +15,7 @@ Dramalife\`s note
 [- sunxi wiki](http://linux-sunxi.org/Main_Page)  
 [- gcc-linaro](https://releases.linaro.org/components/toolchain/binaries/)  
 [- GNU Mirror-tsinghua](https://mirrors.tuna.tsinghua.edu.cn/gnu/)  
+[- linux-kernel(aliyun-mirror)](http://mirrors.aliyun.com/linux-kernel/)
 
 
 #### Clone
