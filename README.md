@@ -12,9 +12,9 @@ Dramalife\`s note
 [- Majordomo lists at VGER.KERNEL.ORG](http://vger.kernel.org/vger-lists.html)  
 [- FREE SOFTWARE DIRECTORY](https://directory.fsf.org/wiki/GNU)  
 [- StackOverFlow.com](https://stackoverflow.com/)  
-[- sunxi wiki](http://linux-sunxi.org/Main_Page)
-[- gcc-linaro](https://releases.linaro.org/components/toolchain/binaries/)
-[- GNU Mirror-tsinghua](https://mirrors.tuna.tsinghua.edu.cn/gnu/)
+[- sunxi wiki](http://linux-sunxi.org/Main_Page)  
+[- gcc-linaro](https://releases.linaro.org/components/toolchain/binaries/)  
+[- GNU Mirror-tsinghua](https://mirrors.tuna.tsinghua.edu.cn/gnu/)  
 
 
 #### Clone
