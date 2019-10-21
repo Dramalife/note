@@ -60,3 +60,20 @@ screen -r my1stscreen
 screen -d my1stscreen
 ```
 
+### 3. Find
+
+```bash
+# screen && pts
+$ w
+ 07:07:16 up  5:11,  6 users,  load average: 0.10, 0.04, 0.01
+ USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+ dramalif pts/0    172.16.127.200   01:57    1:08   0.12s  0.06s screen -S s1
+ dramalif pts/1    172.16.127.200   01:57    1:05   0.08s  0.06s screen -S ci_gcc6_native
+ dramalif pts/2    172.16.127.200   01:57    4.00s  0.08s  0.06s screen -S s3
+ dramalif pts/3    :pts/1:S.0       02:01   38:12   0.70s  0.14s wget https://downloads.uclibc-ng.org/releases/1.0.22/uClibc-ng-1.0.22.tar.xz
+ dramalif pts/4    :pts/2:S.0       02:02    4.00s  1.75s  0.00s w
+ dramalif pts/5    :pts/0:S.0       02:02    1:08   1.83s  0.77s SCREEN -S s1
+# Find pts
+$ ls -l /proc/self/fd/0
+lrwx------ 1 dramalife dramalife 64 Oct 21 07:09 /proc/self/fd/0 -> /dev/pts/4
+```
