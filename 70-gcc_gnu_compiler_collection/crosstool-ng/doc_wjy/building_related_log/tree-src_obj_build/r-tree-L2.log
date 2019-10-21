@@ -1,0 +1,42 @@
+./.build/
+├── mips-unknown-linux-uclibc
+│   ├── build
+│   └── buildtools
+├── src
+│   ├── binutils-2.28
+│   ├── duma_2_5_15
+│   ├── expat-2.2.0
+│   ├── gcc-6.3.0
+│   ├── gdb-7.12.1
+│   ├── gmp-6.1.2
+│   ├── isl-0.15
+│   ├── libtool-2.4.6
+│   ├── linux-linux-4.19.38-sunxi -> /home/dramalife/linux-4.19.38
+│   ├── mpc-1.0.3
+│   ├── mpfr-3.1.5
+│   ├── ncurses-6.0
+│   └── uClibc-ng-1.0.22
+├── tarballs
+│   ├── binutils-2.28.tar.gz -> /home/dramalife/src/binutils-2.28.tar.gz
+│   ├── binutils-2.28.tar.xz.tmp-dl
+│   ├── duma_2_5_15.tar.gz -> /home/dramalife/src/duma_2_5_15.tar.gz
+│   ├── expat-2.2.0.tar.bz2 -> /home/dramalife/src/expat-2.2.0.tar.bz2
+│   ├── expat-2.2.0.tar.bz2.tmp-dl
+│   ├── gcc-6.3.0.tar.bz2 -> /home/dramalife/src/gcc-6.3.0.tar.bz2
+│   ├── gdb-7.12.1.tar.xz -> /home/dramalife/src/gdb-7.12.1.tar.xz
+│   ├── gmp-6.1.2.tar -> /home/dramalife/src/gmp-6.1.2.tar
+│   ├── gmp-6.1.2.tar.xz.tmp-dl
+│   ├── isl-0.15.tar.bz2 -> /home/dramalife/src/isl-0.15.tar.bz2
+│   ├── libtool-2.4.6.tar.xz -> /home/dramalife/src/libtool-2.4.6.tar.xz
+│   ├── libtool-2.4.6.tar.xz.tmp-dl
+│   ├── mpc-1.0.3.tar.gz -> /home/dramalife/src/mpc-1.0.3.tar.gz
+│   ├── mpc-1.0.3.tar.gz.tmp-dl
+│   ├── mpfr-3.1.5.tar -> /home/dramalife/src/mpfr-3.1.5.tar
+│   ├── mpfr-3.1.5.tar.xz.tmp-dl
+│   ├── ncurses-6.0.tar.gz -> /home/dramalife/src/ncurses-6.0.tar.gz
+│   ├── ncurses-6.0.tar.gz.tmp-dl
+│   └── uClibc-ng-1.0.22.tar.xz -> /home/dramalife/src/uClibc-ng-1.0.22.tar.xz
+└── tools
+    └── bin
+
+20 directories, 19 files

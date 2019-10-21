@@ -1,0 +1,9 @@
+dramalife@server:~/note/80-userspace_programming/33-datastruct/union $ make CC=mips-unknown-linux-uclibc-gcc
+mips-unknown-linux-uclibc-gcc -E ./union.c >> source_pre.i
+FLAGS :  ;
+SRCS: 
+./union.c
+mips-unknown-linux-uclibc-gcc -o a_demo.out ./union.c   "-D DL_NOTE_UNION_PART_BUILD=1" "-D DL_NOTE_UNION2_PART_BUILD=2"
+
+dramalife@server:~/note/80-userspace_programming/33-datastruct/union $ file a_demo.out
+a_demo.out: ELF 32-bit MSB executable, MIPS, MIPS-I version 1 (SYSV), dynamically linked, interpreter /lib/ld-, with debug_info, not stripped

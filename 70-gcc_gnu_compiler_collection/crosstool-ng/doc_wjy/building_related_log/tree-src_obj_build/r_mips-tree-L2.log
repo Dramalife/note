@@ -1,0 +1,31 @@
+./.build/mips-unknown-linux-uclibc/
+├── build
+│   ├── build-binutils-host-x86_64-build_pc-linux-gnu
+│   ├── build-cc-gcc-core-pass-1
+│   ├── build-cc-gcc-core-pass-2
+│   ├── build-cc-gcc-final
+│   ├── build-cc-gcc-final-movelibs
+│   ├── build-duma
+│   ├── build-expat-host-x86_64-build_pc-linux-gnu
+│   ├── build-gdb-cross
+│   ├── build-gdb-gdbserver
+│   ├── build-gmp-host-x86_64-build_pc-linux-gnu
+│   ├── build-isl-host-x86_64-build_pc-linux-gnu
+│   ├── build-kernel-headers
+│   ├── build-libc-check-ldso
+│   ├── build-libc-final
+│   ├── build-libc-startfiles
+│   ├── build-libtool-build
+│   ├── build-mpc-host-x86_64-build_pc-linux-gnu
+│   ├── build-mpfr-host-x86_64-build_pc-linux-gnu
+│   ├── build-ncurses-build-x86_64-build_pc-linux-gnu
+│   └── build-ncurses-host-x86_64-build_pc-linux-gnu
+└── buildtools
+    ├── bin
+    ├── include
+    ├── lib
+    ├── libexec
+    ├── mips-unknown-linux-uclibc
+    └── share
+
+28 directories, 0 files

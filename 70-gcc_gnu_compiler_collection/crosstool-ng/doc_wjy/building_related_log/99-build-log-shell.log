@@ -1,0 +1,203 @@
+dramalife@server:~/note/70-gcc_gnu_compiler_collection/crosstool-ng/crosstool-ng-1.23.0 $ ./ct-ng build
+[INFO ]  Performing some trivial sanity checks
+[INFO ]  Build started 20191021.085124
+[INFO ]  Building environment variables
+[EXTRA]  Preparing working directories
+[EXTRA]  Installing user-supplied crosstool-NG configuration
+[EXTRA]  =================================================================
+[EXTRA]  Dumping internal crosstool-NG configuration
+[EXTRA]    Building a toolchain for:
+[EXTRA]      build  = x86_64-pc-linux-gnu
+[EXTRA]      host   = x86_64-pc-linux-gnu
+[EXTRA]      target = mips-unknown-linux-uclibc
+[EXTRA]  Dumping internal crosstool-NG configuration: done in 0.06s (at 00:01)
+[INFO ]  =================================================================
+[INFO ]  Retrieving needed toolchain components' tarballs
+[EXTRA]    Got '/home/dramalife/linux-4.19.38' from custom location
+[INFO ]  Retrieving needed toolchain components' tarballs: done in 0.11s (at 00:01)
+[INFO ]  =================================================================
+[INFO ]  Extracting and patching toolchain components
+[EXTRA]    Extracting 'libtool-2.4.6'
+[EXTRA]    Patching 'libtool-2.4.6'
+[EXTRA]    Extracting 'gmp-6.1.2'
+[EXTRA]    Patching 'gmp-6.1.2'
+[EXTRA]    Extracting 'mpfr-3.1.5'
+[EXTRA]    Patching 'mpfr-3.1.5'
+[EXTRA]    Extracting 'isl-0.15'
+[EXTRA]    Patching 'isl-0.15'
+[EXTRA]    Extracting 'mpc-1.0.3'
+[EXTRA]    Patching 'mpc-1.0.3'
+[EXTRA]    Extracting 'expat-2.2.0'
+[EXTRA]    Patching 'expat-2.2.0'
+[EXTRA]    Extracting 'ncurses-6.0'
+[EXTRA]    Patching 'ncurses-6.0'
+[EXTRA]    Extracting 'binutils-2.28'
+[EXTRA]    Patching 'binutils-2.28'
+[EXTRA]    Extracting 'gcc-6.3.0'
+[EXTRA]    Patching 'gcc-6.3.0'
+[EXTRA]    Extracting 'uClibc-ng-1.0.22'
+[EXTRA]    Patching 'uClibc-ng-1.0.22'
+[EXTRA]    Extracting 'duma_2_5_15'
+[EXTRA]    Patching 'duma-2_5_15'
+[EXTRA]    Extracting 'gdb-7.12.1'
+[EXTRA]    Patching 'gdb-7.12.1'
+[INFO ]  Extracting and patching toolchain components: done in 62.59s (at 01:04)
+[INFO ]  =================================================================
+[INFO ]  Installing libtool for build
+[EXTRA]    Configuring libtool
+[EXTRA]    Building libtool
+[EXTRA]    Installing libtool
+[INFO ]  Installing libtool for build: done in 28.25s (at 01:32)
+[INFO ]  =================================================================
+[INFO ]  Installing ncurses for build
+[EXTRA]    Configuring ncurses
+[EXTRA]    Building ncurses
+[EXTRA]    Installing ncurses
+[INFO ]  Installing ncurses for build: done in 13.96s (at 01:46)
+[INFO ]  =================================================================
+[INFO ]  Installing GMP for host
+[EXTRA]    Configuring GMP
+[EXTRA]    Building GMP
+[EXTRA]    Installing GMP
+[INFO ]  Installing GMP for host: done in 32.87s (at 02:19)
+[INFO ]  =================================================================
+[INFO ]  Installing MPFR for host
+[EXTRA]    Configuring MPFR
+[EXTRA]    Building MPFR
+[EXTRA]    Installing MPFR
+[INFO ]  Installing MPFR for host: done in 17.90s (at 02:37)
+[INFO ]  =================================================================
+[INFO ]  Installing ISL for host
+[EXTRA]    Configuring ISL
+[EXTRA]    Building ISL
+[EXTRA]    Installing ISL
+[INFO ]  Installing ISL for host: done in 17.91s (at 02:55)
+[INFO ]  =================================================================
+[INFO ]  Installing MPC for host
+[EXTRA]    Configuring MPC
+[EXTRA]    Building MPC
+[EXTRA]    Installing MPC
+[INFO ]  Installing MPC for host: done in 9.08s (at 03:04)
+[INFO ]  =================================================================
+[INFO ]  Installing expat for host
+[EXTRA]    Configuring expat
+[EXTRA]    Building expat
+[EXTRA]    Installing expat
+[INFO ]  Installing expat for host: done in 4.78s (at 03:09)
+[INFO ]  =================================================================
+[INFO ]  Installing ncurses for host
+[EXTRA]    Configuring ncurses
+[EXTRA]    Building ncurses
+[EXTRA]    Installing ncurses
+[INFO ]  Installing ncurses for host: done in 13.24s (at 03:22)
+[INFO ]  =================================================================
+[INFO ]  Installing binutils for host
+[EXTRA]    Configuring binutils
+[EXTRA]    Building binutils
+[EXTRA]    Installing binutils
+[INFO ]  Installing binutils for host: done in 50.19s (at 04:12)
+[INFO ]  =================================================================
+[INFO ]  Installing pass-1 core C gcc compiler
+[EXTRA]    Configuring core C gcc compiler
+[EXTRA]    Building gcc
+[05:56] / ^Z
+[1]+  Stopped                 ./ct-ng build
+dramalife@server:~/note/70-gcc_gnu_compiler_collection/crosstool-ng/crosstool-ng-1.23.0 $ jobs
+[1]+  Stopped                 ./ct-ng build
+
+
+
+dramalife@server:~/note/70-gcc_gnu_compiler_collection/crosstool-ng/crosstool-ng-1.23.0 $ fg 1
+./ct-ng build
+[EXTRA]    Installing gcc
+[EXTRA]    Housekeeping for core gcc compiler
+[EXTRA]       '' --> lib (gcc)   lib (os)
+[INFO ]  Installing pass-1 core C gcc compiler: done in 1478.90s (at 28:51)
+[INFO ]  =================================================================
+[INFO ]  Installing kernel headers
+[EXTRA]    Installing kernel headers
+[EXTRA]    Checking installed headers
+[INFO ]  Installing kernel headers: done in 12.15s (at 29:04)
+[INFO ]  =================================================================
+[INFO ]  Installing C library headers & start files
+[INFO ]    =================================================================
+[INFO ]    Building for multilib 1/1: ''
+[EXTRA]      Copying sources to build dir
+[EXTRA]      Applying configuration
+[EXTRA]      Building headers
+[EXTRA]      Installing headers
+[EXTRA]      Building start files
+[EXTRA]      Building dummy shared libs
+[EXTRA]      Installing start files
+[EXTRA]      Installing dummy shared libs
+[INFO ]    Building for multilib 1/1: '': done in 12.53s (at 29:16)
+[INFO ]  Installing C library headers & start files: done in 12.60s (at 29:16)
+[INFO ]  =================================================================
+[INFO ]  Installing pass-2 core C gcc compiler
+[EXTRA]    Configuring core C gcc compiler
+[EXTRA]    Building gcc
+[EXTRA]    Installing gcc
+[EXTRA]    Housekeeping for core gcc compiler
+[EXTRA]       '' --> lib (gcc)   lib (os)
+[INFO ]  Installing pass-2 core C gcc compiler: done in 724.13s (at 41:20)
+[INFO ]  =================================================================
+[INFO ]  Installing C library
+[INFO ]    =================================================================
+[INFO ]    Building for multilib 1/1: ''
+[EXTRA]      Copying sources to build dir
+[EXTRA]      Applying configuration
+[EXTRA]      Cleaning up startfiles
+[EXTRA]      Building C library
+[EXTRA]      Installing C library
+[INFO ]    Building for multilib 1/1: '': done in 73.34s (at 42:34)
+[INFO ]  Installing C library: done in 73.49s (at 42:34)
+[INFO ]  =================================================================
+[INFO ]  Installing final gcc compiler
+[EXTRA]    Configuring final gcc compiler
+[EXTRA]    Building final gcc compiler
+[48:17] / ^Z
+[1]+  Stopped                 ./ct-ng build
+
+
+dramalife@server:~/note/70-gcc_gnu_compiler_collection/crosstool-ng/crosstool-ng-1.23.0 $ fg 1
+./ct-ng build
+[EXTRA]    Installing final gcc compiler
+[EXTRA]    Housekeeping for final gcc compiler
+[EXTRA]       '' --> lib (gcc)   lib (os)
+[INFO ]  Installing final gcc compiler: done in 1076.90s (at 60:31)
+[INFO ]  =================================================================
+[INFO ]  Checking dynamic linker symlinks
+[EXTRA]    Checking dynamic linker for multilib ''
+[INFO ]  Checking dynamic linker symlinks: done in 0.88s (at 60:32)
+[INFO ]  =================================================================
+[INFO ]  Installing D.U.M.A.
+[EXTRA]    Copying sources
+[EXTRA]    Building D.U.M.A
+[EXTRA]    Installing D.U.M.A
+[EXTRA]    Installing wrapper script
+[INFO ]  Installing D.U.M.A.: done in 6.15s (at 60:39)
+[INFO ]  =================================================================
+[INFO ]  Installing cross-gdb
+[EXTRA]    Configuring cross-gdb
+[EXTRA]    Building cross-gdb
+[EXTRA]    Installing cross-gdb
+[EXTRA]    Installing '.gdbinit' template
+[INFO ]  Installing cross-gdb: done in 106.98s (at 62:26)
+[INFO ]  =================================================================
+[INFO ]  Installing gdbserver
+[EXTRA]    Configuring gdbserver
+[EXTRA]    Building gdbserver
+[EXTRA]    Installing gdbserver
+[INFO ]  Installing gdbserver: done in 36.54s (at 63:02)
+[INFO ]  =================================================================
+[INFO ]  Finalizing the toolchain's directory
+[INFO ]    Stripping all toolchain executables
+[EXTRA]    Installing the populate helper
+[EXTRA]    Installing a cross-ldd helper
+[EXTRA]    Creating toolchain aliases
+[EXTRA]    Removing installed documentation
+[INFO ]  Finalizing the toolchain's directory: done in 5.42s (at 63:08)
+[INFO ]  Build completed at 20191021.095431
+[INFO ]  (elapsed: 63:07.13)
+[INFO ]  Finishing installation (may take a few seconds)...
+[63:08] / dramalife@server:~/note/70-gcc_gnu_compiler_collection/crosstool-ng/crosstool-ng-1.23.0 $ 

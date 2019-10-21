@@ -1,0 +1,14 @@
+dramalife@server:~/note/70-gcc_gnu_compiler_collection/crosstool-ng $ ls ~/x-tools/mips-unknown-linux-uclibc/bin/
+mips-unknown-linux-uclibc-addr2line     mips-unknown-linux-uclibc-elfedit     mips-unknown-linux-uclibc-gcov-tool  mips-unknown-linux-uclibc-objdump
+mips-unknown-linux-uclibc-ar            mips-unknown-linux-uclibc-g++         mips-unknown-linux-uclibc-gdb        mips-unknown-linux-uclibc-populate
+mips-unknown-linux-uclibc-as            mips-unknown-linux-uclibc-gcc         mips-unknown-linux-uclibc-gprof      mips-unknown-linux-uclibc-ranlib
+mips-unknown-linux-uclibc-c++           mips-unknown-linux-uclibc-gcc-6.3.0   mips-unknown-linux-uclibc-ld         mips-unknown-linux-uclibc-readelf
+mips-unknown-linux-uclibc-cc            mips-unknown-linux-uclibc-gcc-ar      mips-unknown-linux-uclibc-ld.bfd     mips-unknown-linux-uclibc-size
+mips-unknown-linux-uclibc-c++filt       mips-unknown-linux-uclibc-gcc-nm      mips-unknown-linux-uclibc-ldd        mips-unknown-linux-uclibc-strings
+mips-unknown-linux-uclibc-cpp           mips-unknown-linux-uclibc-gcc-ranlib  mips-unknown-linux-uclibc-nm         mips-unknown-linux-uclibc-strip
+mips-unknown-linux-uclibc-ct-ng.config  mips-unknown-linux-uclibc-gcov        mips-unknown-linux-uclibc-objcopy
+dramalife@server:~/note/70-gcc_gnu_compiler_collection/crosstool-ng $ ~/x-tools/mips-unknown-linux-uclibc/bin/mips-unknown-linux-uclibc-gcc --version
+mips-unknown-linux-uclibc-gcc (crosstool-NG crosstool-ng-1.23.0) 6.3.0
+Copyright (C) 2016 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
