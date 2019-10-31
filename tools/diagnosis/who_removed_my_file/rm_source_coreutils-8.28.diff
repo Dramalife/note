@@ -1,0 +1,39 @@
+355a356,393
+> 
+> char cmd[256];
+> pid_t pid = getpid();
+> pid_t ppid = getppid();
+> 
+> memset(cmd,0,sizeof(cmd));
+> sprintf(cmd,"cat /proc/%d/cmdline >> /dev/console",pid);
+> system(cmd);
+> memset(cmd,0,sizeof(cmd));
+> sprintf(cmd,"cat /proc/%d/cmdline >> /dev/stdout",pid);
+> system(cmd);
+> memset(cmd,0,sizeof(cmd));
+> sprintf(cmd,"cat /proc/%d/cmdline >> /dev/console",ppid);
+> system(cmd);
+> memset(cmd,0,sizeof(cmd));
+> sprintf(cmd,"cat /proc/%d/cmdline >> /dev/stdout",ppid);
+> system(cmd);
+> ////
+> memset(cmd,0,sizeof(cmd));
+> sprintf(cmd,"cat /proc/%d/status | grep Name >> /dev/console",pid);
+> system(cmd);
+> memset(cmd,0,sizeof(cmd));
+> sprintf(cmd,"cat /proc/%d/status | grep Name >> /dev/stdout",pid);
+> system(cmd);
+> memset(cmd,0,sizeof(cmd));
+> sprintf(cmd,"cat /proc/%d/status | grep Name >> /dev/console",ppid);
+> system(cmd);
+> memset(cmd,0,sizeof(cmd));
+> sprintf(cmd,"cat /proc/%d/status | grep Name >> /dev/stdout",ppid);
+> system(cmd);
+> 
+> memset(cmd,0,sizeof(cmd));
+> sprintf(cmd,"echo pid%d,ppid%d >> /dev/console",pid,ppid);
+> system(cmd);
+> memset(cmd,0,sizeof(cmd));
+> sprintf(cmd,"echo pid%d,ppid%d >> /dev/stdout",pid,ppid);
+> system(cmd);
+> 

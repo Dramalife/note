@@ -1,0 +1,24 @@
+rm /var/run/udhcpdeth1.pid
+/bin/sh /etc/rc.common /etc/init.d/dhcpd start
+Name:	rm
+Name:	dhcpd
+pid9699,ppid9681
+
+rm /var/udhcpdeth1.leases
+/bin/sh /etc/rc.common /etc/init.d/dhcpd start
+Name:	rm
+Name:	dhcpd
+pid9722,ppid9681
+
+rm /var/run/udhcpdeth2.pid
+/bin/sh /etc/rc.common /etc/init.d/dhcpd start
+Name:	rm
+Name:	dhcpd
+pid9751,ppid9681
+
+rm /var/udhcpdeth2.leases
+/bin/sh /etc/rc.common /etc/init.d/dhcpd start
+Name:	rm
+Name:	dhcpd
+pid9774,ppid9681
+
