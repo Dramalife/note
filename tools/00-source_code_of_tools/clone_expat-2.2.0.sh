@@ -25,4 +25,6 @@
 #
 
 
+# Expat, a stream-oriented XML parser library written in C
+
 git clone https://github.com/libexpat/libexpat.git --depth=1 --branch=R_2_2_0
