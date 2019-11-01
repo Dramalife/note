@@ -1,0 +1,14 @@
+dramalife@server:~ $ dmesg | grep audit
+[    0.129742] audit: initializing netlink subsys (disabled)
+[    0.132014] audit: type=2000 audit(1572429262.509:1): state=initialized audit_enabled=0 res=1
+[   16.019074] audit: type=1400 audit(1572429271.705:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lxc-container-default" pid=626 comm="apparmor_parser"
+[   16.019077] audit: type=1400 audit(1572429271.705:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lxc-container-default-cgns" pid=626 comm="apparmor_parser"
+[   16.019078] audit: type=1400 audit(1572429271.705:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lxc-container-default-with-mounting" pid=626 comm="apparmor_parser"
+[   16.019080] audit: type=1400 audit(1572429271.705:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lxc-container-default-with-nesting" pid=626 comm="apparmor_parser"
+[   16.031651] audit: type=1400 audit(1572429271.717:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/bin/lxc-start" pid=628 comm="apparmor_parser"
+[   16.070922] audit: type=1400 audit(1572429271.757:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/sbin/dhclient" pid=627 comm="apparmor_parser"
+[   16.070924] audit: type=1400 audit(1572429271.757:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=627 comm="apparmor_parser"
+[   16.070925] audit: type=1400 audit(1572429271.757:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-helper" pid=627 comm="apparmor_parser"
+[   16.070927] audit: type=1400 audit(1572429271.757:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/connman/scripts/dhclient-script" pid=627 comm="apparmor_parser"
+[   16.100970] audit: type=1400 audit(1572429271.789:11): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/bin/man" pid=629 comm="apparmor_parser"
+
