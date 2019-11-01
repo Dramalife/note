@@ -2,5 +2,9 @@
 :set fenc?
 :set fileencoding=utf-8
 
+## E212: Can't open file for writing
+The file may has been moved;
+Permission ?
+
 ##
 
