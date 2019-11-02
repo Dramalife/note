@@ -1,0 +1,5 @@
+# Create a new screen~ first
+Control + a + c
+
+# Switch between screens~ opened on same terminal
+Control + a, Control + a

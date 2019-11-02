@@ -1,0 +1,11 @@
+# Enter copy mode
+Control + a + [
+
+# Exit copy mode
+Esc
+
+# Start & End
+space , space
+
+# Paste
+Control _a + ]
