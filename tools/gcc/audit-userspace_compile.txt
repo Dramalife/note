@@ -1,0 +1,13 @@
+1. Prepare
+----------
+# swip
+sudo apt install swig
+
+#lber.h
+sudo apt install libldap2-dev
+
+
+2. Configure && Make && Install
+./configure --prefix=/your/path
+make
+sudo make install
