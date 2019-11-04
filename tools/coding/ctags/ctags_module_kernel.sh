@@ -15,7 +15,10 @@ read module
 echo "input kernel path"
 read kernel
 
+# Add symbolink that linked to kernel tree to module path
 ln -s ${kernel} ${module}/kernel_link
+
+# Change directory and create tag file of language c
 cd ${module}
-ctags -R
+ctags --languages=c -R
 
