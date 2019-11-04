@@ -1,5 +1,55 @@
-# Create a new screen~ first
+# note "screen" related file
+# Copyright (C) 2019 Dramalife@live.com
+# 
+# This file is part of [note](https://github.com/Dramalife/note.git)
+# 
+# note is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Init : 2019.10.02;
+# Update : 2019.11.04, 	window* related,
+#			relationship between window* and screen*;
+# Update :
+#
+
+
+
+# Tips-vim
+# :match DiffText /window\*/
+# :2match DiffDelete /screen\*/ 
+
+
+# Relationship(screen* && window*)
+# screen-X -----window-0
+#	     |--window-1
+#	     |--window-2
+#	     |... ...
+#	     `--window-n
+
+
+# Create a window*
 Control + a + c
 
-# Switch between screens~ opened on same terminal
+# Switch to NEXT window*
+Control + a + n
+# Switch to PREVIOUS window*
+Control + a + p
+# Switch to SPECIFIED window*[1-9]
+Control + a + [1-9]
+# Toggle to the window* displayed previously.
 Control + a, Control + a
+# List all window*s
+Control + a + w
+
+# RENAME current window*
+Control + a + A
+
+# CLOSE(exit) current window*
+Control + d
+
+
+
+# DETACH current screen*
+Control + a + d
+

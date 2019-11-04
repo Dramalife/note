@@ -1,0 +1,9 @@
+# Enter copy mode first
+
+
+# Scroll the display up/down a full screen.
+Control + b
+Control + f
+
+# Specifies the history scrollback buffer to be NUM* lines high.
+screen -h NUM*
