@@ -29,21 +29,21 @@
 
 
 # Create a window*
-Control + a + c
+Control + a , c
 
 # Switch to NEXT window*
-Control + a + n
+Control + a , n
 # Switch to PREVIOUS window*
-Control + a + p
+Control + a , p
 # Switch to SPECIFIED window*[1-9]
-Control + a + [1-9]
+Control + a , [1-9]
 # Toggle to the window* displayed previously.
-Control + a, Control + a
+Control + a , Control + a
 # List all window*s
-Control + a + w
+Control + a , w
 
 # RENAME current window*
-Control + a + A
+Control + a , A
 
 # CLOSE(exit) current window*
 Control + d
@@ -51,5 +51,5 @@ Control + d
 
 
 # DETACH current screen*
-Control + a + d
+Control + a , d
 
