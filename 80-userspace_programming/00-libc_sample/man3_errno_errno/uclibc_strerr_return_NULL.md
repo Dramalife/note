@@ -41,3 +41,10 @@ strerror(17),return NULL !!!
 
 In glibc never return NULL.()
 
+
+### man 3 strerror(glibc)
+(GNU C Library (Ubuntu GLIBC 2.27-3ubuntu1) stable release version 2.27.)
+RETURN VALUE
+  The strerror(), strerror_l(), and the GNU-specific strerror_r() functions return the appropriate error description string, or an "Unknown error  nnn"
+  message if the error number is unknown.
+
