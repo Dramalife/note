@@ -1,0 +1,104 @@
+/lib64/ld-linux-x86-64.so.2
+libc.so.6
+puts
+__stack_chk_fail
+printf
+__cxa_finalize
+__libc_start_main
+_ITM_deregisterTMCloneTable
+__gmon_start__
+_ITM_registerTMCloneTable
+GLIBC_2.4
+GLIBC_2.2.5
+=y	 
+=W	 
+=Z	 
+C PrograH
+mminf
+C PrograH
+mminf
+AWAVI
+AUATL
+[]A\A]A^A_
+[%s,%d]vvvvv 
+Big Endian! 
+Little Endian! 
+Unknown! 
+Memory size occupied by data : %ld
+data.i : %d
+data.f : %f
+data.str : %s
+[%s,%d]START! 
+endian_test
+size_union
+value_set_overwrite
+value_set
+main
+;*3$"
+GCC: (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
+crtstuff.c
+deregister_tm_clones
+__do_global_dtors_aux
+completed.7697
+__do_global_dtors_aux_fini_array_entry
+frame_dummy
+__frame_dummy_init_array_entry
+union.c
+__func__.2435
+__func__.2440
+__func__.2445
+__func__.2450
+__func__.2454
+__FRAME_END__
+__init_array_end
+_DYNAMIC
+__init_array_start
+__GNU_EH_FRAME_HDR
+_GLOBAL_OFFSET_TABLE_
+__libc_csu_fini
+size_union
+_ITM_deregisterTMCloneTable
+endian_test
+puts@@GLIBC_2.2.5
+_edata
+__stack_chk_fail@@GLIBC_2.4
+printf@@GLIBC_2.2.5
+__libc_start_main@@GLIBC_2.2.5
+value_set
+__data_start
+__gmon_start__
+__dso_handle
+_IO_stdin_used
+__libc_csu_init
+__bss_start
+main
+__TMC_END__
+_ITM_registerTMCloneTable
+__cxa_finalize@@GLIBC_2.2.5
+value_set_overwrite
+.symtab
+.strtab
+.shstrtab
+.interp
+.note.ABI-tag
+.note.gnu.build-id
+.gnu.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.rela.dyn
+.init
+.plt
+.plt.got
+.text
+.fini
+.rodata
+.eh_frame_hdr
+.eh_frame
+.init_array
+.fini_array
+.dynamic
+.data
+.bss
+.comment
