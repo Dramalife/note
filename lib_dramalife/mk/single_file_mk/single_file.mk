@@ -83,11 +83,11 @@ all:
 	$(CC) -E $(SRCS) >> $(PRE_SOURCE)
 	@echo "FLAGS : $(CFLAGS) ;"
 	@echo "SRCS: \n$(SRCS)"
-	$(CC) -o $(BIN_NAME)$(BIN_END) $(SRCS) $(CFLAGS) $(DEF_MACROS)
+	$(CC) -o $(BIN_NAME)$(BIN_DNAME) $(SRCS) $(CFLAGS) $(DEF_MACROS)
 
 clean:
 	@echo "$(CURRENT_DIR)"
-	rm -rvf ./*$(BIN_END) ./*$(PRE_COMP) ./*$(BIN_O)
+	rm -rvf ./*$(BIN_DNAME) ./*$(PRE_COMP) ./*$(BIN_O)
 	rm -rvf $(EXTERA_FILES2DEL)
 
 .PHONY: clean

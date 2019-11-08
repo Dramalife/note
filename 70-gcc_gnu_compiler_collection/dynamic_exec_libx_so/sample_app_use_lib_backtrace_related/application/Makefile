@@ -41,7 +41,7 @@ SRC=$(wildcard ./*.c)
 all:
 	rm -rvf ./*$(BIN_END)
 #	gcc -E $(SRC) >> $(PRE_SOURCE)
-	gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -lbacktrace_funcs -L../lib_shared -v
+	gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -L../lib_shared -lbacktrace_funcs -Wl,-rpath=../lib_shared
 
 
 clean:

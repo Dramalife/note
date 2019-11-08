@@ -1,10 +1,15 @@
-BIN_NAME=a_demo
-
 BIN_END=.out
 BIN_O=.o
 PRE_COMP=.i
 DIS_ASSB=.ass
 SHD_LIB=.so
+
+
+ifndef DO_NOT_SET_DEFAULT_BINARY_NAME
+BIN_NAME=a_demo
+BIN_DNAME=${BIN_END}
+endif
+
 
 ifndef DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE
 # Warning Options
