@@ -27,8 +27,31 @@
 
 
 
-# lib depend
-ln -s /home/dramalife/temp2/audit-userspace/prefix/lib/libaudit.so ./libaudit.so
+source ../../lib_dramalife/terminal_color_bash.sh
 
+
+AUDIT_SOURCE_ROOT=/home/dramalife/temp2/audit-userspace
+AUDIT_PREFIX_ROOT=${AUDIT_SOURCE_ROOT}/prefix
+LINK_NAME_SO=libaudit.so
+LINK_NAME_SOURCE=libaudit-source
+
+
+# CASE : NO ARG IN - CREATE SYMBOL LINK(s)
+if [ ${#} -eq 0 ]
+then
+echo -e "Press anykey to "${CLGREEN}"CREATE"${CNONE}" auto-generated file(s):"
+read var_unuse30
+# lib depend
+ln -s ${AUDIT_PREFIX_ROOT}/lib/${LINK_NAME_SO} ./${LINK_NAME_SO}
 # lib source for ctags*
-ln -s /home/dramalife/temp2/audit-userspace/lib/ ./libaudit-source
+ln -s ${AUDIT_SOURCE_ROOT}/lib/ ./${LINK_NAME_SOURCE}
+echo -e ${BOLD}"Create symbol done."${CNONE}
+
+# CASE : HAVE ARG IN - CLEAN
+else
+echo -e "Press anykey to "${CLRED}"CLEAN"${CNONE}" file(s) automatically:"
+read var_unuse30
+rm -rvf ./${LINK_NAME_SO} ./${LINK_NAME_SOURCE}
+echo -e ${BOLD}"Clean symbol done."${CNONE}
+
+fi
