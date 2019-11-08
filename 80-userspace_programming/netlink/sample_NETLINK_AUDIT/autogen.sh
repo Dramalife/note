@@ -20,3 +20,6 @@
 
 # lib depend
 ln -s /home/dramalife/temp2/audit-userspace/prefix/lib/libaudit.so ./libaudit.so
+
+# lib source for ctags*
+ln -s /home/dramalife/temp2/audit-userspace/lib/ ./libaudit-source

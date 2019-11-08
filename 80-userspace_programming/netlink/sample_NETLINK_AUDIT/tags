@@ -1,0 +1,271 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AUDIT_ELF_NAMES	libaudit-source/lookup_table.c	88;"	d	file:
+AUDIT_FEATURES_UNSET	libaudit-source/libaudit.c	595;"	d	file:
+AUDIT_FEATURES_UNSUPPORTED	libaudit-source/libaudit.c	596;"	d	file:
+CONFIG_FILE	libaudit-source/libaudit.c	51;"	d	file:
+DIPC	libaudit-source/gen_tables.c	57;"	d	file:
+DIRECT_THRESHOLD	libaudit-source/gen_tables.c	75;"	d	file:
+EHWPOISON	libaudit-source/gen_tables.c	64;"	d	file:
+HOSTLEN	libaudit-source/audit_logging.c	240;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	130;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	134;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	148;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	152;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	166;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	170;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	183;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	187;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	199;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	203;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	215;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	219;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	231;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	235;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	247;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	251;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	263;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	267;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	279;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	283;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	295;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	300;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	312;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	316;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	328;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	332;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	344;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	348;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	360;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	364;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	376;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	382;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	394;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	398;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	410;"	d	file:
+I2S	libaudit-source/test/lookup_test.c	412;"	d	file:
+MAX_USER	libaudit-source/audit_logging.c	41;"	d	file:
+MSGCTL	libaudit-source/gen_tables.c	52;"	d	file:
+MSGGET	libaudit-source/gen_tables.c	51;"	d	file:
+MSGRCV	libaudit-source/gen_tables.c	50;"	d	file:
+MSGSND	libaudit-source/gen_tables.c	49;"	d	file:
+NETLINK_AUDIT	libaudit-source/netlink.c	35;"	d	file:
+NUM_VALUES	libaudit-source/gen_tables.c	94;"	d	file:
+RAND_ITERATIONS	libaudit-source/test/lookup_test.c	34;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	131;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	135;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	149;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	153;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	167;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	171;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	184;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	188;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	200;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	204;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	216;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	220;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	232;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	236;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	248;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	252;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	264;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	268;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	280;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	284;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	296;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	301;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	313;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	317;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	329;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	333;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	345;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	349;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	361;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	365;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	377;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	383;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	395;"	d	file:
+S2I	libaudit-source/test/lookup_test.c	399;"	d	file:
+SEMCTL	libaudit-source/gen_tables.c	47;"	d	file:
+SEMGET	libaudit-source/gen_tables.c	46;"	d	file:
+SEMOP	libaudit-source/gen_tables.c	45;"	d	file:
+SEMTIMEDOP	libaudit-source/gen_tables.c	48;"	d	file:
+SHMAT	libaudit-source/gen_tables.c	53;"	d	file:
+SHMCTL	libaudit-source/gen_tables.c	56;"	d	file:
+SHMDT	libaudit-source/gen_tables.c	54;"	d	file:
+SHMGET	libaudit-source/gen_tables.c	55;"	d	file:
+S_LEN	libaudit-source/test/lookup_test.c	37;"	d	file:
+TEST_I2S	libaudit-source/test/lookup_test.c	64;"	d	file:
+TEST_S2I	libaudit-source/test/lookup_test.c	101;"	d	file:
+TTY_PATH	libaudit-source/audit_logging.c	40;"	d	file:
+_S	libaudit-source/gen_tables.c	89;"	d	file:
+_S	libaudit-source/gen_tables.c	91;"	d	file:
+_S	libaudit-source/test/lookup_test.c	43;"	d	file:
+__audit_send	libaudit-source/netlink.c	/^int __audit_send(int fd, int type, const void *data, unsigned int size, int *seq)$/;"	f
+_audit_archadded	libaudit-source/libaudit.c	/^int _audit_archadded = 0;$/;"	v
+_audit_elf	libaudit-source/libaudit.c	/^unsigned int _audit_elf = 0U;$/;"	v
+_audit_exeadded	libaudit-source/libaudit.c	/^int _audit_exeadded = 0;$/;"	v
+_audit_filterfsadded	libaudit-source/libaudit.c	/^int _audit_filterfsadded = 0;$/;"	v
+_audit_permadded	libaudit-source/libaudit.c	/^int _audit_permadded = 0;$/;"	v
+_audit_syscalladded	libaudit-source/libaudit.c	/^int _audit_syscalladded = 0;$/;"	v
+_get_commname	libaudit-source/audit_logging.c	/^static char *_get_commname(const char *comm, char *commname, unsigned int size)$/;"	f	file:
+_get_exename	libaudit-source/audit_logging.c	/^static char *_get_exename(char *exename, int size)$/;"	f	file:
+_get_hostname	libaudit-source/audit_logging.c	/^static const char *_get_hostname(const char *ttyn)$/;"	f	file:
+_get_tty	libaudit-source/audit_logging.c	/^static const char *_get_tty(char *tname, int size)$/;"	f	file:
+_host	libaudit-source/audit_logging.c	/^static char _host[HOSTLEN] = "";$/;"	v	file:
+_resolve_addr	libaudit-source/audit_logging.c	/^static void _resolve_addr(char buf[], const char *host)$/;"	f	file:
+adjust_reply	libaudit-source/netlink.c	/^static int adjust_reply(struct audit_reply *rep, int len)$/;"	f	file:
+allow_duplicate_ints	libaudit-source/gen_tables.c	/^static bool allow_duplicate_ints; \/* = false; *\/$/;"	v	file:
+audit_action_to_name	libaudit-source/lookup_table.c	/^const char *audit_action_to_name(int action)$/;"	f
+audit_add_dir	libaudit-source/libaudit.c	/^int audit_add_dir(struct audit_rule_data **rulep, const char *path)$/;"	f
+audit_add_rule_data	libaudit-source/libaudit.c	/^int audit_add_rule_data(int fd, struct audit_rule_data *rule,$/;"	f
+audit_add_watch	libaudit-source/libaudit.c	/^int audit_add_watch(struct audit_rule_data **rulep, const char *path)$/;"	f
+audit_add_watch_dir	libaudit-source/libaudit.c	/^int audit_add_watch_dir(int type, struct audit_rule_data **rulep,$/;"	f
+audit_can_control	libaudit-source/libaudit.c	/^int audit_can_control(void)$/;"	f
+audit_can_read	libaudit-source/libaudit.c	/^int audit_can_read(void)$/;"	f
+audit_can_write	libaudit-source/libaudit.c	/^int audit_can_write(void)$/;"	f
+audit_close	libaudit-source/netlink.c	/^void audit_close(int fd)$/;"	f
+audit_delete_rule_data	libaudit-source/libaudit.c	/^int audit_delete_rule_data(int fd, struct audit_rule_data *rule,$/;"	f
+audit_detect_machine	libaudit-source/libaudit.c	/^int audit_detect_machine(void)$/;"	f
+audit_determine_machine	libaudit-source/libaudit.c	/^int audit_determine_machine(const char *arch)$/;"	f
+audit_elf_to_machine	libaudit-source/lookup_table.c	/^int audit_elf_to_machine(unsigned int elf)$/;"	f
+audit_encode_nv_string	libaudit-source/audit_logging.c	/^char *audit_encode_nv_string(const char *name, const char *value,$/;"	f
+audit_encode_value	libaudit-source/audit_logging.c	/^char *audit_encode_value(char *final, const char *buf, unsigned int size)$/;"	f
+audit_errno_to_name	libaudit-source/lookup_table.c	/^const char *audit_errno_to_name(int error)$/;"	f
+audit_failure_parser	libaudit-source/libaudit.c	/^static int audit_failure_parser(const char *val, int line)$/;"	f	file:
+audit_field_to_name	libaudit-source/lookup_table.c	/^const char *audit_field_to_name(int field)$/;"	f
+audit_flag_to_name	libaudit-source/lookup_table.c	/^const char *audit_flag_to_name(int flag)$/;"	f
+audit_fstype_to_name	libaudit-source/lookup_table.c	/^const char *audit_fstype_to_name(int fstype)$/;"	f
+audit_ftype_to_name	libaudit-source/lookup_table.c	/^const char *audit_ftype_to_name(int ftype)$/;"	f
+audit_get_features	libaudit-source/libaudit.c	/^uint32_t audit_get_features(void)$/;"	f
+audit_get_reply	libaudit-source/netlink.c	/^int audit_get_reply(int fd, struct audit_reply *rep, reply_t block, int peek)$/;"	f
+audit_get_session	libaudit-source/libaudit.c	/^uint32_t audit_get_session(void)$/;"	f
+audit_getloginuid	libaudit-source/libaudit.c	/^uid_t audit_getloginuid(void)$/;"	f
+audit_is_enabled	libaudit-source/libaudit.c	/^int audit_is_enabled(int fd)$/;"	f
+audit_log_acct_message	libaudit-source/audit_logging.c	/^int audit_log_acct_message(int audit_fd, int type, const char *pgname,$/;"	f
+audit_log_semanage_message	libaudit-source/audit_logging.c	/^int audit_log_semanage_message(int audit_fd, int type, const char *pgname,$/;"	f
+audit_log_user_avc_message	libaudit-source/audit_logging.c	/^int audit_log_user_avc_message(int audit_fd, int type, const char *message,$/;"	f
+audit_log_user_comm_message	libaudit-source/audit_logging.c	/^int audit_log_user_comm_message(int audit_fd, int type, const char *message,$/;"	f
+audit_log_user_command	libaudit-source/audit_logging.c	/^int audit_log_user_command(int audit_fd, int type, const char *command,$/;"	f
+audit_log_user_message	libaudit-source/audit_logging.c	/^int audit_log_user_message(int audit_fd, int type, const char *message,$/;"	f
+audit_machine_to_elf	libaudit-source/lookup_table.c	/^unsigned int audit_machine_to_elf(int machine)$/;"	f
+audit_machine_to_name	libaudit-source/lookup_table.c	/^const char *audit_machine_to_name(int machine)$/;"	f
+audit_make_equivalent	libaudit-source/libaudit.c	/^int audit_make_equivalent(int fd, const char *mount_point,$/;"	f
+audit_msg	libaudit-source/message.c	/^void audit_msg(int priority, const char *fmt, ...)$/;"	f
+audit_msg_type_to_name	libaudit-source/lookup_table.c	/^const char *audit_msg_type_to_name(int msg_type)$/;"	f
+audit_name_to_action	libaudit-source/lookup_table.c	/^int audit_name_to_action(const char *action)$/;"	f
+audit_name_to_errno	libaudit-source/lookup_table.c	/^int audit_name_to_errno(const char *error)$/;"	f
+audit_name_to_field	libaudit-source/lookup_table.c	/^int audit_name_to_field(const char *field)$/;"	f
+audit_name_to_flag	libaudit-source/lookup_table.c	/^int audit_name_to_flag(const char *flag)$/;"	f
+audit_name_to_fstype	libaudit-source/lookup_table.c	/^int audit_name_to_fstype(const char *name)$/;"	f
+audit_name_to_ftype	libaudit-source/lookup_table.c	/^int audit_name_to_ftype(const char *name)$/;"	f
+audit_name_to_gid	libaudit-source/libaudit.c	/^static int audit_name_to_gid(const char *name, gid_t *gid)$/;"	f	file:
+audit_name_to_machine	libaudit-source/lookup_table.c	/^int audit_name_to_machine(const char *machine)$/;"	f
+audit_name_to_msg_type	libaudit-source/lookup_table.c	/^int audit_name_to_msg_type(const char *msg_type)$/;"	f
+audit_name_to_syscall	libaudit-source/lookup_table.c	/^int audit_name_to_syscall(const char *sc, int machine)$/;"	f
+audit_name_to_uid	libaudit-source/libaudit.c	/^static int audit_name_to_uid(const char *name, uid_t *uid)$/;"	f	file:
+audit_number_to_errmsg	libaudit-source/libaudit.c	/^void audit_number_to_errmsg(int errnumber, const char *opt)$/;"	f
+audit_open	libaudit-source/netlink.c	/^int audit_open(void)$/;"	f
+audit_operator_to_symbol	libaudit-source/lookup_table.c	/^const char *audit_operator_to_symbol(int op)$/;"	f
+audit_priority	libaudit-source/libaudit.c	/^static int audit_priority(int xerrno)$/;"	f	file:
+audit_request_features	libaudit-source/libaudit.c	/^int audit_request_features(int fd)$/;"	f
+audit_request_rules_list_data	libaudit-source/libaudit.c	/^int audit_request_rules_list_data(int fd)$/;"	f
+audit_request_signal_info	libaudit-source/libaudit.c	/^int audit_request_signal_info(int fd)$/;"	f
+audit_request_status	libaudit-source/libaudit.c	/^int audit_request_status(int fd)$/;"	f
+audit_reset_lost	libaudit-source/libaudit.c	/^int audit_reset_lost(int fd)$/;"	f
+audit_rule_fieldpair_data	libaudit-source/libaudit.c	/^int audit_rule_fieldpair_data(struct audit_rule_data **rulep, const char *pair,$/;"	f
+audit_rule_free_data	libaudit-source/libaudit.c	/^void audit_rule_free_data(struct audit_rule_data *rule)$/;"	f
+audit_rule_interfield_comp_data	libaudit-source/libaudit.c	/^int audit_rule_interfield_comp_data(struct audit_rule_data **rulep,$/;"	f
+audit_rule_syscall_data	libaudit-source/libaudit.c	/^int audit_rule_syscall_data(struct audit_rule_data *rule, int scall)$/;"	f
+audit_rule_syscallbyname_data	libaudit-source/libaudit.c	/^int audit_rule_syscallbyname_data(struct audit_rule_data *rule,$/;"	f
+audit_send	libaudit-source/netlink.c	/^int audit_send(int fd, int type, const void *data, unsigned int size)$/;"	f
+audit_send_user_message	libaudit-source/deprecated.c	/^int audit_send_user_message(int fd, int type, hide_t hide_error,$/;"	f
+audit_set_backlog_limit	libaudit-source/libaudit.c	/^int audit_set_backlog_limit(int fd, uint32_t limit)$/;"	f
+audit_set_backlog_wait_time	libaudit-source/libaudit.c	/^int audit_set_backlog_wait_time(int fd, uint32_t bwt)$/;"	f
+audit_set_enabled	libaudit-source/libaudit.c	/^int audit_set_enabled(int fd, uint32_t enabled)$/;"	f
+audit_set_failure	libaudit-source/libaudit.c	/^int audit_set_failure(int fd, uint32_t failure)$/;"	f
+audit_set_feature	libaudit-source/libaudit.c	/^int audit_set_feature(int fd, unsigned feature, unsigned value, unsigned lock)$/;"	f
+audit_set_loginuid_immutable	libaudit-source/libaudit.c	/^extern int  audit_set_loginuid_immutable(int fd)$/;"	f
+audit_set_pid	libaudit-source/libaudit.c	/^int audit_set_pid(int fd, uint32_t pid, rep_wait_t wmode)$/;"	f
+audit_set_rate_limit	libaudit-source/libaudit.c	/^int audit_set_rate_limit(int fd, uint32_t limit)$/;"	f
+audit_setloginuid	libaudit-source/libaudit.c	/^int audit_setloginuid(uid_t uid)$/;"	f
+audit_strsplit	libaudit-source/strsplit.c	/^char *audit_strsplit(char *s)$/;"	f
+audit_strsplit_r	libaudit-source/strsplit.c	/^char *audit_strsplit_r(char *s, char **savedpp)$/;"	f
+audit_syscall_to_name	libaudit-source/lookup_table.c	/^const char *audit_syscall_to_name(int sc, int machine)$/;"	f
+audit_trim_subtrees	libaudit-source/libaudit.c	/^int audit_trim_subtrees(int fd)$/;"	f
+audit_update_watch_perms	libaudit-source/libaudit.c	/^int audit_update_watch_perms(struct audit_rule_data *rule, int perms)$/;"	f
+audit_value_needs_encoding	libaudit-source/audit_logging.c	/^int audit_value_needs_encoding(const char *str, unsigned int size)$/;"	f
+check_ack	libaudit-source/netlink.c	/^static int check_ack(int fd)$/;"	f	file:
+check_ttyname	libaudit-source/audit_logging.c	/^static int check_ttyname(const char *ttyn)$/;"	f	file:
+clear_config	libaudit-source/libaudit.c	/^static void clear_config(void)$/;"	f	file:
+cmp_value_orig_index	libaudit-source/gen_tables.c	/^cmp_value_orig_index(const void *xa, const void *xb)$/;"	f	file:
+cmp_value_strings	libaudit-source/gen_tables.c	/^cmp_value_strings(const void *xa, const void *xb)$/;"	f	file:
+cmp_value_vals	libaudit-source/gen_tables.c	/^cmp_value_vals(const void *xa, const void *xb)$/;"	f	file:
+config	libaudit-source/libaudit.c	/^static struct libaudit_conf config;$/;"	v	typeref:struct:libaudit_conf	file:
+debug_message	libaudit-source/message.c	/^static debug_message_t debug_message = DBG_NO;$/;"	v	file:
+elftab	libaudit-source/lookup_table.c	/^static const struct int_transtab elftab[] = {$/;"	v	typeref:struct:int_transtab	file:
+entry	libaudit-source/test/lookup_test.c	/^struct entry {$/;"	s	file:
+failure_action	libaudit-source/libaudit.c	/^        auditfail_t failure_action;$/;"	m	struct:libaudit_conf	file:
+failure_actions	libaudit-source/libaudit.c	/^static const struct nv_list failure_actions[] =$/;"	v	typeref:struct:nv_list	file:
+fd	main.c	/^static int fd = -1;$/;"	v	file:
+features_bitmap	libaudit-source/libaudit.c	/^static uint32_t features_bitmap = AUDIT_FEATURES_UNSET;$/;"	v	file:
+gen_id	libaudit-source/test/lookup_test.c	/^gen_id(char *dest)$/;"	f	file:
+get_auditfail_action	libaudit-source/libaudit.c	/^int get_auditfail_action(auditfail_t *failmode)$/;"	f
+get_line	libaudit-source/libaudit.c	/^static char *get_line(FILE *f, char *buf, size_t len)$/;"	f	file:
+int_transtab	libaudit-source/lookup_table.c	/^struct int_transtab {$/;"	s	file:
+key	libaudit-source/lookup_table.c	/^    int        key;$/;"	m	struct:int_transtab	file:
+keywords	libaudit-source/libaudit.c	/^static const struct kw_pair keywords[] =$/;"	v	typeref:struct:kw_pair	file:
+kw_lookup	libaudit-source/libaudit.c	/^static const struct kw_pair *kw_lookup(const char *val)$/;"	f	file:
+kw_pair	libaudit-source/libaudit.c	/^struct kw_pair$/;"	s	file:
+libaudit_conf	libaudit-source/libaudit.c	/^struct libaudit_conf$/;"	s	file:
+load_feature_bitmap	libaudit-source/libaudit.c	/^static void load_feature_bitmap(void)$/;"	f	file:
+load_libaudit_config	libaudit-source/libaudit.c	/^static int load_libaudit_config(const char *path)$/;"	f	file:
+lvalue	libaudit-source/lookup_table.c	/^    unsigned int  lvalue;$/;"	m	struct:int_transtab	file:
+main	libaudit-source/gen_tables.c	/^main(int argc, char **argv)$/;"	f
+main	libaudit-source/test/lookup_test.c	/^main(void)$/;"	f
+main	main.c	/^int main(void)$/;"	f
+message_mode	libaudit-source/message.c	/^static message_t message_mode = MSG_QUIET;$/;"	v	file:
+name	libaudit-source/libaudit.c	/^        const char *name;$/;"	m	struct:kw_pair	file:
+name	libaudit-source/libaudit.c	/^        const char *name;$/;"	m	struct:nv_list	file:
+name	libaudit-source/libaudit.c	/^        const char *name;$/;"	m	struct:nv_pair	file:
+nv_list	libaudit-source/libaudit.c	/^struct nv_list$/;"	s	file:
+nv_pair	libaudit-source/libaudit.c	/^struct nv_pair$/;"	s	file:
+nv_split	libaudit-source/libaudit.c	/^static int nv_split(char *buf, struct nv_pair *nv)$/;"	f	file:
+option	libaudit-source/libaudit.c	/^        int option;$/;"	m	struct:nv_list	file:
+orig_index	libaudit-source/gen_tables.c	/^	size_t orig_index;$/;"	m	struct:value	file:
+output_i2s	libaudit-source/gen_tables.c	/^output_i2s(const char *prefix)$/;"	f	file:
+output_i2s_transtab	libaudit-source/gen_tables.c	/^output_i2s_transtab(const char *prefix)$/;"	f	file:
+output_s2i	libaudit-source/gen_tables.c	/^output_s2i(const char *prefix, bool uppercase, bool lowercase)$/;"	f	file:
+output_strings	libaudit-source/gen_tables.c	/^output_strings(const char *prefix)$/;"	f	file:
+parser	libaudit-source/libaudit.c	/^        int (*parser)(const char *, int);$/;"	m	struct:kw_pair	file:
+s	libaudit-source/gen_tables.c	/^	const char *s;$/;"	m	struct:value	file:
+s	libaudit-source/test/lookup_test.c	/^	const char *s;$/;"	m	struct:entry	file:
+s_offset	libaudit-source/gen_tables.c	/^	size_t s_offset;$/;"	m	struct:value	file:
+set_aumessage_mode	libaudit-source/message.c	/^void set_aumessage_mode(message_t mode, debug_message_t debug)$/;"	f
+test_aarch64_table	libaudit-source/test/lookup_test.c	/^test_aarch64_table(void)$/;"	f	file:
+test_actiontab	libaudit-source/test/lookup_test.c	/^test_actiontab(void)$/;"	f	file:
+test_alpha_table	libaudit-source/test/lookup_test.c	/^test_alpha_table(void)$/;"	f	file:
+test_arm_table	libaudit-source/test/lookup_test.c	/^test_arm_table(void)$/;"	f	file:
+test_errtab	libaudit-source/test/lookup_test.c	/^test_errtab(void)$/;"	f	file:
+test_fieldtab	libaudit-source/test/lookup_test.c	/^test_fieldtab(void)$/;"	f	file:
+test_flagtab	libaudit-source/test/lookup_test.c	/^test_flagtab(void)$/;"	f	file:
+test_fstypetab	libaudit-source/test/lookup_test.c	/^test_fstypetab(void)$/;"	f	file:
+test_ftypetab	libaudit-source/test/lookup_test.c	/^test_ftypetab(void)$/;"	f	file:
+test_i386_table	libaudit-source/test/lookup_test.c	/^test_i386_table(void)$/;"	f	file:
+test_ia64_table	libaudit-source/test/lookup_test.c	/^test_ia64_table(void)$/;"	f	file:
+test_machinetab	libaudit-source/test/lookup_test.c	/^test_machinetab(void)$/;"	f	file:
+test_msg_typetab	libaudit-source/test/lookup_test.c	/^test_msg_typetab(void)$/;"	f	file:
+test_optab	libaudit-source/test/lookup_test.c	/^test_optab(void)$/;"	f	file:
+test_ppc_table	libaudit-source/test/lookup_test.c	/^test_ppc_table(void)$/;"	f	file:
+test_s390_table	libaudit-source/test/lookup_test.c	/^test_s390_table(void)$/;"	f	file:
+test_s390x_table	libaudit-source/test/lookup_test.c	/^test_s390x_table(void)$/;"	f	file:
+test_x86_64_table	libaudit-source/test/lookup_test.c	/^test_x86_64_table(void)$/;"	f	file:
+val	libaudit-source/gen_tables.c	/^	int val;$/;"	m	struct:value	file:
+val	libaudit-source/test/lookup_test.c	/^	int val;$/;"	m	struct:entry	file:
+value	libaudit-source/gen_tables.c	/^struct value {$/;"	s	file:
+value	libaudit-source/libaudit.c	/^        const char *value;$/;"	m	struct:nv_pair	file:
+values	libaudit-source/gen_tables.c	/^static struct value values[] = {$/;"	v	typeref:struct:value	file:

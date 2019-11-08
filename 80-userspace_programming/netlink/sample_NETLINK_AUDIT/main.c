@@ -34,6 +34,26 @@
 #include "log.h"
 
 
+/* 
+ * netlink core functions
+ * 	Lib	: libaudit.so
+ * 	Source	: src/netlink.c
+ * 	Header	: none
+ */
+extern int audit_open(void);
+extern void audit_close(int fd);
+extern int audit_get_reply(int fd, struct audit_reply *rep, reply_t block, int peek);
+extern static int adjust_reply(struct audit_reply *rep, int len);
+extern int audit_send(int fd, int type, const void *data, unsigned int size);
+extern static int check_ack(int fd);
+
+
+/*
+ * Replaced functions
+ */
+//audit_msg() > printf()
+
+
 static int fd = -1;
 
 
@@ -47,11 +67,15 @@ int main(void)
 	{
 		audit_msg(NULL,0,"%s,%d can not open netlink \n",__func__,__LINE__);
 	}
+	
+	//bind?
 
 	while(1)
 	{
 
 	}
+
+	audit_close(fd);
 
 	return 0;
 }
