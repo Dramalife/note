@@ -1,0 +1,16 @@
+# [-fPIC]:Generate position-independent code (PIC)
+gcc -fPIC -c gcc_related_show.c
+
+# [-shared]:Produce a shared object which can then be linked with other objects to form an executable.
+gcc -shared -Wl,-soname,libdramalife.so -o libdramalife.so.0.1 gcc_related_show.o
+
+# [ldconfig --help]:Configure Dynamic Linker Run Time Bindings.
+ldconfig
+
+# linking?
+gcc link_list.o -ldramalife
+
+
+### SAMPLE 1
+gcc -shared hello.c -o libhello.so
+
