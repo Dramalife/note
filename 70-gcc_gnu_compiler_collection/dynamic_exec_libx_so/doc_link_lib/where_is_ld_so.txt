@@ -1,0 +1,15 @@
+ld.so, ld-linux.so* - dynamic linker/loader
+----------
+
+root@orangepizero:~/note# ll /lib/ld-linux-armhf.so.3
+lrwxrwxrwx 1 root root 30 Feb  7  2019 /lib/ld-linux-armhf.so.3 -> arm-linux-gnueabihf/ld-2.24.so
+
+root@orangepizero:~/note# ll /lib/arm-linux-gnueabihf/ld-linux.so.3
+lrwxrwxrwx 1 root root 19 Feb  7  2019 /lib/arm-linux-gnueabihf/ld-linux.so.3 -> ld-linux-armhf.so.3
+
+root@orangepizero:~/note# ll /lib/arm-linux-gnueabihf/ld-linux-armhf.so.3
+lrwxrwxrwx 1 root root 10 Feb  7  2019 /lib/arm-linux-gnueabihf/ld-linux-armhf.so.3 -> ld-2.24.so
+
+root@orangepizero:~/note# file /lib/arm-linux-gnueabihf/ld-2.24.so    
+/lib/arm-linux-gnueabihf/ld-2.24.so: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=4c70015c44595ec80804b8d64a043df0d899dfae, stripped
+root@orangepizero:~/note# 
