@@ -1,0 +1,4 @@
+# ps aux | grep opi2t
+root     13415  0.0  0.0   5088   756 pts/7    D+   05:28   0:00 umount /root/opi2t
+root     13463  0.0  0.0   3380   348 pts/9    D+   05:29   0:00 fuser -k /root/opi2t
+root     13606  0.0  0.0   4276   524 pts/10   S+   05:30   0:00 grep --color=auto opi2t
