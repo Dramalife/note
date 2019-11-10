@@ -83,13 +83,19 @@ void signal_handler(int signo)
 
 // Designate ld in lib source
 #if (defined DESIGNATE_LD_IN_LIB_FILE) && (1 == DESIGNATE_LD_IN_LIB_FILE)
+//x86
 asm(".pushsection .interp,\"a\"\n"
 #if (defined __x86_64__) && (1 == __x86_64__)
 		"        .string \"/lib/x86_64-linux-gnu/ld-2.27.so\"\n"
-#else
+#elif (defined __i686__) && (1 == __i686__)
 		"        .string \"/lib/i386-linux-gnu/ld-linux.so.2\"\n"
+#else
+#error NOT SUPPORTED YET !
 #endif
 		".popsection");
+//ARM - TODO
+//		(defined __ARM_EABI__) && (1 == __ARM_EABI__)
+//		"        .string \"/lib/arm-linux-gnueabihf/ld-2.24.so\"\n"
 #endif//DESIGNATE_LD_IN_LIB_FILE
 
 /*
