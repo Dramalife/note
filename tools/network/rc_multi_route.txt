@@ -20,6 +20,8 @@ c:\Windows\system32\drivers\etc\hosts
 
 
 ## Windows CMD
+route ADD 0.0.0.0 mask 0.0.0.0 172.16.127.210
+route DELETE 0.0.0.0 mask 0.0.0.0 172.16.127.210
 
 #### LAN
 route add 172.16.0.0 mask 255.255.0.0 172.16.127.1 -p
