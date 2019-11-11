@@ -9,3 +9,67 @@ space , space
 
 # Paste
 Control _a + ]
+
+# Find (vim like)
+?YOUR_WORD
+
+
+
+# MANUAL PAGE:
+	Enter  copy/scrollback mode. This allows you to copy text from the current window and its history into the paste buffer. In this mode a vi-like `full
+	screen editor' is active:
+	The editor's movement keys are:
+
+	┌─────────────┬──────────────────────────────────────────────────────┐
+	│h, C-h,      │ move the cursor left.                                │
+	│left arrow   │                                                      │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│j, C-n,      │ move the cursor down.                                │
+	│down arrow   │                                                      │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│k, C-p,      │ move the cursor up.                                  │
+	│up arrow     │                                                      │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│l ('el'),    │ move the cursor right.                               │
+	│right arrow  │                                                      │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│0 (zero) C-a │ move to the leftmost column.                         │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│+ and -      │ positions one line up and down.                      │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│H, M and L   │ move the cursor to the leftmost column of  the  top, │
+	│             │ center or bottom line of the window.                 │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│|            │ moves to the specified absolute column.              │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│g or home    │ moves to the beginning of the buffer.                │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│G or end     │ moves  to  the specified absolute line (default: end │
+	│             │ of buffer).                                          │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│%            │ jumps to the specified percentage of the buffer.     │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│^ or $       │ move to the leftmost column, to the  first  or  last │
+	│             │ non-whitespace character on the line.                │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│w, b, and e  │ move the cursor word by word.                        │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│B, E         │ move the cursor WORD by WORD (as in vi).             │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│f/F, t/T     │ move  the cursor forward/backward to the next occur‐ │
+	│             │ rence of the target. (eg, '3fy' will move the cursor │
+	│             │ to the 3rd 'y' to the right.)                        │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│; and ,      │ Repeat the last f/F/t/T command in the same/opposite │
+	│             │ direction.                                           │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│C-e and C-y  │ scroll the display up/down by one  line  while  pre‐ │
+	│             │ serving the cursor position.                         │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│C-u and C-d  │ scroll  the  display up/down by the specified amount │
+	│             │ of  lines  while  preserving  the  cursor  position. │
+	│             │ (Default: half screen-full).                         │
+	├─────────────┼──────────────────────────────────────────────────────┤
+	│C-b and C-f  │ scroll the display up/down a full screen.            │
+	└─────────────┴──────────────────────────────────────────────────────┘
+
