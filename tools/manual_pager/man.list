@@ -3,3 +3,4 @@ nm
 objdump
 proc
 git cherry-pick
+7 signal

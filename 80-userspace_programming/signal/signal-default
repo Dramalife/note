@@ -1,0 +1,37 @@
+       The  signals  listed  below  may  be available for use with kill.  When
+       known constant, numbers and default behavior are shown.
+
+       Name     Num   Action    Description
+       0          0   n/a       exit code indicates if a signal may be sent
+       ALRM      14   exit
+       HUP        1   exit
+       INT        2   exit
+       KILL       9   exit      cannot be blocked
+       PIPE      13   exit
+       POLL           exit
+       PROF           exit
+       TERM      15   exit
+       USR1           exit
+       USR2           exit
+       VTALRM         exit
+       STKFLT         exit      might not be implemented
+       PWR            ignore    might exit on some systems
+       WINCH          ignore
+       CHLD           ignore
+       URG            ignore
+       TSTP           stop      might interact with the shell
+       TTIN           stop      might interact with the shell
+       TTOU           stop      might interact with the shell
+       STOP           stop      cannot be blocked
+       CONT           restart   continue if stopped, otherwise ignore
+       ABRT       6   core
+       FPE        8   core
+       ILL        4   core
+       QUIT       3   core
+       SEGV      11   core
+       TRAP       5   core
+       SYS            core      might not be implemented
+       EMT            core      might not be implemented
+       BUS            core      core dump might fail
+       XCPU           core      core dump might fail
+       XFSZ           core      core dump might fail
