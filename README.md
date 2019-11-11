@@ -38,7 +38,7 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |6|2019.05.09|[compile(gcc),include](/80-userspace_programming/gcc)|
 |7|2019.05.08|[netlink,userspace&](/80-userspace_programming/netlink)|
 |8|2019.06.20|[lsof(list open files),strace(syscall_strace) at /tools](/tools)|
-|9|2019.07.07|[lib.so-shared library(create lib, link, load, make lib executable)](/70-gcc_gnu_compiler_collection/dynamic_exec_libx_so) |
+|9|2019.07.07|[lib.so-shared library](/70-gcc_gnu_compiler_collection/lib_so_related) |
 |A|2019.08.23|[gcc-make-opensource](/tools/gcc), [70-gcc_gnu_compiler_collection](/70-gcc_gnu_compiler_collection) |
 | | | |
 | | | |

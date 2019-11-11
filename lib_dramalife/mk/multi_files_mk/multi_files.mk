@@ -34,14 +34,13 @@
 
 # TODO - USE : 
 # STEP 0 : Change dir to path where your code is.
-# STEP 1 : Configure(create and edit "config.mk", sample below);
+# STEP 1 : echo "PATH_ABS=RELATIVE/PATH/OF/NOTE-lib_dramalife/" > ./config.mk
 # STEP 2 : ln -s path/to/libMakefile.mk ./Makefile
 # STEP 3 : Enjoy your self :)
 
-# Sample - config.mk (split make multi files)
-# 	PATH_ABS=../../../lib_dramalife/
-# 	include $(PATH_ABS)/mk/multi_files_mk/lib_split_make.mk
-# 	DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
+# Sample - config.mk
+# PATH_ABS=../../../lib_dramalife/
+# DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
 
 
 
