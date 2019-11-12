@@ -38,10 +38,11 @@
 # STEP 2 : ln -s path/to/libMakefile.mk ./Makefile
 # STEP 3 : Enjoy your self :)
 
-# Sample - config.mk
+# Sample - config.mk(Single/multi file >> a.out)
 # PATH_ABS=../../../lib_dramalife/
 # DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
-
+# DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=0
+# CFLAGS+=-Wall
 
 
 CURRENT_DIR:=$(shell pwd)
