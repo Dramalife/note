@@ -1,0 +1,54 @@
+PENTER : Press Enter
+OPROCE : Other process send signal to me
+		for(i=0;i<MMM;i++)
+		kill_sig2pid(*t_pid,SIGILL);
+
+#####################Log start#####################
+$ ./a.out
+My pid(27340)
+
+(PENTER,OPROCE)
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+
+
+
+(PENTER,OPROCE)
+now got a signal
+now got a signal
+now got a signal
+
+
+(PENTER,OPROCE)
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+
+
+(PENTER,OPROCE)
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+
+
+
+(PENTER,OPROCE)
+now got a signal
+now got a signal
+now got a signal
+now got a signal
+
