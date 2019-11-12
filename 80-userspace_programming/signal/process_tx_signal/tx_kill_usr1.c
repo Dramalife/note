@@ -4,7 +4,11 @@
 #include <sys/types.h>
 #include <signal.h>
 
-void kill_usr(int pid);
+void kill_pid_sig(int pid, int sig)
+{ 
+	kill(pid,sig);//kill - send signal to a process
+	printf("[%s] Send signal(%d) to pid(%d). \n",__FILE__,sig,pid);
+}
 
 int main(int argc, char **argv)
 { 
@@ -23,14 +27,8 @@ int main(int argc, char **argv)
 		pid_target = atoi(argv[1]);
 	}
 
-	kill_usr(pid_target);
+	kill_pid_sig(pid_target, SIGUSR1);
 
 	return 0;
 
-}
-void kill_usr(int pid)
-{ 
-	int sig = SIGUSR1;
-	kill(pid,sig);//kill - send signal to a process
-	printf("[%s] Send signal(%d) to pid(%d). \n",__FILE__,sig,pid);
 }
