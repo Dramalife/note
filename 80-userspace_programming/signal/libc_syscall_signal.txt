@@ -1,0 +1,15 @@
+# SIGNAL TX
+sigqueue - queue a signal and data to a process
+kill - send a signal to a process
+raise - send a signal to the caller
+alarm - set an alarm clock for delivery of a signal
+pause - wait for signal
+abort - cause abnormal process termination
+getitimer, setitimer - get or set value of an interval timer
+
+# SIGNAL INSTALL
+signal - ANSI C signal handling
+sigaction, rt_sigaction - examine and change a signal action
+
+# SIGNAL OPERATATION
+sigemptyset, sigfillset, sigaddset, sigdelset, sigismember - POSIX signal set operations
