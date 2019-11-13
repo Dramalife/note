@@ -31,19 +31,43 @@
 #
 # Update : 2019.10.14, RENAMED FROM "sample_single_file.mk";
 #
+# Update : 2019.11.13, 	Add target "all-with-lib-objs";
+#			Rename "make all" and "make clean" to 
+#				"make all-normal" and "make clean-all-normal";
+#
 
 # TODO - USE : 
 # STEP 0 : Change dir to path where your code is.
-# STEP 1 : echo "PATH_ABS=RELATIVE/PATH/OF/NOTE-lib_dramalife/" > ./config.mk
+# STEP 1 : Create configuration file named "config.mk", reference sample below ;-)
 # STEP 2 : ln -s path/to/libMakefile.mk ./Makefile
 # STEP 3 : Enjoy your self :)
 
-# Sample - config.mk(Single/multi file >> a.out)
-# PATH_ABS=../../../lib_dramalife/
-# DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
-# DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=0
-# CFLAGS+=-Wall
+################################################################
+# Sample - config.mk(Single/multi file >> a.out)	       #
+################################################################
+#PATH_ABS=../../../lib_dramalife/
+#DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
+#DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=0
+#CFLAGS+=-Wall
+################################################################
 
+################################################################
+# Sample - config.mk(Single/multi file and lib-objs >> a.out)  #
+################################################################
+#PATH_ABS=../../../../lib_dramalife/
+#DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
+#DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=0
+#CFLAGS+=-Wall
+## Add the directory dir to the list of directories to be searched for header files.(man 1 gcc)
+#CFLAGS+=-I../../../../lib_dramalife/
+#CFLAGS+=-I../../../../lib_dramalife/libc_with_print_lib/
+## libc-pthread
+##CFLAGS+=-lpthread
+## Path to objs of library source
+#LIB_OBJ_PATH=../../../../lib_dramalife/libc_with_print_lib/build/obj/
+## Link name of Path
+#LIB_OBJ_LINKNAME=obj2
+################################################################
 
 CURRENT_DIR:=$(shell pwd)
 CURRENT_DIR2:=$(shell pwd)/
@@ -72,23 +96,76 @@ DEF_MACROS:=
 # Path of "libMakefile.mk"
 PATH_ABS=../
 
+# Path of library objs
+LIB_OBJ_PATH:=
+# Name of symbollink linking to LIB_OBJ_PATH
+LIB_OBJ_LINKNAME:=
+
 # Folders in whitch files to be deleted.
 EXTERA_FILES2DEL=$(CURRENT_DIR)/build
 
 include ./config.mk
 include $(PATH_ABS)libMakefile.mk
 
+##################[Defaults]####################
+# Default target
+warning-this-makefile:
+	@echo "\nUSAGE: make (clean-)all-TARGET !!!"
+	@echo "make all-normal:"		" normally make;"
+	@echo "make all-with-lib-objs:"	" link with other objs;"
+# TODO : Hide "all" and "clean" when type TAB after "make";
+.SECONDARY+=all
+#all:	warning-this-makefile
+all-:	warning-this-makefile
+#clean:	warning-this-makefile
+clean-:	warning-this-makefile
+################################################
 
-# LD all to the target.
-all:
+###############[all-with-lib-objs]###############
+SRC_DIR   :=$(CURRENT_DIR)/
+BUILD_DIR :=$(SRC_DIR)build/
+OBJ_DIR   :=$(BUILD_DIR)obj/
+
+SRCS := $(wildcard $(SRC_DIR)*.c)
+OBJS := $(SRCS:.c=.o)
+
+.SECONDARY+= $(OBJS) $(BUILD)
+
+$(OBJS) : %.o:%.c
+	$(CC) -c $< -o $@ $(CFLAGS)
+
+# [TARGET] : Linking with other objs
+all-with-lib-objs:$(OBJS)
+	-mkdir $(BUILD_DIR)
+	-mkdir $(OBJ_DIR)
+	mv -f $(OBJS) $(OBJ_DIR)
+	@echo "\nOOBJS: \n$(OOBJS) \nBUILD_DIR: \n$(BUILD_DIR)"
+	-ln -sf $(SRC_DIR)$(LIB_OBJ_PATH) $(BUILD_DIR)$(LIB_OBJ_LINKNAME)
+	$(CC) -o $(BIN_NAME)$(BIN_DNAME) $(BUILD_DIR)$(LIB_OBJ_LINKNAME)/*.o $(OBJ_DIR)/*.o $(CFLAGS) $(DEF_MACROS)
+clean-all-with-lib-objs:
+	rm -f $(BUILD_DIR)$(LIB_OBJ_LINKNAME)
+	rm -rf $(OBJ_DIR)/*
+	rm -rvf ./*$(BIN_DNAME) ./*$(PRE_COMP) ./*$(BIN_O)
+################################################
+
+###################[normal]#####################
+# [TARGET] LD all to the target.
+all-normal:
 	$(CC) -E $(SRCS) >> $(PRE_SOURCE)
 	@echo "FLAGS : $(CFLAGS) ;"
 	@echo "SRCS: \n$(SRCS)"
 	$(CC) -o $(BIN_NAME)$(BIN_DNAME) $(SRCS) $(CFLAGS) $(DEF_MACROS)
 
-clean:
+clean-all-normal:
 	@echo "$(CURRENT_DIR)"
 	rm -rvf ./*$(BIN_DNAME) ./*$(PRE_COMP) ./*$(BIN_O)
 	rm -rvf $(EXTERA_FILES2DEL)
+################################################
 
-.PHONY: clean
+.PHONY: warning-this-makefile
+#.PHONY: all
+.PHONY: all-
+#.PHONY: clean
+.PHONY: clean-
+.PHONY: clean-all-normal
+.PHONY: clean-all-with-lib-objs

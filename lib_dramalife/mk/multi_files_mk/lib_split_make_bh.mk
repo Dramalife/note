@@ -42,7 +42,6 @@ SRCS := $(wildcard $(SRC_DIR)*.c)
 OBJS := $(SRCS:.c=.o)
 BUILD := $(OBJS:.o=.out)
 
-# make [TAB] all xx.out yy.out
 .SECONDARY: $(OBJS) $(BUILD)
 
 $(OBJS) : %.o:%.c
