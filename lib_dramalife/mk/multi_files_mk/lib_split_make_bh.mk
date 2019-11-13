@@ -61,4 +61,12 @@ part-rename1015 : $(BUILD)
 	mv -f $(BUILD) $(BUILD_DIR)
 	mv -f $(OBJS) $(OBJ_DIR)
 
+part-objs : $(OBJS)
+	@echo "SRCS: \n$(SRCS)"
+	@echo "OBJS: \n$(OBJS)"
+	@echo "PATH \nSRC_DIR: \n$(SRC_DIR) \nOBJ_DIR: \n$(OBJ_DIR) \nBUILD_DIR: \n$(BUILD_DIR) \n"
+	-mkdir $(BUILD_DIR)
+	-mkdir $(OBJ_DIR)
+	mv -f $(OBJS) $(OBJ_DIR)
+
 .PHONY: part-rename1015

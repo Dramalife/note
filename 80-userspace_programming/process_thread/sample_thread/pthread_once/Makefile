@@ -1,0 +1,1 @@
+../../../../lib_dramalife/mk/single_file_mk/single_file.mk
