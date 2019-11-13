@@ -23,7 +23,8 @@
  * 	COPY FROM : 21cnbao/training/thread/deadlock.c
  * 	Author: Barry Song <21cnbao@gmail.com>
  * ;
- * Update 
+ * Update : 2019.11.13
+ *	Add sleep_print related library;
  *
  */
 
@@ -32,13 +33,22 @@
 #include <pthread.h>
 #include <unistd.h>
 
-#include "libc_with_print_lib/sleep_with_print.h"
+#include "libc_with_print_lib.h"
+
+/* Make gcc happy ;-)
+ * error: unused parameter ‘arg’ [-Werror=unused-parameter]
+ * error: suggest braces around empty body in an ‘if’ statement [-Werror=empty-body]
+ */
+#define MAKE_GCC_HAPPY()	do{if(NULL == arg){}}while(0)
+
 
 pthread_mutex_t mutex_1;
 pthread_mutex_t mutex_2;
 
 void *child1(void *arg)
 {
+	MAKE_GCC_HAPPY();
+
 	while(1){
 		pthread_mutex_lock(&mutex_1);
 		sleep_func_line_file(3);
@@ -52,6 +62,8 @@ void *child1(void *arg)
 
 void *child2(void *arg)
 {
+	MAKE_GCC_HAPPY();
+
 	while(1){
 		pthread_mutex_lock(&mutex_2);
 		sleep_func_line_file(3);
@@ -66,13 +78,19 @@ void *child2(void *arg)
 int main(void)
 {
 	int tid1,tid2;
+
 	pthread_mutex_init(&mutex_1,NULL);
 	pthread_mutex_init(&mutex_2,NULL);
-	pthread_create(&tid1,NULL,child1,NULL);
-	pthread_create(&tid2,NULL,child2,NULL);
+	pthread_create((pthread_t *)&tid1,NULL,child1,NULL);
+	pthread_create((pthread_t *)&tid2,NULL,child2,NULL);
+
 	do{
-		sleep_func_line_file(2);
+		//sleep_func_line_file(2);
+		sleep(2);
 	}while(1);
+
 	pthread_exit(0);
+
+	return 0;
 }
 
