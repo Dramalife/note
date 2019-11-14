@@ -1,6 +1,6 @@
 /*
  * note ""TODO related file
- * Copyright (C) 2019 Dramalife@live.com
+ * Copyright (C) 2019 Dramalife <dramalife@live.com>
  * 
  * This file is part of [note](https://github.com/Dramalife/note.git)
  * 
