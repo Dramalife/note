@@ -36,19 +36,13 @@
 //Using new version of lib_dramalife ;-)
 #include "lib_dramalife.h" //#include "libc_with_print_lib.h"
 
-/* Make gcc happy ;-)
- * error: unused parameter ‘arg’ [-Werror=unused-parameter]
- * error: suggest braces around empty body in an ‘if’ statement [-Werror=empty-body]
- */
-#define MAKE_GCC_HAPPY()	do{if(NULL == arg){}}while(0)
-
 
 pthread_mutex_t mutex_1;
 pthread_mutex_t mutex_2;
 
 void *child1(void *arg)
 {
-	MAKE_GCC_HAPPY();
+	MAKE_GCC_HAPPY(arg);
 
 	while(1){
 		pthread_mutex_lock(&mutex_1);
@@ -63,7 +57,7 @@ void *child1(void *arg)
 
 void *child2(void *arg)
 {
-	MAKE_GCC_HAPPY();
+	MAKE_GCC_HAPPY(arg);
 
 	while(1){
 		pthread_mutex_lock(&mutex_2);
