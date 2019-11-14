@@ -33,7 +33,8 @@
 #include <pthread.h>
 #include <unistd.h>
 
-#include "libc_with_print_lib.h"
+//Using new version of lib_dramalife ;-)
+#include "lib_dramalife.h" //#include "libc_with_print_lib.h"
 
 /* Make gcc happy ;-)
  * error: unused parameter ‘arg’ [-Werror=unused-parameter]
