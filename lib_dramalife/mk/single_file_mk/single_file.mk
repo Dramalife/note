@@ -139,8 +139,8 @@ all-with-lib-objs:$(OBJS)
 	-mkdir $(BUILD_DIR)
 	-mkdir $(OBJ_DIR)
 	mv -f $(OBJS) $(OBJ_DIR)
-	@echo "\nOOBJS: \n$(OOBJS) \nBUILD_DIR: \n$(BUILD_DIR)"
-	-ln -sf $(SRC_DIR)$(LIB_OBJ_PATH) $(BUILD_DIR)$(LIB_OBJ_LINKNAME)
+	@echo "\nLIB_LINK: \n$(LIB_OBJ_LINKNAME) \nBUILD_DIR: \n$(BUILD_DIR)"
+	-ln -sfv $(SRC_DIR)/$(LIB_OBJ_PATH) $(BUILD_DIR)/$(LIB_OBJ_LINKNAME)
 	$(CC) -o $(BIN_NAME)$(BIN_DNAME) $(BUILD_DIR)$(LIB_OBJ_LINKNAME)/*.o $(OBJ_DIR)/*.o $(CFLAGS) $(DEF_MACROS)
 clean-all-with-lib-objs:
 	rm -f $(BUILD_DIR)$(LIB_OBJ_LINKNAME)
