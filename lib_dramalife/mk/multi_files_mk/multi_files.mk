@@ -39,9 +39,10 @@
 # STEP 3 : Enjoy your self :)
 
 # Sample - config.mk (split make multi files)
-# 	PATH_ABS=../../../lib_dramalife/
-# 	include $(PATH_ABS)/mk/multi_files_mk/lib_split_make.mk
-# 	DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
+#PATH_ABS=../../../../lib_dramalife/
+#include $(PATH_ABS)/mk/multi_lib.mk
+#CFLAGS+="-I../../../../lib_dramalife/"
+#DEF_MACROS +="-lpthread"
 
 
 

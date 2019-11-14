@@ -45,10 +45,10 @@ BUILD := $(OBJS:.o=.out)
 .SECONDARY: $(OBJS) $(BUILD)
 
 $(OBJS) : %.o:%.c
-	$(CC) -c $< -o $@ $(CFLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS) $(DEF_MACROS)
 
 $(BUILD) : %.out:%.o
-	$(CC) $< -o $@ $(CFLAGS)
+	$(CC) $< -o $@ $(CFLAGS) $(DEF_MACROS)
 	
 part-rename1015 : $(BUILD)
 	@echo "SRCS: \n$(SRCS)"
