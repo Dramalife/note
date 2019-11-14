@@ -21,5 +21,5 @@
 |删除不包含abc的行 	|Del lines that not included "abc"	 |:% g!/abc/d	 |  |
 |删除行尾空格 		|Del spaces at the end of the line	 |:%s/\s\+$//g 	 |"%s":all text;  "\s":space;  "\+":one or more;  "$":end of line; |
 |行尾添加空格 		|Add spaces at the end of the line	 |:%s/$/  /g |  |
-| | | |  |
+| 			|Del spaces at the beginning of the line 	 |:%s/^\s\*//g 	 |"^","\s","\*(just star)"  |
 | | | |  |
