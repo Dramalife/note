@@ -1,0 +1,12 @@
+2 getrlimit
+3 pthread_attr_init
+3 pthread_cancel
+3 pthread_create
+3 pthread_detach
+3 pthread_equal
+3 pthread_exit
+3 pthread_getattr_np
+3 pthread_join
+3 pthread_self
+3 pthread_setattr_default_np
+7 pthreads
