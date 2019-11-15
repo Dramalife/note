@@ -29,6 +29,7 @@
 # Ref : https://github.com/21cnbao/training/makefile/mul-dir-exam/Makefile ;
 #
 # Init : 2019.10.15;
+# Update : 2019.11.15, add some TARGETs, remove "(*.c) > a.out".
 # Update :
 #
 
@@ -42,6 +43,7 @@ SRCS := $(wildcard $(SRC_DIR)*.c)
 OBJS := $(SRCS:.c=.o)
 BUILD := $(OBJS:.o=.out)
 
+
 .SECONDARY: $(OBJS) $(BUILD)
 
 $(OBJS) : %.o:%.c
@@ -50,7 +52,12 @@ $(OBJS) : %.o:%.c
 $(BUILD) : %.out:%.o
 	$(CC) $< -o $@ $(CFLAGS) $(DEF_MACROS)
 	
-part-rename1015 : $(BUILD)
+
+###############################################################################
+#			*.c > *.o  ,  *.o > *.out			      #
+###############################################################################
+# Separately compile  "c source" to objects, and link objects separately;
+separately-complile-and-link : $(BUILD)
 	@echo "SRCS: \n$(SRCS)"
 	@echo "OBJS: \n$(OBJS)"
 	@echo "BUILD: \n$(BUILD)"
@@ -59,13 +66,36 @@ part-rename1015 : $(BUILD)
 	-mkdir $(OBJ_DIR)
 	mv -f $(BUILD) $(BUILD_DIR)
 	mv -f $(OBJS) $(OBJ_DIR)
+clean-part-out : clean
+clean-separately-complile-and-link : clean
+part-out : separately-complile-and-link
+###############################################################################
 
-part-objs : $(OBJS)
+
+###############################################################################
+#				*.c > *.o				      #
+###############################################################################
+# Separately compile "c source" to objects;
+separately-complile-to-objects : $(OBJS)
 	@echo "SRCS: \n$(SRCS)"
 	@echo "OBJS: \n$(OBJS)"
 	@echo "PATH \nSRC_DIR: \n$(SRC_DIR) \nOBJ_DIR: \n$(OBJ_DIR) \nBUILD_DIR: \n$(BUILD_DIR) \n"
 	-mkdir $(BUILD_DIR)
 	-mkdir $(OBJ_DIR)
 	mv -f $(OBJS) $(OBJ_DIR)
+clean-part-objs : clean
+clean-separately-complile-to-objects : clean
+part-objs : separately-complile-to-objects
+###############################################################################
 
-.PHONY: part-rename1015
+
+###############################################################################
+#				*.c > library.so			      #
+###############################################################################
+library-dynamic :
+	@echo "TODO !"
+
+clean-library-dynamic : 
+	@echo "TODO !"
+###############################################################################
+

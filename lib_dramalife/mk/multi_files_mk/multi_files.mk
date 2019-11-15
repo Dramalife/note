@@ -41,7 +41,7 @@
 # Sample - config.mk (split make multi files)
 #PATH_ABS=../../../../lib_dramalife/
 #include $(PATH_ABS)/mk/multi_lib.mk
-#CFLAGS+="-I../../../../lib_dramalife/"
+#CFLAGS+="-I$(PATH_ABS)"
 #DEF_MACROS +="-lpthread"
 
 
@@ -76,23 +76,26 @@ EXTERA_FILES2DEL=$(CURRENT_DIR)/build
 CC :=gcc
 LD :=ld
 
+
+# Default target
 default:
 	@echo "Usage: \nmake [TARGET] ! \n"
+
 
 include ./config.mk
 include $(PATH_ABS)libMakefile.mk
 
 
-# LD all to the target.
-all:
-	$(CC) -E $(SRCS) >> $(PRE_SOURCE)
-	@echo "FLAGS : $(CFLAGS) ;"
-	@echo "SRCS: \n$(SRCS)"
-	$(CC) -o $(BIN_NAME)$(BIN_END) $(SRCS) $(CFLAGS) $(DEF_MACROS)
-
+# Backup && Clean
 clean:
 	@echo "$(CURRENT_DIR)"
+	-cp -rvf ./*$(BIN_END)	/tmp
+	-cp -rvf ./*$(PRE_COMP) /tmp
+	-cp -rvf ./*$(BIN_O) 	/tmp
 	rm -rvf ./*$(BIN_END) ./*$(PRE_COMP) ./*$(BIN_O)
+	-cp -rvf $(EXTERA_FILES2DEL) /tmp
 	rm -rvf $(EXTERA_FILES2DEL)
 
+
+.PHONY: default
 .PHONY: clean
