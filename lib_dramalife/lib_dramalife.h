@@ -35,4 +35,6 @@
 
 #include "link_list_lib/link_list.h"
 
+#include "string_related_lib/string_related_lib.h"
+
 #endif
