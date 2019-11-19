@@ -1,0 +1,31 @@
+## man 3 INET
+
+## Internet address manipulation routines
+inet_aton, inet_addr, inet_network, inet_ntoa, inet_makeaddr, inet_lnaof, inet_netof
+
+##SYNOPSIS
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+int inet_aton(const char *cp, struct in_addr *inp);
+
+in_addr_t inet_addr(const char *cp);
+
+in_addr_t inet_network(const char *cp);
+
+char *inet_ntoa(struct in_addr in);
+
+struct in_addr inet_makeaddr(in_addr_t net, in_addr_t host);
+
+in_addr_t inet_lnaof(struct in_addr in);
+
+in_addr_t inet_netof(struct in_addr in);
+
+## Feature Test Macro Requirements for glibc (see feature_test_macros(7)):
+	inet_aton(), inet_ntoa():
+		Since glibc 2.19:
+			_DEFAULT_SOURCE
+		In glibc up to and including 2.19:
+			_BSD_SOURCE || _BSD_SOURCE
+
