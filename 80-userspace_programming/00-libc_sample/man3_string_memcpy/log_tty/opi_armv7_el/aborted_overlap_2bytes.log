@@ -1,0 +1,11 @@
+root@orangepizero:~/note/80-userspace_programming/00-libc_sample/man3_string_memcpy# cat aborted.c
+#include <string.h>
+int main(void)
+{
+	unsigned char as[6],ad[6];
+	memcpy(ad, as, 8);
+	return 0;
+}
+root@orangepizero:~/note/80-userspace_programming/00-libc_sample/man3_string_memcpy# make separately-complile-and-link >/dev/null 2>&1
+root@orangepizero:~/note/80-userspace_programming/00-libc_sample/man3_string_memcpy# ./build/aborted.out
+root@orangepizero:~/note/80-userspace_programming/00-libc_sample/man3_string_memcpy#
