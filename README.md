@@ -110,23 +110,23 @@ git clone https://github.com/Dramalife/note.git --depth=1
 Upload and include files in github,funny!
 
 <div align=right>
-  <img src="http://www.gnu.org/graphics/heckert_gnu.transp.small.png" width="20%">
-  <img src="https://www.kernel.org/theme/images/logos/tux.png" width="20%">  
-  <img src="https://strace.io/Straus.png" width="20%">  
-  <img src="https://github.com/favicon.ico" width="20%">
-  <img src="https://avatars0.githubusercontent.com/u/15922037?s=200&v=4" width="20%">  
+  <img src="http://www.gnu.org/graphics/heckert_gnu.transp.small.png" width="10%">
+  <img src="https://www.kernel.org/theme/images/logos/tux.png" width="10%">  
+  <img src="https://strace.io/Straus.png" width="10%">  
+  <img src="https://github.com/favicon.ico" width="10%">
+  <img src="https://avatars0.githubusercontent.com/u/15922037?s=200&v=4" width="10%">  
 </div>
   
   
 <div align=right>
-  <img src="https://busybox.net/images/busybox1.png" width="20%">
-  <img src="https://www.vim.org/images/vim_header.gif" width="20%">
-  <img src="https://www.linux-sunxi.org/images/c/c5/Logo-155x155.png" width="20%" alt="sunxi">
+  <img src="https://busybox.net/images/busybox1.png" width="10%">
+  <img src="https://www.vim.org/images/vim_header.gif" width="10%">
+  <img src="https://www.linux-sunxi.org/images/c/c5/Logo-155x155.png" width="10%" alt="sunxi">
 </div>
 
 
 <div align=right>
-  <img src="http://www.tcpdump.org/images/logo.png" width="50%" alt="tcmdump">
+  <img src="http://www.tcpdump.org/images/logo.png" width="10%" alt="tcmdump">
 </div>
   
     
