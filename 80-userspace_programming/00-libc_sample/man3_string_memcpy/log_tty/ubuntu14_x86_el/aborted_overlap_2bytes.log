@@ -1,0 +1,17 @@
+dramalife@ubuntu14:~/note/80-userspace_programming/00-libc_sample/man3_string_memcpy $ cat aborted.c 
+#include <string.h>
+int main(void)
+{
+	unsigned char as[6],ad[6];
+	memcpy(ad, as, 8);// TODO : Out of bounds !
+	return 0;
+}
+dramalife@ubuntu14:~/note/80-userspace_programming/00-libc_sample/man3_string_memcpy $ make separately-complile-and-link >/dev/null
+mkdir: cannot create directory ‘/home/dramalife/note/80-userspace_programming/00-libc_sample/man3_string_memcpy/build/’: File exists
+make: [separately-complile-and-link] Error 1 (ignored)
+mkdir: cannot create directory ‘/home/dramalife/note/80-userspace_programming/00-libc_sample/man3_string_memcpy/build/obj/’: File exists
+make: [separately-complile-and-link] Error 1 (ignored)
+dramalife@ubuntu14:~/note/80-userspace_programming/00-libc_sample/man3_string_memcpy $ ./build/aborted.out 
+*** stack smashing detected ***: ./build/aborted.out terminated
+Aborted
+dramalife@ubuntu14:~/note/80-userspace_programming/00-libc_sample/man3_string_memcpy $ 
