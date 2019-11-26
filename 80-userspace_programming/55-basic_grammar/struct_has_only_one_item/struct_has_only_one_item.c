@@ -47,6 +47,8 @@ int main(void)
 	struct st_one_item stn = {9};
 	test_chg_num( &stn );
 	printf("n=(%d) \n", stn.num );/* n=(10) */
+	printf("sizeof(struct st_one_item):[%d] \n", sizeof(struct st_one_item));
+	printf("sizeof(int):[%d] \n",sizeof(int));
 #endif
 
 	return 0;
