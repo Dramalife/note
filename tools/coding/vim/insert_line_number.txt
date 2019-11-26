@@ -1,0 +1,9 @@
+# Insert line number to every line
+:%s/^/\=line(".")/
+
+# Insert line number to light bolck
+#aaaaa
+#bbbbb
+#ccccc
+# ['<,'>s] = ctrl + v + :
+:'<,'>s/^/\=line(".")-line("'<")+1/
