@@ -1,0 +1,16 @@
+VERSION:
+commit b2790732ada6e43de4195b545d1380b1013546b8 (HEAD -> master)
+Author: rc_ubuntu_vdev_x86 <dramalife@live.com>
+Date:   Wed Nov 27 09:48:59 2019 +0800
+
+    [struct][80-55] Struct - init,sizeof,memcpy .
+
+:100644 100644 4e615c7d2 776b8a368 M    80-userspace_programming/55-basic_grammar/struct_has_only_one_item/struct_has_only_one_item.c
+######## VERSION-END
+
+dramalife@ubuntu:~/note/80-userspace_programming/55-basic_grammar/struct_has_only_one_item $ ./a.out
+n=(10)
+sizeof(struct st_one_item):[4]
+sizeof(int):[4]
+[MEMCPY int => struct] int=(20), st.num=(20)
+[TYPE int => struct] int_before=(9), int_after=(10)
