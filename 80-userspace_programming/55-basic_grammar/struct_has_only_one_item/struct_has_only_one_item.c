@@ -9,6 +9,8 @@
 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 *
 * INIT : 2019.08.08
+* UPDATE : 2019.11.27
+* 	init struct variable, sizeof struct, sizeof type;
 * UPDATE : 
 *
 * $ gcc --version
@@ -24,6 +26,7 @@
 */
 
 #include<stdio.h>
+#include <string.h>
 
 struct st_one_item
 {
@@ -38,18 +41,23 @@ void test_chg_num(struct st_one_item *argin)
 
 int main(void)
 {
-#if 0	/* Format transfer */
-	int n = 9;
-	test_chg_num((struct st_one_item *)&n);
-	printf("n=(%d) \n", n);/* n=(10) */
-
-#else	/* Normal way */
-	struct st_one_item stn = {9};
+	// init struct && sizeof struct|int
+	struct st_one_item stn = {9};// init struct
 	test_chg_num( &stn );
 	printf("n=(%d) \n", stn.num );/* n=(10) */
-	printf("sizeof(struct st_one_item):[%d] \n", sizeof(struct st_one_item));
-	printf("sizeof(int):[%d] \n",sizeof(int));
-#endif
+	printf("sizeof(struct st_one_item):[%d] \n", sizeof(struct st_one_item));// sizeof(struct)
+	printf("sizeof(int):[%d] \n", sizeof(int));				 // sizeof(int)
+
+	// memcpy from type int to type struct
+	int i2struct = 20;// [value] int => struct
+	memcpy(&stn, &i2struct, sizeof(int) );
+	printf("[MEMCPY int => struct] int=(%d), st.num=(%d) \n", i2struct, stn.num );
+
+	// convert type int to type struct
+	int t2struct = 9;
+	int t2struct_before = t2struct;
+	test_chg_num((struct st_one_item *)&t2struct);
+	printf("[TYPE int => struct] int_before=(%d), int_after=(%d)  \n",t2struct_before, t2struct);
 
 	return 0;
 }
