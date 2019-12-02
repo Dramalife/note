@@ -24,7 +24,11 @@ set hlsearch
 
 set t_Co=8
 
+" Theme for xshell
 colo ron
+" Theme for Windows powershell
+"colo industry
+
 syntax on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
