@@ -1,0 +1,6 @@
+# install aview && dependence
+sudo apt install aview
+sudo apt install netpbm
+
+# usage
+asciiview linux.png -driver curses -font mda14
