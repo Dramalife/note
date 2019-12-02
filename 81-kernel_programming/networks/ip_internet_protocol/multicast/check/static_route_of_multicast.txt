@@ -1,0 +1,8 @@
+# Routes
+# ip route add 224.0.16.0/24 dev docker0
+# ip route add from 12.23.24.15 to 224.0.18.0/24 dev docker0
+
+
+# Iptables
+# iptables -t filter -nvL
+# iptables -t filter -P FORWARD ACCEPT

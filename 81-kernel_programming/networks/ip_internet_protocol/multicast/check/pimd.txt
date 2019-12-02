@@ -1,0 +1,14 @@
+# Turn on forwarding
+# echo 1 > /proc/sys/net/ipv4/ip_forward
+
+# Install pimd
+# yum install pimd
+
+# Configurate pimd
+# cat  /etc/pimd.conf
+
+# pimd show
+$ pimd --show-routes
+
+# Configurate iptables
+# iptables -t filter -P FORWARD ACCEPT

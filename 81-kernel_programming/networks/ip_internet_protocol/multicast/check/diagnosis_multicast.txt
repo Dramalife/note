@@ -1,0 +1,12 @@
+# Show system configuration
+sysctl -a | grep mc
+sysctl -a | grep forward
+
+# Show multicast routes currently in force
+ip mroute show
+
+# Show debug log of pimd (pimd --help)
+pimd --debug=levelX
+
+# Tcpdump
+tcpdump -ennvi IFNAME

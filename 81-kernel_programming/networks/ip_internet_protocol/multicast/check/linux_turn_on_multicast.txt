@@ -1,0 +1,8 @@
+# echo 1 > /proc/sys/net/ipv4/ip_forward
+
+# cat /proc/sys/net/ipv4/conf/
+# echo 1 >  /proc/sys/net/ipv4/conf/all/mc_forwarding
+
+# echo 1 >  /proc/sys/net/ipv4/conf/eth0/mc_forwarding
+
+
