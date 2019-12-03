@@ -47,3 +47,8 @@
 # pthread_setattr_default_np(3)
 
 # pthreads(7)
+
+# pthread_sigmask(3)
+	pthread_sigmask - examine and change mask of blocked signals
+	int pthread_sigmask(int how, const sigset_t *set, sigset_t *oldset);
+

@@ -10,3 +10,4 @@
 3 pthread_self
 3 pthread_setattr_default_np
 7 pthreads
+3 pthread_sigmask

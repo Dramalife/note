@@ -77,7 +77,7 @@ int main(void)
 		printf("FILO---name:%s,type:%d\n",tmp.name, tmp.address_type);
 	debug_dlll(head);
 
-//test_dlll(head, 60000, 0);/* testing */
+test_dlll(head, 60000, 0);/* testing */
 
 	return 0;
 }
