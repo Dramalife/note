@@ -23,6 +23,9 @@
  *	COPY FROM BarrySong/training/thread/signalsync.c ;
  * Update : 2019.12.03
  *	Format ;
+ * Update : 2019.12.05
+ *	Add description of function "pthread_detach" form manual page ;
+ *	Replace some functions with macros ;
  * Update 
  *
  */
@@ -36,46 +39,93 @@
 #include <sys/types.h>
 
 
+#define SEND_PRINT_SIGNAL(p,s,i)	do{						\
+	kill(p, s);									\
+	printf(										\
+	"[%s,%d] "                                                                      \
+	"Process(%d) send(%s) to pid(%d), cnt(%d)\n"                                    \
+	,__func__,__LINE__								\
+	, getpid(), #s, p, i);								\
+}while(0)
+
+#define RECV_PRINT_SIGNAL(p,s,c)	do{						\
+	printf("[%s,%d] "                                                               \
+	"Thread(%d) receive(%d), cnt(%d) \n"                                            \
+	,__func__,__LINE__                                                              \
+	, p, s, *c);									\
+	(*c)++;										\
+}while(0)
+
 void sig_handler(int signum)
 {
+	int *cnt = NULL;
 	static int j = 0;
 	static int k = 0;
 
 	/* used to show which thread the signal is handled in. */
 	pthread_t  pid_thread = pthread_self();
 
-	if (signum == SIGUSR1) 
+	if(0)
 	{
-		printf("thread %d, receive SIGUSR1 No. %d\n", pid_thread, j);
-		j++;
-		/* SIGRTMIN should not be considered constants from userland,
-		 * there is compile error when use switch case
-		 */
-	} else if (signum == SIGRTMIN) 
+	}
+	else if(signum == SIGUSR1)
 	{
-		printf("thread %d, receive SIGRTMIN No. %d\n", pid_thread, k);
-		k++;
+		cnt = &j;
+	}
+	else if(signum == SIGRTMIN)
+	{
+		cnt = &k;
+	}
+	else
+	{
+		cnt = NULL;
+	}
+
+	if(cnt)
+	{
+		RECV_PRINT_SIGNAL(pid_thread, signum, cnt);
 	}
 }
 
 void* worker_thread()
 {
 	pthread_t  ppid = pthread_self();
+
+	/*
+	 * The  pthread_detach()  function  marks  the  thread  identified  by thread as detached.  \
+	 * When a detached thread terminates, its resources are automatically
+	 * released back to the system without the need for another thread to \
+	 * join with the terminated thread.
+	 * --man 3 pthread_detach
+	 */
 	pthread_detach(ppid);
+
 	while (1) 
 	{
-		printf("I'm thread %d, I'm alive\n", ppid);
+		printf(
+				"[%s,%d] "
+				"thread(%d) running... \n"
+				,__func__,__LINE__
+				,ppid
+		      );
 		sleep(10);
 	}
 }
 
 void* sigmgr_thread()
 {
-	sigset_t   waitset, oset;
+	sigset_t   waitset;
 	siginfo_t  info;
 	int        rc;
 	pthread_t  ppid = pthread_self();
 
+	/*
+	 * The  pthread_detach()  function  marks  the  thread  identified  by thread as detached.  \
+	 * When a detached thread terminates, its resources are automatically
+	 * released back to the system without the need for another thread to \
+	 * join with the terminated thread.
+	 * --man 3 pthread_detach
+	 */
 	pthread_detach(ppid);
 
 	sigemptyset(&waitset);
@@ -87,7 +137,14 @@ void* sigmgr_thread()
 		rc = sigwaitinfo(&waitset, &info);
 		if (rc != -1) 
 		{
-			printf("sigwaitinfo() fetch the signal - %d\n", rc);
+#if 0
+			printf(
+					"[%s,%d] "
+					"fetch signal(%d) \n"
+					,__func__,__LINE__
+					,rc
+			      );
+#endif
 			sig_handler(info.si_signo);
 		} else 
 		{
@@ -135,11 +192,9 @@ int main()
 	/* send out 50 SIGUSR1 and SIGRTMIN signals */
 	for (i = 0; i < 50; i++) 
 	{
-		kill(pid, SIGUSR1);
-		printf("main thread, send SIGUSR1 No. %d\n", i);
-		kill(pid, SIGRTMIN);
-		printf("main thread, send SIGRTMIN No. %d\n", i);
-		sleep(10);
+		SEND_PRINT_SIGNAL(pid, SIGUSR1, i);
+		SEND_PRINT_SIGNAL(pid, SIGRTMIN, i);
+		sleep(5);
 	}
 	exit (0);
 }
