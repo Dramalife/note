@@ -146,6 +146,8 @@ clean-all-with-lib-objs:
 	rm -f $(BUILD_DIR)$(LIB_OBJ_LINKNAME)
 	rm -rf $(OBJ_DIR)/*
 	rm -rvf ./*$(BIN_DNAME) ./*$(PRE_COMP) ./*$(BIN_O)
+	-rmdir $(OBJ_DIR)
+	-rmdir $(BUILD_DIR)
 ################################################
 
 ###################[normal]#####################
