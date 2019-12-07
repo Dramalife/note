@@ -20,6 +20,8 @@
  * ;
  * 
  * Init : 2019.11.14;
+ * Update : 2019.12.07
+ *	Add "ipc_lib.h" ;
  * Update 
  *
  */
@@ -36,5 +38,7 @@
 #include "link_list_lib/link_list.h"
 
 #include "string_related_lib/string_related_lib.h"
+
+#include "ipc_lib/ipc_lib.h"
 
 #endif
