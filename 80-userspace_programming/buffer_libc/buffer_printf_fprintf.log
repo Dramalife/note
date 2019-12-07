@@ -1,0 +1,8 @@
+RESULT
+ dramalife@server:~/note/80-userspace_programming/buffer_libc $ gcc buffer_printf_fprintf.c -o buffer_printf_fprintf.out
+ dramalife@server:~/note/80-userspace_programming/buffer_libc $ ./buffer_printf_fprintf.out
+ line(43), with [\n]
+ line(38),without [\n] dramalife@server:~/note/80-userspace_programming/buffer_libc $
+REASON (dramalife guess)
+ printf is line buffered;
+ printf and fprintf using different buffer;
