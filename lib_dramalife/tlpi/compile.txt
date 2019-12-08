@@ -1,0 +1,7 @@
+# NEEDED BY rpi_armbian && ubuntu14 
+
+fatal error: sys/acl.h: No such file or directory
+sudo apt-get install uuid-dev libacl1-dev liblzo2-dev
+
+fatal error: sys/capability.h: No such file or directory
+sudo apt-get install libcap-dev
