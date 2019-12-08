@@ -1,1 +1,0 @@
-../../../lib_dramalife/mk/makefile_multi

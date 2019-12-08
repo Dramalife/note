@@ -1,9 +1,0 @@
-error: 'errno' undeclared (first use in this function)
-++ #include <errno.h>
-
-error: unknown type name 'va_list'
-++ #include <stdarg.h>
-
-error: 'stdout' undeclared (first use in this function)
-error: 'stderr' undeclared (first use in this function)
-++ #include <stdio.h>
