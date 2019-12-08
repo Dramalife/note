@@ -11,7 +11,7 @@
 |CH |EN |CMD |
 |--|--|--|
 |ÎÄ±¾ĞĞµ¹ÖÃ	|Reverse the line of text	|:g/^/m0	|
-| | | |
+| |Delete repeat line |sort u |
 | | | |
 | | | |
 
