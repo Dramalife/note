@@ -1,0 +1,73 @@
+dramalife@server:~/note/80-userspace_programming/ipc/fifo $ git log
+commit 41b055e2bb1f04d907e9fd4bd1e79c087ba6b31e (HEAD -> master, origin/master, origin/HEAD)
+Author: dramalife_opi_armbian <dramalife@live.com>
+Date:   Mon Dec 9 00:50:21 2019 +0800
+
+    [gcc] errors - can not find headers.
+
+
+********
+
+dramalife@server:~/note/80-userspace_programming/ipc/fifo $ make
+cc    -c -o dep_files/func_dep.o dep_files/func_dep.c
+make: execvp: cc: Too many levels of symbolic links
+<builtin>: recipe for target 'dep_files/func_dep.o' failed
+make: *** [dep_files/func_dep.o] Error 127
+
+
+*******
+
+dramalife@server:~/note/80-userspace_programming/ipc/fifo $ make --version
+GNU Make 4.1
+Built for x86_64-pc-linux-gnu
+Copyright (C) 1988-2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+dramalife@server:~/note/80-userspace_programming/ipc/fifo $ ln --version
+ln (GNU coreutils) 8.28
+Copyright (C) 2017 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Mike Parker and David MacKenzie.
+dramalife@server:~/note/80-userspace_programming/ipc/fifo $ gcc --version
+gcc (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+dramalife@server:~/note/80-userspace_programming/ipc/fifo $ bash --version
+GNU bash, version 4.4.20(1)-release (x86_64-pc-linux-gnu)
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+
+This is free software; you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+********
+
+dramalife@server:~/temp/coreutils-8.28 $ grep "Too many levels of symbolic links" . -Rn
+./gnulib-tests/strerror_r.c:382:            errmsg = "Too many levels of symbolic links";
+./ChangeLog:14175:          rm: cannot remove 's': Too many levels of symbolic links
+./NEWS:1057:  "Too many levels of symbolic links" diagnostic.
+./tests/du/long-sloop.sh:3:# Show that du fails with ELOOP (Too many levels of symbolic links)
+./tests/du/long-sloop.sh:52:# Linux/libc gives 'Too many levels of symbolic links', Solaris
+./tests/du/long-sloop.sh:64:# du: cannot access '1/s/s/s/.../s': Too many levels of symbolic links
+./lib/strerror-override.c:87:      return "Too many levels of symbolic links";
+
+************
+dramalife@server:~/temp/gcc-6.3.0 $ grep "Too many levels of symbolic links" . -rn
+./gettext-0.19.8.1/gettext-tools/libgettextpo/strerror-override.c:87:      return "Too many levels of symbolic links";
+./gettext-0.19.8.1/gettext-tools/tests/msguniq-2:2720:msgid "Too many levels of symbolic links"
+./gettext-0.19.8.1/gettext-tools/tests/msguniq-a.in:3146:msgid "Too many levels of symbolic links"
+./gettext-0.19.8.1/gettext-tools/tests/msguniq-a.out:2910:msgid "Too many levels of symbolic links"
+./gettext-0.19.8.1/gettext-tools/gnulib-lib/strerror-override.c:87:      return "Too many levels of symbolic links";
+./gettext-0.19.8.1/gettext-runtime/gnulib-lib/strerror-override.c:87:      return "Too many levels of symbolic links";
+./libiconv-1.15/srclib/strerror-override.c:87:      return "Too many levels of symbolic links";
+Binary file ./gettext-0.19.8.1.tar matches
+^C
+dramalife@server:~/temp/gcc-6.3.0 $ ls^C
+
+****************
