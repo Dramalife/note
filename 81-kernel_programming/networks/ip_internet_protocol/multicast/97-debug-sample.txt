@@ -1,3 +1,17 @@
-~ # ./mc_server_mips32_eb.out 
-setsockopt: No such device
-~ # route add -net 224.0.0.0 netmask 224.0.0.0 eth0
+# 1. ERROR-1 No such device
+
+### 1.1 terminal print
+  ~ # ./mc_server_mips32_eb.out 
+  setsockopt: No such device
+  ~ # route add -net 224.0.0.0 netmask 224.0.0.0 eth0
+### 1.2reason
+  What does "IP_ADD_MEMBERSHIP: No such device" mean? 
+  
+  It means that the tool is trying to use multicast but the network interface doesn't support it There are two likely causes: 
+  o 	your machine doesn't have multicast support enabled. 
+  	For example, on Linux and FreeBSD it is possible to compile a kernel which doesn't support multicast.  
+  o 	you don't have a route for multicast traffic. 
+  	Some systems don't add this by default, and you need to run : 
+  	route add -net 224.0.0.0 netmask 224.0.0.0 eth0)or similar). 
+  	If you wish to use RAT in unicast mode only, 
+  	it is possible to add the multicast route on the loopback interface.
