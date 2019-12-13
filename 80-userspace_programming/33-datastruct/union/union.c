@@ -39,6 +39,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <sys/types.h>
 
 
 /* Data Struct */
@@ -91,6 +92,9 @@ int size_union(void)
 #else
 #error Get word size failed !
 #endif
+
+	//TODO - %jd
+	//printf( "Memory size occupied by data : %jd\n", (int128_t)sizeof(data));
 
 	return 0;
 }
