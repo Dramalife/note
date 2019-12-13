@@ -1,0 +1,5 @@
+RELATIVE_PATH_TO_LIB_DRAMALIFE=../../../../../lib_dramalife/
+TARGET_PATH=./folder_headers
+TARGET_DNAME=dl_headers
+##DATA_FILE_PWD=${RELATIVE_PATH_TO_LIB_DRAMALIFE}/data_pub/headers_gcc_userspace.ubuntuserver18.list
+DATA_FILE_PWD=${RELATIVE_PATH_TO_LIB_DRAMALIFE}/data_pub/$(uname -r).list
