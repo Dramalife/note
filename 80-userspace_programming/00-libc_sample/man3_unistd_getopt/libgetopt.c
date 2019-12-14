@@ -12,7 +12,7 @@
 #include <string.h>
 
 
-#define DL_OPT_CHECK_FLAG(x,y)	x&y
+#define DL_OPT_CHECK_FLAG(x,y)	(x&y)
 
 
 struct dl_option
@@ -70,6 +70,7 @@ struct dl_option options_demo[]=
 int handler_opt_continuously(void *arg)
 {
 	DL_OPT_HANDLER_PRINT_INFO(arg);
+	return 0;
 }
 /* Sample Function */
 int handler_opt_timeval(void *arg)
@@ -142,6 +143,7 @@ int dl_usr_model_check(struct dl_option *arg_opt)
 		ptr++;
 	}
 	printf("[%s,%d] error_sum(%d) \n",__func__,__LINE__,err_cnt);
+	return err_cnt;
 }
 
 int dl_getopt(int argc, char *argv[], struct dl_option (*dlopt)[])
@@ -188,7 +190,7 @@ int dl_getopt(int argc, char *argv[], struct dl_option (*dlopt)[])
 	while ((opt = getopt(argc, argv, dl_optstring)) != -1)
 	{
 		printf("opt(%c),optind(%d) \n",opt, optind );
-		if( ptr = dl_find_opt_by_name(dlopt, opt) )
+		if( (ptr = dl_find_opt_by_name(dlopt, opt)) )
 		{
 			if( DL_OPT_CHECK_FLAG(ptr->dlopt_flag, DL_OPT_ELEMENT_DATA_EXIST) )
 			{
@@ -222,6 +224,7 @@ int dl_getopt(int argc, char *argv[], struct dl_option (*dlopt)[])
 	{
 		printf("name argument = %s\n", argv[optind]);
 	}
+	return optind;
 }
 void dl_getopt_freeall(struct dl_option (*dlopt)[])
 {
