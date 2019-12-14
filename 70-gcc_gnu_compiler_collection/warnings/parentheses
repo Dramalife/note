@@ -1,0 +1,10 @@
+PWD : /note/80-userspace_programming/00-libc_sample/man3_unistd_getopt
+
+/*
+ * libgetopt.c:134:10: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+ *     if( 0 == DL_OPT_CHECK_FLAG(ptr->dlopt_flag, DL_OPT_ELEMENT_DATA_EXIST) )
+ *           ^
+ * - #define DL_OPT_CHECK_FLAG(x,y)	x&y
+ * + #define DL_OPT_CHECK_FLAG(x,y)	(x&y)
+ */
+#define DL_OPT_CHECK_FLAG(x,y)	(x&y)
