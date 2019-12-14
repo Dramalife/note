@@ -1,1 +1,1 @@
-../../../../../lib_dramalife/mk/makefile_multi
+../../../../../lib_dramalife/mk/makefile_single
