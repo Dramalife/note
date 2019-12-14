@@ -41,4 +41,6 @@
 
 #include "ipc_lib/ipc_lib.h"
 
+#include "option_config_lib/option_config_lib.h"
+
 #endif
