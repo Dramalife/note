@@ -1,0 +1,14 @@
+1. Q : Can we get response while pinging multicast group address?
+   A : Never !
+       [CH] (多播地址只能用于目的地址，而不能用于源地址。此外，对多播数据报不产生ICMP差错报文。
+       		因此，若在PING命令后面键入多播地址，将永远不会收到响应。)
+       [EN] (TODO - )
+   <<计算机网络-谢希仁，Page+165>>
+
+
+--------------template--------------
+x. Q : 
+   A :
+       []
+       []
+   <<>>
