@@ -132,7 +132,7 @@ OBJS := $(SRCS:.c=.o)
 .SECONDARY+= $(OBJS) $(BUILD)
 
 $(OBJS) : %.o:%.c
-	$(CC) -c $< -o $@ $(CFLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS) $(DEF_MACROS)
 
 # [TARGET] : Linking with other objs
 all-with-lib-objs:$(OBJS)

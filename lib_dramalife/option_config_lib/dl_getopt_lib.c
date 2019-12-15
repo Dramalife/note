@@ -100,18 +100,23 @@ int dl_getopt(int argc, char *argv[], struct dl_option (*dlopt)[])
 	ptr = *dlopt;//TODO
 	memset(dl_optstring, 0, 256);
 
-	printf("[%s,%d] argc(%d) \n",__func__,__LINE__, argc);
+	DL_OPT_SHOW_VERSION(__func__,__LINE__,argc);
+
 	if( 0 != (err_chk = dl_usr_model_check(ptr)) )
 	{
 		printf("[%s,%d] WARNING! \n",__func__,__LINE__);
 	}
 
+#if DL_OPT_DETECT_ETTOR_CHECK(DL_OPT_DETECT_ERROR_LEVEL3_DISTINGUISH)
+	strncat(dl_optstring, ":", 1);
+#endif
 	while( ptr->dlopt_name != 0  )
 	{
 		printf("name(%c), ele_flag(%d) \n"
 				,ptr->dlopt_name 
 				,ptr->dlopt_flag
 		      );
+
 		strncat(dl_optstring, (const char *)&(ptr->dlopt_name), 1);
 		if( DL_OPT_CHECK_FLAG(ptr->dlopt_flag, DL_OPT_ELEMENT_DATA_EXIST) )
 		{
@@ -132,17 +137,88 @@ int dl_getopt(int argc, char *argv[], struct dl_option (*dlopt)[])
 	 */
 	while ((opt = getopt(argc, argv, dl_optstring)) != -1)
 	{
-		printf("opt(%c),optind(%d) \n",opt, optind );
-		if( (ptr = dl_find_opt_by_name(dlopt, opt)) )
-		{
-			if( DL_OPT_CHECK_FLAG(ptr->dlopt_flag, DL_OPT_ELEMENT_DATA_EXIST) )
-			{
-				ptr->dlopt_data = (struct dl_option_data *)malloc(sizeof(struct dl_option_data));
-				ptr->dlopt_flag |= DL_OPT_ELEMENT_DATA_NEED_FREE;
+		printf("opt(%c),optind(%d),optarg(%s) \n",opt, optind, optarg?optarg:"NULL" );
 
-				if( DL_OPT_CHECK_FLAG(ptr->dlopt_flag, DL_OPT_ELEMENT_DATA_TYPE_INT_ARR) )
+		/* ARG : opt, optarg */
+		/* man 3 getopt
+		 * optstring is a string containing the legitimate option characters.  \
+		 * If such a character is followed by a colon (':'), the option requires an argument, \
+		 * so getopt() places a pointer to the following text in the same argv-element, \
+		 * or the text of the following argv-element, in optarg.  
+		 * Two colons mean an option takes an optional arg; \
+		 * if there  is  text in  the current argv-element (i.e., in the same word as \
+		 * the option name itself, for example, "-oarg"), then it is returned in optarg, \
+		 * otherwise optarg is set to zero.  This is a GNU extension.  \
+		 * If optstring contains W followed by a semicolon, then -W foo is \
+		 * treated as the long option --foo.  (The -W option is reserved by POSIX.2 for implemen?
+		 * tation extensions.)  This behavior is a GNU extension, not available with 
+		 * libraries before glibc 2.
+		 */
+		/* ex.1
+		 * optstring : "T:"
+		 * commandline : ./a.out -T
+		 * then vaule of variable "opt" is "?"
+		 * vaule of pointer variable "optarg" is NULL
+		 */
+		/* man 3 getopt
+		 * While processing the option list, getopt() can detect two kinds of errors: \
+		 *	(1) an option character that was not specified in optstring and \
+		 *	(2) a missing option argument (i.e., an option at the end of the command line \
+		 *	without an expected argument).  Such errors are handled and reported as follows:
+		 * o	By default, getopt() prints an error message on standard error, 
+		 *	places the erroneous option character in optopt, and returns '?' as the function result.
+		 * o	If the caller has set the global variable opterr to zero, then getopt() \
+		 *	does not print an error message.  The caller can determine that there was an error \
+		 *	by testing whether the function return value is '?'.  (By default, opterr has a nonzero value.)
+		 * o	If the first character (following any optional '+' or '-' described above) of optstring is \
+		 *	a colon (':'), then getopt() likewise does not print an error message.  In addition, \
+		 *	it returns ':' instead of '?' to indicate a missing option argument.  \
+		 *	This allows the caller to distinguish the two different types of errors.
+		 *
+		 * MACRO of "dramalife getopt lib" - DL_OPT_DETECT_ERROR_LEVEL
+		 * o1 : default				MACRO - DL_OPT_DETECT_ERROR_LEVEL1_DEFAULT
+		 * o2 : disable error printing		MACRO - DL_OPT_DETECT_ERROR_LEVEL2_NO_PRINT_ERR
+		 * o3 : distinguish the 2 errors	MACRO - DL_OPT_DETECT_ERROR_LEVEL3_DISTINGUISH
+		 */
+		if( '?' == opt )
+		{
+#if DL_OPT_DETECT_ETTOR_CHECK(DL_OPT_DETECT_ERROR_LEVEL3_DISTINGUISH)
+			//TODO - handler_option_unregistered
+			printf("Recv OPTOPT(%c) OPT(%c) that was UNREGISTERED ! \n",optopt,opt);
+#else
+			printf("Recv OPTOPT(%c) OPT(%c) that was UNREGISTERED or INCOMPLETE! \n",optopt,opt);
+#endif
+		}
+#if DL_OPT_DETECT_ETTOR_CHECK(DL_OPT_DETECT_ERROR_LEVEL3_DISTINGUISH)
+		else if( ':' == opt )
+		{
+			//TODO - handler_option_incomplete
+			printf("Recv OPTOPT(%c) OPT(%c) that was INCOMPLETE! \n",optopt,opt);
+		}
+#endif
+		else if( (ptr = dl_find_opt_by_name(dlopt, opt)) )
+		{
+			printf("[%s,%d] opt(%c) \n",__func__,__LINE__,opt);
+			if( DL_OPT_CHECK_FLAG(ptr->dlopt_flag, DL_OPT_ELEMENT_DATA_EXIST) )	/* EXPECTED data */
+			{
+				if( NULL != optarg )
 				{
-					*(((struct dl_option_data *)(ptr->dlopt_data))->dloptd_int + 0) = atoi(optarg);
+					ptr->dlopt_data = (struct dl_option_data *)malloc(sizeof(struct dl_option_data));
+					ptr->dlopt_flag |= DL_OPT_ELEMENT_DATA_NEED_FREE;
+
+					if( DL_OPT_CHECK_FLAG(ptr->dlopt_flag, DL_OPT_ELEMENT_DATA_TYPE_INT_ARR) )
+					{
+						*(((struct dl_option_data *)(ptr->dlopt_data))->dloptd_int + 0) = atoi(optarg);
+						//TODO - (index + 1)
+					}
+					if( DL_OPT_CHECK_FLAG(ptr->dlopt_flag, DL_OPT_ELEMENT_DATA_TYPE_CHAR_ARR) )
+					{
+						//TODO
+					}
+				}
+				else
+				{
+					printf("[%s,%d]  Option (%c) expected data, but given none! \n", __func__,__LINE__,opt);
 				}
 			}
 			if(NULL != ptr->dlopt_handler)
@@ -150,9 +226,9 @@ int dl_getopt(int argc, char *argv[], struct dl_option (*dlopt)[])
 				(*(ptr->dlopt_handler)) (ptr);
 			}
 		}
-		else
+		else/* TODO - Maybe never enter? */
 		{
-			printf("RECV OPT(%c) THAT WAS NOT REGISTERED ! \n",optopt);
+			printf("Recv OPT(%c) that was UNREGISTERED or INCOMPLETE! \n",optopt);
 		}
 	}
 
