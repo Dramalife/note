@@ -1,0 +1,18 @@
+#$language = "VBScript"
+#$interface = "1.0"
+
+crt.Screen.Synchronous = True
+
+' This automatically generated script may need to be
+' edited in order to work correctly.
+
+Sub Main
+Do
+While true
+	crt.Screen.Send "your_command_string(" & chr(34) & "90::1/64" & chr(34) & ")" & chr(13)
+	crt.Screen.WaitForString "> "
+	crt.Sleep 1000
+Wend
+Loop
+End Sub
+
