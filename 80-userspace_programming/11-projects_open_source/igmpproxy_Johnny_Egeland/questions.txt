@@ -1,0 +1,8 @@
+1. global variable - reentrance
+******************
+Git info
+	File : igmpproxy.c
+	Version : 0.2.1
+Code
+	static int sighandled = 0;
+	static void signalHandler(int sig)
