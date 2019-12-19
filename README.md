@@ -20,7 +20,7 @@ Dramalife\`s note
 [! Linux C(userspace) API Ref](http://net.pku.edu.cn/~yhf/linux_c/)  
 
 
-#### Clone
+### Clone
 
 ```bash
 git clone https://github.com/Dramalife/note.git --depth=1
@@ -104,6 +104,20 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |--|--|--|--|
 | 0|TFT LCD(ili9486) |2019.07.24- | drivers/staging/fbtft/fb\_ili9486.c|
 | | | | |
+
+### Directories
+| Directory			 | Introduction				|
+|--|--|
+| 50-books			 |					|
+| 70-gcc_gnu_compiler_collection | GCC related				|
+| 80-userspace_programming       | userspace code			|
+| 81-kernel_programming          | kernelspace code			|
+| 90-operating_system            | OS related				|
+| lib_dramalife                  | C libraries of dramalife		|
+| LICENSE                        | license				|
+| --personal                     | personal configuration files		|
+| README.md                      | readme				|
+| tools                          | tools for coding, diagnose ...	|
 
 ### Games  
 
