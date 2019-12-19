@@ -1,0 +1,6 @@
+Lock session
+	C-a s
+Unlock session
+	C-a q
+??
+	C-a x or C-a C-x │ (lockscreen)    │ Lock this terminal.
