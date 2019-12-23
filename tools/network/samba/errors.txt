@@ -1,0 +1,6 @@
+# 1. ERROR
+	$ sudo mount -t cifs //192.168.0.108/TARGET_PATH ./TARGET_PATH -o user=USER_NAME,sec=XXX
+	mount: /home/dramalife/TARGET_PATH: bad option; for several filesystems (e.g. nfs, cifs) you might need a /sbin/mount.<type> helper program.
+FIX:
+	$ sudo apt-get install cifs-utils
+

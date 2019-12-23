@@ -22,3 +22,6 @@
 
 # Sample : 81-kernel_programming/drivers/tiny_fs/.cache.mk
 *.cache*
+
+# ctag data
+tags
