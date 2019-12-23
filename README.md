@@ -31,8 +31,8 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |--|--|--|
 |0|2019.01.09|Linux C Signal;fork();zombie thread;|
 |1|2019.01.21|TCP/IP|
-|2|2019.01.21|CLI：u-boot,zebra\(quagga\)|
-|3|2019.01.21|[GNU C:__attribute__](//70-gcc_gnu_compiler_collection/gnu_c_attribute)|
+|2|2019.01.21|CLI,u-boot,zebra\(quagga\)|
+|3|2019.01.21|[GNU C:__attribute__](/70-gcc_gnu_compiler_collection/gnu_c_attribute)|
 |4|2019.01.28|[ioctl,socket](/81-kernel_programming/network/socket/)|
 |5|2019.03.14|[process&thread \- sync&com](/coding_thread)|
 |6|2019.05.09|[compile(gcc),include](/80-userspace_programming/gcc)|
@@ -40,6 +40,10 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |8|2019.06.20|[lsof(list open files),strace(syscall_strace) at /tools](/tools)|
 |9|2019.07.07|[lib.so-shared library(create lib, link, load, make lib executable)](/70-gcc_gnu_compiler_collection/dynamic_exec_libx_so) |
 |A|2019.08.23|[gcc-make-opensource](/tools/gcc), [70-gcc_gnu_compiler_collection](/70-gcc_gnu_compiler_collection) |
+|B|2019.10.31|[inotify](/80-userspace_programming/inotify)-Gather filesystem usage statistics; |
+|C|2019.12.23|[pthread_sync](/80-userspace_programming/thread_sync)-mutex,condition variable; |
+|D|2019|[glibc_sample](/80-userspace_programming/00-libc_sample), [mylib](/lib_dramalife); |
+|E|2019|IPC :: [ipc&mylib_ipc](/80-userspace_programming/ipc), [ipc_old](/80-userspace_programming/thread_process/31-com_process) |
 | | | |
 | | | |
 
@@ -81,6 +85,7 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |16|PLAN |ABI/EABI |[note-ABI/EABI](/90-operating_system/ABI) |2019.09.09PAUSE- |
 |17|HALT|fs(filesystem,tinyfs) |[tiny_fs](/81-kernel_programming/device_drivers/tiny_fs) |2019.09.06-(keep)-2019.09.17(halt,>network)- |
 |18|**DOING**|Netlink/netlink(userspace) | |2019.11.01- |
+|19|**DOING**|igmpproxy |[multicast & igmpproxy](/81-kernel_programming/networks/ip_internet_protocol/multicast); |2019.12- |
 | | | | | |
 | | | | | |
 | | | | | |
@@ -97,6 +102,8 @@ git clone https://github.com/Dramalife/note.git --depth=1
 | |STM32F107VCT6|ethernet,NB-Iot/GSM|
 |3|Raspberry Pi |2018.07|Arm v7|
 |4|Orange Pi |2018.12.27|SoC:sunxi,Architecture:Cortex-A7,Instruction Set:Arm v7;|
+| | | | |
+| | | | |
 | | | | |
 
 ### Devices
