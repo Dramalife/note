@@ -1,0 +1,17 @@
+# The order that which threads get mutex first is uncertain
+dramalife@server:~/note/80-userspace_programming/thread_sync/mutexe $ ./a.out
+loops     (  10000000)
+[threadFunc,100] thread(24475)
+[threadFunc,100] thread(24476)
+[threadFunc,114] thread(24476)
+[threadFunc,114] thread(24475)
+glob      (  20000000)
+loops*2   (  20000000)
+dramalife@server:~/note/80-userspace_programming/thread_sync/mutexe $ ./a.out
+loops     (  10000000)
+[threadFunc,100] thread(24478)
+[threadFunc,100] thread(24479)
+[threadFunc,114] thread(24478)
+[threadFunc,114] thread(24479)
+glob      (  20000000)
+loops*2   (  20000000)
