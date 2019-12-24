@@ -142,7 +142,19 @@ main(int argc, char *argv[])
 		/* Wait for something to consume */
 		while (avail == 0) 
 		{
-			s = pthread_cond_wait(&cond, &mtx);
+			/*
+			 * pthread_cond_wait & pthread_cond_timedwait
+			 * These functions atomically release mutex and cause 
+			 * the calling thread to block on the condition variable cond; 
+			 * atomically here means "atomically with respect to access 
+			 * by another thread to the mutex and then the condition variable". 
+			 * That is, if another thread is able to acquire the mutex
+			 * after the about-to-block thread has released it, 
+			 * then a subsequent call to pthread_cond_signal() 
+			 * or pthread_cond_broadcast() in that thread behaves 
+			 * as if it were issued after the about-to-block thread has blocked.
+			 */
+			s = pthread_cond_wait(&cond, &mtx);/* mutex_unlock > block > mutex_lock */
 			if (s != 0)
 				errExitEN(s, "pthread_cond_wait");
 		}
