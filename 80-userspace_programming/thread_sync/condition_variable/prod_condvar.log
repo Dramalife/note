@@ -1,0 +1,39 @@
+# run
+dramalife@server:~/note/80-userspace_programming/thread_sync/condition_variable $ ./a.out 2 3 1 2
+USAGE :
+./a.out NUM1 NUM2 NUM3 ...
+NUM1 : Produce num of thread 1
+NUM2 : Produce num of thread 2
+NUM3 : Produce num of thread 3
+[main,148]
+T=1: numConsumed=1
+T=1: numConsumed=2
+T=1: numConsumed=3
+[main,148]
+T=1: numConsumed=4
+[main,148]
+T=2: numConsumed=5
+T=2: numConsumed=6
+[main,148]
+T=2: numConsumed=7
+[main,148]
+T=3: numConsumed=8
+
+# Idel run	(2312 > 121 > 1)
+dramalife@server:~/note/80-userspace_programming/thread_sync/condition_variable $ ./a.out 2 3 1 2
+USAGE :
+./a.out NUM1 NUM2 NUM3 ...
+NUM1 : Produce num of thread 1
+NUM2 : Produce num of thread 2
+NUM3 : Produce num of thread 3
+[main,148]
+T=1: numConsumed=1
+T=1: numConsumed=2
+T=1: numConsumed=3
+T=1: numConsumed=4
+[main,148]
+T=2: numConsumed=5
+T=2: numConsumed=6
+T=2: numConsumed=7
+[main,148]
+T=3: numConsumed=8
