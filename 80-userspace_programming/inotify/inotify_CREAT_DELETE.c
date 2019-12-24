@@ -35,18 +35,18 @@ int watch_inotify_events(int fd)
 	int event_size = 0;
 	struct inotify_event *event;
 
-	/*读事件是否发生，没有发生就会阻塞*/
+	/* Block for reading */
 	ret = read(fd, event_buf, sizeof(event_buf));
 	outp();
 
-	/*如果read的返回值，小于inotify_event大小出现错误*/
+	/* Read inotify_event */
 	if(ret < (int)sizeof(struct inotify_event))
 	{
 		printf("counld not get event!\n");
 		return -1;
 	}
 
-	/*因为read的返回值存在一个或者多个inotify_event对象，需要一个一个取出来处理*/
+	/* Read inotify_event in a loop */
 	while( ret >= (int)sizeof(struct inotify_event) )
 	{
 		outp();
@@ -63,7 +63,7 @@ int watch_inotify_events(int fd)
 			}
 		}
 
-		/*event_size就是一个事件的真正大小*/
+		/* event_size is true size of event */
 		event_size = sizeof(struct inotify_event) + event->len;
 		ret -= event_size;
 		event_pos += event_size;
@@ -85,7 +85,7 @@ int main(int argc, char** argv)
 		return -1;
 	}
 
-	/*inotify初始化*/
+	/* Init inotify */
 	InotifyFd = inotify_init();
 	if( InotifyFd == -1)
 	{
@@ -93,22 +93,22 @@ int main(int argc, char** argv)
 		return -1;
 	}
 
-	/*添加watch对象*/
+	/* Add watching objects */
 	ret = inotify_add_watch(InotifyFd, argv[1], IN_CREATE |  IN_DELETE);
 	strcpy(path,argv[1]);
 
-	/*处理事件*/
+	/* Handle events */
 	while(1)
 		watch_inotify_events(InotifyFd);
 
-	/*删除inotify的watch对象*/
+	/* Del watching object */
 	if ( inotify_rm_watch(InotifyFd, ret) == -1) 
 	{
 		printf("notify_rm_watch error!\n");
 		return -1;
 	}
 
-	/*关闭inotify描述符*/
+	/* close fd of inotify */
 	close(InotifyFd);
 
 	return 0;
