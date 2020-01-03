@@ -14,6 +14,7 @@ next child terminates and then returns the process ID and status of that child.
 */
 
 /* Dramalife@live.com, 20190601 */
+/* KEYWORDS : vfork, waitpid, execve */
 
 #include <unistd.h>
 #include <stdio.h>
@@ -29,23 +30,27 @@ next child terminates and then returns the process ID and status of that child.
 #include <fcntl.h>
 
 
-#include <terminal_color_dramalife.h>
+#include <lib_dramalife.h>
+//#include <terminal_color_dramalife.h>
+#define YELLOW	CYELLOW
+#define CYAN	CCYAN
 
-#define pxxg_send_flag_reset(st) do{st->flag_run = 0;st->already_run = 0;}while(0)
+#define pxxg_send_flag_reset(st) do{st->ping_stage = 0;st->ping_timeout_cnt = 0;}while(0)
 
 struct pxxg_st
 {
 	int index;
-	int flag_run;
+#define DL_PING_STAGE_INIT	
+	int	ping_stage;
 	
-	int already_run;
-	time_t time_pxxg;
+	int 	ping_timeout_cnt;
+	time_t 	ping_start_time;
 
-	pid_t pid_of_ping;	/* emergency brake */
+	pid_t 	ping_pid;	/* emergency brake */
 
-	int ping_c;		/* ping -c */
-	char ping_i[16];	/* ping -I */
-	char ping_des_ip[24];	/* ipaddr  */
+	int	ping_cnt;	/* ping -c */
+	char	ping_iface[16];	/* ping -I */
+	char	ping_host[24];	/* HOST ip address */
 };
 
 struct pxxg_st pst;
@@ -54,23 +59,28 @@ int pxxg_send_start(struct pxxg_st *st)
 {
 	int i;
 	char cnt[16];
-	sprintf(cnt,"%d",st->ping_c);
+	sprintf(cnt,"%d",st->ping_cnt);
 
-	st->flag_run = 1;
+	st->ping_stage = 1;
 
 	for (i = 0; i < 1; ++i)
 	{
-		if ((st->pid_of_ping = vfork()) < 0)/* FORK ERR */
+		if ((st->ping_pid = vfork()) < 0)/* FORK ERR */
 		{
 			printf("vfork error");
 			continue;
 		}
 
-		if (st->pid_of_ping == 0)/* CHILD */
+		if (st->ping_pid == 0)/* CHILD */
 		{
-			st->flag_run = 2;
+			st->ping_stage = 2;
 
-			printf("if:%s,ip:%s,cnt:%s \n",st->ping_i, st->ping_des_ip, cnt);
+			printf("if:%s,ip:%s,cnt:%s \n",st->ping_iface, st->ping_host, cnt);
+
+			/* memory changes would be visible in the parent, 
+			 * but changes to the state of open file descriptors  would
+			 * not be visible. --vfork(2)
+			 */
 			int fd = open("/dev/null", O_RDWR | O_NONBLOCK | O_NOCTTY);
 			if (fd >= 0) { 
 				dup2(fd, STDIN_FILENO);
@@ -79,14 +89,14 @@ int pxxg_send_start(struct pxxg_st *st)
 				close(fd);
 			}    
 
-			if ( execlp("busybox","busybox",  "ping", "-c", cnt, "-I", st->ping_i , st->ping_des_ip ,
+			if ( execlp("busybox","busybox",  "ping", "-c", cnt, "-I", st->ping_iface , st->ping_host ,
 			//"-q",
 			NULL) < 0)
 			{
 				printf("execlp error\n");
 				exit(1);
 			}
-			st->flag_run = 3;
+			st->ping_stage = 3;
 		}
 
 	}
@@ -97,8 +107,8 @@ int pxxg_send_start(struct pxxg_st *st)
 
 void pxxg_stop_send(struct pxxg_st *st)
 {
-	//kill(st->pid_of_ping, SIGKILL);//WEXITSTATUS = 0
-	kill(st->pid_of_ping, SIGQUIT);//WEXITSTATUS = 0
+	//kill(st->ping_pid, SIGKILL);//WEXITSTATUS = 0
+	kill(st->ping_pid, SIGQUIT);//WEXITSTATUS = 0
 	//system("kill -9 $(pidof ping) 1>/dev/null 2>&1");
 	pxxg_send_flag_reset(st);
 }
@@ -117,7 +127,7 @@ int pxxg_send_is_exit( int(*handle)(int,int),  int status, struct pxxg_st *st)
 
 	if( WIFEXITED(status) )/* returns true if the child terminated normally, that is, by calling exit(3) or _exit(2), or by returning from main(). */
 	{
-		printf("The process[pid:%d] normally exit, status:[%d] \n", st->pid_of_ping ,WEXITSTATUS(status));
+		printf("The process[pid:%d] normally exit, status:[%d] \n", st->ping_pid ,WEXITSTATUS(status));
 		if(0 == WEXITSTATUS(status))
 		{
 			printf(CGREEN"ping ok " CNONE "\n");
@@ -131,7 +141,7 @@ int pxxg_send_is_exit( int(*handle)(int,int),  int status, struct pxxg_st *st)
 	}
 	else if( WIFSIGNALED(status) )/* returns true if the child process was terminated by a signal. */
 	{
-		printf( "SIGNAL[%d] caused the child process[pid:%d] to terminate \n",WTERMSIG(status), st->pid_of_ping );
+		printf( "SIGNAL[%d] caused the child process[pid:%d] to terminate \n",WTERMSIG(status), st->ping_pid );
 		printf(YELLOW"ping result unuseful "CNONE"\n");
 		ret = 2;
 	}
@@ -146,9 +156,9 @@ int pxxg_send_is_exit( int(*handle)(int,int),  int status, struct pxxg_st *st)
 int rc_pxxg_send(char *bind_ifname, char *monitor_ip, int p_count)
 {
 
-	strcpy(pst.ping_i, bind_ifname);
-	strcpy(pst.ping_des_ip, monitor_ip);
-	pst.ping_c = p_count;
+	strcpy(pst.ping_iface, bind_ifname);
+	strcpy(pst.ping_host, monitor_ip);
+	pst.ping_cnt = p_count;
 
 	pxxg_send_start( (&pst) );/* SEND */
 }
@@ -158,11 +168,11 @@ main(int argc, char *argv[])
 {
 	int status;
 
-	pst.already_run = 0; 
-	pst.flag_run = 0;
-	strcpy(pst.ping_i, argv[1]);
-	strcpy(pst.ping_des_ip,argv[2]);
-	pst.ping_c = atoi(argv[3]);
+	pst.ping_timeout_cnt = 0; 
+	pst.ping_stage = 0;
+	strcpy(pst.ping_iface, argv[1]);
+	strcpy(pst.ping_host,argv[2]);
+	pst.ping_cnt = atoi(argv[3]);
 
 /*  */
 //signal(SIGCHLD,SIG_DFL);
@@ -172,25 +182,25 @@ signal(SIGCHLD,SIG_IGN);
 
 	rc_pxxg_send(argv[1],argv[2],atoi(argv[3]));
 
-	pst.time_pxxg = time(NULL);
+	pst.ping_start_time = time(NULL);
 
 	while(1)/* zebra master fetch */
 	{
 		sleep(1);
 		/* Add to main loop, start */
 		//MAIN LOOP [*][ ]
-		printf(CGREEN"cl ,RUN:%d\n" CNONE "\n", pst.already_run);
+		printf(CGREEN"cl ,RUN:%d\n" CNONE "\n", pst.ping_timeout_cnt);
 		//MAIN LOOP [*][*]
-		if( pst.flag_run != 0 )
+		if( pst.ping_stage != 0 )
 		{
-			pst.already_run++;
+			pst.ping_timeout_cnt++;
 		}
 
-		if( 0 < waitpid(pst.pid_of_ping, &status, WNOHANG) )
+		if( 0 < waitpid(pst.ping_pid, &status, WNOHANG) )
 		{
 			if( WIFEXITED(status) )/* returns true if the child terminated normally, that is, by calling exit(3) or _exit(2), or by returning from main(). */
 			{
-				printf("The process[pid:%d] normally exit, status:[%d] \n", pst.pid_of_ping ,WEXITSTATUS(status));
+				printf("The process[pid:%d] normally exit, status:[%d] \n", pst.ping_pid ,WEXITSTATUS(status));
 				if(0 == WEXITSTATUS(status))
 				{
 					printf(CGREEN"ping ok " CNONE "\n");
@@ -202,20 +212,20 @@ signal(SIGCHLD,SIG_IGN);
 			}
 			else if( WIFSIGNALED(status) )/* returns true if the child process was terminated by a signal. */
 			{
-				printf( "SIGNAL[%d] caused the child process[pid:%d] to terminate \n",WTERMSIG(status), pst.pid_of_ping );
+				printf( "SIGNAL[%d] caused the child process[pid:%d] to terminate \n",WTERMSIG(status), pst.ping_pid );
 				printf(YELLOW"ping result unuseful "CNONE"\n");
 			}
 			//goto done;
 			rc_pxxg_send(argv[1],argv[2],atoi(argv[3]));
 		}
-		if( (0 == pst.flag_run) && (0 == pst.already_run))
+		if( (0 == pst.ping_stage) && (0 == pst.ping_timeout_cnt))
 		{
 			//TODO : change cfg
 			//rc_pxxg_send("eth0","172.16.127.200",3);
 		}
-		if( pst.already_run > 10 )/* TIMEOUT */
+		if( pst.ping_timeout_cnt > 10 )/* TIMEOUT */
 		{
-			printf(CYAN"flag_run:%d,already_run:%d" CNONE "\n", pst.flag_run, pst.already_run);
+			printf(CYAN"ping_stage:%d,ping_timeout_cnt:%d" CNONE "\n", pst.ping_stage, pst.ping_timeout_cnt);
 			pxxg_stop_send(&pst);
 		}
 		/* Add to main loop, end */
