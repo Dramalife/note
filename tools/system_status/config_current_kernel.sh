@@ -25,4 +25,10 @@
 
 
 # Show config that used building current running kernel.
+if [ -e /proc/config.gz ]
+then
 zcat /proc/config.gz
+else
+# Some distro not provide the file "/proc/config.gz"
+echo "File (/proc/config.gz) is not exist !"
+fi
