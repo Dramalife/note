@@ -1,0 +1,9 @@
+LOG:
+[root@localhost ~]# git clone https://github.com/dramalife/note.git --depth 1
+Cloning into 'note'...
+fatal: unable to access 'https://github.com/dramalife/note.git/': Peer's Certificate has expired.
+[root@localhost ~]# date
+Thu Jan  1 00:26:50 UTC 1970
+
+SOLVE:
+# ntpdate time.apple.com
