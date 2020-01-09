@@ -28,10 +28,12 @@
  */
 #define DL_DO_NOT_USING_TLPI_LIB	1
 /* For compiling without using lib_tlpi, 2020.01.05 */
-#if (defined DL_DO_NOT_USING_TLPI_LIB) && (1 == DL_DO_NOT_USING_TLPI_LIB)
+#ifdef DL_DO_NOT_USING_TLPI_LIB
+#if (1 == DL_DO_NOT_USING_TLPI_LIB)
 #define DO_NOT_USING_TLPI_LIB
 #else
 #undef	DO_NOT_USING_TLPI_LIB
+#endif
 #endif
 
 
