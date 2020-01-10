@@ -15,9 +15,9 @@ Dramalife\`s note
 [- sunxi wiki](http://linux-sunxi.org/Main_Page)  
 [- gcc-linaro](https://releases.linaro.org/components/toolchain/binaries/)  
 [- GNU Mirror-tsinghua](https://mirrors.tuna.tsinghua.edu.cn/gnu/)  
-[- linux-kernel(aliyun-mirror)](http://mirrors.aliyun.com/linux-kernel/)
-  
-[! Linux C(userspace) API Ref](http://net.pku.edu.cn/~yhf/linux_c/)  
+[- linux-kernel(aliyun-mirror)](http://mirrors.aliyun.com/linux-kernel/)  
+[- Armbian_release_mirror_tsinghua](https://mirrors.tuna.tsinghua.edu.cn/armbian-releases/)  
+[- Linux C(userspace) API Ref (pku_arranged)](http://net.pku.edu.cn/~yhf/linux_c/)  
 
 
 ### Clone
