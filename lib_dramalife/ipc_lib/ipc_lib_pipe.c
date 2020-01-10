@@ -14,11 +14,41 @@
 int dramalife_get_cmd_result(const char *cmd, const char *type, char *output)
 {
 	FILE *fp;
+	char *ptr = output;
+
+	if(NULL == output)
+		return -3;
+
 	fp = popen(cmd, type);
 
-	while( NULL != fgets(output, 32, fp) )
+	while( NULL != fgets(ptr, 32, fp) )
 	{
-		dlprintf("output(%s) \n",output);
+		dlprintf("output(%s) \n",ptr);
+		ptr += strlen(ptr);
+	}
+
+	return pclose(fp);
+}
+int dramalife_get_cmd_n_result(const char *cmd, const char *type, char *output, int length)
+{
+	FILE *fp;
+	char *ptr = output;
+#define DL_POPEN_FGETS_ONE_MAX_SIZE	64
+
+	if(NULL == output)
+		return -3;
+	if(length < DL_POPEN_FGETS_ONE_MAX_SIZE)
+		return -2;
+
+	fp = popen(cmd, type);
+
+	while( NULL != fgets(ptr, DL_POPEN_FGETS_ONE_MAX_SIZE, fp) )
+	{
+		dlprintf("output(%s) \n",ptr);
+		ptr += strlen(ptr);
+		length -= strlen(ptr);
+		if(length < DL_POPEN_FGETS_ONE_MAX_SIZE)
+			break;
 	}
 
 	return pclose(fp);
