@@ -1,0 +1,3 @@
+# merge master to YOUR_BRANCH
+# usage : git pull origin MASTER_NAME   BRANCH_NAME
+$ git pull origin master : YOUR_BRANCH

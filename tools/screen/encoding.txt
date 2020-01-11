@@ -1,0 +1,6 @@
+# Problem : Chinese garbled on screen
+# Reason  : 
+# Ref Url : https://blog.csdn.net/jzkdl/article/details/16911679
+# Add below to file "~/.screenrc"
+defencoding GBK
+encoding UTF-8 GBK
