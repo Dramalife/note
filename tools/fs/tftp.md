@@ -1,10 +1,18 @@
 [source url](https://blog.csdn.net/flyingcys/article/details/57406346)
-#### install
+#### 1. Install
+
+##### 1.1 Ubuntu
 ```
 Server：sudo apt-get install tftpd-hpa
 Client：sudo apt-get install tftp-hpa //optional
 ```
-#### config
+##### 1.2 CentOS
+TODO : Solve problem - timed out
+```
+sudo yum install -y tftp-server
+```
+
+#### 2. Config
 
 `vi /etc/default/tftpd-hpa`
 1. “TFTP_DIRECTORY”为TFTP_Server服务目录
