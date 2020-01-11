@@ -1,0 +1,5 @@
+sudo vi /etc/ssh/sshd_config
+
+Add below:
+# Authentication:
+PermitRootLogin yes
