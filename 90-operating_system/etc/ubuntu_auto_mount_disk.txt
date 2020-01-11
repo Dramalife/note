@@ -1,0 +1,42 @@
+## 1. Show disk info
+	$ sudo fdisk -l
+
+## 2. Format disk (optional)
+	$ sudo mkfs.ext4 /dev/sdx
+	$ sudo mkdir -p /media/YOURPATH/data_sdx
+
+## 3. Mount disk part
+	$ sudo mount /dev/sdx /media/YOURPATH/data_sdx
+
+## 4. Show UUID of disk part
+	$ sudo blkid
+
+## 5. Configure auto mount
+	$ sudo vi /etc/fatab
+	# Add line :
+		UUID=YOUR_UUID_BLKID_SHOW   /media/YOURPATH/data_sdx     YOUR_TYPE_BLKID_SHOW    defaults        0       0
+		
+
+## 6. Self test before reboot system
+	$ sudo mount -a
+
+## Appendix_1.  Doc - Options of "/etc/fatab" (man 5 fstab)
+	,-----------------------------------------------------------------------------------------------------------------------------------------------,
+	|	1.fs_spec			|2.fs_file			|3.fs_vfstype		|4.fs_mntops	|5.fs_freq	|6.fs_passno	|
+	|---------------------------------------|-------------------------------|-----------------------|---------------|---------------|---------------|
+	|	UUID=YOUR_UUID_BLKID_SHOW	|/media/YOURPATH/data_sdx	|YOUR_TYPE_BLKID_SHOW	|defaults	|0		|0		|
+	'-----------------------------------------------------------------------------------------------------------------------------------------------'
+	(fs_spec) 	: UUID/LABEL
+		This field describes the block special device or remote filesystem to be mounted.
+	(fs_file) 	: mount_point
+		This  field  describes  the mount point (target) for the filesystem.
+	(fs_vfstype) 	: ext4, xfs, btrfs, f2fs, vfat ...
+        	This field describes the type of the filesystem.
+	(fs_mntops)	: defaults, noauto, user, owner, comment, nofail. (see man 5 fstab)
+        	This field describes the mount options associated with the filesystem.
+	(fs_freq)	: 0
+        	This field is used by dump(8) to determine which filesystems need to be dumped.
+		Defaults to zero (don't dump) if not present.
+	(fs_passno)	: 0
+        	This  field  is  used  by  fsck(8)  to  determine the order in which filesystem checks are done at boot time.
+		Defaults to zero (don't fsck) if not present.
