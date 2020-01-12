@@ -1,4 +1,7 @@
 #!/bin/bash
+
+LIB_DRAMALIFE_TERMINAL_COLOR_VERSION=5001
+
 CNONE="\e[0m"
 CRED="\e[0;31m"
 CLRED="\e[1;31m"
