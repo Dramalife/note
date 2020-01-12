@@ -1,0 +1,29 @@
+# Device: Banana Pi R2
+# OS	: Ubuntu18-mate
+# Dist	: USB3.0-STAT3
+# Net	: Gigabit Ethernet(1000Mbps)
+#======================= Global Settings =======================
+[global]
+interfaces = eth1
+workgroup = WORKGROUP
+server string = NAS-BPI-R2
+load printers = no
+use sendfile=yes
+read size = 65536
+read prediction = yes
+write raw = yes
+read raw = yes
+max xmit=65535
+aio read size = 16384
+aio write size = 16384
+;netbios name = Venus
+deadtime = 5
+dns proxy = no
+;guest ok = yes
+;guest only = no
+log file = /opt/var/samba/%m.log
+log level = 1
+max log size = 100
+encrypt passwords = yes
+unix charset = UTF-8
+dos charset = GB2312

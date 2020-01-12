@@ -19,8 +19,28 @@
 # ;
 #
 # Init : 2019.11.14;
+# Update : 2020.01.12
+#	Fixed problem that path error when including this library.
 # Update :
 #
 
 
-source print_lib/dramalife_terminal_color.sh
+#########################################################
+# 		Tips for VIM only			#
+#########################################################
+# :match DiffText /LIB_DRAMALIFE_SHELL_RELATIVE_PWD/
+
+#########################################################
+# 			Note				#
+#########################################################
+# The variable "LIB_DRAMALIFE_SHELL_RELATIVE_PWD" 
+# used to determined path from user to this library 
+# is managed by user.
+
+#########################################################
+# Usage - Add below to the head of your shell script	#
+#########################################################
+#LIB_DRAMALIFE_SHELL_RELATIVE_PWD=../../lib_dramalife/
+#source ${LIB_DRAMALIFE_SHELL_RELATIVE_PWD}/lib_dramalife.sh
+
+source ${LIB_DRAMALIFE_SHELL_RELATIVE_PWD}/print_lib/dramalife_terminal_color.sh
