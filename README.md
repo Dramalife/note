@@ -100,8 +100,9 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |2|Arduino MEGA 2560|2017.05.03||
 | |AIO-3399J| |Drivers:DP83867,LTC2941,|
 | |STM32F107VCT6|ethernet,NB-Iot/GSM|
-|3|Raspberry Pi |2018.07|Arm v7|
-|4|Orange Pi |2018.12.27|SoC:sunxi,Architecture:Cortex-A7,Instruction Set:Arm v7;|
+|3|Raspberry Pi 3B |2018.07|Arm v7|
+|4|Orange Pi Zero |2018.12.27|SoC:sunxi,Architecture:Cortex-A7,Instruction Set:Arm v7;|
+|5|Banana Pi R2 |2020.01.10 |MTK7623N;Arm v7; RAM:2GB,EMMC:8GB; 5\*Gigabit Ethernet,2\*SATA,1\*PCIE,2\*USB3.0;|
 | | | | |
 | | | | |
 | | | | |
