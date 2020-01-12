@@ -1,0 +1,12 @@
+# 1. Check drive power mode status
+root@bpi-iot-ros-ai:~/note/90-operating_system/bin/hdparm # hdparm -C /dev/sda
+
+/dev/sda:
+ drive state is:  active/idle
+
+# 2. Set standby (spindown) timeout
+root@bpi-iot-ros-ai:~/note/90-operating_system/bin/hdparm # hdparm -S 100 /dev/sda
+
+/dev/sda:
+ setting standby to 100 (8 minutes + 20 seconds)
+
