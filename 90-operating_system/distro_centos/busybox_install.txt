@@ -1,0 +1,3 @@
+# yum : No package busybox available.
+#	Get and compile source code :
+#	Ref : note/tools/gcc/busybox_compile.md

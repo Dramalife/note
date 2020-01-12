@@ -1,0 +1,12 @@
+# CONSOLE PRINT
+A start job is running for Raise network interfaces(ns/5min 3s)
+
+# Setting timeout time
+/etc/systemd/system/network-online.targets.wants/networking.service
+# CHANGE : TimeoutStartSec=5min >> TimeoutStartSec=90sec
+
+# 2020.01.12
+# The reason is that /etc/network/interfaces only has config of interface eth0,
+# my SBC(Bananapi R2) only link up eth1, so system init was blocked.
+# On Ubuntu18, Bananapi R2`s interface eth1 as wan, and eth0 as lan(switch_bridge).
+# So, just correct the network configuration!  

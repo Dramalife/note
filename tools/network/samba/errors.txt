@@ -2,5 +2,13 @@
 	$ sudo mount -t cifs //192.168.0.108/TARGET_PATH ./TARGET_PATH -o user=USER_NAME,sec=XXX
 	mount: /home/dramalife/TARGET_PATH: bad option; for several filesystems (e.g. nfs, cifs) you might need a /sbin/mount.<type> helper program.
 FIX:
+	# Ubuntu
 	$ sudo apt-get install cifs-utils
+	# CentOS 7
+	$ sudo yum install cifs-utils
+
+
+# 2. Just check your TARGET_PATH !
+	mount error(2): No such file or directory
+	Refer to the mount.cifs(8) manual page (e.g. man mount.cifs)
 
