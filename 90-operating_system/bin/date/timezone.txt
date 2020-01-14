@@ -1,0 +1,9 @@
+# 1. tzselect - view timezones
+$ tzselect
+
+# 2. Change timezone
+$ sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+# 3. Tips
+TZ=Asia/Shanghai
+sudo ln -s /usr/share/zoneinfo/${TZ} /etc/localtime

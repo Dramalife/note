@@ -1,0 +1,8 @@
+$ date
+Tue Jan 14 02:16:56 UTC 2020
+$ date +%Z
+UTC
+dramalife@server:~/note/90-operating_system/bin/date $ date +%:::z
++00
+dramalife@server:~/note/90-operating_system/bin/date $ date -u
+Tue Jan 14 02:20:15 UTC 2020
