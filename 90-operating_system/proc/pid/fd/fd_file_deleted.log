@@ -1,0 +1,19 @@
+dramalife@server:~/note/90-operating_system/proc/pid/fd $ ls -al /proc/3976/fd
+total 0
+dr-x------ 2 dramalife dramalife  0 Jan 16 21:00 .
+dr-xr-xr-x 9 dramalife dramalife  0 Jan 16 21:00 ..
+lrwx------ 1 dramalife dramalife 64 Jan 16 21:00 0 -> /dev/pts/1
+lrwx------ 1 dramalife dramalife 64 Jan 16 21:00 1 -> /dev/pts/1
+lrwx------ 1 dramalife dramalife 64 Jan 16 21:00 2 -> /dev/pts/1
+lr-x------ 1 dramalife dramalife 64 Jan 16 21:00 3 -> /home/dramalife/note/90-operating_system/proc/pid/fd/1.txt
+dramalife@server:~/note/90-operating_system/proc/pid/fd $ rm 1.txt
+rm: remove regular empty file '1.txt'? y
+dramalife@server:~/note/90-operating_system/proc/pid/fd $ ls -al /proc/3976/fd
+total 0
+dr-x------ 2 dramalife dramalife  0 Jan 16 21:00 .
+dr-xr-xr-x 9 dramalife dramalife  0 Jan 16 21:00 ..
+lrwx------ 1 dramalife dramalife 64 Jan 16 21:00 0 -> /dev/pts/1
+lrwx------ 1 dramalife dramalife 64 Jan 16 21:00 1 -> /dev/pts/1
+lrwx------ 1 dramalife dramalife 64 Jan 16 21:00 2 -> /dev/pts/1
+lr-x------ 1 dramalife dramalife 64 Jan 16 21:00 3 -> '/home/dramalife/note/90-operating_system/proc/pid/fd/1.txt (deleted)'
+dramalife@server:~/note/90-operating_system/proc/pid/fd $
