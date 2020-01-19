@@ -7,3 +7,6 @@ $ sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # 3. Tips
 TZ=Asia/Shanghai
 sudo ln -s /usr/share/zoneinfo/${TZ} /etc/localtime
+
+# 4. Dependence:
+/usr/share/zoneinfo
