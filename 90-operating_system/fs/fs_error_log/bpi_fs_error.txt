@@ -1,0 +1,12 @@
+         Starting Initial cloud-init job (metadata service crawler)...
+	 [   69.228123] EXT4-fs error (device mmcblk0p2): ext4_lookup:1601: inode #455243: comm ldconfig: deleted inode referenced: 435690
+	 [   69.259481] EXT4-fs error (device mmcblk0p2): ext4_lookup:1601: inode #455243: comm ldconfig.real: deleted inode referenced: 435690
+	 [   69.377657] EXT4-fs error (device mmcblk0p2): ext4_lookup:1601: inode #455243: comm gcc: deleted inode referenced: 435690
+	 [   69.481296] EXT4-fs error (device mmcblk0p2): ext4_lookup:1601: inode #455243: comm collect2: deleted inode referenced: 435690
+	 [   69.587810] EXT4-fs error (device mmcblk0p2): ext4_lookup:1601: inode #455243: comm arm-linux-gnuea: deleted inode referenced: 435690
+	 [   69.925857] EXT4-fs error (device mmcblk0p2): ext4_lookup:1601: inode #455243: comm objdump: deleted inode referenced: 435690
+	 [   70.025614] EXT4-fs error (device mmcblk0p2): ext4_lookup:1601: inode #455243: comm ldconfig: deleted inode referenced: 435690
+	 [   70.089957] EXT4-fs error (device mmcblk0p2): ext4_lookup:1601: inode #455243: comm ldconfig.real: deleted inode referenced: 435690
+	 [   70.193804] EXT4-fs error (device mmcblk0p2): ext4_lookup:1601: inode #455243: comm gcc: deleted inode referenced: 435690
+	 [   70.284682] EXT4-fs error (device mmcblk0p2): ext4_lookup:1601: inode #455243: comm collect2: deleted inode referenced: 435690
+

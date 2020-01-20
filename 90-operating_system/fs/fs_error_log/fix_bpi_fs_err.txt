@@ -1,0 +1,61 @@
+
+root@centos7-rpi-3b:~ # fsck /dev/sda2 
+fsck from util-linux 2.23.2
+e2fsck 1.42.9 (28-Dec-2013)
+BPI-ROOT contains a file system with errors, check forced.
+Pass 1: Checking inodes, blocks, and sizes
+Inode 52557, i_blocks is 16, should be 8.  Fix<y>? yes
+Inode 360993, i_blocks is 16, should be 8.  Fix<y>? yes
+Inode 360994, i_blocks is 16, should be 8.  Fix<y>? yes
+Inode 360996, i_blocks is 16, should be 8.  Fix<y>? yes
+Inode 361010, i_blocks is 16, should be 8.  Fix<y>? yes
+Inode 361012, i_blocks is 16, should be 8.  Fix<y>? yes
+Inode 361013, i_blocks is 16, should be 8.  Fix<y>? yes
+Inode 361015, i_blocks is 16, should be 8.  Fix<y>? yes
+Inode 361016, i_blocks is 32, should be 16.  Fix<y>? yes
+Inode 361060, i_blocks is 16, should be 8.  Fix<y>? yes
+Inode 361581, i_blocks is 16, should be 8.  Fix<y>? yes
+Inode 435688, i_blocks is 960, should be 480.  Fix<y>? yes
+Inode 435689, i_blocks is 16, should be 8.  Fix<y>? yes
+Pass 2: Checking directory structure
+Entry 'ld.so.cache' in /etc (455243) has deleted/unused inode 435690.  Clear<y>? yes
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Unattached inode 322565
+Connect to /lost+found<y>? yes
+Inode 322565 ref count is 2, should be 1.  Fix<y>? yes
+Inode 336764 ref count is 1, should be 2.  Fix<y>? yes
+Unattached inode 343428
+Connect to /lost+found<y>? yes
+Inode 343428 ref count is 2, should be 1.  Fix<y>? yes
+Inode 349225 ref count is 1, should be 2.  Fix<y>? yes
+Inode 361846 ref count is 6, should be 4.  Fix<y>? yes
+Pass 5: Checking group summary information
+Block bitmap differences:  -1081744 -(1082344--1082345) -1102159 +1102234 +1186004 -2208777 -(2212864--2212867) -(2212870--2212878) +2213888 -2217984 -2217988 -2234371 +(2236449--2236451) +2237446 +2238473 +2239488 -(2248722--2248723) -(2460480--2460539) +(2512895--2514941) +(2604224--2604283) -(2614848--2614907)
+Fix<y>? yes
+Free blocks count wrong for group #33 (69, counted=73).
+Fix<y>? yes
+Free blocks count wrong for group #36 (4745, counted=4744).
+Fix<y>? yes
+Free blocks count wrong for group #67 (20606, counted=20622).
+Fix<y>? yes
+Free blocks count wrong for group #68 (13729, counted=13726).
+Fix<y>? yes
+Free blocks count wrong for group #75 (16327, counted=16387).
+Fix<y>? yes
+Free blocks count wrong (5163153, counted=5208385).
+Fix<y>? yes
+Inode bitmap differences:  +347121 +(435688--435689) -435690
+Fix<y>? yes
+Free inodes count wrong for group #32 (0, counted=1).
+Fix<y>? yes
+Free inodes count wrong for group #42 (3, counted=2).
+Fix<y>? yes
+Free inodes count wrong for group #53 (16, counted=15).
+Fix<y>? yes
+Free inodes count wrong (1550618, counted=1550630).
+Fix<y>? yes
+
+BPI-ROOT: ***** FILE SYSTEM WAS MODIFIED *****
+BPI-ROOT: 355066/1905696 files (0.1% non-contiguous), 2441914/7650299 blocks
+
