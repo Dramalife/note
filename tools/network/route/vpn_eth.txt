@@ -1,0 +1,5 @@
+# Problem : Cannot access internet after connecting to VPN.
+# Fix	: Delete the default route automatically configured when adding the VPN,
+#	  and add policy route.
+route DELETE 0.0.0.0 mask 0.0.0.0 47.94.224.171
+route add 172.0.0.0 mask 255.0.0.0 47.94.224.171
