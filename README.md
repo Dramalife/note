@@ -88,6 +88,8 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |18|**DOING**|Netlink/netlink(userspace) | |2019.11.01- |
 |19|**DOING**|igmpproxy |[multicast & igmpproxy](/81-kernel_programming/networks/ip_internet_protocol/multicast); |2019.12- |
 |20|**DOING**|inotify |STAGE-reading source code,[IBM:inotify-sample](https://www.ibm.com/developerworks/cn/linux/l-inotify/) |2020.01.17- |
+|21|**DOING**|daemon|[daemon-TLPI](/80-userspace_programming/daemon) |2020.02.10- |
+|22|**DOING**|syslog|[syslog-TLPI](/80-userspace_programming/syslog) |2020.02.13- |
 | | | | | |
 | | | | | |
 | | | | | |
