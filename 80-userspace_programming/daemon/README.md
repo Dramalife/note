@@ -1,6 +1,16 @@
 <<THE LINUX PROGRAMMING INTERFACE>>	chapter 37
 
 
-### 1. Create a daemon
+signal
+tty
+fd,memory
 
+configuration
+log
+
+
+#### 1. Files
+|File|Description|
+|--|--|
+|daemons-tlpi |Copy from TLPI/daemons|
 
