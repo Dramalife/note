@@ -24,10 +24,17 @@
  * 	COPY FROM TLPI/daemon/* ;
  * Update : Thu Feb 13 23:07:40 CST 2020
  * 	Add warning info, replace "tlpi_hdr.h";
- *  
+ * Update : Thu Feb 14 22:39:xx CST 2020
+ *	Replace functions : errExit();
  * Update
  *
  */
+#ifdef	DL_REPLACE_TLPI_HDR_H
+//
+#include <stdio.h>
+//
+#define errExit(x)	exit(1);
+#endif
 
 
 
@@ -55,7 +62,10 @@
 #include <sys/stat.h>
 #include <signal.h>
 #include "become_daemon.h"
+
+#ifndef	DL_REPLACE_TLPI_HDR_H
 #include "tlpi_hdr.h"
+#endif
 
 static const char *LOG_FILE = "/tmp/ds.log";
 static const char *CONFIG_FILE = "/tmp/ds.conf";
