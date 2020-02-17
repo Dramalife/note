@@ -1,0 +1,1 @@
+ps -C daemon_SIGHUP.out -o "pid ppid pgid sid tty command"
