@@ -1,0 +1,31 @@
+test_become_daemon
+-------------
+root@Ubuntu18-BPI-R2:~/note/80-userspace_programming/daemon/daemons-tlpi # ./test_become_daemon.out
+main,68
+becomeDaemon,76
+becomeDaemon,75
+becomeDaemon,85
+becomeDaemon,84
+root@Ubuntu18-BPI-R2:~/note/80-userspace_programming/daemon/daemons-tlpi # ps aux | grep test_become_daemon.out
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root      6062  0.0  0.0   1396    64 ?        S    22:27   0:00 ./test_become_daemon.out
+root      6064  0.0  0.0   5916   548 pts/5    S+   22:28   0:00 grep --color=auto test_become_daemon.out
+
+
+daemon_SIGHUP
+-------------
+root@Ubuntu18-BPI-R2:~/note/80-userspace_programming/daemon/daemons-tlpi # ps -C daemon_SIGHUP.out -o "pid ppid pgid sid tty command"
+PID  PPID  PGID   SID TT       COMMAND
+root@Ubuntu18-BPI-R2:~/note/80-userspace_programming/daemon/daemons-tlpi # ./daemon_SIGHUP.out
+becomeDaemon,81
+becomeDaemon,80
+becomeDaemon,90
+becomeDaemon,89
+root@Ubuntu18-BPI-R2:~/note/80-userspace_programming/daemon/daemons-tlpi # ps -C daemon_SIGHUP.out -o "pid ppid pgid sid tty command"
+  PID  PPID  PGID   SID TT       COMMAND
+ 5774     1  5773  5773 ?        ./daemon_SIGHUP.out
+
+
+note:
+-------------
+	[TTY=?] : no terminal
