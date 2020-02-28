@@ -6,6 +6,9 @@ test:
 signal:
 	@echo "MAKING SIGNAL..."
 	gcc -o daemon_SIGHUP.out become_daemon.c daemon_SIGHUP.c -DDL_REPLACE_TLPI_HDR_H=1 -DEXIT_SUCCESS=0 -DEXIT_FAILURE=1
+log:
+	@echo "MAKING SYSLOG..."
+	gcc -o t_syslog.out t_syslog.c -DDL_REPLACE_TLPI_HDR_H=1 -DEXIT_SUCCESS=0 -DEXIT_FAILURE=1
 clean_all:
 	@echo "MAKING CLEAN..."
 	rm -rvf ./*.o ./*.out

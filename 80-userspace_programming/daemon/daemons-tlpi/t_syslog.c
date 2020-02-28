@@ -49,7 +49,14 @@
    the system log. Usage is as shown in usageError() below.
 */
 #include <syslog.h>
+
+#ifdef	DL_REPLACE_TLPI_HDR_H
+#include <stdio.h>	//stderr
+#include <unistd.h>	//optarg
+#define cmdLineErr(f,...)	do{printf(f,##__VA_ARGS__);exit(0);}while(0)
+#else
 #include "tlpi_hdr.h"
+#endif
 
 static void
 usageError(const char *progName)

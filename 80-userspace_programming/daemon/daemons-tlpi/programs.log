@@ -26,6 +26,16 @@ root@Ubuntu18-BPI-R2:~/note/80-userspace_programming/daemon/daemons-tlpi # ps -C
  5774     1  5773  5773 ?        ./daemon_SIGHUP.out
 
 
+t_syslog
+-------------
+root@Ubuntu18-BPI-R2:~/note/80-userspace_programming/daemon/daemons-tlpi # ./t_syslog.out -p -e -l a "hahaha"
+./t_syslog.out[10108]: hahaha
+root@Ubuntu18-BPI-R2:~/note/80-userspace_programming/daemon/daemons-tlpi # cat /var/log/syslog | grep t_syslog.out
+Feb 28 20:47:09 Ubuntu18-BPI-R2 ./t_syslog.out[10088]: hahaha
+
+
+
 note:
 -------------
 	[TTY=?] : no terminal
+
