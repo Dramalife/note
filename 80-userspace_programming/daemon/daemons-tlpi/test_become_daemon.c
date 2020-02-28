@@ -28,7 +28,6 @@
  * Update
  *
  */
-#define DL_REPLACE_TLPI_HDR_H
 #ifdef	DL_REPLACE_TLPI_HDR_H
 //lib/get_num.h
 #define GN_GT_0         02      /* Value must be > 0 */
@@ -65,16 +64,16 @@
 int
 main(int argc, char *argv[])
 {
-    printf("%s,%d \n",__func__,__LINE__);
+    printf("ps -C test_become_daemon.out -o \"pid ppid pgid sid tty command\"  \n");
+
     becomeDaemon(0);
-    printf("%s,%d \n",__func__,__LINE__);
+    printf("%s,%d become daemon done!\n",__func__,__LINE__);//will not print
 
     /* Normally a daemon would live forever; we just sleep for a while */
 
     //sleep((argc > 1) ? getInt(argv[1], GN_GT_0, "sleep-time") : 20);
-    printf("%s,%d \n",__func__,__LINE__);
     sleep(10);
-    printf("%s,%d \n",__func__,__LINE__);
+    printf("%s,%d sleep finished!\n",__func__,__LINE__);//will not print
 
     exit(EXIT_SUCCESS);
 }

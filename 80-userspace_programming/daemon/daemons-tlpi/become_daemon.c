@@ -29,7 +29,6 @@
  * Update
  *
  */
-#define DL_REPLACE_TLPI_HDR_H
 #ifdef	DL_REPLACE_TLPI_HDR_H
 //
 #include <unistd.h>

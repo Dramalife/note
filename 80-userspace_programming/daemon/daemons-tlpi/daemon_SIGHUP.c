@@ -32,6 +32,9 @@
 #ifdef	DL_REPLACE_TLPI_HDR_H
 //
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>//sleep
 //
 #define errExit(x)	exit(1);
 #endif
@@ -168,6 +171,10 @@ sighupHandler(int sig)
 int
 main(int argc, char *argv[])
 {
+	printf("ps -C daemon_SIGHUP.out -o \"pid ppid pgid sid tty command\"  \n");
+	printf("Log file:%s  \nConfig file:%s \n" ,LOG_FILE ,CONFIG_FILE );
+	printf("Kill all : kill -9 $(pidof daemon_SIGHUP.out) \n");
+
     const int SLEEP_TIME = 15;      /* Time to sleep between messages */
     int count = 0;                  /* Number of completed SLEEP_TIME intervals */
     int unslept;                    /* Time remaining in sleep interval */
