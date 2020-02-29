@@ -5,6 +5,9 @@
 
 # NOTE
 Dramalife\`s note  
+
+## 1 About
+### 1.1 Favorite
 [- Markdown grammar](/tools/coding/markdown.md), [editor : Typora](https://typora.io/)  
 [- Linux source code online](https://elixir.bootlin.com/linux/latest/source)  
 [- kernelnewbies.org - kernel changelog](https://kernelnewbies.org)  
@@ -19,14 +22,27 @@ Dramalife\`s note
 [- Armbian_release_mirror_tsinghua](https://mirrors.tuna.tsinghua.edu.cn/armbian-releases/)  
 [- Linux C(userspace) API Ref (pku_arranged)](http://net.pku.edu.cn/~yhf/linux_c/)  
 
+### 1.2 Directories
+| Directory			 | Introduction				|
+|--|--|
+| 50-books			 |					|
+| 70-gcc_gnu_compiler_collection | GCC related				|
+| 80-userspace_programming       | userspace code			|
+| 81-kernel_programming          | kernelspace code			|
+| 90-operating_system            | OS related				|
+| lib_dramalife                  | C libraries of dramalife		|
+| LICENSE                        | license				|
+| --personal                     | personal configuration files		|
+| README.md                      | readme				|
+| tools                          | tools for coding, diagnose ...	|
 
-### Clone
-
+### 1.3 Clone
 ```bash
 git clone https://github.com/Dramalife/note.git --depth=1
 ```
 
-### NEW
+## 2 Programming
+### 2.1 NEW
 |no|date|content|
 |--|--|--|
 |00|2019.01.09|Linux C Signal;fork();zombie thread;|
@@ -48,7 +64,7 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |  | | |
 |  | | |
 
-### RECALL
+### 2.2 RECALL
 |no|date|content|
 |--|--|--|
 |0|2019.01.22|git,svn : shell;git:web|
@@ -58,7 +74,7 @@ git clone https://github.com/Dramalife/note.git --depth=1
 | | | |
 | | | |
 
-### TODO List
+### 2.3 TODO List
 |No|Status|Item|Path|Add-Finish|
 |--|--|--|--|--|
 |0 |HALT|EoIP(usr,kernel)|[EoIP](/81-kernel_programming/network/ip_protocal/eoip/),[rfc3378](/50-books/rfc_ref/rfc3378.txt)|20190122-20190125(socket_ioctl)-|
@@ -96,7 +112,8 @@ git clone https://github.com/Dramalife/note.git --depth=1
 | | | | | |
 | | | | | |
 
-### Boards
+## 3 Hardware
+### 3.1 Development Boards
 |No|Name|Date|Details|
 |--|--|--|--|
 |0|GEC 51 MCU|2016.08.17||
@@ -111,30 +128,13 @@ git clone https://github.com/Dramalife/note.git --depth=1
 | | | | |
 | | | | |
 
-### Devices
+### 3.2 Devices
 |No|Name|Date|Details|
 |--|--|--|--|
 | 0|TFT LCD(ili9486) |2019.07.24- | drivers/staging/fbtft/fb\_ili9486.c|
 | | | | |
 
-### Directories
-| Directory			 | Introduction				|
-|--|--|
-| 50-books			 |					|
-| 70-gcc_gnu_compiler_collection | GCC related				|
-| 80-userspace_programming       | userspace code			|
-| 81-kernel_programming          | kernelspace code			|
-| 90-operating_system            | OS related				|
-| lib_dramalife                  | C libraries of dramalife		|
-| LICENSE                        | license				|
-| --personal                     | personal configuration files		|
-| README.md                      | readme				|
-| tools                          | tools for coding, diagnose ...	|
-
-### Games  
-
-Upload and include files in github,funny!
-
+## 4. Others
 <div align=right>
   <img src="http://www.gnu.org/graphics/heckert_gnu.transp.small.png" width="10%">
   <img src="https://www.kernel.org/theme/images/logos/tux.png" width="10%">  
