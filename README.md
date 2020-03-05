@@ -106,7 +106,7 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |20|**DOING**|inotify |STAGE-reading source code,[IBM:inotify-sample](https://www.ibm.com/developerworks/cn/linux/l-inotify/) |2020.01.17- |
 |21|**DOING**|daemon|[daemon-TLPI](/80-userspace_programming/daemon) |2020.02.10- |
 |22|DONE|syslog|[syslog-TLPI](/80-userspace_programming/syslog) |2020.02.13-2020.03.01 |
-23|GCC errors| | |2020.03.01~ |
+|23|DOING|GCC errors| [gcc_errors](/70-gcc_gnu_compiler_collection/errors)|2020.03.01~DOING |
 | | | | | |
 | | | | | |
 | | | | | |
