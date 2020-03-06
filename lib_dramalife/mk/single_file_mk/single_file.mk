@@ -162,6 +162,18 @@ clean-all-normal:
 	@echo "$(CURRENT_DIR)"
 	rm -rvf ./*$(BIN_DNAME) ./*$(PRE_COMP) ./*$(BIN_O)
 	rm -rvf $(EXTERA_FILES2DEL)
+
+all-normal-create-obj: clean-all-normal-create-obj  $(OBJS)
+	@echo "BUILDING..."
+	$(CC) -E $(SRCS) >> $(PRE_SOURCE)
+	@echo "FLAGS : $(CFLAGS) ;"
+	@echo "SRCS: \n$(SRCS)"
+	$(CC) -o $(BIN_NAME)$(BIN_DNAME) $(OBJS) $(CFLAGS) $(DEF_MACROS)
+
+clean-all-normal-create-obj:
+	@echo "CLEANING..."
+	rm -rvf ./*$(BIN_DNAME) ./*$(PRE_COMP) ./*$(BIN_O)
+	rm -rvf $(EXTERA_FILES2DEL)
 ################################################
 
 .PHONY: warning-this-makefile
