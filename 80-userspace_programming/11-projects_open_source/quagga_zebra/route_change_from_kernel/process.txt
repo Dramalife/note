@@ -1,0 +1,14 @@
+/* Routing information change from the kernel. */
+static int
+netlink_route_change (struct sockaddr_nl *snl, struct nlmsghdr *h, vrf_id_t vrf_id)
+
+int
+rib_add_ipv4 (int type, int flags, struct prefix_ipv4 *p,
+	struct in_addr *gate, struct in_addr *src,
+	ifindex_t ifindex, vrf_id_t vrf_id, int table_id,
+	u_int32_t metric, u_int32_t mtu, u_char distance, safi_t safi)
+
+int
+rib_delete_ipv4 (int type, int flags, struct prefix_ipv4 *p,
+        struct in_addr *gate, ifindex_t ifindex,
+	vrf_id_t vrf_id, safi_t safi)
