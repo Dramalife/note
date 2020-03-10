@@ -1,12 +1,4 @@
-*****************************************
-*	vfork_exec_wait_ping.c		*
-*****************************************
-COMPILE : 
-	gcc vfork_exec_wait_ping.c -I ../../../lib_dramalife/
-
-
-
-
-*****************************************
-*	fork_exec_wait_ping.c		*
-*****************************************
+MAKE :
+	make separately-complile-and-link
+CLEAN:
+	make clean-separately-complile-and-link
