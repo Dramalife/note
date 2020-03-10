@@ -1,0 +1,46 @@
+env CSET=`cat ../sntp/scm-rev` ../scripts/build/mkver ntp-keygen
+Version <ntp-keygen 4.2.8p14@1.3728 Tue Mar 10 10:36:25 UTC 2020 (1)>
+env CCACHE_DISABLE=1 cc -DHAVE_CONFIG_H -I. -I..  -I../include -I../lib/isc/include -I../lib/isc/pthreads/include -I../lib/isc/unix/include -I../sntp/libopts  -D_FORTIFY_SOURCE=2  -ffunction-sections -fdata-sections -Wall -Wcast-align -Wcast-qual -Wmissing-prototypes -Wpointer-arith -Wshadow -Winit-self -Wstrict-overflow   -Wstrict-prototypes -fPIE -fPIC -fstack-protector-all -O1 -g -O2 -c version.c -o version.o
+env: ¡®cc¡¯: Too many levels of symbolic links
+Makefile:1353: recipe for target 'version.o' failed
+make[3]: *** [version.o] Error 126
+make[3]: Leaving directory '/home/dramalife/ntpdate_compile/ntp-4.2.8p14/util'
+Makefile:671: recipe for target 'all' failed
+make[2]: *** [all] Error 2
+make[2]: Leaving directory '/home/dramalife/ntpdate_compile/ntp-4.2.8p14/util'
+Makefile:666: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/home/dramalife/ntpdate_compile/ntp-4.2.8p14'
+Makefile:598: recipe for target 'all' failed
+make: *** [all] Error 2
+----------------------------------------------
+make[4]: Entering directory '/home/dramalife/ntpdate_compile/ntp-4.2.8p14/sntp'
+  CCLD     sntp
+  /usr/local/bin/ld: cannot find -lcap
+  collect2: error: ld returned 1 exit status
+  Makefile:889: recipe for target 'sntp' failed
+  make[4]: *** [sntp] Error 1
+  make[4]: Leaving directory '/home/dramalife/ntpdate_compile/ntp-4.2.8p14/sntp'
+  Makefile:1051: recipe for target 'all-recursive' failed
+  make[3]: *** [all-recursive] Error 1
+  make[3]: Leaving directory '/home/dramalife/ntpdate_compile/ntp-4.2.8p14/sntp'
+  Makefile:679: recipe for target 'all' failed
+  make[2]: *** [all] Error 2
+  make[2]: Leaving directory '/home/dramalife/ntpdate_compile/ntp-4.2.8p14/sntp'
+  Makefile:666: recipe for target 'all-recursive' failed
+  make[1]: *** [all-recursive] Error 1
+  make[1]: Leaving directory '/home/dramalife/ntpdate_compile/ntp-4.2.8p14'
+  Makefile:598: recipe for target 'all' failed
+  make: *** [all] Error 2
+----------------------------------------------
+libcap.so
+libpcap
+----------------------------------------------
+
+
+sys/capability.h: No such file or directory
+----------------------------------------------
+apt-get install libcap-dev
+----------------------------------------------
+
+
