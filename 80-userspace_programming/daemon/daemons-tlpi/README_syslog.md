@@ -28,19 +28,25 @@ NOTE : Please read on github or Linux environment for best format alignment.
 			    terminal/	  FIFO	     Disk file	 remote	      login
 			    console				 - host	      - user
 ```
+- syslog(2)：系统调用
+- syslog(3)：库函数
+- usr_program：用户进程
 
 ## 2. syslog API
 
-closelog, openlog, syslog, vsyslog - send messages to the system logger.	----SYSLOG(3)  
-None of these functions return a value.  
+closelog, openlog, syslog, vsyslog - send messages to the system logger(这些API被用来将消息发送到系统记录器).	----SYSLOG(3)  
+None of these functions return a value(这些函数都没有返回值).  
 
 ```c
 #include <syslog.h>
 ```
 
 ### 2.1 openlog()
+```c
+void openlog(const char *ident, int option, int facility);
+```
 
-#### 2.1.1 DESCRIPTION
+#### 2.1.1 DESCRIPTION(描述)
 SYSLOG(3)  \
 &emsp;   openlog()  \
        openlog() opens a connection to the system logger for a program.  \
@@ -83,11 +89,12 @@ SYSLOG(3)  \
 |LOG_UUCP                       |UUCP subsystem                                                          |      |   
 
 
-```c
-void openlog(const char *ident, int option, int facility);
-```
 
-### 2.2 syslog()
+
+### 2.2 syslog()  
+```c
+void syslog(int priority, const char *format, ...);
+```
 #### 2.2.1 DESCRIPTION
 &emsp;  syslog() and vsyslog()  \
        syslog() generates a log message, which will be distributed by syslogd(8).  \
@@ -113,9 +120,7 @@ void openlog(const char *ident, int option, int facility);
 |LOG_DEBUG      |debug-level message                    |   
 The function setlogmask(3) can be used to restrict logging to specified levels only.
 
-```c
-void syslog(int priority, const char *format, ...);
-```
+
 
 ### 2.3 closelog()
 
@@ -136,5 +141,24 @@ Glibc 2.19 and earlier:
 void vsyslog(int priority, const char *format, va_list ap);
 ```
 
-## 3. /etc/syslog.conf
+## 3 /etc/syslog.conf（syslogd配置）
 TODO
+
+
+## 4 Sample(示例)
+Source code
+```c
+
+```
+Shell
+```bash
+root@Ubuntu18-BPI-R2:~/note/80-userspace_programming/syslog/syslog-tlpi # ./t_syslog.out -p -l a hahahaha
+root@Ubuntu18-BPI-R2:~/note/80-userspace_programming/syslog/syslog-tlpi # ./t_syslog.out -p -l e hahahaha
+root@Ubuntu18-BPI-R2:~/note/80-userspace_programming/syslog/syslog-tlpi # cat /var/log/syslog | grep "t_syslog.out"
+Mar 11 13:51:19 Ubuntu18-BPI-R2 ./t_syslog.out[1182]: hahahaha
+Mar 11 13:51:22 Ubuntu18-BPI-R2 ./t_syslog.out[1183]: hahahaha
+```
+|Date |Time |Hostname |Processname |PID |Usr Message |
+|--|--|--|--|--|--|
+|Mar 11 |13:51:22 |Ubuntu18-BPI-R2 |./t_syslog.out|[1183]|hahahaha |
+|日期|时间|主机名|进程名|PID|用户消息|
