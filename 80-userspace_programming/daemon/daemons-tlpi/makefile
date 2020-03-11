@@ -9,6 +9,11 @@ signal:
 log:
 	@echo "MAKING SYSLOG..."
 	gcc -o t_syslog.out t_syslog.c -DDL_REPLACE_TLPI_HDR_H=1 -DEXIT_SUCCESS=0 -DEXIT_FAILURE=1
+
+log_single:
+	@echo "MAKING SYSLOG_SINGLE..."
+	gcc -o single_syslog.out single_syslog.c -Wall
+
 clean_all:
 	@echo "MAKING CLEAN..."
 	rm -rvf ./*.o ./*.out
