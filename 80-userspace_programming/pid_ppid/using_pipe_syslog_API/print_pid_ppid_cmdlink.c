@@ -39,7 +39,20 @@
 
 #include <syslog.h>
 
+#ifdef _THIS_PROG_USING_LIB_DRAMALIFE
+#include "lib_dramalife.h"
+#endif
 
+
+
+#ifdef _THIS_PROG_USING_LIB_DRAMALIFE//ipc_lib
+// ARG1(b) : char array only, err if pointer given, because of using of sizeof.
+#define get_cmd(p,b)	do{\
+	ptr = b;\
+	sprintf(buff_cmd, "cat /proc/%d/cmdline", p);\
+	dramalife_get_cmd_n_result(buff_cmd, "r", ptr, sizeof(b));\
+}while(0)
+#else
 #define get_cmd(p,b)	do{\
 	ptr = b;\
 	sprintf(buff_cmd, "cat /proc/%d/cmdline", p);\
@@ -50,6 +63,7 @@
 		ptr += strlen(ptr);\
 	}\
 }while(0)
+#endif
 
 #define print_show(x,...)	do{printf(x,##__VA_ARGS__);syslog(LOG_USER|LOG_DEBUG,x,##__VA_ARGS__);}while(0)
 

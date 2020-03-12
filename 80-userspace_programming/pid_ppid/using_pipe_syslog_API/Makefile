@@ -1,0 +1,1 @@
+../../../lib_dramalife/mk/makefile_single
