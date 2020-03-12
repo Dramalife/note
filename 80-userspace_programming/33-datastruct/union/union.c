@@ -134,7 +134,7 @@ int value_set(void)
 	return 0;
 }
 
-#if (DL_NOTE_UNION_PART_BUILD == 1)
+#ifdef DL_NOTE_UNION_PART_BUILD
 int main(void)
 #else
 int main_union(void)
