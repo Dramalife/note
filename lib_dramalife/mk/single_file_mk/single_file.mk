@@ -46,7 +46,6 @@
 # Sample - config.mk(Single/multi file >> a.out)	       #
 ################################################################
 #PATH_ABS=../../../lib_dramalife/
-#DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
 #DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=0
 #CFLAGS+=-Wall
 ################################################################
@@ -55,17 +54,18 @@
 # Sample - config.mk(Single/multi file and lib-objs >> a.out)  #
 ################################################################
 #PATH_ABS=../../../lib_dramalife/
-#DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
+##
 #DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=0
 #CFLAGS+=-Wall
+##
 ## Add the directory dir to the list of directories to be searched for header files.(man 1 gcc)
 #CFLAGS+=-I$(PATH_ABS)/
-#CFLAGS+=-I$(PATH_ABS)/libc_with_print_lib/
+##
 ## libc-pthread
 ##CFLAGS+=-lpthread
-## Path to objs of library source
+##
+## Path to objs of library source && Link name of Path
 #LIB_OBJ_PATH=$(PATH_ABS)/libc_with_print_lib/build/obj/
-## Link name of Path
 #LIB_OBJ_LINKNAME=obj2
 ################################################################
 
@@ -99,7 +99,7 @@ PATH_ABS=../
 # Path of library objs
 LIB_OBJ_PATH:=
 # Name of symbollink linking to LIB_OBJ_PATH
-LIB_OBJ_LINKNAME:=
+LIB_OBJ_LINKNAME:=obj2
 
 # Folders in whitch files to be deleted.
 EXTERA_FILES2DEL=$(CURRENT_DIR)/build
@@ -141,9 +141,10 @@ all-with-lib-objs:$(OBJS)
 	mv -f $(OBJS) $(OBJ_DIR)
 	@echo "\nLIB_LINK: \n$(LIB_OBJ_LINKNAME) \nBUILD_DIR: \n$(BUILD_DIR)"
 	-ln -sfv $(SRC_DIR)/$(LIB_OBJ_PATH) $(BUILD_DIR)/$(LIB_OBJ_LINKNAME)
-	$(CC) -o $(BIN_NAME)$(BIN_DNAME) $(BUILD_DIR)$(LIB_OBJ_LINKNAME)/*.o $(OBJ_DIR)/*.o $(CFLAGS) $(DEF_MACROS)
+	$(CC) -o $(BUILD_DIR)$(BIN_NAME)$(BIN_DNAME)  $(BUILD_DIR)$(LIB_OBJ_LINKNAME)/*.o  $(OBJ_DIR)/*.o  $(CFLAGS)  $(DEF_MACROS)
 clean-all-with-lib-objs:
 	rm -f $(BUILD_DIR)$(LIB_OBJ_LINKNAME)
+	rm -f $(BUILD_DIR)$(BIN_NAME)$(BIN_DNAME)
 	rm -rf $(OBJ_DIR)/*
 	rm -rvf ./*$(BIN_DNAME) ./*$(PRE_COMP) ./*$(BIN_O)
 	-rmdir $(OBJ_DIR)
