@@ -1,5 +1,4 @@
 PATH_ABS=../../../lib_dramalife/
-#DEF_MACROS +="-D DL_NOTE_UNION_PART_BUILD=1"
 DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=0
 CFLAGS+=-Wall
 # Add the directory dir to the list of directories to be searched for header files.(man 1 gcc)
