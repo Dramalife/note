@@ -142,7 +142,17 @@ void vsyslog(int priority, const char *format, va_list ap);
 ```
 
 ## 3 /etc/syslog.conf（syslogd配置）
-TODO
+### 3.1 rsyslogd
+- CONF_FILE : /etc/rsyslog.d/50-default.conf
+```diff
++ local6.*                        /tmp/wjy.log
+```
+
+### 3.2 syslogd(BusyBox v1.31.1)
+- CONF_FILE : /etc/syslog.conf
+```diff
++ local6.* /tmp/iec104.log
+```
 
 
 ## 4 Sample(示例)
