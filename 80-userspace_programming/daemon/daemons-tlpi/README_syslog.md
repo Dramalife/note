@@ -172,3 +172,19 @@ Mar 11 13:51:22 Ubuntu18-BPI-R2 ./t_syslog.out[1183]: hahahaha
 |--|--|--|--|--|--|
 |Mar 11 |13:51:22 |Ubuntu18-BPI-R2 |./t_syslog.out|[1183]|hahahaha |
 |日期|时间|主机名|进程名|PID|用户消息|
+
+## 5 Summary (facility , level & priority)
+openlog(const char *ident, int option, int facility);
+syslog(int priority, const char *format, ...);
+
+facility;
+level;
+priority = facility | level;
+
+facility = LOG_USER; level = LOG_DEBUG;
+user.debug /tmp/user_debug.log
+
+facility = LOG_LOCAL6; level = LOG_ERR;
+local6.err /tmp/local6_err.log
+
+
