@@ -1,0 +1,4 @@
+configure:18303: checking for main in -lreadline
+configure:18322: arm-linux-gnueabihf-gcc -o conftest -g -O2 -g -Os -fstack-protector-strong --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -fpie -fno-omit-frame-pointer -Wall -Wextra -Wmissing-prototypes -Wmissing-declarations -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wno-unused-result -Wno-unused-parameter -Wno-missing-field-initializers   conftest.c -lreadline   >&5
+/usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/7.4.1/../../../../arm-linux-gnueabihf/bin/ld: cannot find -lreadline
+collect2: error: ld returned 1 exit status

@@ -1,0 +1,30 @@
+CC_COMMON:=arm-linux-gnueabihf-gcc -o conftest -g -O2 -g -Os -fstack-protector-strong --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -fpie -fno-omit-frame-pointer -Wall -Wextra -Wmissing-prototypes -Wmissing-declarations -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wno-unused-result -Wno-unused-parameter -Wno-missing-field-initializers   conftest.c
+
+test:
+	$(CC_COMMON) -lreadline
+
+# 1. Before installing libreadline to /usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf
+#
+# arm-linux-gnueabihf-gcc -o conftest -g -O2 -g -Os -fstack-protector-strong --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -fpie -fno-omit-frame-pointer -Wall -Wextra -Wmissing-prototypes -Wmissing-declarations -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wno-unused-result -Wno-unused-parameter -Wno-missing-field-initializers   conftest.c -lreadline
+# /usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/7.4.1/../../../../arm-linux-gnueabihf/bin/ld: cannot find -lreadline
+# collect2: error: ld returned 1 exit status
+# makefile:4: recipe for target 'cannot_find_libreadline' failed
+# make: *** [cannot_find_libreadline] Error 1
+#####
+# 2. After installing libreadline to /usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf
+#
+# # make
+# arm-linux-gnueabihf-gcc -o conftest -g -O2 -g -Os -fstack-protector-strong --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -fpie -fno-omit-frame-pointer -Wall -Wextra -Wmissing-prototypes -Wmissing-declarations -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wno-unused-result -Wno-unused-parameter -Wno-missing-field-initializers   conftest.c -lreadline
+# /usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/7.4.1/../../../../arm-linux-gnueabihf/lib/libreadline.so: undefined reference to `tputs'
+# /usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/7.4.1/../../../../arm-linux-gnueabihf/lib/libreadline.so: undefined reference to `tgoto'
+# /usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/7.4.1/../../../../arm-linux-gnueabihf/lib/libreadline.so: undefined reference to `tgetflag'
+# /usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/7.4.1/../../../../arm-linux-gnueabihf/lib/libreadline.so: undefined reference to `UP'
+# /usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/7.4.1/../../../../arm-linux-gnueabihf/lib/libreadline.so: undefined reference to `tgetent'
+# /usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/7.4.1/../../../../arm-linux-gnueabihf/lib/libreadline.so: undefined reference to `tgetnum'
+# /usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/7.4.1/../../../../arm-linux-gnueabihf/lib/libreadline.so: undefined reference to `PC'
+# /usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/7.4.1/../../../../arm-linux-gnueabihf/lib/libreadline.so: undefined reference to `tgetstr'
+# /usr/local/gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/7.4.1/../../../../arm-linux-gnueabihf/lib/libreadline.so: undefined reference to `BC'
+# collect2: error: ld returned 1 exit status
+# makefile:4: recipe for target 'cannot_find_libreadline' failed
+# make: *** [cannot_find_libreadline] Error 1
+#####

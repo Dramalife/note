@@ -1,3 +1,11 @@
+```
+https://github.com/dramalife/note.git
+AUTHOR : Dramalife@live.com
+Init   : 2020.03.19
+Update : 
+```
+HOST:arm-linux
+TARGET:arm-linux
 ### Error1
 #### Error msg
 ```
