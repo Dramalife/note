@@ -12,11 +12,13 @@
 # 
 
 
+include ../../../lib_dramalife/print_lib/dramalife_terminal_color.sh
 
 ###########################################
 APP_NAME:=app.out
-LIB_NAME:=libxxx.so
-LIB_VNAME:=libxxx.so.1.0.0
+LIBXXX:=libxxx.so
+LIBYYY:=libyyy.so
+LIBYYY_VERSION:=libyyy.so.1.0.0
 
 
 ###########################################
@@ -57,11 +59,11 @@ app_ok:
 	@echo "Making $(APP_NAME) ..."
 	gcc -o $(APP_NAME) app.c -L. $(LDFLAG)		$(LIBS)		$(CFLAG_NOVAR)
 dynlib_ok:
-	@echo "Making $(LIB_NAME) ..."
-	gcc -o $(LIB_NAME) libxxx.c -fPIC -shared		$(LIBFLAGS)	$(CFLAG_NOVAR)
+	@echo "Making $(LIBXXX) ..."
+	gcc -o $(LIBXXX) libxxx.c -fPIC -shared		$(LIBFLAGS)	$(CFLAG_NOVAR)
 dynlib_report_unresolved_symbols:
-	@echo "Making $(LIB_NAME) ... :: LIBFLAGS_U"
-	gcc -o $(LIB_NAME) libxxx.c -fPIC -shared		$(LIBFLAGS_U)	$(CFLAG_VAR) 
+	@echo "Making $(LIBXXX) ... :: LIBFLAGS_U"
+	gcc -o $(LIBXXX) libxxx.c -fPIC -shared		$(LIBFLAGS_U)	$(CFLAG_VAR) 
 
 clean:
 	@echo "Clean all"
@@ -96,28 +98,34 @@ test2_old_app__new_dynlib : dynlib_ok   app_ok   .test2_compile_new_dynlib
 test2_compile_new_app:
 	gcc -o $(APP_NAME) app.c -L. $(LDFLAG)		$(LIBS)		$(CFLAG_VAR)
 .test2_compile_new_dynlib:
-	@echo "Testing - new libxxx.so"
-	gcc -o libxxx.so libxxx.c -fPIC -shared		$(LIBFLAGS)	$(CFLAG_VAR)
+	@echo "Testing - new $(LIBXXX)"
+	gcc -o $(LIBXXX) libxxx.c -fPIC -shared		$(LIBFLAGS)	$(CFLAG_VAR)
+
 
 ###########################################
 # Err3 : [compile]./libxxx.so: undefined reference to `func_in_libyyy'
 ###########################################
 test3_found_wrong_dynlib: .test3_print_info  .test3_compile_dynlibs_all  .test3_compile_app  
 .test3_print_info:
-	@echo "NOTE:\n********************"
-	@echo "$(APP_NAME) requires two dynamic libraries $(LIB_NAME) and libyyy.so (of the correct version),"
-	@echo "But after compiling the correct version of libyyy.so.1.x.x, I didn't rename it to libyyy.so,"
-	@echo "And, the default search dir has the WRONG VERSION LIB !!!"
-	@echo "Worse, there is a wrong version of libyyy in the default search directory of the dynamic library"
-	@echo "so, ln -s libyyy.so.1.x.x libyyy.so !!!!"
-	@echo "********************"
+	@echo $(DLTERM_YELLOW)"NOTE:"$(DLTERM_NONE)		
+	@echo $(DLTERM_YELLOW)"********************"$(DLTERM_NONE)	
+	@echo $(DLTERM_LGREEN)"$(APP_NAME)"$(DLTERM_NONE)" requires two dynamic libraries "$(DLTERM_LGREEN)"$(LIBXXX)"$(DLTERM_NONE)" and "	\
+	$(DLTERM_LGREEN)"$(LIBYYY)"$(DLTERM_NONE)" (of the correct version),"
+	@echo "But after compiling the correct version of "$(DLTERM_LGREEN)"$(LIBYYY_VERSION)"$(DLTERM_NONE)", I didn't rename it to "$(DLTERM_LGREEN)"$(LIBYYY)"$(DLTERM_NONE)","
+	@echo "Worse, there is a wrong version of "$(DLTERM_LGREEN)"$(LIBYYY)"$(DLTERM_NONE)" in the default search directory of the dynamic library."
+	@echo "The solution to the problem is to execute this command: ln -s "$(DLTERM_LGREEN)"$(LIBYYY_VERSION)"$(DLTERM_NONE) $(DLTERM_LGREEN)"$(LIBYYY)"$(DLTERM_NONE)" ."
+	@echo $(DLTERM_YELLOW)"********************"$(DLTERM_NONE)
 .test3_compile_app:
 	@echo "Making $(APP_NAME) ..."
-	gcc -o $(APP_NAME) app.c -L. $(LDFLAG)	$(LIBS)	-lyyy	$(CFLAG_NOVAR) -L/tmp/
+	gcc -o $(APP_NAME) app.c -L. $(LDFLAG)	$(LIBS)	-lyyy $(CFLAG_NOVAR) -L/tmp/
 .test3_compile_dynlibs_all: .test3_compile_dynlibyyy2
 	@echo "Making dynlibs all ..."
-.test3_compile_dynlibyyy2:dynlib_ok
+.test3_compile_dynlibyyy2: .test3_compile_libxxx
 	@echo "Making libyyy *2 ..."
-	gcc -o libyyy.so.1.0.0    libyyy.c -fPIC -shared		$(LIBFLAGS)	$(CFLAG_NOVAR)
-	cp libxxx.so /tmp/libyyy.so
+	gcc -o $(LIBYYY_VERSION)    libyyy.c -fPIC -shared		$(LIBFLAGS)	$(CFLAG_NOVAR)
+	@echo "Copy a copy of "$(DLTERM_LGREEN)"$(LIBYYY)"$(DLTERM_NONE)" as the wrong version of library "$(DLTERM_LGREEN)"$(LIBYYY)"$(DLTERM_NONE)
+	cp $(LIBXXX) /tmp/$(LIBYYY)
+.test3_compile_libxxx:
+	@echo "Making $(LIBXXX) ..."
+	gcc -o $(LIBXXX) libxxx.c -fPIC -shared		$(LIBFLAGS)	$(CFLAG_NOVAR) -D_LIBXXX_USING_LIBYYY
 
