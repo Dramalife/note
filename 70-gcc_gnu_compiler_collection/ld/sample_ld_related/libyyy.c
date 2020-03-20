@@ -15,14 +15,11 @@
 #ifdef _LIB_USE_VAR_DEFINED_BY_APP
 extern int var_a;
 #endif
-extern void func_in_libyyy(void);
 
-void func_in_libxxx(void)
+void func_in_libyyy(void)
 {
 	printf("File:%-12s,Func:%-14s,Line:%-4d. \n",__FILE__,__func__,__LINE__);
 	shm_open("abcd",O_RDWR, 0);
-
-	func_in_libyyy();
 
 #ifdef _LIB_USE_VAR_DEFINED_BY_APP
 	printf("File:%-12s,Func:%-14s,Line:%-4d,Var:%d. \n",__FILE__,__func__,__LINE__,var_a);

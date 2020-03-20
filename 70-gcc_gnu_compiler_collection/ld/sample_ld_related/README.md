@@ -1,3 +1,10 @@
+```
+https://github.com/dramalife/note.git
+Dramalife@live.com
+Init : 2020.03.18
+Update : 2020.03.20
+```
+
 ### 1. Targets of the makefile(make的目标)
 ```bash
 $ make
@@ -22,6 +29,11 @@ Wrong link option(错误的链接参数)
 Wrong dynamic library order错误的动态库顺序)
 #### clean   
 Clear all files generated automatically at compile time(清除所有编译时自动生成的文件)                      
-#### test_old_app__new_dynlib
+#### test2_old_app__new_dynlib(OLD_NAME : test_old_app__new_dynlib)
 The newer app and lib both use the variable var_a defined in the app, and the older app does not define var_a(比较新的app和lib中都使用了在app中定义的变量var_a，比较旧的app中没有定义var_a)
+#### test3_found_wrong_dynlib
+wrong version of libyyy.so,    
+the name of right version file is : libyyy.so.1.0.0  
+other location has wrong version of libyyy.so : default search path of gcc  
+fix : ln -s libyyy.so.1.0.0 libyyy.so  
 
