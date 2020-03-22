@@ -115,6 +115,10 @@ test3_found_wrong_dynlib: .test3_print_info  .test3_compile_dynlibs_all  .test3_
 	@echo "Worse, there is a wrong version of "$(DLTERM_LGREEN)"$(LIBYYY)"$(DLTERM_NONE)" in the default search directory of the dynamic library."
 	@echo "The solution to the problem is to execute this command: ln -s "$(DLTERM_LGREEN)"$(LIBYYY_VERSION)"$(DLTERM_NONE) $(DLTERM_LGREEN)"$(LIBYYY)"$(DLTERM_NONE)" ."
 	@echo $(DLTERM_YELLOW)"********************"$(DLTERM_NONE)
+	@echo "Error like : ./libxxx.so: undefined reference to \`func_in_libyyy'"
+	@echo "nm libyyy.so.1.0.0 | grep func_in_libyyy"
+	@echo "00000518 T func_in_libyyy"
+	@echo $(DLTERM_YELLOW)"********************"$(DLTERM_NONE)
 .test3_compile_app:
 	@echo "Making $(APP_NAME) ..."
 	gcc -o $(APP_NAME) app.c -L. $(LDFLAG)	$(LIBS)	-lyyy $(CFLAG_NOVAR) -L/tmp/
