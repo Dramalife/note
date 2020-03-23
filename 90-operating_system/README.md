@@ -1,1 +1,2 @@
-tree .
+OS	: GNU/Linux
+Kernel	: Linux
