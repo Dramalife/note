@@ -38,10 +38,12 @@ include $(PATH_ABS)/libMakefile.mk
 PRE_SOURCE=source_pre$(PRE_COMP)
 SRC=$(wildcard ./*.c)
 
+CC=gcc
+
 all:
 	rm -rvf ./*$(BIN_END)
-#	gcc -E $(SRC) >> $(PRE_SOURCE)
-	gcc -o $(BIN_NAME)$(BIN_END) $(SRC) -L../lib_shared -lbacktrace_funcs -Wl,-rpath=../lib_shared
+#	$(CC) -E $(SRC) >> $(PRE_SOURCE)
+	$(CC) -o $(BIN_NAME)$(BIN_END) $(SRC) -L../lib_shared -lbacktrace_funcs -Wl,-rpath=../lib_shared
 
 
 clean:
