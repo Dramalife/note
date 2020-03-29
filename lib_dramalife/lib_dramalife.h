@@ -31,6 +31,7 @@
 #ifndef LIB_DRAMALIFE_H
 #define LIB_DRAMALIFE_H
 
+
 #include "print_lib/dramalife_terminal_color.h"
 #include "gcc_related_lib/gcc_related_show.h"
 #include "libc_with_print_lib/libc_with_print_lib.h"
@@ -42,5 +43,8 @@
 #include "ipc_lib/ipc_lib.h"
 
 #include "option_config_lib/option_config_lib.h"
+
+#include "system_lib/system_lib.h"
+
 
 #endif
