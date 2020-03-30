@@ -24,14 +24,14 @@
 
 
 /* SWITCH - Debug Print */
-#if 1
+#ifdef _DL_LIB_SYSTEM_DEBUG_EN_
 #define DL_INFILE_DEBUG_PRINT_SW	1
 #else
 #undef DL_INFILE_DEBUG_PRINT_SW
 #endif
 
 /* SWITCH - Demo (func main()) */
-#if 1
+#ifdef _DL_LIB_SYSTEM_HAS_MAIN_
 #define DL_INFILE_ADD_MAIN	1
 #else
 #undef DL_INFILE_ADD_MAIN
