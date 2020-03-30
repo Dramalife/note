@@ -15,7 +15,7 @@ void gcc_related_show_no_arg_in(unsigned int options);
  * error: unused parameter ‘arg’ [-Werror=unused-parameter]
  * error: suggest braces around empty body in an ‘if’ statement [-Werror=empty-body]
  */
-#define MAKE_GCC_HAPPY(x)	do{if(NULL == x){}}while(0)
+#define MAKE_GCC_HAPPY(x)	do{if(x == x){}}while(0)
 
 
 #endif
