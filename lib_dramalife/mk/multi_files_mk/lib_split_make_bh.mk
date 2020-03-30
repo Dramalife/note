@@ -95,7 +95,6 @@ DYNLIB_OBJ_PATH=/tmp
 .dynamic-lib : .pre-dynamic-lib $(OBJS)
 	mv -f $(OBJS) $(DYNLIB_OBJ_PATH)
 .pre-dynamic-lib:
-	#mv -f $(OBJS) $(BUILD_ROOT)/
 	@echo "BUILD_ROOT : $(BUILD_ROOT)"
 	@echo "DYNLIB_OBJ_PATH : $(DYNLIB_OBJ_PATH)"
 	@echo "CFLAGS: $(CFLAGS)"
