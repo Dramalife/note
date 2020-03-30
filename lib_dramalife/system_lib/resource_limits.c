@@ -19,7 +19,8 @@
 
 #include <stdio.h>
 
-#include "system_lib.h"
+#include "lib_dramalife.h"
+//#include "system_lib.h"
 
 
 /* SWITCH - Debug Print */
@@ -105,6 +106,9 @@ int dl_set_coredump_unlimit(void)
 int main(int argc, char **argv)
 {
 	int *ptr=NULL;
+
+	MAKE_GCC_HAPPY(argc);
+	MAKE_GCC_HAPPY(argv);
 
 	dl_set_coredump_unlimit();
 
