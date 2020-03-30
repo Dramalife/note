@@ -16,7 +16,7 @@
 # Configuration for subdir make
 SUBDIRS=system_lib ipc_lib
 CFLAGS_ROOT="-fPIC -shared -I../"
-DYNLIB_NAME:=lib_dramalife.so
+DYNLIB_NAME:=libdramalife.so
 
 
 # Variables pass to subdir
@@ -26,7 +26,7 @@ DYNLIB_OBJ_PATH:=$(BUILD_ROOT)/.lib_dramalife_temp
 
 all: .prepare
 	make $(SUBDIRS) TARGET=$@
-	$(CC) -o $(DYNLIB_NAME) $(DYNLIB_OBJ_PATH)/*.o
+	$(CC) -o $(DYNLIB_NAME) $(DYNLIB_OBJ_PATH)/*.o -fPIC -shared
 
 $(SUBDIRS): .print
 	make .process TEMP_OBJ_PATH=$@/build/object/$@.o TEMP_TARGET=$@
