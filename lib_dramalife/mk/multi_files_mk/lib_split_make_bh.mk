@@ -47,6 +47,7 @@ BUILD := $(OBJS:.o=.out)
 .SECONDARY: $(OBJS) $(BUILD)
 
 $(OBJS) : %.o:%.c
+	@echo "CFLAGS : $(CFLAGS)"
 	$(CC) -c $< -o $@ $(CFLAGS) $(DEF_MACROS)
 
 $(BUILD) : %.out:%.o
@@ -66,8 +67,6 @@ separately-complile-and-link : $(BUILD)
 	-mkdir $(OBJ_DIR)
 	mv -f $(BUILD) $(BUILD_DIR)
 	mv -f $(OBJS) $(OBJ_DIR)
-clean-part-out : clean
-clean-separately-complile-and-link : clean
 part-out : separately-complile-and-link
 ###############################################################################
 
@@ -83,19 +82,22 @@ separately-complile-to-objects : $(OBJS)
 	-mkdir $(BUILD_DIR)
 	-mkdir $(OBJ_DIR)
 	mv -f $(OBJS) $(OBJ_DIR)
-clean-part-objs : clean
-clean-separately-complile-to-objects : clean
 part-objs : separately-complile-to-objects
 ###############################################################################
 
 
 ###############################################################################
-#				*.c > library.so			      #
+#				*.c > *.o					#
 ###############################################################################
-library-dynamic :
-	@echo "TODO !"
-
-clean-library-dynamic : 
-	@echo "TODO !"
+# Used by note/lib_dramalife/makefile
+BUILD_ROOT=/tmp
+DYNLIB_OBJ_PATH=/tmp
+.dynamic-lib : .pre-dynamic-lib $(OBJS)
+	mv -f $(OBJS) $(DYNLIB_OBJ_PATH)
+.pre-dynamic-lib:
+	#mv -f $(OBJS) $(BUILD_ROOT)/
+	@echo "BUILD_ROOT : $(BUILD_ROOT)"
+	@echo "DYNLIB_OBJ_PATH : $(DYNLIB_OBJ_PATH)"
+	@echo "CFLAGS: $(CFLAGS)"
 ###############################################################################
 

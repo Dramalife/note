@@ -84,7 +84,7 @@ default:
 	@echo "Usage: \nmake [TARGET] ! \n"
 
 
-include ./config.mk
+include $(CURRENT_DIR)/config.mk
 include $(PATH_ABS)libMakefile.mk
 
 
@@ -99,5 +99,4 @@ clean:
 	rm -rvf $(EXTERA_FILES2DEL)
 
 
-.PHONY: default
-.PHONY: clean
+.PHONY: default clean
