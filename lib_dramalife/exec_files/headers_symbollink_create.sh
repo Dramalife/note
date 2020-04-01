@@ -67,12 +67,12 @@ TARGET_PATH=
 # Relative path to directory "lib_dramalife"
 RELATIVE_PATH_TO_LIB_DRAMALIFE=../../lib_dramalife
 
-# PATH OF LIST FILE (headers_xxx.list)
-DATA_FILE_PWD=${RELATIVE_PATH_TO_LIB_DRAMALIFE}/data_pub/headers_gcc_userspace.ubuntuserver18.list
-
 # Including files
 source ./config.in
 source ${RELATIVE_PATH_TO_LIB_DRAMALIFE}/print_lib/dramalife_terminal_color.sh
+
+# PATH OF LIST FILE (headers_xxx.list)
+DATA_FILE_PWD=${RELATIVE_PATH_TO_LIB_DRAMALIFE}/data_pub/headers_gcc_userspace.ubuntuserver18.list
 
 
 fun_mk_folder()
