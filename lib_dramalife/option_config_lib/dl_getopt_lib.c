@@ -33,7 +33,8 @@
  *
  */
 
-#include "dl_getopt_lib.h"
+//#include "dl_getopt_lib.h"
+#include "option_config_lib.h"
 
 //pointer array
 //array pointer
@@ -265,4 +266,77 @@ void dl_getopt_freeall(struct dl_option (*dlopt)[])
 	}
 	printf("[%s,%d] DL_GETOPT CLEAN DONE! \n",__func__,__LINE__);
 }
+
+
+/***********************************************
+ * DEMO
+ ***********************************************/
+#ifdef _DL_GET_OPT_LIB_HAS_DEMO_
+#include "../gcc_related_lib/gcc_related_show.h"
+int handler_getint(void *arg);
+int handler_manuall_run(void *arg);
+struct dl_option options_mc[]=
+{
+	{.dlopt_name = 'm', NULL, handler_manuall_run   ,0                              },  
+	{.dlopt_name = 't', NULL, handler_getint                ,0 | DL_OPT_ELEMENT_DATA_EXIST | DL_OPT_ELEMENT_DATA_TYPE_INT_ARR       },  
+	{.dlopt_name = 'T', NULL, handler_getint                ,0 | DL_OPT_ELEMENT_DATA_EXIST | DL_OPT_ELEMENT_DATA_TYPE_INT_ARR       },  
+	{.dlopt_name = 0x0, NULL, NULL                          ,0                              },  
+};
+int handler_manuall_run(void *arg)
+{
+	DL_OPT_HANDLER_PRINT_INFO(arg);
+	return 0;
+}
+/* Sample Function */
+int handler_getint(void *arg)
+{
+	DL_OPT_HANDLER_PRINT_INFO(arg);
+
+	int *data = NULL;
+	struct dl_option *ptr = (struct dl_option *)arg;
+	if( 1/*SEE BELOW*/
+			&& DL_OPT_CHECK_FLAG(ptr->dlopt_flag, DL_OPT_ELEMENT_DATA_EXIST)
+			&& DL_OPT_CHECK_FLAG(ptr->dlopt_flag, DL_OPT_ELEMENT_DATA_TYPE_INT_ARR)
+	  )
+	{
+		data = ((struct dl_option_data *)(ptr->dlopt_data))->dloptd_int;
+	}
+
+	if( NULL == data )
+	{
+		goto error;
+	}
+	else
+	{
+		if( ptr->dlopt_name == 't' )
+		{
+			printf("[%s,%d] %d \n",__func__,__LINE__, *data);
+		}
+		else if( ptr->dlopt_name == 'T' )
+		{
+			printf("[%s,%d] %d \n",__func__,__LINE__, *data);
+		}
+		else
+		{
+			printf("[%s,%d] data(%d) \n",__func__,__LINE__,*(data + 0));
+		}
+	}
+
+	return 0;
+error:
+	printf("[%s,%d] ERROR! \n",__func__,__LINE__);
+	return -1;
+}
+
+int main(int argc, char **argv)
+{
+	MAKE_GCC_HAPPY(argc);
+	MAKE_GCC_HAPPY(argv);
+
+	dl_getopt(argc, argv, &options_mc);
+	dl_getopt_freeall(&options_mc);
+
+	return 0;
+}
+#endif
 
