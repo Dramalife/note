@@ -21,6 +21,7 @@ Dramalife\`s note
 [- linux-kernel(aliyun-mirror)](http://mirrors.aliyun.com/linux-kernel/)  
 [- Armbian_release_mirror_tsinghua](https://mirrors.tuna.tsinghua.edu.cn/armbian-releases/)  
 [- Linux C(userspace) API Ref (pku_arranged)](http://net.pku.edu.cn/~yhf/linux_c/)  
+[- 码云极速下载](https://gitee.com/organizations/mirrors/projects)  
 
 ### 1.2 Directories
 | Directory			 | Introduction				|
