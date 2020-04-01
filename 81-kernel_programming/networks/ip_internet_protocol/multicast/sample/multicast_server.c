@@ -128,8 +128,8 @@ int main (int argc, char **argv)
 	struct ip_mreq mreq;		/* Request struct for multicast socket ops */
 	struct sockaddr_in peeraddr,ia;	/* Structure describing an Internet (IP) socket address. */
 
-	MAKE_GCC_HAPPY((void *)&argc);
-	MAKE_GCC_HAPPY((void *)argv);
+	MAKE_GCC_HAPPY(argc);
+	MAKE_GCC_HAPPY(argv);
 	dl_getopt(argc, argv, &options_mc);
 	//TODO data process
 	dl_getopt_freeall(&options_mc);
