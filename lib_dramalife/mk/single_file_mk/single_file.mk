@@ -154,7 +154,7 @@ clean-all-with-lib-objs:
 ###################[normal]#####################
 # [TARGET] LD all to the target.
 all-normal:
-	$(CC) -E $(SRCS) >> $(PRE_SOURCE)
+	$(CC) -E $(SRCS) >> $(PRE_SOURCE) $(CFLAGS)
 	@echo "FLAGS : $(CFLAGS) ;"
 	@echo "SRCS: \n$(SRCS)"
 	$(CC) -o $(BIN_NAME)$(BIN_DNAME) $(SRCS) $(CFLAGS) $(DEF_MACROS)

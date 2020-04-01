@@ -68,6 +68,7 @@ separately-complile-and-link : $(BUILD)
 	mv -f $(BUILD) $(BUILD_DIR)
 	mv -f $(OBJS) $(OBJ_DIR)
 part-out : separately-complile-and-link
+demo_of_dynlib : separately-complile-and-link
 ###############################################################################
 
 
@@ -75,6 +76,7 @@ part-out : separately-complile-and-link
 #				*.c > *.o				      #
 ###############################################################################
 # Separately compile "c source" to objects;
+# OLD TARGET - 2020.04.01
 separately-complile-to-objects : $(OBJS)
 	@echo "SRCS: \n$(SRCS)"
 	@echo "OBJS: \n$(OBJS)"
