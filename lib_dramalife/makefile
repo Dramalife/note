@@ -14,7 +14,11 @@
 
 
 # Configuration for subdir make
-SUBDIRS=system_lib ipc_lib
+SUBDIRS=system_lib\
+	ipc_lib\
+	gcc_related_lib\
+	option_config_lib
+
 CFLAGS_ROOT="-fPIC -shared -I../"
 DYNLIB_NAME:=libdramalife.so
 
