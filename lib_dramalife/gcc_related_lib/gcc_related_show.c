@@ -9,30 +9,28 @@
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 
-#include <stdio.h>
 #include "gcc_related_show.h"
 
-/*
-USE : 
-gcc_related_show_no_arg_in( GCC_R_SHOW_VERSION | GCC_R_SHOW_DATE |
-GCC_R_SHOW_TIME );
-No arg in,such as "__LINE__"
-*/
-void gcc_related_show_no_arg_in(unsigned int options)
-{
+
 //#if __GNUC__ == 4 && __GNUC_MINOR__ == 8 && __GNUC_PATCHLEVEL__ == 5
 //#error 4.8.5
 //#elif 0
 //#endif
-	if( options & GCC_R_SHOW_VERSION)
-		printf("GCC VER:(%s)",__VERSION__);
-	if( options & GCC_R_SHOW_DATE)
-		printf(" DATE:(%s)",__DATE__);
-	if( options & GCC_R_SHOW_TIME)
-		printf(" TIME:(%s)",__TIME__);
 
-	printf("\nVERSION IN INT FORMAT:(%d)(%d)(%d) \n",__GNUC__,__GNUC_MINOR__,__GNUC_PATCHLEVEL__);
 
-	return;
+void gcc_related_show_no_arg_in(unsigned int options)
+{
+	dl_compile_info_print(options);
 }
+
+
+#ifdef _DL_GCC_RELATED_SHOW_HAS_MAIN_
+int main(int argc, char **argv)
+{
+	MAKE_GCC_HAPPY(argc);
+	MAKE_GCC_HAPPY(argv);
+	dl_compile_info_print(0xf);
+	return 0;
+}
+#endif
 
