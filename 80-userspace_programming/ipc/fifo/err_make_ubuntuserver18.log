@@ -32,6 +32,8 @@ This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 
 Written by Mike Parker and David MacKenzie.
+
+********
 dramalife@server:~/note/80-userspace_programming/ipc/fifo $ gcc --version
 gcc (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
 Copyright (C) 2017 Free Software Foundation, Inc.
@@ -71,3 +73,7 @@ Binary file ./gettext-0.19.8.1.tar matches
 dramalife@server:~/temp/gcc-6.3.0 $ ls^C
 
 ****************
+FIX: (gcc version)
+make CC=gcc-5
+****************
+
