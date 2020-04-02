@@ -1,0 +1,62 @@
+-------------------------------------------------------------
+CODE - VERSION INFO
+dramalife@server:~/note/lib_dramalife $ git log
+commit 0fd22388ef1a4e3e318b4364276fd8d5c4123dab (HEAD -> master)
+Author: dramalife_ubuntu18-server_rcvb <dramalife@live.com>
+Date:   Thu Apr 2 17:56:21 2020 +0800
+
+    [lib_dramalife] update single_file.mk.
+-------------------------------------------------------------
+GCC(toolchain) - VERSION INFO
+arm-linux-gnueabihf-gcc --version
+arm-linux-gnueabihf-gcc (Linaro GCC 7.4-2019.02) 7.4.1 20181213 [linaro-7.4-2019.02 revision 56ec6f6b99cc167ff0c2f8e1a2eed33b1edc85d4]
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+-------------------------------------------------------------
+- QUESTION : 
+Why not produce core file ?
+- REASON:
+root@Raisecom:~# cat /proc/sys/kernel/core_pattern 
+/rc_core/corefile-%e-%p-%t
+root@Raisecom:~# ls /rc_core
+ls: /rc_core: No such file or directory
+- SOLVE:
+mkdir /rc_core
+-------------------------------------------------------------
+root@Raisecom:~# uname -a
+Linux Raisecom 4.1.15 #1 SMP PREEMPT Mon Mar 23 08:48:02 CST 2020 armv7l GNU/Linux
+root@Raisecom:~# ./backtrace_funcs.out seg
+hard:-1 
+curr:1048576 
+hard:-1 
+curr:-1 
+00010000-00011000 r-xp 00000000 00:16 618305     /home/root/backtrace_funcs.out
+00020000-00021000 r--p 00000000 00:16 618305     /home/root/backtrace_funcs.out
+00021000-00022000 rw-p 00001000 00:16 618305     /home/root/backtrace_funcs.out
+0078a000-007ac000 rw-p 00000000 00:00 0          [heap]
+76dee000-76f11000 r-xp 00000000 1f:0b 11697      /lib/libc-2.23.so
+76f11000-76f21000 ---p 00123000 1f:0b 11697      /lib/libc-2.23.so
+76f21000-76f23000 r--p 00123000 1f:0b 11697      /lib/libc-2.23.so
+76f23000-76f24000 rw-p 00125000 1f:0b 11697      /lib/libc-2.23.so
+76f24000-76f27000 rw-p 00000000 00:00 0 
+76f27000-76f29000 r-xp 00000000 00:16 618339     /lib/libdramalife.so
+76f29000-76f38000 ---p 00002000 00:16 618339     /lib/libdramalife.so
+76f38000-76f39000 r--p 00001000 00:16 618339     /lib/libdramalife.so
+76f39000-76f3a000 rw-p 00002000 00:16 618339     /lib/libdramalife.so
+76f3a000-76f5a000 r-xp 00000000 1f:0b 11438      /lib/ld-2.23.so
+76f65000-76f66000 rw-p 00000000 00:00 0 
+76f68000-76f69000 rw-p 00000000 00:00 0 
+76f69000-76f6a000 r--p 0001f000 1f:0b 11438      /lib/ld-2.23.so
+76f6a000-76f6b000 rw-p 00020000 1f:0b 11438      /lib/ld-2.23.so
+7eba3000-7ebc4000 rw-p 00000000 00:00 0          [stack]
+7ef03000-7ef04000 r-xp 00000000 00:00 0          [sigpage]
+7ef04000-7ef05000 r--p 00000000 00:00 0          [vvar]
+7ef05000-7ef06000 r-xp 00000000 00:00 0          [vdso]
+ffff0000-ffff1000 r-xp 00000000 00:00 0          [vectors]
+[[libdl-bt] ] ##############Backtrace_Start__signo(11),system-ret(0)#############
+[[libdl-bt] ] backtrace() returned 0 addresses
+[[libdl-bt] ] ##############Backtrace_End__(11)#############
+Segmentation fault
+root@Raisecom:~# 
+-------------------------------------------------------------
