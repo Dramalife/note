@@ -1,0 +1,50 @@
+-------------------------------------------------------------
+FILE :
+arm_backtrace_without_libc.c
+-------------------------------------------------------------
+GIT VERSION
+commit 8451059518f1f8d44690080febef15465c56c0e1
+-------------------------------------------------------------
+GCC(toolchain) - VERSION INFO
+arm-linux-gnueabihf-gcc --version
+arm-linux-gnueabihf-gcc (Linaro GCC 7.4-2019.02) 7.4.1 20181213 [linaro-7.4-2019.02 revision 56ec6f6b99cc167ff0c2f8e1a2eed33b1edc85d4]
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+-------------------------------------------------------------
+root@Raisecom:~# uname -a
+Linux Raisecom 4.1.15 #1 SMP PREEMPT Mon Mar 23 08:48:02 CST 2020 armv7l GNU/Linux
+-------------------------------------------------------------
+objdump : 
+00010a1e <sample_function_C>:
+   10a1e:	b580      	push	{r7, lr}
+   10a20:	b084      	sub	sp, #16
+   10a22:	af00      	add	r7, sp, #0
+   10a24:	6078      	str	r0, [r7, #4]
+   10a26:	687b      	ldr	r3, [r7, #4]
+   10a28:	60fb      	str	r3, [r7, #12]
+   10a2a:	687b      	ldr	r3, [r7, #4]
+   10a2c:	22a2      	movs	r2, #162	; 0xa2
+   10a2e:	f640 5114 	movw	r1, #3348	; 0xd14
+   10a32:	f2c0 0101 	movt	r1, #1
+   10a36:	f640 4088 	movw	r0, #3208	; 0xc88
+   10a3a:	f2c0 0001 	movt	r0, #1
+   10a3e:	f7ff ed06 	blx	1044c <printf@plt>
+   10a42:	68fb      	ldr	r3, [r7, #12]
+   10a44:	2241      	movs	r2, #65	; 0x41
+   10a46:	701a      	strb	r2, [r3, #0]
+   10a48:	bf00      	nop
+   10a4a:	3710      	adds	r7, #16
+   10a4c:	46bd      	mov	sp, r7
+   10a4e:	bd80      	pop	{r7, pc}
+----------------------------------------------
+# ./btarm.out 
+[sample_function_A,149] var(1) 
+[sample_function_B,155] var(2) 
+[sample_function_C,162] var(3) 
+
+
+unhandled page fault (11) at: 0x00000003
+0: [0x10a46]
+Segmentation fault
+----------------------------------------------
