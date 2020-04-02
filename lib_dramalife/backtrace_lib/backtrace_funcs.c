@@ -66,7 +66,7 @@ static void dl_backtrace_dump(void)
 /*
  * Hanlder of singal, ex.SIGSEGV.
  */
-void signal_handler(int signo)  
+void dlbt_signal_handler(int signo)  
 {  
 	/*
 	 * Show maps 
@@ -122,7 +122,7 @@ int matched_string(const char *str1, const char *str2)
 int main(int argc, char **argv)
 {
 	/* Register signal handler */
-	signal(SIGSEGV, signal_handler);
+	signal(SIGSEGV, dlbt_signal_handler);
 
 	/* Set resource limit of coredump */
 	dl_set_coredump_unlimit();

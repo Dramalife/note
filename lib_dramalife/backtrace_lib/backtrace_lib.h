@@ -23,7 +23,8 @@
 
 
 /* Extern Functions */
-extern void signal_handler(int signo);
+#define signal_handler	dlbt_signal_handler
+extern void dlbt_signal_handler(int signo);
 
 
 #endif
