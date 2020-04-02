@@ -1,0 +1,7 @@
+include $(PATH_ABS)/mk/multi_lib.mk
+CFLAGS+=-I$(PATH_ABS)
+# Flags used by demo only
+CFLAGS_DEMO+=-ldramalife -L$(PATH_ABS) -Wl,-rpath=$(PATH_ABS)
+CFLAGS_DYNLIB+=-DDDDDDDDDDDDDDDDDDD
+#DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=1
+#EXTERA_FILES2DEL:=$(CURRENT_DIR)/build
