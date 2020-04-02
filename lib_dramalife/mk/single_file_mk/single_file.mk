@@ -93,7 +93,7 @@ LD :=ld
 DEF_MACROS:=
 
 # Path of "libMakefile.mk"
-PATH_ABS=../
+PATH_ABS=$(HOME)/note/lib_dramalife/
 
 # Path of library objs
 LIB_OBJ_PATH:=
