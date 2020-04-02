@@ -24,7 +24,7 @@ void gcc_related_show_no_arg_in(unsigned int options)
 }
 
 
-#ifdef _DL_GCC_RELATED_SHOW_HAS_MAIN_
+#ifdef _DRAMALIFE_LIB_HAS_FUNC_MAIN_
 int main(int argc, char **argv)
 {
 	MAKE_GCC_HAPPY(argc);

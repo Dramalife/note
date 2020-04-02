@@ -1,9 +1,4 @@
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h> //memset
-#include "ipc_lib_pipe.h"
+#include "lib_dramalife.h"
 
 
 
@@ -75,3 +70,13 @@ int dramalife_get_pipe_max_size(void)
 
 	return pipsize_i;
 }
+
+
+#ifdef _DRAMALIFE_LIB_HAS_FUNC_MAIN_
+int main(int argc, char **argv)
+{
+	MAKE_GCC_HAPPY(argc);
+	MAKE_GCC_HAPPY(argv);
+	return 0;
+}
+#endif

@@ -102,7 +102,7 @@ int dl_set_coredump_unlimit(void)
 }
 
 
-#ifdef DL_INFILE_ADD_MAIN
+#ifdef _DRAMALIFE_LIB_HAS_FUNC_MAIN_
 int main(int argc, char **argv)
 {
 	int *ptr=NULL;

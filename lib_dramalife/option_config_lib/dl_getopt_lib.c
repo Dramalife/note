@@ -271,7 +271,7 @@ void dl_getopt_freeall(struct dl_option (*dlopt)[])
 /***********************************************
  * DEMO
  ***********************************************/
-#ifdef _DL_GET_OPT_LIB_HAS_DEMO_
+#ifdef _DRAMALIFE_LIB_HAS_FUNC_MAIN_
 #include "../gcc_related_lib/gcc_related_show.h"
 int handler_getint(void *arg);
 int handler_manuall_run(void *arg);
@@ -339,4 +339,3 @@ int main(int argc, char **argv)
 	return 0;
 }
 #endif
-

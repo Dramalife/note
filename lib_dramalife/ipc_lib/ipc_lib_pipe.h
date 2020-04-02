@@ -2,6 +2,13 @@
 #define DRAMALIFE_NOTE_IPC_LIB_PIPE_H
 
 
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
 /*****************************************
  **		CONFIGURATIONS		**
  *****************************************/
