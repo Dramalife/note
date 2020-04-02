@@ -67,8 +67,24 @@ separately-complile-and-link : $(BUILD)
 	-mkdir $(OBJ_DIR)
 	mv -f $(BUILD) $(BUILD_DIR)
 	mv -f $(OBJS) $(OBJ_DIR)
+# alias
 part-out : separately-complile-and-link
-demo_of_dynlib : separately-complile-and-link
+
+# COPY FROM : separately-complile-and-link
+CFLAGS_DEMO+= $(CFLAGS) -D_DRAMALIFE_LIB_HAS_FUNC_MAIN_ 
+.demo_of_dynlib_compile: $(BUILD)
+demo_of_dynlib :
+	@echo "CFLAGS: $(CFLAGS)"
+	make clean
+	make .demo_of_dynlib_compile CFLAGS="$(CFLAGS_DEMO)"
+	@echo "SRCS: \n$(SRCS)"
+	@echo "OBJS: \n$(OBJS)"
+	@echo "BUILD: \n$(BUILD)"
+	@echo "PATH \nSRC_DIR: \n$(SRC_DIR) \nOBJ_DIR: \n$(OBJ_DIR) \nBUILD_DIR: \n$(BUILD_DIR) \n"
+	-mkdir $(BUILD_DIR)
+	-mkdir $(OBJ_DIR)
+	mv -f $(BUILD) $(BUILD_DIR)
+	mv -f $(OBJS) $(OBJ_DIR)
 ###############################################################################
 
 
@@ -94,9 +110,12 @@ part-objs : separately-complile-to-objects
 # Used by note/lib_dramalife/makefile
 BUILD_ROOT=/tmp
 DYNLIB_OBJ_PATH=/tmp
-.dynamic-lib : .pre-dynamic-lib $(OBJS)
+CFLAGS_DYNLIB+= $(CFLAGS) -fPIC -shared 
+.dynamic-lib-make-obj: $(OBJS)
+.dynamic-lib : #.dynamic-lib-print-info
+	make .dynamic-lib-make-obj CFLAGS="$(CFLAGS_DYNLIB)"
 	mv -f $(OBJS) $(DYNLIB_OBJ_PATH)
-.pre-dynamic-lib:
+.dynamic-lib-print-info:
 	@echo "BUILD_ROOT : $(BUILD_ROOT)"
 	@echo "DYNLIB_OBJ_PATH : $(DYNLIB_OBJ_PATH)"
 	@echo "CFLAGS: $(CFLAGS)"

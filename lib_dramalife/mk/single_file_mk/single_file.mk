@@ -70,11 +70,10 @@
 ################################################################
 
 CURRENT_DIR:=$(shell pwd)
-CURRENT_DIR2:=$(shell pwd)/
+CONFIG_MK_DIR:=$(CURRENT_DIR)
 PRE_SOURCE=source_pre$(PRE_COMP)
 
 # Source Default - Current Directory.
-#SRCS := $(wildcard $(CURRENT_DIR2)*.c)
 SRCS := $(wildcard ./*.c)
 
 # Flags that Explicitly or Implicitly used by makefile(s).
@@ -104,7 +103,7 @@ LIB_OBJ_LINKNAME:=obj2
 # Folders in whitch files to be deleted.
 EXTERA_FILES2DEL=$(CURRENT_DIR)/build
 
-include ./config.mk
+include $(CONFIG_MK_DIR)/config.mk
 include $(PATH_ABS)libMakefile.mk
 
 ##################[Defaults]####################

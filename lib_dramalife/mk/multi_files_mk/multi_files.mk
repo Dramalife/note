@@ -38,27 +38,35 @@
 # STEP 2 : ln -s path/to/libMakefile.mk ./Makefile
 # STEP 3 : Enjoy your self :)
 
+################################################################################
 # Sample - config.mk (split make multi files)
-## Using default(multi_files.mk) if not set.
-#PATH_ABS=../../../../lib_dramalife/
-#include $(PATH_ABS)/mk/multi_lib.mk
-#CFLAGS+="-I$(PATH_ABS)"
-#DEF_MACROS +="-lpthread"
-#DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=0
-#EXTERA_FILES2DEL:=$(CURRENT_DIR)/build
+################################################################################
+# # Using default(multi_files.mk) if not set.
+# #PATH_ABS=../../../../lib_dramalife/
+# include $(PATH_ABS)/mk/multi_lib.mk
+# # Flags used by all(dyblib & app/demo)
+# CFLAGS+="-I$(PATH_ABS)"
+# # Flags used only by app/demo.
+# #CFLAGS_DEMO+=-ldramalife -L$(PATH_ABS) -Wl,-rpath=$(PATH_ABS)
+# #DEF_MACROS +="-lpthread"
+# #DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=0
+# #EXTERA_FILES2DEL:=$(CURRENT_DIR)/build
 
 
 
+# Path where the Makefile is
 CURRENT_DIR:=$(shell pwd)
-CURRENT_DIR2:=$(shell pwd)/
+CONFIG_MK_DIR:=$(CURRENT_DIR)
 PRE_SOURCE=source_pre$(PRE_COMP)
 
 # Source Default - Current Directory.
-#SRCS := $(wildcard $(CURRENT_DIR2)*.c)
 SRCS := $(wildcard ./*.c)
 
 # Flags that Explicitly or Implicitly used by makefile(s).
+# make -C PATH CFLAGS="..."
 CFLAGS:=
+CFLAGS_DEMO=
+CFLAGS_DYNLIB=
 
 # Don`t use FLAGS added in "NOTE/lib_dramalife/libMakefile.mk" if NOT NULL, null-USE, notnull-NOUSE;
 # It may be changed in "*.mk".
@@ -85,7 +93,8 @@ default:
 	@echo "Usage: \nmake [TARGET] ! \n"
 
 
-include $(CURRENT_DIR)/config.mk
+include $(CONFIG_MK_DIR)/config.mk
+# pub_lib.mk
 include $(PATH_ABS)libMakefile.mk
 
 
