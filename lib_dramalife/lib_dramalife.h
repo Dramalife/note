@@ -25,15 +25,24 @@
  * Update 
  *
  */
-
-
-
 #ifndef LIB_DRAMALIFE_H
 #define LIB_DRAMALIFE_H
 
 
+
+/*******************************************************************************
+ * 			Configuration
+ ******************************************************************************/
+#include "config_lib_dramalife.h"
+
+
+/*******************************************************************************
+ * 			Library Functions
+ ******************************************************************************/
 #include "print_lib/dramalife_terminal_color.h"
+
 #include "gcc_related_lib/gcc_related_show.h"
+
 #include "libc_with_print_lib/libc_with_print_lib.h"
 
 #include "link_list_lib/link_list.h"
@@ -45,6 +54,9 @@
 #include "option_config_lib/option_config_lib.h"
 
 #include "system_lib/system_lib.h"
+
+#include "backtrace_lib/backtrace_lib.h"
+
 
 
 #endif
