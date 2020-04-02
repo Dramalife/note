@@ -39,6 +39,7 @@
 # STEP 3 : Enjoy your self :)
 
 # Sample - config.mk (split make multi files)
+## Using default(multi_files.mk) if not set.
 #PATH_ABS=../../../../lib_dramalife/
 #include $(PATH_ABS)/mk/multi_lib.mk
 #CFLAGS+="-I$(PATH_ABS)"
@@ -70,7 +71,7 @@ DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=
 DEF_MACROS:=
 
 # Path of "libMakefile.mk"
-PATH_ABS=../
+PATH_ABS=$(HOME)/note/lib_dramalife/
 
 # Folders in whitch files to be deleted.
 EXTERA_FILES2DEL=$(CURRENT_DIR)/build
