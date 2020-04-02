@@ -1,0 +1,3 @@
+http://downloads.openwrt.org.cn/sources/
+
+https://gitee.com/arvik/openwrtdl
