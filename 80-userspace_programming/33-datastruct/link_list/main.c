@@ -33,7 +33,7 @@ int main(void)
 {
 	ll_data_type tmp;
 
-	gcc_related_show_no_arg_in( GCC_R_SHOW_VERSION | GCC_R_SHOW_DATE | GCC_R_SHOW_TIME );
+	dl_gcc_print_compile_info( 0xff, printf);
 
 	head = add_elem_dlll(NULL, NULL, 0);/* Init a linklist */
 	debug_dlll(head);//should not print
@@ -77,7 +77,7 @@ int main(void)
 		printf("FILO---name:%s,type:%d\n",tmp.name, tmp.address_type);
 	debug_dlll(head);
 
-test_dlll(head, 60000, 0);/* testing */
+//test_dlll(head, 60000, 0);/* testing */
 
 	return 0;
 }
