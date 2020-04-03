@@ -113,6 +113,7 @@ DYNLIB_OBJ_PATH=/tmp
 CFLAGS_DYNLIB+= $(CFLAGS) -fPIC -shared 
 .dynamic-lib-make-obj: $(OBJS)
 .dynamic-lib : #.dynamic-lib-print-info
+	make clean
 	make .dynamic-lib-make-obj CFLAGS="$(CFLAGS_DYNLIB)"
 	mv -f $(OBJS) $(DYNLIB_OBJ_PATH)
 .dynamic-lib-print-info:

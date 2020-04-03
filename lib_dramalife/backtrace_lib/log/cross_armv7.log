@@ -60,3 +60,15 @@ ffff0000-ffff1000 r-xp 00000000 00:00 0          [vectors]
 Segmentation fault
 root@Raisecom:~# 
 -------------------------------------------------------------
+BACKTRACE FOR ARM
+root@Raisecom:~# ./btarmdl.out seg
+hard:-1 
+curr:1048576 
+hard:-1 
+curr:-1 
+
+
+unhandled page fault (11) at: 0x(nil)
+0: [0x10dc4]
+Segmentation fault
+-------------------------------------------------------------

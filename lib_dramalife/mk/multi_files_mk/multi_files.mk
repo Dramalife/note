@@ -38,19 +38,53 @@
 # STEP 2 : ln -s path/to/libMakefile.mk ./Makefile
 # STEP 3 : Enjoy your self :)
 
-################################################################################
-# Sample - config.mk (split make multi files)
-################################################################################
-# # Using default(multi_files.mk) if not set.
-# #PATH_ABS=../../../../lib_dramalife/
-# include $(PATH_ABS)/mk/multi_lib.mk
-# # Flags used by all(dyblib & app/demo)
-# CFLAGS+="-I$(PATH_ABS)"
-# # Flags used only by app/demo.
-# #CFLAGS_DEMO+=-ldramalife -L$(PATH_ABS) -Wl,-rpath=$(PATH_ABS)
-# #DEF_MACROS +="-lpthread"
-# #DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=0
-# #EXTERA_FILES2DEL:=$(CURRENT_DIR)/build
+ifdef __________JUST_SHOW_NOT_USED______________________________________________
+######################################################START#####################
+# TODO : OUTDATED !! Sample - config.mk (split make multi files)
+######################################################START#####################
+# Using default(multi_files.mk) if not set.
+#PATH_ABS=../../../../lib_dramalife/
+include $(PATH_ABS)/mk/multi_lib.mk
+# Flags used by all(dyblib & app/demo)
+CFLAGS+="-I$(PATH_ABS)"
+# Flags used only by app/demo.
+#CFLAGS_DEMO+=-ldramalife -L$(PATH_ABS) -Wl,-rpath=$(PATH_ABS)
+#DEF_MACROS +="-lpthread"
+#DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=0
+#EXTERA_FILES2DEL:=$(CURRENT_DIR)/build
+##########################################################END###################
+endif
+
+
+
+ifdef __________JUST_SHOW_NOT_USED______________________________________________
+######################################################START#####################
+# Sample - config.mk (For Library & Demo)
+######################################################START#####################
+# Makefile Library
+include $(PATH_ABS)/mk/multi_lib.mk
+
+# Header Files` Path
+CFLAGS+=-I$(PATH_ABS)
+
+# Library Path for Demo (compile & runtime)
+#CFLAGS_DEMO+=-ldramalife -L$(PATH_ABS) -Wl,-rpath=$(PATH_ABS)
+
+# Library Code compile switch, for mode-lib only.
+CFLAGS_DYNLIB+=-D_DL_88888888_LIB_ENABLE_
+
+# Demo Code compile switch, for mode-demo only.
+# Command "make demo_of_dynlib" will enable this automatically.
+#CFLAGS_DEMO+=_DRAMALIFE_LIB_HAS_FUNC_MAIN_
+
+# Extra CFLAGS SWITCH
+#DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=1
+
+# Debug Print Switch - TODO
+CFLAGS_DEMO+=  -D_DL88888888_DEBUG_ENABLED_
+CFLAGS_DYNLIB+=-D_DL88888888_DEBUG_ENABLED_
+##########################################################END###################
+endif
 
 
 

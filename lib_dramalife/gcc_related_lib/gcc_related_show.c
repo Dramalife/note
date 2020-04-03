@@ -18,19 +18,25 @@
 //#endif
 
 
-void gcc_related_show_no_arg_in(unsigned int options)
-{
-	dl_compile_info_print(options);
-}
+/* Debug Print */
+#ifdef _DLGCC_DEBUG_ENABLED_
+#define dl_gcc_debug(fmt,...)	do{printf(fmt,##__VA_ARGS__);}while(0)
+#else
+#define dl_gcc_debug(f,...)	do{}while(0)
+#endif
+
+/* Library Code */
+#ifdef _DL_GCC_LIB_ENABLE_
+#endif
 
 
+/* Demo Code */
 #ifdef _DRAMALIFE_LIB_HAS_FUNC_MAIN_
 int main(int argc, char **argv)
 {
 	MAKE_GCC_HAPPY(argc);
 	MAKE_GCC_HAPPY(argv);
-	dl_compile_info_print(0xf);
+	dl_gcc_print_compile_info(0xf, dl_gcc_debug);
 	return 0;
 }
 #endif
-

@@ -24,26 +24,15 @@
 
 
 /* SWITCH - Debug Print */
-#ifdef _DL_LIB_SYSTEM_DEBUG_EN_
-#define DL_INFILE_DEBUG_PRINT_SW	1
-#else
-#undef DL_INFILE_DEBUG_PRINT_SW
-#endif
-
-/* SWITCH - Demo (func main()) */
-#ifdef _DL_LIB_SYSTEM_HAS_MAIN_
-#define DL_INFILE_ADD_MAIN	1
-#else
-#undef DL_INFILE_ADD_MAIN
-#endif
-
-
-/* MACRO - Debug Print */
-#ifdef DL_INFILE_DEBUG_PRINT_SW
-#define dl_infile_debug(x,...)	do{printf(x,##__VA_ARGS__);}while(0)
+#ifdef _DLSYS_DEBUG_ENABLED_
+#define dl_infile_debug(x,...)	do{\
+	printf("[dl_syslib] ");\
+	printf(x,##__VA_ARGS__);\
+}while(0)
 #else
 #define dl_infile_debug(x,...)	do{}while(0)
 #endif
+
 
 /* STRUCT - UNUSED ! */
 #undef __JUST_ANALYSIS_CODE_o_O
@@ -57,21 +46,23 @@ struct rlimit
 };
 #endif
 
+
+#ifdef _DL_SYSTEM_LIB_ENABLE_
 /* Infile used functions */
-static int getrlimit_info(int line, int resource, struct rlimit *rlim);
-
-
-static int getrlimit_info(int line, int resource, struct rlimit *rlim)
+static int dlstatic_getrlimit_info(int line, int resource, struct rlimit *rlim)
 {
 	if( 0 != getrlimit(resource, rlim))
 	{
-		perror("getrlimit");
+		dl_infile_debug("[%s,%d] ERROR getrlimit (%s)!", 
+				__func__,__LINE__,
+				strerror(errno)?strerror(errno):"null"/* Compatible with uClibc */
+			       );
 		return line;
 	}
 	else
 	{
-		dl_infile_debug("hard:%ld \n",rlim->rlim_max);
-		dl_infile_debug("curr:%ld \n",rlim->rlim_cur);
+		dl_gcc_print_name_vaule(rlim->rlim_max, dl_infile_debug);
+		dl_gcc_print_name_vaule(rlim->rlim_cur, dl_infile_debug);
 	}
 	return 0;
 }
@@ -83,7 +74,7 @@ int dl_set_coredump_unlimit(void)
 	struct rlimit slimit={0};
 
 	/* Getting core limit */
-	ret += getrlimit_info(__LINE__, RLIMIT_CORE, &glimit);
+	ret += dlstatic_getrlimit_info(__LINE__, RLIMIT_CORE, &glimit);
 
 	slimit.rlim_max=RLIM_INFINITY;
 	slimit.rlim_cur=RLIM_INFINITY;
@@ -96,10 +87,11 @@ int dl_set_coredump_unlimit(void)
 	}
 
 	/* Getting core limit */
-	ret += getrlimit_info(__LINE__, RLIMIT_CORE, &glimit);
+	ret += dlstatic_getrlimit_info(__LINE__, RLIMIT_CORE, &glimit);
 
 	return ret;
 }
+#endif
 
 
 #ifdef _DRAMALIFE_LIB_HAS_FUNC_MAIN_
@@ -110,7 +102,9 @@ int main(int argc, char **argv)
 	MAKE_GCC_HAPPY(argc);
 	MAKE_GCC_HAPPY(argv);
 
+	dl_infile_debug("Demo call lib_func start... \n");
 	dl_set_coredump_unlimit();
+	dl_infile_debug("Demo call lib_func end... \n");
 
 	*ptr = 1;
 	return 0;

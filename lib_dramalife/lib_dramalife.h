@@ -28,6 +28,8 @@
 #ifndef LIB_DRAMALIFE_H
 #define LIB_DRAMALIFE_H
 
+#include <stdint.h>
+
 
 
 /*******************************************************************************

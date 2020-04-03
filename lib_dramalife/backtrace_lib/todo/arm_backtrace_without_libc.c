@@ -10,10 +10,8 @@
 #include <signal.h>
 #include <assert.h>
 #include <ucontext.h>
+#include <string.h>
 
-void sample_function_A(int a);
-void sample_function_B(int b);
-void sample_function_C(int c);
 void dlbt_signal_handler(unsigned int sn , siginfo_t  *si , void *ptr);
 
 typedef struct
@@ -41,11 +39,11 @@ struct sigframe_ce123
 	//struct aux_sigframe aux __attribute__((aligned(8)));  
 }sigframe_ce123; 
 
-int backtrace_ce123 (void **array, int size);
-char ** backtrace_symbols_ce123 (void *const *array, int size);
+static int backtrace_ce123 (void **array, int size);
+static char ** backtrace_symbols_ce123 (void *const *array, int size);
 
 
-int backtrace_ce123 (void **array, int size)
+static int backtrace_ce123 (void **array, int size)
 {
 	if (size <= 0)
 		return 0;
@@ -77,7 +75,7 @@ int backtrace_ce123 (void **array, int size)
 	return ret;
 }
 
-char ** backtrace_symbols_ce123 (void *const *array, int size)
+static char ** backtrace_symbols_ce123 (void *const *array, int size)
 {
 # define WORD_WIDTH 8
 	Dl_info info[size];
@@ -143,26 +141,6 @@ char ** backtrace_symbols_ce123 (void *const *array, int size)
 	return result;
 }
 
-
-void sample_function_A(int a)
-{
-	printf("[%s,%d] var(%d) \n", __func__,__LINE__, a);
-	sample_function_B(2);
-}
-
-void sample_function_B(int b)
-{
-	printf("[%s,%d] var(%d) \n", __func__,__LINE__, b);
-	sample_function_C(3);       /* 这个函数调用将导致段错误*/
-}
-
-void sample_function_C(int c)
-{
-	char *p = (char *)c;
-	printf("[%s,%d] var(%d) \n", __func__,__LINE__, c);
-	*p = 'A';   /* 如果参数c不是一个可用的地址值，则这条语句导致段错误 */
-}
-
 /* SIGSEGV信号的处理函数，回溯栈，打印函数的调用关系*/
 void dlbt_signal_handler(unsigned int sn , siginfo_t  *si , void *ptr)
 {
@@ -176,7 +154,7 @@ void dlbt_signal_handler(unsigned int sn , siginfo_t  *si , void *ptr)
 
 	if(NULL != ptr)
 	{
-		printf("\n\nunhandled page fault (%d) at: 0x%08x\n", si->si_signo,si->si_addr);
+		printf("\n\nunhandled page fault (%d) at: 0x%p\n", si->si_signo,si->si_addr);
 
 		struct ucontext_ce123 *ucontext = (struct ucontext_ce123 *)ptr;
 		int pc = ucontext->uc_mcontext.arm_pc;		
@@ -205,6 +183,30 @@ void dlbt_signal_handler(unsigned int sn , siginfo_t  *si , void *ptr)
 	}
 
 	exit(-1);
+}
+
+
+/* DEMO */
+static void sample_function_A(int a);
+static void sample_function_B(int b);
+static void sample_function_C(int c);
+static void sample_function_A(int a)
+{
+	printf("[%s,%d] var(%d) \n", __func__,__LINE__, a);
+	sample_function_B(2);
+}
+
+static void sample_function_B(int b)
+{
+	printf("[%s,%d] var(%d) \n", __func__,__LINE__, b);
+	sample_function_C(3);       /* 这个函数调用将导致段错误*/
+}
+
+static void sample_function_C(int c)
+{
+	char *p = (char *)c;
+	printf("[%s,%d] var(%d) \n", __func__,__LINE__, c);
+	*p = 'A';   /* 如果参数c不是一个可用的地址值，则这条语句导致段错误 */
 }
 
 int main(int argc, char **argv)
