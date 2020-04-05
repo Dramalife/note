@@ -1,0 +1,16 @@
+dramalife@firefly:~ $ sudo unminimize 
+This system has been minimized by removing packages and content that are
+not required on a system that users do not log into.
+
+This script restores content and packages that are found on a default
+Ubuntu server system in order to make this system more suitable for
+interactive use.
+
+Reinstallation of packages may fail due to changes to the system
+configuration, the presence of third-party packages, or for other
+reasons.
+
+This operation may take some time.
+
+Would you like to continue? [y/N]
+

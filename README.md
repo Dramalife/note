@@ -89,17 +89,14 @@ git clone https://github.com/Dramalife/note.git --depth=1
 | |AIO-3399J| |Drivers:DP83867,LTC2941,|
 | |STM32F107VCT6|ethernet,NB-Iot/GSM|
 |3|Raspberry Pi 3B |2018.07|Arm v7|
-|4|Orange Pi Zero |2018.12.27|SoC:sunxi,Architecture:Cortex-A7,Instruction Set:Arm v7;|
-|5|Banana Pi R2 |2020.01.10 |MTK7623N;Arm v7; RAM:2GB,EMMC:8GB; 5\*Gigabit Ethernet,2\*SATA,1\*PCIE,2\*USB3.0;|
-| | | | |
-| | | | |
-| | | | |
+|4|Orange Pi Zero |2018.12.27|SoC:sunxi,Architecture:Cortex-A7,Instruction Set:ARMv7;|
+|5|Banana Pi R2 |2020.01.10 |SoC:MediaTek MT7623N,Architecture:Cortex-A7,Introduction Set:ARMv7; RAM:2GB,EMMC:8GB; 5\*Gigabit Ethernet,2\*SATA,1\*PCIE,2\*USB3.0;|
+|6|ROC-RK3328-CC|2020.04.04 |SoC:RK3328,Architecture:Cortex-A53,Introduction Set:ARMv8;|
 
 ### 3.2 Devices
 |No|Name|Date|Details|
 |--|--|--|--|
 | 0|TFT LCD(ili9486) |2019.07.24- | drivers/staging/fbtft/fb\_ili9486.c|
-| | | | |
 
 ## 4. Others
 <div align=right>
