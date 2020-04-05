@@ -1,6 +1,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/Dramalife/note.svg?color=green&logo=Linux&logoColor=black)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Dramalife/note.svg?color=blue)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/Dramalife/note.svg)
+![C/C++ CI](https://github.com/Dramalife/note/workflows/C/C++%20CI/badge.svg)
 
 
 # NOTE
