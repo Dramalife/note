@@ -1,0 +1,4 @@
+sudo useradd -m <USER_NAME>
+sudo cp /etc/sudoers /etc/sudoers_backup8888
+sudo echo <USER_NAME>"	ALL=(ALL:ALL) ALL" >> /etc/sudoers
+sudo passwd <USER_NAME>
