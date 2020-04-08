@@ -1,0 +1,32 @@
+ARRAY(STRING)
+-------------
+dramalife@server:~/note/tools/fs/nfs $ sudo ubus list -v
+'dlobj' @d04f57eb
+	"dlget":{}
+	"dlset":{"dlarg1":"Integer","dlarg2":"String"}
+'dlobj.array' @a7b8c50d
+	"dlgetarray":{}
+	"dlsetarray":{"array1":"Array"}
+'test' @4d9e6bd7
+	"hello":{"id":"Integer","msg":"String"}
+	"watch":{"id":"Integer","counter":"Integer"}
+	"count":{"to":"Integer","string":"String"}
+dramalife@server:~/note/tools/fs/nfs $ sudo ubus call dlobj.array dlgetarray
+{
+	"array1": [
+		"",
+		""
+	]
+}
+dramalife@server:~/note/tools/fs/nfs $ sudo ubus call dlobj.array dlsetarray '{"array1":["ipaddress","netmask"]}'
+{
+
+}
+dramalife@server:~/note/tools/fs/nfs $ sudo ubus call dlobj.array dlgetarray
+{
+	"array1": [
+		"ipaddress",
+		"netmask"
+	]
+}
+

@@ -1,0 +1,16 @@
+INT && STRING
+-------------
+dramalife@server:~/openwrt/openwrt17/build_dir $ sudo ubus call dlobj dlget
+{
+	"dlarg1": 0,
+	"dlarg2": ""
+}
+dramalife@server:~/openwrt/openwrt17/build_dir $ sudo ubus call dlobj dlset '{"dlarg1":667,"dlarg2":"ahh"}'
+{
+	"rc": 1
+}
+dramalife@server:~/openwrt/openwrt17/build_dir $ sudo ubus call dlobj dlget
+{
+	"dlarg1": 667,
+	"dlarg2": "ahh"
+}

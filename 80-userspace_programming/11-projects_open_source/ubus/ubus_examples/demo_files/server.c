@@ -215,6 +215,10 @@ static void server_main(void)
 	int ret;
 
 	ret = ubus_add_object(ctx, &test_object);
+#ifdef UBUS_SAMPLE_ADD_DRAMALIFE_OBJECT	
+	ret += dl_add_ubus_object_int_string(ctx);
+	ret += dl_add_ubus_object_array(ctx);
+#endif
 	if (ret)
 		fprintf(stderr, "Failed to add object: %s\n", ubus_strerror(ret));
 

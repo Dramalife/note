@@ -3,8 +3,15 @@
 > 	COPY FROM lede-17.01/.../ubus-2017-02-18-34c6e818/examples;
 > Update : 2020.04.07
 > 	Add new makefile, remove "cmake" files;
+> Update : 2020.04.08
+>	sort out current directory;
+>	Add sample - obj-type-int;
+>	Add sample - obj-type-string;
+>	Add sample - obj-type-array;
 
-### 1 Dependence
+
+### 1 Prepare
+#### 1.1 Dependence
 ```bash
 ls /bin/ubus  		
 ls /bin/ubusd 		
@@ -16,6 +23,25 @@ ls /lib/libjson_script.so
 ls /lib/libubox.so        
 ls /lib/libubus.so	
 ```
+
+#### 1.2 Files
+- demo_files
+source & headers copy from ubus;
+- dl_files
+source & headers added by dramalife;
+- log
+terminal log files;
+- makefile
+makefile;
+- README.md
+This file;
+
+- Source file:
+|File |Type |Compile MACRO|
+|--|--|--|
+|dl_ubus_add_object_int_string.c |Integer,String| -DUBUS_SAMPLE_ADD_DRAMALIFE_OBJECT|
+
+
 
 ### 2 Run
 #### 2.1 Compile Demo
@@ -43,6 +69,7 @@ sudo ubus list -v
 #	"watch":{"id":"Integer","counter":"Integer"}
 #	"count":{"to":"Integer","string":"String"}
 ```
+
 ### 3 Clean All
 ```bash
 make clean
