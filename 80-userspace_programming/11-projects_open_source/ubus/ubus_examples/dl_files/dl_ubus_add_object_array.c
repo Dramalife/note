@@ -1,7 +1,9 @@
 /*
  * Init : 2020.04.08
  *	GET,SET:int,string;
- * Update:
+ * Update: 2020.04.08
+ *	Ref : https://blog.csdn.net/sky619351517/article/details/80726757
+ *	Add : blob parse array(better way);
  *
  */
 
@@ -24,11 +26,20 @@ enum{
 static const struct blobmsg_policy dlsetarray_policy[__DLSET_MAX] = {
 	[DLSET_ARRAY] = { .name = "array1", .type = BLOBMSG_TYPE_ARRAY },
 };
+static const struct blobmsg_policy array_member_policy[__ARRAY_MEM_MAX] = {
+	[ARRAY_MEM1] = { .type = BLOBMSG_TYPE_STRING },
+	[ARRAY_MEM2] = { .type = BLOBMSG_TYPE_STRING },
+};
 
+enum{
+	ARRAY_MEM1,
+	ARRAY_MEM2,
+	__ARRAY_MEM_MAX,
+};
 #define DLBUFFLEN128	128
 struct dlst
 {
-	uint32_t arr[2][DLBUFFLEN128];
+	char arr[2][DLBUFFLEN128];
 }dldata;
 
 static int test_dlset_array(struct ubus_context *ctx, struct ubus_object *obj,
@@ -46,6 +57,7 @@ static int test_dlset_array(struct ubus_context *ctx, struct ubus_object *obj,
 		return UBUS_STATUS_INVALID_ARGUMENT;
 	/* Init buff */
 	blob_buf_init(&b, 0);
+#if 0
 	/* Parse & Set data */
 	struct blob_attr *attr = NULL;
 	size_t len = 0;
@@ -59,6 +71,15 @@ static int test_dlset_array(struct ubus_context *ctx, struct ubus_object *obj,
 		if(index >= 2)
 			break;
 	}
+#else
+	/* Parse & Set data 
+	 * Better way !
+	 */
+	struct blob_attr *member[__ARRAY_MEM_MAX];
+	blobmsg_parse_array(array_member_policy, __ARRAY_MEM_MAX, member, blobmsg_data(tb[DLSET_ARRAY]), blob_len(tb[DLSET_ARRAY]));
+	strncpy(dldata.arr[0],blobmsg_get_string(member[ARRAY_MEM1]), DLBUFFLEN128); 
+	strncpy(dldata.arr[1],blobmsg_get_string(member[ARRAY_MEM2]), DLBUFFLEN128); 
+#endif
 	/* Send */
 	ubus_send_reply(ctx, req, b.head);
 
