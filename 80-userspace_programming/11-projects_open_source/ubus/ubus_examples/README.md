@@ -1,21 +1,51 @@
-SRC : lede-17.01/openwrt/build_dir/target-x86_64_glibc-2.24/ubus-2017-02-18-34c6e818/examples
-Init : 2020.04.07
-	COPY FROM lede-17.01/.../ubus-2017-02-18-34c6e818/examples;
-Update : 2020.04.07
-	Add new makefile, remove "cmake" files;
+> SRC : lede-17.01/openwrt/build_dir/target-x86_64_glibc-2.24/ubus-2017-02-18-34c6e818/examples
+> Init : 2020.04.07
+> 	COPY FROM lede-17.01/.../ubus-2017-02-18-34c6e818/examples;
+> Update : 2020.04.07
+> 	Add new makefile, remove "cmake" files;
 
-### Tips
+### 1 Dependence
+```bash
+ls /bin/ubus  		
+ls /bin/ubusd 		
+ls /lib/libblobmsg_json.so
+ls /lib/libjson-c.so      
+ls /lib/libjson-c.so.2    
+ls /lib/libjson-c.so.2.0.2
+ls /lib/libjson_script.so 
+ls /lib/libubox.so        
+ls /lib/libubus.so	
 ```
-# Compile
-make all
 
-# Exec
+### 2 Run
+#### 2.1 Compile Demo
+```bash
+make all
+```
+
+#### 2.2 Exec
+##### 2.2.1 Demo(server & client) only
+```bash
+# kill 1st
+sudo kill -9 $(pidof server.out)
+# exec
 sudo ./server.out &
 sudo ./client.out
+```
 
-# Kill
-sudo kill -9 $(pidof server.out)
-
-# Clean
+##### 2.2.2 Demo(server) & ubusd & ubus
+```bash
+sudo ubusd &
+sudo ./server.out &
+sudo ubus list -v
+#'test' @2008c898
+#	"hello":{"id":"Integer","msg":"String"}
+#	"watch":{"id":"Integer","counter":"Integer"}
+#	"count":{"to":"Integer","string":"String"}
+```
+### 3 Clean All
+```bash
 make clean
+sudo kill -9 $(pidof server.out)
+sudo kill -9 $(pidof ubusd)
 ```
