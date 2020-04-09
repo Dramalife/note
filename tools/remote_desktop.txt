@@ -1,0 +1,9 @@
+apt-get install xrdp
+apt-get install vnc4server tightvncserver
+
+# apt-get install gnome
+
+
+select - xvnc
+dramalife@firefly:~ $ cat ~/.xsession
+startlxde
