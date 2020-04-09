@@ -31,6 +31,16 @@
 #include <stdint.h>
 
 
+/* Plat */
+#if 	defined(__x86_64__)
+#define	_DL_PLAT_X86_64_
+#elif	defined(__ARM_ARCH_7A__)
+#define	_DL_PLAT_ARM_V7A_
+#elif	defined(__ARM_ARCH_8A)
+#define	_DL_PLAT_ARM_V8A_
+#else
+#error NO PLAT INFO !
+#endif
 
 /*******************************************************************************
  * 			Configuration

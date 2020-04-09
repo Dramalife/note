@@ -34,7 +34,8 @@
  * Code of dramalife-lib-backtrace .
  */
 #ifdef _DL_BACKTRACE_LIB_ENABLE_
-#ifdef __x86_64__
+#if	defined(_DL_PLAT_X86_64_) \
+	|| defined(_DL_PLAT_ARM_V8A_)
 /*
  * In-file used function
  */
@@ -87,7 +88,8 @@ void dlbt_signal_handler(int signo)
 	signal(signo, SIG_DFL);
 	raise(signo);
 }  
-#elif (defined __ARM_ARCH_7A__)
+#elif	defined(_DL_PLAT_ARM_V7A_) //\
+	|| defined(_DL_PLAT_ARM_V8A_)
 
 #include <stdio.h>
 #include <stdlib.h>

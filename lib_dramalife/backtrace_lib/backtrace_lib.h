@@ -22,26 +22,29 @@
 #endif
 
 
-/* 
- * Extern Functions - x86_64
- */
-#ifdef  __x86_64__
-#define signal_handler	dlbt_signal_handler
+/* Extern Functions - x86_64 */
+#define IN_FILE_PLAT_MACRO_X86 \
 extern void dlbt_signal_handler(int signo);
-/*
- * Extern Functions - armv7a
- */
-#elif (defined __ARM_ARCH_7A__)
-#include <stdio.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <assert.h>
-#include <ucontext.h>
-#include <string.h>
+//#define signal_handler	dlbt_signal_handler
+
+
+/* Extern Functions - armv7a */
+#define IN_FILE_PLAT_MACRO_ARM \
+#include <stdio.h>\
+#include <stdlib.h>\
+#include <signal.h>\
+#include <assert.h>\
+#include <ucontext.h>\
+#include <string.h>\
 extern void dlbt_signal_handler(unsigned int sn , siginfo_t  *si , void *ptr);
-/*
- * Extern Functions - UNKNOWN(error)
- */
+
+
+#if	defined(_DL_PLAT_X86_64_)
+IN_FILE_PLAT_MACRO_X86
+#elif	defined(_DL_PLAT_ARM_V7A_)
+IN_FILE_PLAT_MACRO_ARM
+#elif	defined(_DL_PLAT_ARM_V8A_)
+IN_FILE_PLAT_MACRO_X86
 #else
 #error no inst
 #endif
