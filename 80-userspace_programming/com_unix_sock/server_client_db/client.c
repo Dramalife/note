@@ -1,3 +1,35 @@
+/*
+ * note "socket/database" related file
+ * Copyright (C) 2019 Dramalife <dramalife@live.com>
+ * 
+ * This file is part of [note](https://github.com/Dramalife/note.git)
+ * 
+ * note is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * $ gcc --version
+ * gcc (Ubuntu 5.5.0-12ubuntu1) 5.5.0 20171010
+ * Copyright (C) 2015 Free Software Foundation, Inc.
+ * This is free software; see the source for copying conditions.  There is NO
+ * warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * 
+ * ;
+ * 
+ * $ uname -a
+ * Linux server 4.15.0-96-generic #97-Ubuntu SMP Wed Apr 1 03:25:46 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+ * ;
+ * 
+ * Init : Mon Apr 13 14:56:46 CST 2020
+ * 	COPY FROM : https://blog.csdn.net/qq_36863664/article/details/100057153;
+ * Update : Mon Apr 13 14:56:46 CST 2020
+ *  
+ * Update
+ *
+ */
+
+
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <stdio.h>
@@ -10,8 +42,12 @@
 #include "pub.h"
 #include <stdlib.h>
 
+
+#define dlprint(func,line,x,...)	do{printf("[%s,%d] ",func,line);printf(x,##__VA_ARGS__);}while(0)
+
+
 //登录者帐号信息
-static hwy_people_t client_id;
+static struct account_st account_data;
 
 /*
  * 功能：建立网络通信的初始化工作,包括创建套接字和绑定可用端口号
@@ -35,9 +71,11 @@ int sock_init(void)
 	 */
 	struct sockaddr_in myaddr;
 	portnum = 50001;
-	while(1){
-		if(portnum > 65535){
-			printf("bind error because of no port number available!\n");
+	while(1)
+	{
+		if(portnum > 65535)
+		{
+			dlprint(__func__,__LINE__,"bind error because of no port number available!\n");
 			return -1;
 		}
 		myaddr.sin_port = htons(portnum++);       //应用层端口号
@@ -50,7 +88,7 @@ int sock_init(void)
 			continue;
 		}
 		else{
-			printf("bind successfully!\n");
+			dlprint(__func__,__LINE__,"bind successfully!\n");
 			break;
 		}
 	}
@@ -76,7 +114,7 @@ int sock_client(int sockfd)
 		perror("connect failed");
 		return -1;
 	}
-	printf("connect OK\n");
+	dlprint(__func__,__LINE__,"connect OK\n");
 	return 0; 
 }
 
@@ -87,67 +125,76 @@ int sock_client(int sockfd)
  *输入：客户端套接字，登录/注册选择
  *输出：登录成功1，注册成功2，任意失败-1
  * */
-int check_id(int sockfd,int choice)
+int check_id(int sockfd, int choice)
 {
-	char ID_info[17];//存储帐号信息以及登录/注册选择
-	int i;
+	char info_id[17];//存储帐号信息以及登录/注册选择
+	int index;
 	char status[16];//存储登录/注册状态
 	int ret;
 
-	printf("check ID information!\n");
-	memset(ID_info,0,17);
+	dlprint(__func__,__LINE__,"checking id...\n");
+	memset(info_id, 0, sizeof(info_id));
 	//登录，携带ID 和密码
-	if(1 == choice){
-		ID_info[0]='1';
-		memcpy(ID_info+1,client_id.id,4);
-		memcpy(ID_info+9,client_id.passwd,8);
+	if(1 == choice)
+	{
+		info_id[0]='1';
+		memcpy(info_id+1,account_data.id,4);
+		memcpy(info_id+9,account_data.passwd,8);
 	}
 
 	//注册，携带昵称和密码
 	else {
-		ID_info[0]='2';
-		memcpy(ID_info+5,client_id.name,4);
-		memcpy(ID_info+9,client_id.passwd,8);
+		info_id[0]='2';
+		memcpy(info_id+5,account_data.name,4);
+		memcpy(info_id+9,account_data.passwd,8);
 	}
 
 	//发送帐号信息给服务器端进行验证
-	for(i=0;i<16;i++){
-		if(ID_info[i] == '\0'){
-			ID_info[i] = '/';
+	for(index=0;index<16;index++)
+	{
+		if(info_id[index] == '\0')
+		{
+			info_id[index] = '/';
 		}
 	}
-	ID_info[i] = '\0';
-	ret = send(sockfd, ID_info, strlen(ID_info), 0);
-	if(-1 == ret){
-		perror("send id_info error!");
+	info_id[index] = '\0';
+	ret = send(sockfd, info_id, strlen(info_id), 0);
+	if(-1 == ret)
+	{
+		perror("[Auth] : send error!");
 		return -1;
 	}
 
 	//接收帐号验证信息
 	memset(status,0,16);
 	ret = recv(sockfd,status,16,0);
-	if(-1 == ret){
-		perror("recv id_info error!");
+	if(-1 == ret)
+	{
+		perror("[Auth] : recv error!");
 		return -1;
 	}
 
-	if(memcmp(status,"successfully!",13)==0){
+	if(memcmp(status,"successfully!",13)==0)
+	{
 		//登录成功
-		//printf("login successfully!\n");
+		dlprint(__func__,__LINE__,"sign in successfully!\n");
 		send(sockfd,"ok",3,0);
-		ret = recv(sockfd,client_id.name,4,0);
-		if(-1 == ret){
+		ret = recv(sockfd,account_data.name,4,0);
+		if(-1 == ret)
+		{
 			perror("recv ack_id_info error");
 			return -1;
 		}
 		return 1;
 	}
-	else if(memcmp(status,"sign up",7)==0){
+	else if(memcmp(status,"sign up",7)==0)
+	{
 		//注册成功
-		//printf("sign up successfully!\n");
+		dlprint(__func__,__LINE__,"sign up successfully!\n");
 		send(sockfd,"ok",3,0);
-		ret = recv(sockfd,client_id.id,4,0);
-		if(-1 == ret){
+		ret = recv(sockfd,account_data.id,4,0);
+		if(-1 == ret)
+		{
 			perror("recv ack_id_info error");
 			return -1;
 		}
@@ -156,7 +203,7 @@ int check_id(int sockfd,int choice)
 
 	else 
 	{
-		printf("login or sign up error!\n");
+		dlprint(__func__,__LINE__,"login or sign up error!\n");
 		return -1;
 	}
 }
@@ -168,51 +215,60 @@ int check_id(int sockfd,int choice)
  *输出：成功0，失败-1
  *注意：登录失败可以重新登录，其他失败会退出
  */
-int hwy_login(int sockfd )
+int client_signin(int sockfd )
 {
 	int choice;//1--代表登录，2代表注册
 	int login_status;//登录状态,-1代表失败，1代表成功
 	int signup_status;//注册状态，-1代表失败，2代表成功
 
-	while(1){
-		printf("1------------login\n2------------sign up\n");
+	while(1)
+	{
+		dlprint(__func__,__LINE__,"1------------sign in\n2------------sign up\n");
 		scanf("%d",&choice);
-		if(1 == choice){
+		if(1 == choice)
+		{
 			//登录，输入ID和密码
-			printf("ID:");
-			scanf("%s",client_id.id);  
-			printf("passwd:");
-			scanf("%s",client_id.passwd);
+			dlprint(__func__,__LINE__,"ID:");
+			scanf("%s",account_data.id);  
+			dlprint(__func__,__LINE__,"passwd:");
+			scanf("%s",account_data.passwd);
 
 			login_status=check_id(sockfd,choice);
-			if(1 == login_status){
+			if(1 == login_status)
+			{
 				//登录成功,进入聊天室
-				printf("欢迎登录聊天室～%s\n",client_id.name);
+				dlprint(__func__,__LINE__,"Welcom (%s) !\n",account_data.name);
 				break;
 			}
 			else 
+			{
+				dlprint(__func__,__LINE__,"Sign in failed !\n");
 				continue;
+			}
 		}
-		else if(2 == choice){
+		else if(2 == choice)
+		{
 			//注册，输入昵称和密码
-			printf("name:");
-			scanf("%s",client_id.name);
-			printf("passwd:");
-			scanf("%s",client_id.passwd);
+			dlprint(__func__,__LINE__,"name:");
+			scanf("%s",account_data.name);
+			dlprint(__func__,__LINE__,"passwd:");
+			scanf("%s",account_data.passwd);
 			signup_status = check_id(sockfd,choice);
-			if(2 == signup_status){
+			if(2 == signup_status)
+			{
 				//注册成功，返回登录界面
-				printf("注册成功\n");
-				printf("你的帐号为：%s\n请重新登录\n",client_id.id);
+				dlprint(__func__,__LINE__,"Sing up Successfully!\n");
+				dlprint(__func__,__LINE__,"Your ID is (%s)\nRe-sign-in please!\n",account_data.id);
 				continue;
 			}
 			else {
 				//注册失败
+				dlprint(__func__,__LINE__,"Sing up Failed!\n");
 				return -1;
 			}
 		}
 		else {
-			printf("错误！请输入正确数值！\n");
+			dlprint(__func__,__LINE__,"Unknwon type (%d).\n", choice);
 			continue;
 		}
 	}
@@ -235,17 +291,18 @@ void get_send_content(char get_send_buffer[CHAT_STRUCT_SIZE])
 	time(&t);
 	memset(get_send_buffer,0,CHAT_STRUCT_SIZE);
 	//发送者
-	memcpy(get_send_buffer+POSITION_SELFID,client_id.id,4);
-	memcpy(get_send_buffer+POSITION_NAME,client_id.name,4);
+	memcpy(get_send_buffer+POSITION_SELFID,account_data.id,4);
+	memcpy(get_send_buffer+POSITION_NAME,account_data.name,4);
 	//接收者
-	//printf("你要发给谁？\n");
+	dlprint(__func__,__LINE__,"To whom :\n");
 	scanf("%s",get_send_buffer+POSITION_DESTID);
 	//发送内容
-	//printf("你要发什么？\n");
+	dlprint(__func__,__LINE__,"Context :\n");
 	scanf("%s",get_send_buffer+POSITION_CONTENT);
 	//发送时间
 	memcpy(get_send_buffer+POSITION_TIME,ctime_r(&t,time_buf),26);  
-	for(i=0;i<POSITION_CONTENT;i++){
+	for(i=0;i<POSITION_CONTENT;i++)
+	{
 		if(get_send_buffer[i] == '\0')
 			get_send_buffer[i] = '/';
 	}
@@ -258,28 +315,34 @@ void get_send_content(char get_send_buffer[CHAT_STRUCT_SIZE])
  * */
 void *pthread_recv_func (void *arg)
 {
+	int index;
 	int sockfd = *(int *)arg;
-	int ret;
-	int i;
-	hwy_recv_msg_t hwy_msg;//谁发的，什么时候发，发了什么
+	struct message_st message_data;//谁发的，什么时候发，发了什么
 	char recv_buffer[CHAT_STRUCT_SIZE];//接收内容缓冲区
-	printf("现在可以聊天了～\n");
-	while(1){
-		memset(recv_buffer,0,CHAT_STRUCT_SIZE);
-		ret=recv(sockfd, recv_buffer,CHAT_STRUCT_SIZE, 0);
-		if(ret == -1){
-			printf("client received error!\n");
+
+	dlprint(__func__,__LINE__,"Recving...\n");
+	while(1)
+	{
+		memset(recv_buffer, 0, CHAT_STRUCT_SIZE);
+		if( -1 == recv(sockfd, recv_buffer, CHAT_STRUCT_SIZE, 0) )
+		{
+			dlprint(__func__,__LINE__,"client received error!\n");
 			return;
 		}
 		else {
-			for(i=0;i<POSITION_CONTENT;i++){
-				if(recv_buffer[i]== '/')
-					recv_buffer[i]= '\0';
+			for(index=0; index < POSITION_CONTENT; index++)
+			{
+				if(recv_buffer[index]== '/')
+					recv_buffer[index]= '\0';
 			}
-			memcpy(hwy_msg.who,recv_buffer+POSITION_NAME,4);
-			memcpy(hwy_msg.time,recv_buffer+POSITION_TIME,26);
-			memcpy(hwy_msg.content,recv_buffer+POSITION_CONTENT,128);
-			printf("%s:%s\n%s",hwy_msg.who,hwy_msg.content,hwy_msg.time);
+			memcpy(message_data.sender.name,recv_buffer+POSITION_NAME,4);
+			memcpy(message_data.time,recv_buffer+POSITION_TIME,26);
+			memcpy(message_data.content,recv_buffer+POSITION_CONTENT,128);
+			dlprint(__func__,__LINE__,"name(%s),msg(%s),time(%s) \n",
+					message_data.sender.name,
+					message_data.content,
+					message_data.time
+			       );
 		}
 	}
 }
@@ -289,11 +352,13 @@ void *pthread_send_func (void *arg)
 	int sockfd = *(int *)arg;
 	char send_buffer[CHAT_STRUCT_SIZE];//发送内容缓冲区
 
-	while(1){
+	while(1)
+	{
 		get_send_content(send_buffer);
 		//输入bye退出聊天室
-		if(memcmp(send_buffer,"bye",3)== 0 ){
-			send(sockfd,"byebye~", strlen(send_buffer), 0);
+		if(memcmp(send_buffer,"bye",3)== 0 )
+		{
+			send(sockfd, send_buffer, strlen(send_buffer), 0);
 			close(sockfd);
 			exit(0);
 		}
@@ -305,27 +370,31 @@ void *pthread_send_func (void *arg)
 
 int main(int argc,char *argv[])
 {
-	int sockfd = sock_init();
-	if(sockfd == -1){
-		printf("sock_init error!\n");
+	int sockfd = -1;
+	pthread_t tid_send = 0;
+	pthread_t tid_recv = 0;
+
+	if( -1 == (sockfd= sock_init()) )
+	{
+		dlprint(__func__,__LINE__,"sock_init error!\n");
 		return -1;
 	}
-	int ret = sock_client(sockfd);
-	if(-1 == ret){
-		printf("sock_client error!\n");
+	if( -1 == sock_client(sockfd) )
+	{
+		dlprint(__func__,__LINE__,"sock_client error!\n");
 		return -1;
 	}
 
-	ret = hwy_login(sockfd);
-	if(ret == -1){
-		perror("hwy_login function error!");
+	if( -1 == client_signin(sockfd) )
+	{
+		dlprint(__func__,__LINE__,"client_signin function error!");
 		return -1;
 	}
-	//一个线程负责接收信息，一个线程负责发送信息
-	pthread_t tid1,tid2;
-	pthread_create(&tid2,0,pthread_recv_func,&sockfd);
-	pthread_create(&tid1,0,pthread_send_func,&sockfd);
-	while(1){
+
+	pthread_create(&tid_recv,0,pthread_recv_func,&sockfd);
+	pthread_create(&tid_send,0,pthread_send_func,&sockfd);
+	while(1)
+	{
 		sleep(9);
 	}
 

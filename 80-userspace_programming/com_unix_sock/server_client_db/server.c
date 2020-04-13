@@ -1,3 +1,35 @@
+/*
+ * note "socket/database" related file
+ * Copyright (C) 2019 Dramalife <dramalife@live.com>
+ * 
+ * This file is part of [note](https://github.com/Dramalife/note.git)
+ * 
+ * note is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * $ gcc --version
+ * gcc (Ubuntu 5.5.0-12ubuntu1) 5.5.0 20171010
+ * Copyright (C) 2015 Free Software Foundation, Inc.
+ * This is free software; see the source for copying conditions.  There is NO
+ * warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * 
+ * ;
+ * 
+ * $ uname -a
+ * Linux server 4.15.0-96-generic #97-Ubuntu SMP Wed Apr 1 03:25:46 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+ * ;
+ * 
+ * Init : Mon Apr 13 14:56:46 CST 2020
+ * 	COPY FROM : https://blog.csdn.net/qq_36863664/article/details/100057153;
+ * Update : Mon Apr 13 14:56:46 CST 2020
+ *  
+ * Update
+ *
+ */
+
+
+
 #include <sys/types.h>     
 #include <sys/socket.h>
 #include <stdio.h>
@@ -11,15 +43,15 @@
 
 
 //id--fd结构体类型
-typedef struct
+struct client_info
 {
 	int client_fd;
 	char client_id[4];
-}client_id_to_fd;
+};
 
 //将用户帐号和占用的文件描述符一一对应起来，
 //方便后续一对一通信
-client_id_to_fd id_to_fd[CLIENT_MAX];
+struct client_info client[CLIENT_MAX];
 
 //数据库的连接指针
 static sqlite3 *db = NULL;
@@ -62,14 +94,16 @@ int sock_init(void )
  *输入：聊天信息具体内容
  *输出：无
  * */
-void SendMsgToAll(char *msg)
+void send_to_all(char *msg)
 {
 	int i;
-	for(i=0;i<CLIENT_MAX;i++){
-		if(id_to_fd[i].client_fd != 0){
-			printf("sendto%s\n",id_to_fd[i].client_id);
+	for(i=0;i<CLIENT_MAX;i++)
+	{
+		if(client[i].client_fd != 0)
+		{
+			printf("sendto%s\n",client[i].client_id);
 			printf("%s\n",msg);
-			send(id_to_fd[i].client_fd,msg,strlen(msg),0);
+			send(client[i].client_fd,msg,strlen(msg),0);
 		}
 	}
 }
@@ -79,12 +113,14 @@ void SendMsgToAll(char *msg)
  * 输入：目标帐号所绑定的fd，具体聊天内容
  * 输出：无
  */
-void SendMsgToSb(int destfd,char *msg)
+void send_to_one(int destfd,char *msg)
 {
 	int i;
-	for(i=0;i<CLIENT_MAX;i++){
-		if(id_to_fd[i].client_fd == destfd ){
-			printf("sendto%s\n",id_to_fd[i].client_id);
+	for(i=0;i<CLIENT_MAX;i++)
+	{
+		if(client[i].client_fd == destfd )
+		{
+			printf("sendto%s\n",client[i].client_id);
 			printf("%s\n",msg);
 			send(destfd,msg,strlen(msg),0);
 			break;
@@ -94,7 +130,7 @@ void SendMsgToSb(int destfd,char *msg)
 
 //数据库初始化工作
 //连接数据库，创建表格
-void hwyDataBase_init(void )
+void init_database_sqlite3(void )
 {
 	// 打开hwyhwy.db的数据库，如果数据库不存在，则创建并打开
 	sqlite3_open_v2(DB_NAME,&db,
@@ -125,7 +161,7 @@ int check_recv_id(int fd )
 
 	int ret;
 	int i;
-	hwy_people_t client_ID_info; //帐号信息结构体ID_info
+	struct account_st account_data; //帐号信息结构体ID_info
 	char recv_ID_info[17];//客户端传来的帐号信息其登录/注册选择
 	char ack_ID_info[4];
 	char ack_ok[3];
@@ -144,26 +180,30 @@ int check_recv_id(int fd )
 	memset(status,0,16);
 
 	ret = recv(fd, recv_ID_info, 17, 0);
-	if(-1 == ret){
+	if(-1 == ret)
+	{
 		perror("recv error!");
 		return -1;
 	}
 
 	//打印接收到的信息
-	for(i=0;i<17;i++){
+	for(i=0;i<17;i++)
+	{
 		if(recv_ID_info[i] == '/')
 			recv_ID_info[i] = '\0';
 	}
-	memcpy(client_ID_info.id,recv_ID_info+1,4);
-	memcpy(client_ID_info.name,recv_ID_info+5,4);
-	memcpy(client_ID_info.passwd,recv_ID_info+9,8);
+	memcpy(account_data.id,recv_ID_info+1,4);
+	memcpy(account_data.name,recv_ID_info+5,4);
+	memcpy(account_data.passwd,recv_ID_info+9,8);
 
 	//登录,验证输入的ID和passwd是否正确
-	if(recv_ID_info[0] == '1'){
+	if(recv_ID_info[0] == '1')
+	{
 		sprintf(sql,"select * from hwy_id_sheet where id = '%s' and passwd = '%s';",
-				client_ID_info.id,client_ID_info.passwd);
+				account_data.id,account_data.passwd);
 		sqlite3_get_table(db,sql,&azResult,&nrow,&ncolumn,&errmsg);
-		if(nrow == 0){
+		if(nrow == 0)
+		{
 			//没有匹配项，登录验证失败
 			strcpy(status,"login failed!");
 			send(fd,status,strlen(status),0);
@@ -177,9 +217,11 @@ int check_recv_id(int fd )
 			recv(fd,ack_ok,3,0);
 
 			//在这里绑定client_fd---client_id
-			for(i=0;i<CLIENT_MAX;i++){
-				if(id_to_fd[i].client_fd == fd){
-					memcpy(id_to_fd[i].client_id,client_ID_info.id,4);
+			for(i=0;i<CLIENT_MAX;i++)
+			{
+				if(client[i].client_fd == fd)
+				{
+					memcpy(client[i].client_id,account_data.id,4);
 					break;
 				}
 			}
@@ -199,13 +241,14 @@ int check_recv_id(int fd )
 		j = j+ nrow;
 		memset(ack_ID_info,0,4);
 		sprintf(ack_ID_info,"%d",j);//---itoa
-		memcpy(client_ID_info.id,ack_ID_info,4);
+		memcpy(account_data.id,ack_ID_info,4);
 
-		sprintf(sql,"insert into hwy_id_sheet values('%s','%s','%s'); ",client_ID_info.id,
-				client_ID_info.name,client_ID_info.passwd);
+		sprintf(sql,"insert into hwy_id_sheet values('%s','%s','%s'); ",account_data.id,
+				account_data.name,account_data.passwd);
 		ret = sqlite3_exec(db, sql, NULL, NULL, &errmsg);
-		if(ret == SQLITE_OK){
-			printf("注册成功\n");
+		if(ret == SQLITE_OK)
+		{
+			printf("Sign up successfully!\n");
 			memset(status,0,16);
 			strcpy(status,"sign up");
 			send(fd,status,strlen(status),0);
@@ -216,7 +259,7 @@ int check_recv_id(int fd )
 			return 2;
 		}
 		else {
-			printf("注册失败\n");
+			printf("Sign up Failed\n");
 			memset(status,0,16);
 			strcpy(status,"sign up error");
 			send(fd,status,strlen(status),0);
@@ -226,53 +269,78 @@ int check_recv_id(int fd )
 }
 
 //每接收一个客户端的连接，便创建一个线程
-void * thread_func (void *arg)
+void *service_thread (void *arg)
 {
-	int fd = *(int *)arg;
+	int fd = *((int *)arg);
 	int ret;
 	int i;
-	hwy_send_msg_t hwy_C_SendMsg;
-	printf("pthread = %d\n",fd);
-
 	char recv_buffer[CHAT_STRUCT_SIZE];
+	//hwy_send_msg_t hwy_C_SendMsg;
+	struct message_st message_data;
 
-	//验证登录/注册信息
-	while(1){ 
+	printf("fd(pthread) = %d\n",fd);
+
+	/* Authenticate sing-in/sign-up info */
+#if 1
+	while(1)
+	{ 
 		ret = check_recv_id(fd);
 		printf("check_recv_id = %d\n",ret);
-		if(ret == 1){
-			//成功登录
-			printf("登录成功\n");
+		if(ret == 1)
+		{
+			printf("Sign in successfully! \n");
 			break;
 		}
-		else if(ret == 2){
-			//注册成功,需要重新登录
+		else if(ret == 2)
+		{
+			printf("Sign up successfully! \nRe-sign-in recommand!\n");
 			continue;
 		}
 		else {
-			//验证失败,服务器不退出
+			printf("Authenticated Failed!");
 			continue;
 		}
 	}
+#else
+	ret = check_recv_id(fd);
+	printf("check_recv_id = %d\n",ret);
+	switch(ret){
+		case 1:
+			printf("Sign in successfully! \n");
+			break;
+		case 2:
+			printf("Sign up successfully! \nRe-sign-in recommand!\n");
+			break;
+		default:
+			printf("Authenticated Failed!");
+			break;
+
+	}
+#endif
 
 	//登录成功，处理正常聊天的信息--接收与转发
-	while(1){
+	while(1)
+	{
 		memset(recv_buffer,0,CHAT_STRUCT_SIZE);
 		ret = recv(fd, recv_buffer, CHAT_STRUCT_SIZE, 0);
-		if(-1 == ret){
+		if(-1 == ret)
+		{
 			perror("recv error!");
-			return;
+			return NULL;
 		}
-		else if(ret>0){
-			printf("接收到的内容为：%s\n",recv_buffer);
+		else if(ret>0)
+		{
+			printf("RECV[%s]\n",recv_buffer);
 
 			if(memcmp(recv_buffer+POSITION_DESTID,"999",3)== 0)
-				SendMsgToAll(recv_buffer);
+				send_to_all(recv_buffer);
 			else{
-				for(i = 0;i< CLIENT_MAX;i++){
-					if(memcmp(id_to_fd[i].client_id,recv_buffer+POSITION_DESTID,\
-								3)== 0){
-						SendMsgToSb(id_to_fd[i].client_fd,recv_buffer);
+				for(i = 0;i< CLIENT_MAX;i++)
+				{
+					if(memcmp(client[i].client_id,recv_buffer+POSITION_DESTID,\
+								3)== 0)
+					{
+						send_to_one(client[i].client_fd,recv_buffer);
 						break;
 					}
 				}
@@ -283,35 +351,42 @@ void * thread_func (void *arg)
 	}  
 }
 
-void service(int sock_fd)
+void init_server(int sock_fd)
 {
-	printf("服务器启动...\n");
+	printf("Starting server...\n");
 	listen(sock_fd,CLIENT_MAX);
-	while(1){
+	while(1)
+	{
+		int index;
 		struct sockaddr_in clientaddr;
 		int len = sizeof(clientaddr);
-		int client_sock = accept(sock_fd,(struct sockaddr*)&clientaddr,&len);
-		if(client_sock== -1)
+		int fd_accept = -1;
+
+		if( -1 == (fd_accept = accept(sock_fd,(struct sockaddr*)&clientaddr,&len)) )
 		{
-			printf("accept failed...\n");
+			perror("accept failed...\n");
 			continue;
 		}
 		printf("accept OK!\n");
-		int i;
-		for(i=0;i<CLIENT_MAX;i++){
-			if(id_to_fd[i].client_fd == 0){
-				id_to_fd[i].client_fd = client_sock;
-				printf("client fd = %d\n",client_sock);
+
+		for(index=0; index < CLIENT_MAX; index++)
+		{
+			if(client[index].client_fd == 0)
+			{
+				client[index].client_fd = fd_accept;
+				printf("client fd = %d\n", client[index].client_fd);
 				//有客户端连接之后，启动线程为此客户端服务
 				pthread_t tid;
-				pthread_create(&tid, 0,thread_func,&client_sock);
+				pthread_create(&tid, 0, service_thread, &(client[index].client_fd));
 				break;
 			}
 		}
-		if(i == CLIENT_MAX){
+
+		if(index == CLIENT_MAX)
+		{
 			char * str = "对不起，聊天室已满人！\n";
-			send(client_sock,str,sizeof(str),0);
-			close(client_sock);
+			send(fd_accept,str,sizeof(str),0);
+			close(fd_accept);
 		}
 
 	}
@@ -322,8 +397,8 @@ void service(int sock_fd)
 int main(int argc,char *argv[])
 {
 	int sock_fd = sock_init();
-	hwyDataBase_init();
-	service(sock_fd);
+	init_database_sqlite3();
+	init_server(sock_fd);
 	return 0;
 }
 
