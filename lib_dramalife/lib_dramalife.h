@@ -69,6 +69,8 @@
 
 #include "backtrace_lib/backtrace_lib.h"
 
+#include "db_lib/db_lib.h"
+
 
 
 #endif
