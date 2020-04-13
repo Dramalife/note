@@ -83,6 +83,16 @@ CFLAGS_DYNLIB+=-D_DL_88888888_LIB_ENABLE_
 # Debug Print Switch - TODO
 CFLAGS_DEMO+=  -D_DL88888888_DEBUG_ENABLED_
 CFLAGS_DYNLIB+=-D_DL88888888_DEBUG_ENABLED_
+
+# Extra Source File
+SOURCE_EXIST:=$(shell test -d EXTRA_GIT_FOLDER666666)
+.dllib_get_source:
+ifeq ("$(SOURCE_EXIST)","")
+	#git clone https://gitee.com/Dramalife/note_sqlite3.git --depth=1
+endif
+	#ln -sf note_sqlite3/sqlite3.c .
+.dllib_clean_source:
+	#rm -rf sqlite3.c
 ##########################################################END###################
 endif
 

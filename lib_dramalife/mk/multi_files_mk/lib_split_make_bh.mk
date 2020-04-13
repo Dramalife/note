@@ -114,8 +114,11 @@ CFLAGS_DYNLIB+= $(CFLAGS) -fPIC -shared
 .dynamic-lib-make-obj: $(OBJS)
 .dynamic-lib : #.dynamic-lib-print-info
 	make clean
+	#make .dynamic-lib-download
 	make .dynamic-lib-make-obj CFLAGS="$(CFLAGS_DYNLIB)"
-	mv -f $(OBJS) $(DYNLIB_OBJ_PATH)
+	cp -f $(OBJS) $(DYNLIB_OBJ_PATH)
+.dynamic-lib-download:
+	-make .dllib_get_source
 .dynamic-lib-print-info:
 	@echo "BUILD_ROOT : $(BUILD_ROOT)"
 	@echo "DYNLIB_OBJ_PATH : $(DYNLIB_OBJ_PATH)"
