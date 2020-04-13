@@ -28,21 +28,17 @@ extern void dlbt_signal_handler(int signo);
 //#define signal_handler	dlbt_signal_handler
 
 
-/* Extern Functions - armv7a */
-#define IN_FILE_PLAT_MACRO_ARM \
-#include <stdio.h>\
-#include <stdlib.h>\
-#include <signal.h>\
-#include <assert.h>\
-#include <ucontext.h>\
-#include <string.h>\
-extern void dlbt_signal_handler(unsigned int sn , siginfo_t  *si , void *ptr);
-
-
 #if	defined(_DL_PLAT_X86_64_)
 IN_FILE_PLAT_MACRO_X86
 #elif	defined(_DL_PLAT_ARM_V7A_)
-IN_FILE_PLAT_MACRO_ARM
+/* Extern Functions - armv7a */
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <assert.h>
+#include <ucontext.h>
+#include <string.h>
+extern void dlbt_signal_handler(unsigned int sn , siginfo_t  *si , void *ptr);
 #elif	defined(_DL_PLAT_ARM_V8A_)
 IN_FILE_PLAT_MACRO_X86
 #else
