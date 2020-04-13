@@ -29,17 +29,7 @@
  */
 
 
-
-#include <sys/types.h>     
-#include <sys/socket.h>
-#include <stdio.h>
-#include <errno.h>
-#include <arpa/inet.h>
-#include <string.h>
-#include <unistd.h>
-#include <pthread.h>
 #include "pub.h"
-#include <stdlib.h>
 
 
 //id--fd结构体类型
@@ -55,6 +45,8 @@ struct client_info client[CLIENT_MAX];
 
 //数据库的连接指针
 static sqlite3 *db = NULL;
+
+
 
 /*
  *功能：建立网络通信的初始化工作,包括创建套接字和绑定可用端口号
@@ -94,16 +86,20 @@ int sock_init(void )
  *输入：聊天信息具体内容
  *输出：无
  * */
-void send_to_all(char *msg)
+void send_to_all(struct message_st *message_ptr)
 {
 	int i;
 	for(i=0;i<CLIENT_MAX;i++)
 	{
 		if(client[i].client_fd != 0)
 		{
-			printf("sendto%s\n",client[i].client_id);
-			printf("%s\n",msg);
-			send(client[i].client_fd,msg,strlen(msg),0);
+#if 0
+			printf("sendto(%s) \n",client[i].client_id);
+			printf("content(%s) \n", message_ptr->content);
+#else
+			show_message(message_ptr);
+#endif
+			send(client[i].client_fd, message_ptr, sizeof(struct message_st), 0);
 		}
 	}
 }
@@ -113,16 +109,20 @@ void send_to_all(char *msg)
  * 输入：目标帐号所绑定的fd，具体聊天内容
  * 输出：无
  */
-void send_to_one(int destfd,char *msg)
+void send_to_one(int destfd, struct message_st *message_ptr)
 {
 	int i;
 	for(i=0;i<CLIENT_MAX;i++)
 	{
 		if(client[i].client_fd == destfd )
 		{
-			printf("sendto%s\n",client[i].client_id);
-			printf("%s\n",msg);
-			send(destfd,msg,strlen(msg),0);
+#if 0
+			printf("sendto(%d) \n",client[i].client_id);
+			printf("content[%s] \n", message_ptr->content);
+#else
+			show_message(message_ptr);
+#endif
+			send(destfd, message_ptr, sizeof(struct message_st), 0);
 			break;
 		}
 	}
@@ -274,8 +274,6 @@ void *service_thread (void *arg)
 	int fd = *((int *)arg);
 	int ret;
 	int i;
-	char recv_buffer[CHAT_STRUCT_SIZE];
-	//hwy_send_msg_t hwy_C_SendMsg;
 	struct message_st message_data;
 
 	printf("fd(pthread) = %d\n",fd);
@@ -321,8 +319,8 @@ void *service_thread (void *arg)
 	//登录成功，处理正常聊天的信息--接收与转发
 	while(1)
 	{
-		memset(recv_buffer,0,CHAT_STRUCT_SIZE);
-		ret = recv(fd, recv_buffer, CHAT_STRUCT_SIZE, 0);
+		memset(&message_data, 0, sizeof(message_data));
+		ret = recv(fd, &message_data, CHAT_STRUCT_SIZE, 0);
 		if(-1 == ret)
 		{
 			perror("recv error!");
@@ -330,17 +328,16 @@ void *service_thread (void *arg)
 		}
 		else if(ret>0)
 		{
-			printf("RECV[%s]\n",recv_buffer);
+			show_message(&message_data);
 
-			if(memcmp(recv_buffer+POSITION_DESTID,"999",3)== 0)
-				send_to_all(recv_buffer);
+			if(memcmp(message_data.recver.id,"999",3)== 0)
+				send_to_all(&message_data);
 			else{
 				for(i = 0;i< CLIENT_MAX;i++)
 				{
-					if(memcmp(client[i].client_id,recv_buffer+POSITION_DESTID,\
-								3)== 0)
+					if(memcmp(client[i].client_id, message_data.recver.id, 3)== 0)
 					{
-						send_to_one(client[i].client_fd,recv_buffer);
+						send_to_one(client[i].client_fd, &message_data);
 						break;
 					}
 				}
@@ -362,9 +359,10 @@ void init_server(int sock_fd)
 		int len = sizeof(clientaddr);
 		int fd_accept = -1;
 
-		if( -1 == (fd_accept = accept(sock_fd,(struct sockaddr*)&clientaddr,&len)) )
+		if( -1 == (fd_accept = accept(sock_fd, (struct sockaddr*)&clientaddr, &len)) )
 		{
-			perror("accept failed...\n");
+			perror("accept failed");
+			sleep(1);
 			continue;
 		}
 		printf("accept OK!\n");

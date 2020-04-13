@@ -30,17 +30,7 @@
 
 
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <stdio.h>
-#include <errno.h>
-#include <arpa/inet.h>
-#include <string.h>
-#include <unistd.h>
-#include <time.h>
-#include <pthread.h>
 #include "pub.h"
-#include <stdlib.h>
 
 
 #define dlprint(func,line,x,...)	do{printf("[%s,%d] ",func,line);printf(x,##__VA_ARGS__);}while(0)
@@ -282,30 +272,27 @@ int client_signin(int sockfd )
  *输出：无
  * */
 //获取聊天具体内容
-void get_send_content(char get_send_buffer[CHAT_STRUCT_SIZE])
+void get_send_content( struct message_st *message_ptr )
 {
 	int i;
 	char dest[4];//目标帐号
 	char time_buf[26];//时间
 	time_t t;
+
 	time(&t);
-	memset(get_send_buffer,0,CHAT_STRUCT_SIZE);
-	//发送者
-	memcpy(get_send_buffer+POSITION_SELFID,account_data.id,4);
-	memcpy(get_send_buffer+POSITION_NAME,account_data.name,4);
-	//接收者
-	dlprint(__func__,__LINE__,"To whom :\n");
-	scanf("%s",get_send_buffer+POSITION_DESTID);
-	//发送内容
-	dlprint(__func__,__LINE__,"Context :\n");
-	scanf("%s",get_send_buffer+POSITION_CONTENT);
-	//发送时间
-	memcpy(get_send_buffer+POSITION_TIME,ctime_r(&t,time_buf),26);  
-	for(i=0;i<POSITION_CONTENT;i++)
-	{
-		if(get_send_buffer[i] == '\0')
-			get_send_buffer[i] = '/';
-	}
+
+	memset(message_ptr, 0, sizeof(struct message_st));
+	/* Sender */
+	memcpy(message_ptr->sender.id,	account_data.id,	sizeof(message_ptr->sender.id	));
+	memcpy(message_ptr->sender.name,account_data.name,	sizeof(message_ptr->sender.name ));
+	/* Recver */
+	dlprint(__func__,__LINE__,"To whom(id) :\n");
+	scanf("%s", message_ptr->recver.id);
+	/* Content */
+	dlprint(__func__,__LINE__,"Content :\n");
+	scanf("%s", message_ptr->content);
+	/* Time */
+	memcpy(message_ptr->time, ctime_r(&t,time_buf), sizeof(message_ptr->time));  
 }
 
 
@@ -318,31 +305,19 @@ void *pthread_recv_func (void *arg)
 	int index;
 	int sockfd = *(int *)arg;
 	struct message_st message_data;//谁发的，什么时候发，发了什么
-	char recv_buffer[CHAT_STRUCT_SIZE];//接收内容缓冲区
 
 	dlprint(__func__,__LINE__,"Recving...\n");
 	while(1)
 	{
-		memset(recv_buffer, 0, CHAT_STRUCT_SIZE);
-		if( -1 == recv(sockfd, recv_buffer, CHAT_STRUCT_SIZE, 0) )
+		memset(&message_data, 0, sizeof(struct message_st));
+		if( -1 == recv(sockfd, &message_data, sizeof(struct message_st), 0) )
 		{
 			dlprint(__func__,__LINE__,"client received error!\n");
 			return;
 		}
-		else {
-			for(index=0; index < POSITION_CONTENT; index++)
-			{
-				if(recv_buffer[index]== '/')
-					recv_buffer[index]= '\0';
-			}
-			memcpy(message_data.sender.name,recv_buffer+POSITION_NAME,4);
-			memcpy(message_data.time,recv_buffer+POSITION_TIME,26);
-			memcpy(message_data.content,recv_buffer+POSITION_CONTENT,128);
-			dlprint(__func__,__LINE__,"name(%s),msg(%s),time(%s) \n",
-					message_data.sender.name,
-					message_data.content,
-					message_data.time
-			       );
+		else
+		{
+			show_message(&message_data);
 		}
 	}
 }
@@ -350,20 +325,21 @@ void *pthread_recv_func (void *arg)
 void *pthread_send_func (void *arg)
 {
 	int sockfd = *(int *)arg;
-	char send_buffer[CHAT_STRUCT_SIZE];//发送内容缓冲区
+	struct message_st message_tmp;
 
 	while(1)
 	{
-		get_send_content(send_buffer);
-		//输入bye退出聊天室
-		if(memcmp(send_buffer,"bye",3)== 0 )
+		get_send_content(&message_tmp);
+
+		/* Exit */
+		if(memcmp(message_tmp.content,"bye",3)== 0 )
 		{
-			send(sockfd, send_buffer, strlen(send_buffer), 0);
+			send(sockfd, &message_tmp, sizeof(struct message_st), 0);
 			close(sockfd);
 			exit(0);
 		}
 
-		send(sockfd, send_buffer, strlen(send_buffer), 0);
+		send(sockfd, &message_tmp, sizeof(message_tmp), 0);
 	}
 }
 
