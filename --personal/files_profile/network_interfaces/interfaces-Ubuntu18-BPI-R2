@@ -1,0 +1,28 @@
+# ifupdown has been replaced by netplan(5) on this system.  See
+# /etc/netplan for current configuration.
+# To re-enable ifupdown on this system, you can run:
+#    sudo apt install ifupdown
+
+# interfaces(5) file used by ifup(8) and ifdown(8)
+# Include files from /etc/network/interfaces.d:
+source-directory /etc/network/interfaces.d
+
+
+auto eth1
+iface eth1 inet static
+address 192.168.0.122
+netmask 255.255.255.0
+gateway 192.168.0.1
+dns-nameserver 192.168.0.1
+
+
+auto eth0
+iface eth0 inet static
+address 192.168.67.1
+netmask 255.255.255.0
+#gateway 192.168.0.1
+#dns-nameserver 192.168.0.1
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
