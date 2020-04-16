@@ -49,8 +49,8 @@ struct message_txrx_st
 {
 	struct message_p send;
 	struct message_p recv;
-#define TRANS_SEND	1
-#define TRANS_RECV	0
+#define TRANS_SEND	99
+#define TRANS_RECV	88
 	int trans_type;//1-tx
 };
 #if 0

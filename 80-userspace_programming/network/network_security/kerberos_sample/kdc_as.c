@@ -23,6 +23,7 @@ int main(int argc, char **argv)
 	{
 		trans_data_func(data);
 	}
+
 	close(sock_fd);
 
 	return 0;

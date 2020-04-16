@@ -30,19 +30,17 @@ int handler_tgs(struct message_txrx_st data)
 	}
 	return 0;
 }
+
 int main(int argc, char **argv)
 {
 	struct trans_data_c_st data_as = { "127.0.0.1", PORT_AS, handler_as};
 	struct trans_data_c_st data_tgs = { "127.0.0.1", PORT_TGS, handler_tgs };
 	while(1)
 	{
-		if( 0 == send_message2sockserver(data_as) )
-		{
-		}
-
-		if( 0 == send_message2sockserver(data_tgs) )
-		{
-		}
+		// stage as
+		send_message2sockserver(data_as);
+		// stage tgs
+		send_message2sockserver(data_tgs);
 		//printf("key(%d)\n",gen_key());
 
 		sleep(1);
