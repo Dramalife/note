@@ -1,6 +1,6 @@
 #include "pub.h"
 
-int process_as(struct message_server_st data)
+int process_as(struct message_txrx_st data)
 {
 	debug_out(__FILE__,__func__,__LINE__,"[RECV]:[%s] \n", data.recv.msg);
 	sprintf(data.send.msg, "----%s----",__FILE__);
@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 		sleep(2);
 	}
 
-	struct trans_data_st data = {sock_fd, process_as};
+	struct trans_data_s_st data = {sock_fd, process_as};
 	while(1)
 	{
 		trans_data_func(data);

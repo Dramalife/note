@@ -1,18 +1,20 @@
 KDC : Key Distribution Center
 AS  : Authentication Server
 TGS : Ticket Granting Server
+////////
 ST : service ticket
 TGT: ticket granting ticket
+SK_TGS: Session Key of user and TGS
 
 KDC Clients : user & HTTP service
 
 Kerberos realm
 ```
-,_________________,
-|KDC  |AS   ->TGT |
-|     |-----------|
-|     |TGS  ->ST  |
-``````````````````'
+,________________________,
+|KDC  |AS   ->TGT(renew) |
+|     |------------------|
+|     |TGS  ->ST(service)|
+`````````````````````````'
  ^
  |
  |

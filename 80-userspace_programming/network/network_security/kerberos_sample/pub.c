@@ -38,23 +38,20 @@ int init_socket_server(int port_num)
 	return fd_sock_s;
 }
 
-int trans_data_func(struct trans_data_st arg)
+int trans_data_func(struct trans_data_s_st arg)
 {
 	int accept_fd = -1;
-	////////
 	struct sockaddr addr_client;
 	socklen_t accept_len = 0;
-	memset(&addr_client, 0, sizeof(struct sockaddr));
-	//
 	char recv_msg[MESSAGE_SIZE];
 	char send_msg[MESSAGE_SIZE];
+	struct message_txrx_st msg_s={ {sizeof(send_msg), send_msg}, {sizeof(recv_msg), recv_msg} };
+
+	memset(&addr_client, 0, sizeof(struct sockaddr));
 	memset(recv_msg, 0, sizeof(recv_msg));
 	memset(send_msg, 0, sizeof(send_msg));
-	//////
-	struct message_server_st msg_s={ {sizeof(send_msg), send_msg}, {sizeof(recv_msg), recv_msg} };
 
-	if( -1 == (accept_fd = accept(arg.sockfd, \
-					(struct sockaddr*)&addr_client, &accept_len)) )
+	if( -1 == (accept_fd = accept(arg.sockfd, (struct sockaddr*)&addr_client, &accept_len)) )
 	{
 		debug_out(__FILE__,__func__,__LINE__,"accept error! (%s)\n", strerror(errno));
 		sleep(1);
@@ -98,11 +95,47 @@ int init_socket_client(struct sockaddr_in *addr_server)
 	}
 	return sock_fd; 
 }
-
-int gen_key()
+int send_message2sockserver(struct trans_data_c_st conn)
 {
-	srand((unsigned)time(NULL));
-	return (rand()%9000+1000);
+	int sock_fd = -1;
+	struct sockaddr_in addr_server;
+
+	struct message_t msg_space;
+	struct message_txrx_st msg_txrx = { {sizeof(msg_space.send_msg),msg_space.send_msg},{sizeof(msg_space.recv_msg),msg_space.recv_msg}, -1 };
+
+	memset(&msg_space, 0, sizeof(msg_space));
+	memset(&addr_server, 0, sizeof(struct sockaddr_in));
+
+	addr_server.sin_family = AF_INET;
+	addr_server.sin_port = htons(conn.port);// PORT-Server
+	addr_server.sin_addr.s_addr = inet_addr(conn.addr);// IP-Server
+
+	if(conn.process_data)
+	{
+		msg_txrx.trans_type = TRANS_SEND;
+		conn.process_data(msg_txrx);
+	}
+
+	while(-1 == (sock_fd = init_socket_client(&addr_server)) )
+	{
+		//debug_out(__FILE__,__func__,__LINE__,"Init client socket failed! (%s) \n", strerr(errno));
+		return -1;
+	}
+
+	if( -1 == send(sock_fd, msg_txrx.send.msg, MESSAGE_SIZE, 0) )
+		debug_out(__FILE__,__func__,__LINE__,"Send error! (%s) \n", strerror(errno));
+
+	if( -1 == recv(sock_fd, msg_txrx.recv.msg, MESSAGE_SIZE, 0) )
+		debug_out(__FILE__,__func__,__LINE__,"Recv error! (%s) \n", strerror(errno));
+
+	if(conn.process_data)
+	{
+		msg_txrx.trans_type = TRANS_RECV;
+		conn.process_data(msg_txrx);
+	}
+
+	close(sock_fd);
+	return 0;
 }
 
 int isalpha_usr(char arg)
@@ -176,8 +209,15 @@ char *decode_usr(int key, char *cipher, char *plain)
 	return plain;
 }
 
+int gen_key()
+{
+	srand((unsigned)time(NULL));
+	return (rand()%9000+1000);
+}
+
 int get_as_key(int index)
 {
 	return (index > K_MIN__)&&(index <K_MAX__) ? 
 		key_m[index] : 0 ;
 }
+

@@ -4,16 +4,14 @@
  * send, recv
  */
 
-
-
 /* random key -------- TGS & Client
  * srand, rand
  */
 
-
 /* de/encrypy ----------- Key & DecMessage/Message
  *
  */
+
 #include <sys/types.h>     
 #include <sys/socket.h>
 #include <stdio.h>
@@ -24,8 +22,8 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <time.h>
-
 //#include <ctype.h>
+
 
 #define PORT_AS		8000
 #define PORT_BOB	8001
@@ -47,19 +45,53 @@ struct message_p
 	int len;
 	char *msg;
 };
-struct message_server_st
+struct message_txrx_st
 {
 	struct message_p send;
 	struct message_p recv;
+#define TRANS_SEND	1
+#define TRANS_RECV	0
+	int trans_type;//1-tx
 };
-struct trans_data_st
+#if 0
+struct packet_usr2as
+{
+int key_owner;//user
+char tgt[];//key-TGS
+char sk_tgs[];//key-usr
+};
+struct packet_usr2tgs
+{
+{//auth
+//usr
+//address
+//start_time
+//lifetime
+};//key-SK_TGS <-
+//TGT;//key-TGS// -> SK_TGS
+};
+struct packet_tgs2usr
+{
+SK_Service;//key:SK_TGS
+SK_TGS;//
+ST{usr,address,start_time,lifetime,SK_Service}K_Service;//key:service
+};
+#endif
+struct message_key
+{
+	int type;
+
+};
+struct trans_data_s_st
 {
 	int sockfd;
-	//struct sockaddr *addr_c;
-	//socklen_t *accept_l;
-	//struct message_p send;
-	//struct message_p recv;
-	int (*process_data)(struct message_server_st);
+	int (*process_data)(struct message_txrx_st);
+};
+struct trans_data_c_st
+{
+	char *addr;
+	int port;
+	int (*process_data)(struct message_txrx_st);
 };
 
 enum
@@ -82,4 +114,5 @@ int isalpha_lower(char arg);
 int isalpha_upper(char arg);
 char *encode_usr(int key, char *plain, char *cipher);
 char *decode_usr(int key, char *cipher, char *plain);
-int trans_data_func(struct trans_data_st arg);
+int trans_data_func(struct trans_data_s_st arg);
+int send_message2sockserver(struct trans_data_c_st conn);
