@@ -351,7 +351,11 @@ void *service_thread (void *arg)
 void init_server(int sock_fd)
 {
 	printf("Starting server...\n");
-	listen(sock_fd,CLIENT_MAX);
+	while( 0 != listen(sock_fd,CLIENT_MAX))
+	{
+		perror("listen");
+		sleep(1);
+	}
 	while(1)
 	{
 		int index;
@@ -373,7 +377,8 @@ void init_server(int sock_fd)
 			{
 				client[index].client_fd = fd_accept;
 				printf("client fd = %d\n", client[index].client_fd);
-				//有客户端连接之后，启动线程为此客户端服务
+
+				/* Creating thread for client */
 				pthread_t tid;
 				pthread_create(&tid, 0, service_thread, &(client[index].client_fd));
 				break;
@@ -382,7 +387,7 @@ void init_server(int sock_fd)
 
 		if(index == CLIENT_MAX)
 		{
-			char * str = "对不起，聊天室已满人！\n";
+			char * str = "Client num max!\n";
 			send(fd_accept,str,sizeof(str),0);
 			close(fd_accept);
 		}

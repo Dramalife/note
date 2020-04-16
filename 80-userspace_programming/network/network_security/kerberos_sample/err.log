@@ -1,0 +1,19 @@
+dramalife@server:~/note/80-userspace_programming/network/network_security/kerberos_sample $ make
+gcc -o as.out kdc_as.c pub.c -I.
+In file included from kdc_as.c:1:0:
+kdc_as.c: In function ¡®main¡¯:
+kdc_as.c:45:41: warning: format ¡®%s¡¯ expects a matching ¡®char *¡¯ argument [-Wformat=]
+debug_out(__FILE__,__func__,__LINE__,"[RECV]:[%s] \n");
+^
+pub.h:35:75: note: in definition of macro ¡®debug_out¡¯
+#define debug_out(file,f,l,x,...) do{printf("[%s,%s,%d]",file,f,l);printf(x,##__VA_ARGS__);}while(0)
+^
+gcc -o usr.out usr.c pub.c -I.
+In file included from usr.c:1:0:
+usr.c: In function ¡®main¡¯:
+usr.c:34:40: warning: format ¡®%S¡¯ expects argument of type ¡®wchar_t *¡¯, but argument 2 has type ¡®char *¡¯ [-Wformat=]
+debug_out(__FILE__,__func__,__LINE__,"[RECV]:[%S] \n", recv_msg);
+^
+pub.h:35:75: note: in definition of macro ¡®debug_out¡¯
+#define debug_out(file,f,l,x,...) do{printf("[%s,%s,%d]",file,f,l);printf(x,##__VA_ARGS__);}while(0)
+^
