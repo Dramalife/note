@@ -1,0 +1,2 @@
+# Show all nat
+iptables  -t  nat  -nL
