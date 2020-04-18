@@ -33,6 +33,7 @@ int process_as(struct message_txrx_st data)
 				kerberos_print_all(pkmessage_send);
 				mystagt = MSG_RETURNN_SGT;
 			}
+			printf("\n\n");
 			break;
 		case MSG_REQUEST_SGT://///////
 			break;
@@ -64,6 +65,7 @@ int process_as(struct message_txrx_st data)
 				kerberos_print_all(pkmessage_send);
 				mystagt = MSG_FINISHED__;
 			}
+			printf("\n\n");
 			break;
 		case MSG_REQUEST_SERVICE:
 			break;

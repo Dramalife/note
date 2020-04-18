@@ -54,6 +54,7 @@ int handler_as(struct message_txrx_st data)
 				debug_out(__FILE__,__func__,__LINE__,"Unknown type! \n");
 			}
 			kerberos_print_all(pkmessage_recv);
+			printf("\n\n");
 			break;
 		default:
 			while(1)
