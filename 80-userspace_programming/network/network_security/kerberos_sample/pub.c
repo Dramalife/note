@@ -31,7 +31,7 @@
 
 #include "pub.h"
 
-int key_m[K_MAX__]={0};
+struct kerberos_key_st key_m[K_MAX__]={0};
 
 /*
  * socket
@@ -245,8 +245,32 @@ int gen_key()
 	srand((unsigned)time(NULL));
 	return (rand()%9000+1000);
 }
-
-int get_as_key(int index)
+#if 0
+	MSG_INIT__
+	MSG_REQUEST_TGT
+	MSG_RETURNN_TGT
+	MSG_REQUEST_SGT
+	MSG_RETURNN_SGT
+	MSG_REQUEST_SERVICE
+	MSG_RETURNN_SERVICE
+	MSG_FINISHED__
+#endif
+void kerberos_print_all(struct kerberos_message_st *msg)
 {
-	return key_m[index];
+	printf("****************************************************************\n");
+	dl_gcc_print_name_vaule(msg->type				,printf);
+	dl_gcc_print_name_vaule(msg->key.key			,printf);
+	dl_gcc_print_name_vaule(msg->key2.key			,printf);
+	dl_gcc_print_name_vaule(msg->cs_info.client_id		,printf);
+	dl_gcc_print_string(msg->cs_info.service_name		,printf);
+	dl_gcc_print_name_vaule(msg->tgt_sgt.key.key		,printf);
+	dl_gcc_print_name_vaule(msg->tgt_sgt.auth.client_id		,printf);
+	dl_gcc_print_string(msg->tgt_sgt.auth.service_name	,printf);
+	printf("*****************************************\n");
+	return;
+}
+
+struct kerberos_key_st *get_key(enum kerberos_key_type type)
+{
+	return &key_m[type];
 }

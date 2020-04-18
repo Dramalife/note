@@ -41,13 +41,14 @@
 #include <time.h>
 //#include <ctype.h>
 
+#include "lib_dramalife.h"
 
 #define PORT_AS		8000
 #define PORT_BOB	8001
 #define PORT_TGS	8002
 #define PORT_ALICE	8003
 
-#define MESSAGE_SIZE	256
+#define MESSAGE_SIZE	4096//TODO !!!!!
 
 #define debug_out(file,f,l,x,...)	do{printf("[%s,%s,%d]",file,f,l);printf(x,##__VA_ARGS__);}while(0)
 
@@ -103,9 +104,14 @@ enum
 /* kerberos protocol */
 struct kerberos_cs_info_st
 {
+#define CLIENT_ID	33
+#define SERVICE_NAME	"service-33"
+#define CHAR_ARRAY_SIZE	64
+#define SIZE_CLIENT_ADDR	CHAR_ARRAY_SIZE
+#define SIZE_SERVICE_NAME	CHAR_ARRAY_SIZE
 	pid_t client_id;//pid
-	char client_address[64];
-	int service_name;//local port
+	char client_address[SIZE_CLIENT_ADDR];
+	char service_name[SIZE_SERVICE_NAME];//local port
 	int time_stamp;
 	int lisftime;
 };
@@ -123,20 +129,29 @@ struct kerberos_key_st
 	enum kerberos_key_type type;
 	int key;
 };
-enum kerberos_message_type
+typedef enum kerberos_message_type
 {
+	MSG_INIT__,
 	MSG_REQUEST_TGT,// client -> as
 	MSG_RETURNN_TGT,// as -> client
 	MSG_REQUEST_SGT,// client -> sgt
 	MSG_RETURNN_SGT,// sgt -> client
 	MSG_REQUEST_SERVICE,//client -> service
 	MSG_RETURNN_SERVICE,//service -> client
+	MSG_FINISHED__,
+}kerberos_stage;
+struct kerberos_ticket_st
+{
+	struct kerberos_cs_info_st auth;
+	struct kerberos_key_st key;
 };
 struct kerberos_message_st
 {
 	enum kerberos_message_type type;
-	struct kerberos_cs_info_st	cs_info;
 	struct kerberos_key_st		key;
+	struct kerberos_key_st		key2;
+	struct kerberos_cs_info_st	cs_info;
+	struct kerberos_ticket_st tgt_sgt;//tgt or sgt
 };
 
 
@@ -149,5 +164,7 @@ int isalpha_lower(char arg);
 int isalpha_upper(char arg);
 char *encode_usr(int key, char *plain, char *cipher);
 char *decode_usr(int key, char *cipher, char *plain);
+struct kerberos_key_st *get_key(enum kerberos_key_type type);
 int trans_data_func(struct trans_data_s_st arg);
 int send_message2sockserver(struct trans_data_c_st conn);
+void kerberos_print_all(struct kerberos_message_st *msg);
