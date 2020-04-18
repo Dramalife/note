@@ -54,6 +54,9 @@
 }while(0)
 
 
+#define dl_gcc_print_string(x,p)   do{\
+	p("%-16s : %s \n", #x,(char *)(x) );\
+}while(0)
 
 #endif
 
