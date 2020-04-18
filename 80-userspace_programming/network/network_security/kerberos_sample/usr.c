@@ -2,7 +2,9 @@
 
 kerberos_stage mystage = MSG_INIT__;
 struct kerberos_key_st k_c_tgs;
+struct kerberos_key_st k_c_s;
 struct kerberos_ticket_st tgt;
+struct kerberos_ticket_st sgt;
 struct kerberos_cs_info_st my_info={CLIENT_ID, {0}, SERVICE_NAME, 0, 0};
 
 int handler_as(struct message_txrx_st data)
@@ -19,7 +21,7 @@ int handler_as(struct message_txrx_st data)
 				pkmessage_send->cs_info.client_id = my_info.client_id;
 				strncpy(pkmessage_send->cs_info.service_name, my_info.service_name, SIZE_SERVICE_NAME);
 				//memcpy(data.send.msg, &kmessage, MESSAGE_SIZE);
-				debug_out(__FILE__,__func__,__LINE__,"[SEND] TGT client(%d),service(%s) \n",
+				debug_out(__FILE__,__func__,__LINE__,"[SEND] TGT request, client(%d),service(%s) \n",
 						pkmessage_send->cs_info.client_id,pkmessage_send->cs_info.service_name);
 			}
 			else if(MSG_REQUEST_SGT == mystage)
@@ -27,7 +29,18 @@ int handler_as(struct message_txrx_st data)
 				pkmessage_send->type = mystage;
 				memcpy(&(pkmessage_send->cs_info), &my_info, sizeof(struct kerberos_cs_info_st));//a_c_tgs [cs_info]
 				memcpy(&(pkmessage_send->tgt_sgt), &tgt, sizeof(struct kerberos_ticket_st));//tgt		[ticket_st]
-				debug_out(__FILE__,__func__,__LINE__,"[SEND] SGT client(%d)\n", pkmessage_send->cs_info.client_id);
+				debug_out(__FILE__,__func__,__LINE__,"[SEND] SGT request, client(%d)\n", pkmessage_send->cs_info.client_id);
+			}
+			else if(MSG_REQUEST_SERVICE == mystage)
+			{
+#ifdef TEST_ERROR
+				pkmessage_send->type = mystage + 1;
+#else
+				pkmessage_send->type = mystage;
+#endif
+				memcpy(&(pkmessage_send->cs_info), &my_info, sizeof(struct kerberos_cs_info_st));//A_C_S
+				memcpy(&(pkmessage_send->tgt_sgt), &sgt, sizeof(struct kerberos_ticket_st));//SGT
+				debug_out(__FILE__,__func__,__LINE__,"[SEND] Service request, client(%d)\n", pkmessage_send->cs_info.client_id);
 			}
 			else
 			{
@@ -36,6 +49,7 @@ int handler_as(struct message_txrx_st data)
 			kerberos_print_all(pkmessage_send);
 			break;
 		case TRANS_RECV:
+			kerberos_print_all(pkmessage_recv);
 			if( MSG_RETURNN_TGT == pkmessage_recv->type)
 			{
 				debug_out(__FILE__,__func__,__LINE__,"[RECV] TGT type(%d),k_c_tgs(%d) \n", pkmessage_recv->type, pkmessage_recv->key.key);
@@ -47,13 +61,20 @@ int handler_as(struct message_txrx_st data)
 			else if(MSG_RETURNN_SGT == pkmessage_recv->type)
 			{
 				debug_out(__FILE__,__func__,__LINE__,"[RECV] TGS type(%d),k_c_tgs(%d) \n", pkmessage_recv->type, pkmessage_recv->key.key);
+				memcpy(&k_c_s, &(pkmessage_recv->key), sizeof(struct kerberos_key_st));//decrpyt  k_c_tgs
+				memcpy(&sgt, &(pkmessage_recv->tgt_sgt), sizeof(struct kerberos_ticket_st));
 				mystage = MSG_REQUEST_SERVICE;
+			}
+			else if(MSG_RETURNN_SERVICE == pkmessage_recv->type)
+			{
+				debug_out(__FILE__,__func__,__LINE__,"[RECV] SERVICE type(%d),k_c_tgs(%d) \n", pkmessage_recv->type, pkmessage_recv->key.key);
+				debug_out(__FILE__,__func__,__LINE__,"The connection to the server is complete! \n");
+				printf("##############END############\n");
 			}
 			else
 			{
 				debug_out(__FILE__,__func__,__LINE__,"Unknown type! \n");
 			}
-			kerberos_print_all(pkmessage_recv);
 			printf("\n\n");
 			break;
 		default:
@@ -82,7 +103,8 @@ int handler_tgs(struct message_txrx_st data)
 int main(int argc, char **argv)
 {
 	struct trans_data_c_st data_as = { "127.0.0.1", PORT_AS, handler_as};
-	struct trans_data_c_st data_tgs = { "127.0.0.1", PORT_TGS, handler_tgs };
+	//struct trans_data_c_st data_tgs = { "127.0.0.1", PORT_TGS, handler_tgs };
+	//struct trans_data_c_st data_tgs = { "127.0.0.1", PORT_SERVICE, handler_tgs };
 	while(1)
 	{
 		switch(mystage)
@@ -96,13 +118,15 @@ int main(int argc, char **argv)
 			case MSG_RETURNN_TGT://////////////////////
 				break;
 			case MSG_REQUEST_SGT:
-				send_message2sockserver(data_as);
+				send_message2sockserver(data_as);// TGS
 				break;
 			case MSG_RETURNN_SGT://////////////////////
 				break;
 			case MSG_REQUEST_SERVICE:
+				send_message2sockserver(data_as);// Service
 				while(1)
-				{}
+				{
+				}
 				break;
 			case MSG_RETURNN_SERVICE://////////////////
 				break;

@@ -18,7 +18,7 @@ int process_as(struct message_txrx_st data)
 			kerberos_print_all(pkmessage_recv);
 			if( MSG_REQUEST_TGT == pkmessage_recv->type )
 			{
-				debug_out(__FILE__,__func__,__LINE__,"[RECV] TGT \n");
+				debug_out(__FILE__,__func__,__LINE__,"[RECV] TGT requese. \n");
 				struct kerberos_key_st *kc = get_key(K_C);
 				struct kerberos_key_st *kc_tgs = get_key(K_C_TGS);//k_c_tgs
 				struct kerberos_key_st e_kc_kc_tgs;
@@ -41,7 +41,7 @@ int process_as(struct message_txrx_st data)
 			kerberos_print_all(pkmessage_recv);
 			if( MSG_REQUEST_SGT== pkmessage_recv->type)
 			{
-				debug_out(__FILE__,__func__,__LINE__,"[RECV] SGT. \n");
+				debug_out(__FILE__,__func__,__LINE__,"[RECV] SGT request. \n");
 				//a_c_tgs
 				//tgt
 				if( pkmessage_recv->cs_info.client_id == pkmessage_recv->tgt_sgt.auth.client_id )
@@ -63,16 +63,42 @@ int process_as(struct message_txrx_st data)
 				pkmessage_send->type = MSG_RETURNN_SGT;
 				debug_out(__FILE__,__func__,__LINE__,"[SEND] SGT key(%d) \n",pkmessage_send->key.key);
 				kerberos_print_all(pkmessage_send);
-				mystagt = MSG_FINISHED__;
+				mystagt = MSG_RETURNN_SERVICE;
 			}
+			debug_out(__FILE__,__func__,__LINE__,"KDC task finished! \n");/*#*#*#*#*#*#*#*/
 			printf("\n\n");
 			break;
-		case MSG_REQUEST_SERVICE:
+		case MSG_REQUEST_SERVICE:///////
 			break;
 		case MSG_RETURNN_SERVICE:
+			kerberos_print_all(pkmessage_recv);
+			if( MSG_REQUEST_SERVICE== pkmessage_recv->type)
+			{
+				/* Recv */
+				debug_out(__FILE__,__func__,__LINE__,"[RECV] Service request. \n");
+				struct kerberos_key_st *k_c_s = get_key(K_C_S);// self_key
+				struct kerberos_key_st *e_k_c_tgs_k_c_s = &(pkmessage_recv->key);
+				struct kerberos_cs_info_st *e_k_c_s = &(pkmessage_recv->cs_info);
+				struct kerberos_ticket_st *sgt = &(pkmessage_recv->tgt_sgt);
+				//decode_usr(*k_s, sgt, ); // -> info(sgt) & k_c_s
+				//decode_usr(*k_c_s, e_k_c_s,  ); // -> info(client)
+				if( sgt->auth.client_id == e_k_c_s->client_id )
+				{
+					debug_out(__FILE__,__func__,__LINE__,"[Service] Client ID check passed ! \n");
+				}
+				else
+				{
+					debug_out(__FILE__,__func__,__LINE__,"[Service] Client ID check failed ! \n");
+				}
+				/* Send */
+				memcpy(pkmessage_send , pkmessage_recv, sizeof(struct kerberos_message_st));
+				pkmessage_send->type = MSG_RETURNN_SERVICE;
+				debug_out(__FILE__,__func__,__LINE__,"[SEND] Serivce key(%d) \n",pkmessage_send->key.key);
+				kerberos_print_all(pkmessage_send);
+				mystagt = MSG_FINISHED__;
+			}
 			break;
 		default:
-			debug_out(__FILE__,__func__,__LINE__,"KDC task finished! \n");
 			while(1)
 			{}
 			break;

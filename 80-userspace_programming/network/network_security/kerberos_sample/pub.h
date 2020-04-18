@@ -43,10 +43,13 @@
 
 #include "lib_dramalife.h"
 
-#define PORT_AS		8000
-#define PORT_BOB	8001
-#define PORT_TGS	8002
-#define PORT_ALICE	8003
+enum{
+	PORT_AS=8000,
+	PORT_TGS,
+	PORT_SERVICE,
+	PORT_BOB,
+	PORT_ALICE,
+};
 
 #define MESSAGE_SIZE	4096//TODO !!!!!
 
