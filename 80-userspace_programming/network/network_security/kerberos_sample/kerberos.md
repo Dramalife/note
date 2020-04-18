@@ -1,3 +1,6 @@
+> https://github.com/dramalife/note
+> Dramalife@live.com
+
 KDC : Key Distribution Center
 AS  : Authentication Server
 TGS : Ticket Granting Server
