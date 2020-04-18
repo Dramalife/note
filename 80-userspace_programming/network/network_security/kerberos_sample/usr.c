@@ -29,26 +29,35 @@ int handler_as(struct message_txrx_st data)
 				memcpy(&(pkmessage_send->tgt_sgt), &tgt, sizeof(struct kerberos_ticket_st));//tgt		[ticket_st]
 				debug_out(__FILE__,__func__,__LINE__,"[SEND] SGT client(%d)\n", pkmessage_send->cs_info.client_id);
 			}
+			else
+			{
+				debug_out(__FILE__,__func__,__LINE__,"Unknown type! \n");
+			}
 			kerberos_print_all(pkmessage_send);
 			break;
 		case TRANS_RECV:
-			kerberos_print_all(pkmessage_recv);
 			if( MSG_RETURNN_TGT == pkmessage_recv->type)
 			{
-				debug_out(__FILE__,__func__,__LINE__,"[RECV] type(%d),k_c_tgs(%d) \n", pkmessage_recv->type, pkmessage_recv->key.key);
-				{
-					debug_out(__FILE__,__func__,__LINE__,"Parsing TGT! KC_TGS\n");
-					memcpy(&k_c_tgs, &(pkmessage_recv->key), sizeof(struct kerberos_key_st));//decrpyt  k_c_tgs
-					memcpy(&tgt, &(pkmessage_recv->tgt_sgt), sizeof(struct kerberos_ticket_st));
-					mystage = MSG_REQUEST_SGT;
-				}
+				debug_out(__FILE__,__func__,__LINE__,"[RECV] TGT type(%d),k_c_tgs(%d) \n", pkmessage_recv->type, pkmessage_recv->key.key);
+				debug_out(__FILE__,__func__,__LINE__,"Parsing TGT! KC_TGS\n");
+				memcpy(&k_c_tgs, &(pkmessage_recv->key), sizeof(struct kerberos_key_st));//decrpyt  k_c_tgs
+				memcpy(&tgt, &(pkmessage_recv->tgt_sgt), sizeof(struct kerberos_ticket_st));
+				mystage = MSG_REQUEST_SGT;
 			}
-			else if(MSG_RETURNN_SGT == mystage)
+			else if(MSG_RETURNN_SGT == pkmessage_recv->type)
 			{
+				debug_out(__FILE__,__func__,__LINE__,"[RECV] TGS type(%d),k_c_tgs(%d) \n", pkmessage_recv->type, pkmessage_recv->key.key);
 				mystage = MSG_REQUEST_SERVICE;
 			}
+			else
+			{
+				debug_out(__FILE__,__func__,__LINE__,"Unknown type! \n");
+			}
+			kerberos_print_all(pkmessage_recv);
 			break;
 		default:
+			while(1)
+			{}
 			break;
 	}
 	return 0;
@@ -91,6 +100,8 @@ int main(int argc, char **argv)
 			case MSG_RETURNN_SGT://////////////////////
 				break;
 			case MSG_REQUEST_SERVICE:
+				while(1)
+				{}
 				break;
 			case MSG_RETURNN_SERVICE://////////////////
 				break;

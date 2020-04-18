@@ -18,7 +18,6 @@ int process_as(struct message_txrx_st data)
 			kerberos_print_all(pkmessage_recv);
 			if( MSG_REQUEST_TGT == pkmessage_recv->type )
 			{
-				kerberos_print_all(pkmessage_recv);
 				debug_out(__FILE__,__func__,__LINE__,"[RECV] TGT \n");
 				struct kerberos_key_st *kc = get_key(K_C);
 				struct kerberos_key_st *kc_tgs = get_key(K_C_TGS);//k_c_tgs
@@ -46,11 +45,11 @@ int process_as(struct message_txrx_st data)
 				//tgt
 				if( pkmessage_recv->cs_info.client_id == pkmessage_recv->tgt_sgt.auth.client_id )
 				{
-					debug_out(__FILE__,__func__,__LINE__,"Client ID check passed !");
+					debug_out(__FILE__,__func__,__LINE__,"Client ID check passed ! \n");
 				}
 				else
 				{
-					debug_out(__FILE__,__func__,__LINE__,"Client ID check failed !");
+					debug_out(__FILE__,__func__,__LINE__,"Client ID check failed ! \n");
 					break;
 				}
 				/* Send */
