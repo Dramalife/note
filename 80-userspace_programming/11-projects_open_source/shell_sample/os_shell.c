@@ -137,6 +137,7 @@ int cmd_show_history_array(void)
 }
 
 /* Get line from stdin */
+#if 0
 int process_command_line(char *buff)
 {
 	show_cmd_line_prompt(buff);
@@ -148,6 +149,29 @@ int process_command_line(char *buff)
 	{
 		cmd_add_history_array(buff);
 		parse_command_line_all(buff);
+	}
+
+	return 1;
+}
+#endif
+int process_command_line(char *buff)
+{
+	show_cmd_line_prompt(buff);
+
+	memset(buff, 0, GENERAL_BUFF_SIZE);
+	gets(buff);// 3.2 -2
+
+	char *token = NULL;
+	char *tmp = (char *)malloc(GENERAL_BUFF_SIZE * sizeof(char));
+	memset(tmp, 0, GENERAL_BUFF_SIZE);
+	memcpy(tmp, buff, GENERAL_BUFF_SIZE);
+	while(NULL != (token = strsep(&tmp, ";")))// 3.3
+	{
+		if( (strlen(token) <= COMMAND_LINE_MAX_LEN) && (strlen(token)>0) )
+		{
+			cmd_add_history_array(token);
+			parse_command_line_all(token);
+		}
 	}
 
 	return 1;
