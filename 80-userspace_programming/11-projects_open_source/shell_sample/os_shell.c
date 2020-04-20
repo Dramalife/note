@@ -7,6 +7,7 @@
 
 #define GENERAL_BUFF_SIZE	1024
 #define	MAX_ARG_LEVEL		100
+#define COMMAND_LINE_MAX_LEN	80	// 3.2 -1
 
 //
 #undef ENABLE_USERNAME_HOSTNAME
@@ -41,9 +42,30 @@ char content[HISTORY_CONTENT_SIZE];
 };
 struct cmd_history_array_st history_array[1024] = {0};
 
+/* 3.2 pid */
+#define MAX_PID_RECORD	5
+pid_t last5pid [MAX_PID_RECORD] = {0};
+int index5pid = 0;
+void update5pid(pid_t pid)
+{
+	last5pid[index5pid] = pid;
+	index5pid++;
+	if (index5pid >= MAX_PID_RECORD )
+		index5pid = 0;
+	return;
+}
+int handler_pid(char *arg)
+{
+	int index = 0;
+	for(index = (MAX_PID_RECORD-1); index >= 0; index--)
+	{
+		if( 0 != last5pid[index])
+			debug_out("[%d] %d\n",index+1,last5pid[index]);
+	}
+	return 0;
+}
 
-int show_current_dir(char *buff);
-
+int show_cmd_line_prompt(char *buff);
 
 int init_history_list(struct list_st *head)
 {
@@ -91,7 +113,7 @@ int cmd_add_history_array(char *buff)
 	return 0;
 }
 
-int cmd_show_history(void)
+int cmd_show_history(char *arg)
 {
 	struct list_st *ptr = NULL;
 	ptr = history_head;
@@ -115,29 +137,26 @@ int cmd_show_history_array(void)
 }
 
 /* Get line from stdin */
-int get_command_line(char *buff)
+int process_command_line(char *buff)
 {
-	show_current_dir(buff);
+	show_cmd_line_prompt(buff);
 
 	memset(buff, 0, GENERAL_BUFF_SIZE);
-	gets(buff);
-	if(strlen(buff))
+	gets(buff);// 3.2 -2
+
+	if( (strlen(buff) <= COMMAND_LINE_MAX_LEN) && (strlen(buff)>0) )
 	{
 		cmd_add_history_array(buff);
-		//debug_out("(%s) \n",buff);
+		parse_command_line_all(buff);
 	}
-	else
-	{
-		return 1;
-	}
-	return 0;
+
+	return 1;
 }
 
 #define DELIM_STRING_PIPE	"|"
 #define DELIM_STRING_SPACE	" "
 int parse_command_line_strsep(char *buff, char **target, char *delim)
 {
-	debug_out("+++ \n");
 	int index = 0;
 	{
 		if( 0 == strcmp(delim, DELIM_STRING_PIPE))
@@ -148,10 +167,13 @@ int parse_command_line_strsep(char *buff, char **target, char *delim)
 					break;
 			}
 			if(target[0])
-				debug_out("(%s)\n",target[0]);
+			{
+				//debug_out("(%s)\n",target[0]);
+			}
 			if(target[1])
+			{
 				debug_out("(%s)\n",target[1]);
-			debug_out("+++ \n");
+			}
 			return target[1]?1:0;
 		}
 		else if( 0 == strcmp(delim, DELIM_STRING_SPACE) )
@@ -168,16 +190,15 @@ int parse_command_line_strsep(char *buff, char **target, char *delim)
 				}
 				else
 				{
-					debug_out("(%s)\n",target[0]?target[0]:"null");
-					debug_out("(%s)\n",target[1]?target[1]:"null");
+					debug_out("(%s)\n",target[index]?target[index]:"null");
+					//debug_out("(%s)\n",target[1]?target[1]:"null");
 				}
 			}
-			debug_out("+++ \n");
 			return 0;
 		}
 	}
 }
-int show_current_dir(char *buff)
+int show_cmd_line_prompt(char *buff)
 {
 	char hostname[60] = {0};
 
@@ -186,10 +207,10 @@ int show_current_dir(char *buff)
 	struct passwd *pwd = getpwuid(getuid());
 	getcwd(buff, GENERAL_BUFF_SIZE);
 	gethostname(hostname, sizeof(hostname));
-	debug_out("[OS Shell]%s@%s:%s $", pwd->pw_name, hostname, buff);
+	debug_out("[OS Shell]%s@%s:%s $ ", pwd->pw_name, hostname, buff);
 #else
 	getcwd(buff, GENERAL_BUFF_SIZE);
-	debug_out(":%s $",buff);
+	debug_out("[OS Shell]%s $ ",buff);
 #endif
 	return 0;
 }
@@ -200,13 +221,26 @@ struct builtin_cmd_st
 };
 int handler_exit(char *arg);
 int handler_show(char *arg);
+int handler_chdir(char *arg);
 struct builtin_cmd_st builtin_cmd[]=
 {
 	{"exit",	handler_exit},
 	{"show",	handler_show},
+	{"history",	cmd_show_history_array},
+	{"go",		handler_chdir},
+	{"pid",		handler_pid},
 	{"test",	NULL},
 	{NULL,NULL},
 };
+int handler_chdir(char *arg)
+{
+	if( 0 != chdir(arg) )
+	{
+		debug_out("Chdir error!(%s) \n",strerror(errno));
+		return 1;
+	}
+	return 0;
+}
 int handler_exit(char *arg)
 {
 	exit(0);
@@ -221,18 +255,17 @@ int is_builtin_cmd(char **arg_cmd)
 {
 	int index = 0;
 
-	debug_out("--\n");
+	if(!arg_cmd[0])
+	return 1;
+
 	while( NULL != builtin_cmd[index].cmd )
 	{
-		debug_out("--\n");
-		debug_out("%s\n", builtin_cmd[index].cmd);
-		debug_out("%p\n", arg_cmd[0]);
+		//debug_out("%s\n", builtin_cmd[index].cmd);
+		//debug_out("%p\n", arg_cmd[0]);
 		//debug_out("%s\n", arg_cmd[0]);
 		if (strcmp(arg_cmd[0], builtin_cmd[index].cmd) == 0)
 		{
-			debug_out("--\n");
 			debug_out("command (%s) %s handler!\n", builtin_cmd[index].cmd, builtin_cmd[index].handler?"has":"has no");
-			debug_out("--\n");
 			if(builtin_cmd[index].handler)
 			{
 				builtin_cmd[index].handler(arg_cmd[1]);
@@ -260,6 +293,8 @@ int exec_external_prog(int piped, char **arg, char **arg_p)
 		switch(pid1)
 		{
 			case 0:
+				debug_out("(%s) \n", arg[0]);
+				debug_out("(%s) \n", arg[1]);
 				close(pipefd[0]);
 				dup2(pipefd[1], 1);
 				close(pipefd[1]);
@@ -273,6 +308,7 @@ int exec_external_prog(int piped, char **arg, char **arg_p)
 				debug_out("Forking failed! (%s) \n", strerror(errno));
 				break;
 			default:
+				update5pid(pid1);
 				pid2 = fork();
 				switch(pid2)
 				{
@@ -280,8 +316,8 @@ int exec_external_prog(int piped, char **arg, char **arg_p)
 						close(pipefd[1]);
 						dup2(pipefd[0], 0);
 						close(pipefd[0]);
-						debug_out("%s \n", arg_p[0]);
-						debug_out("%s \n", arg_p[1]);
+						debug_out("(%s) \n", arg_p[0]);
+						debug_out("(%s) \n", arg_p[1]);
 						if ( execvp(arg_p[0], arg_p) < 0 )
 						{
 							debug_out("exec error (%s)!\n", strerror(errno));
@@ -293,10 +329,15 @@ int exec_external_prog(int piped, char **arg, char **arg_p)
 						return 2;
 						break;
 					default:
+						update5pid(pid2);
+						debug_out("++++");
 						wait(NULL);
+						debug_out("++++");
 						wait(NULL);
+						debug_out("++++");
 						break;
 				}
+				debug_out("++++");
 
 				break;
 		}
@@ -309,7 +350,8 @@ int exec_external_prog(int piped, char **arg, char **arg_p)
 			case 0:
 				if ( execvp(arg[0], arg) < 0 )
 				{
-					debug_out("exec error (%s)!\n", strerror(errno));
+					//debug_out("exec error (%s)!\n", strerror(errno));
+					debug_out("Commands not found!\n");
 				}
 				exit(0);
 				break;
@@ -317,6 +359,7 @@ int exec_external_prog(int piped, char **arg, char **arg_p)
 				debug_out("Forking failed! (%s) \n", strerror(errno));
 				break;
 			default:
+				update5pid(pid);
 				wait(NULL);
 				break;
 		}
@@ -328,8 +371,8 @@ int parse_command_line_all(char *buff)
 {
 	int piped = 0;
 	char *target[2];
-	char * args_no_pipe[MAX_ARG_LEVEL];
-	char * args_piped[MAX_ARG_LEVEL];
+	char *args_no_pipe[MAX_ARG_LEVEL];
+	char *args_piped[MAX_ARG_LEVEL];
 
 	piped += parse_command_line_strsep(buff, target, DELIM_STRING_PIPE);
 
@@ -373,12 +416,11 @@ int main(int argc, char **argv)
 
 	while(1)
 	{
-		get_command_line(buff);
-		parse_command_line_all(buff);
-		//cmd_show_history_array();
+		process_command_line(buff);
 	}
 
 	/* clean */
 	free(buff);
 	return 0;
 }
+
