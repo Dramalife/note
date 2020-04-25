@@ -81,3 +81,7 @@ firewall
 # Ubuntu
 ufw allow 2049
 ```
+
+```
+sudo mount -t nfs 192.168.0.122:/root/disk2t_1 ./disk1
+```
