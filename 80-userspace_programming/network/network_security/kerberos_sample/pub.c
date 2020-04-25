@@ -1,6 +1,37 @@
+/*
+ * note "kerberos" related file
+ * Copyright (C) 2019 Dramalife <dramalife@live.com>
+ * 
+ * This file is part of [note](https://github.com/Dramalife/note.git)
+ * 
+ * note is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * $ gcc --version
+ * gcc (Ubuntu/Linaro 5.5.0-12ubuntu1) 5.5.0 20171010
+ * Copyright (C) 2015 Free Software Foundation, Inc.
+ * This is free software; see the source for copying conditions.  There is NO
+ * warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.;
+ * 
+ * $ uname -a
+ * Linux Ubuntu18-BPI-R2 4.4.70-BPI-R2-Kernel #4 SMP Thu Mar 29 10:31:30 CST 2018 armv7l armv7l armv7l GNU/Linux
+ * ;
+ * 
+ * Init : Sat Apr 16 01:12:50 CST 2020
+ * 	Socket communication;
+ * Update : Sat Apr 18 01:00:50 CST 2020
+ *	Data struct of kerberos protocol;
+ *  
+ * Update
+ *
+ */
+
+
+
 #include "pub.h"
 
-int key_m[K_MAX__]={0};
+struct kerberos_key_st key_m[K_MAX__]={0};
 
 /*
  * socket
@@ -214,10 +245,32 @@ int gen_key()
 	srand((unsigned)time(NULL));
 	return (rand()%9000+1000);
 }
-
-int get_as_key(int index)
+#if 0
+	MSG_INIT__
+	MSG_REQUEST_TGT
+	MSG_RETURNN_TGT
+	MSG_REQUEST_SGT
+	MSG_RETURNN_SGT
+	MSG_REQUEST_SERVICE
+	MSG_RETURNN_SERVICE
+	MSG_FINISHED__
+#endif
+void kerberos_print_all(struct kerberos_message_st *msg)
 {
-	return (index > K_MIN__)&&(index <K_MAX__) ? 
-		key_m[index] : 0 ;
+	printf("****************************************************************\n");
+	dl_gcc_print_name_vaule(msg->type				,printf);
+	dl_gcc_print_name_vaule(msg->key.key			,printf);
+	dl_gcc_print_name_vaule(msg->key2.key			,printf);
+	dl_gcc_print_name_vaule(msg->cs_info.client_id		,printf);
+	dl_gcc_print_string(msg->cs_info.service_name		,printf);
+	dl_gcc_print_name_vaule(msg->tgt_sgt.key.key		,printf);
+	dl_gcc_print_name_vaule(msg->tgt_sgt.auth.client_id		,printf);
+	dl_gcc_print_string(msg->tgt_sgt.auth.service_name	,printf);
+	printf("*****************************************\n");
+	return;
 }
 
+struct kerberos_key_st *get_key(enum kerberos_key_type type)
+{
+	return &key_m[type];
+}

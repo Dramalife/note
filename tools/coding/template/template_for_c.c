@@ -151,7 +151,7 @@ void show_finish(char *str[])
 #define DO_INIT_DYNAMIC(i,c,s)	do{			\
 	data[i].str = (char *)malloc(s * sizeof(char));\
 	data[i].flag |= 0x01;\
-	dramalife_get_cmd_result(c,"r",data[i].str);	\
+	dl_ipc_get_cmd_n_result(c,"r",data[i].str,256);\
 }while(0)
 void show_init(struct cm_insert data[])
 {
