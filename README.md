@@ -63,14 +63,15 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |0D|2019|[glibc_sample](/80-userspace_programming/00-libc_sample), [mylib](/lib_dramalife); |
 |0E|2019|IPC :: [ipc&mylib_ipc](/80-userspace_programming/ipc), [ipc_old](/80-userspace_programming/thread_process/31-com_process) |
 |0F|2020.01.05|[I/O - signal/multiplexing](/80-userspace_programming/io) |
-|  | | |
+|10|2020.04.19|[kerberos(network security)](/80-userspace_programming/network/network_security/kerberos_sample) TODO:encrypt,auth |
+|11|2020.04.26|[simple shell(TODO-upload)](/) Bug:pipe,job control;|
 |  | | |
 
 ### 2.2 RECALL
 |no|date|content|
 |--|--|--|
 |0|2019.01.22|git,svn : shell;git:web|
-|0|2019.01.22|vim快捷键|
+|0|2019.01.22|vim hot key|
 |0|2019.02.23|zebra module communication|
 |0|2019.09 19|[endian](/80-userspace_programming/endian_check) |
 |0|2019.10.31|[show_cmdline_of_pid_and_ppid](/80-userspace_programming/pid_ppid) |
