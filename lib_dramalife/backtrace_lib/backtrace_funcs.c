@@ -85,8 +85,11 @@ void dlbt_signal_handler(int signo)
 	dlbt_debug("##############Backtrace_End__(%d)#############\n", signo);
 
 	/* Resume signal handler & Resend the signal */
-	signal(signo, SIG_DFL);
-	raise(signo);
+	if(signo)
+	{
+		signal(signo, SIG_DFL);
+		raise(signo);
+	}
 }  
 #elif	defined(_DL_PLAT_ARM_V7A_) //\
 	|| defined(_DL_PLAT_ARM_V8A_)
