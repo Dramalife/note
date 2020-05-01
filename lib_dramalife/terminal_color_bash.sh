@@ -1,1 +1,1 @@
-print_lib/dramalife_terminal_color.sh
+terminal_lib/dramalife_terminal_color.sh
