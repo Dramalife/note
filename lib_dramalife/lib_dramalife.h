@@ -51,7 +51,7 @@
 /*******************************************************************************
  * 			Library Functions
  ******************************************************************************/
-#include "print_lib/dramalife_terminal_color.h"
+#include "terminal_lib/terminal_lib.h"
 
 #include "gcc_related_lib/gcc_related_show.h"
 

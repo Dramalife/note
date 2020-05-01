@@ -2,7 +2,7 @@
 #define DL_SLEEP_WITH_PRINT_H
 
 #include <time.h>
-#include "terminal_color_dramalife.h"
+#include "lib_dramalife.h"
 
 #define PRINT_sleep_f1	1
 #define PRINT_time	1

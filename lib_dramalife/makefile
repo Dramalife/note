@@ -19,7 +19,8 @@ SUBDIRS=system_lib\
 	backtrace_lib\
 	gcc_related_lib\
 	option_config_lib\
-	db_lib
+	db_lib\
+	terminal_lib
 
 CFLAGS_ROOT="-fPIC -shared -I../"
 DYNLIB_NAME:=lib_dramalife.so
@@ -38,7 +39,7 @@ all: download
 action: .prepare
 	make $(SUBDIRS) TARGET=$@ ACTION=$(ACTION)
 ifeq ($(ACTION),make)
-	$(CC) -o $(DYNLIB_NAME) $(DYNLIB_OBJ_PATH)/*.o -fPIC -shared
+	$(CC) -o $(DYNLIB_NAME) $(DYNLIB_OBJ_PATH)/*.o -fPIC -shared -lpthread -ldl
 	ln -sf $(DYNLIB_NAME) $(DYNLIB_SLINK)
 endif
 
