@@ -5,8 +5,9 @@ runqueue是libubox提供的子进程管理框架，主要接口如下：
 |runqueue_task_add||
 |runqueue_process_add|把进程（子进程）添加到runqueue|
 |runqueue_task_complete|当前进程完成/超时，使能下一个子进程|
-runqueue_process_add函数只用到了struct runqueue_process中的struct runqueue_task task，所以在调用runqueue_process_add之前对struct uloop_process proc的cb进行赋值，用来指定wait之后的回调函数是无效的；
-解决：重写runqueue_process_add函数，对p->proc.cb进行赋值；
+
+- runqueue_process_add函数只用到了struct runqueue_process中的struct runqueue_task task，所以在调用runqueue_process_add之前对struct uloop_process proc的cb进行赋值，用来指定wait之后的回调函数是无效的；
+- 解决：重写runqueue_process_add函数，对p->proc.cb进行赋值；
 ```c
 void runqueue_process_add(struct runqueue *q, struct runqueue_process *p, pid_t pid)
 {
