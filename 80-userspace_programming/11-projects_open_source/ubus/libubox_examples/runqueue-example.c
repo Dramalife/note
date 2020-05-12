@@ -27,10 +27,20 @@
  *	*[ Note ] : Can not get return vaule of child process;
  *	Update : Timeout related;
  *	*[ Note ] : Timeout time is not accurate!
+ * Update : 2020.05.12
+ * 	Add fun "" to get ret of child process, test macro DL_Q_CHILD_RET ;-) 
  *  
  * Update
  *
  */
+
+/***
+ * 1 : enable
+ * 0 : disable
+ */
+#ifndef DL_Q_CHILD_RET
+#define DL_Q_CHILD_RET	1
+#endif
 
 
 
@@ -72,6 +82,54 @@ static void q_empty(struct runqueue *q)
 	uloop_end();
 }
 
+#if DL_Q_CHILD_RET
+	static void
+__runqueue_proc_cb(struct uloop_process *p, int ret)
+{
+	struct runqueue_process *t = container_of(p, struct runqueue_process, proc);
+
+	runqueue_task_complete(&t->task);
+}
+
+void runqueue_process_cancel_cb(struct runqueue *q, struct runqueue_task *t, int type)
+{
+	struct runqueue_process *p = container_of(t, struct runqueue_process, task);
+
+	if (!type)
+		type = SIGTERM;
+
+	kill(p->proc.pid, type);
+}
+
+void runqueue_process_kill_cb(struct runqueue *q, struct runqueue_task *t)
+{
+	struct runqueue_process *p = container_of(t, struct runqueue_process, task);
+
+	uloop_process_delete(&p->proc);
+	kill(p->proc.pid, SIGKILL);
+}
+
+static const struct runqueue_task_type runqueue_proc_type = {
+	.name = "process",
+	.cancel = runqueue_process_cancel_cb,
+	.kill = runqueue_process_kill_cb,
+};
+void dl_runqueue_process_add(struct runqueue *q, struct runqueue_process *p, pid_t pid)
+{
+	if (p->proc.pending)
+		return;
+
+	p->proc.pid = pid;
+	if( NULL == p->proc.cb )
+		p->proc.cb = __runqueue_proc_cb;
+	if (!p->task.type)
+		p->task.type = &runqueue_proc_type;
+	uloop_process_add(&p->proc);
+	if (!p->task.running)
+		runqueue_task_add(q, &p->task, true);
+}
+#endif
+
 static void q_sleep_run(struct runqueue *q, struct runqueue_task *t)
 {
 	struct sleeper *s = container_of(t, struct sleeper, proc.task);
@@ -85,7 +143,11 @@ static void q_sleep_run(struct runqueue *q, struct runqueue_task *t)
 		return;
 
 	if (pid) {
+#if DL_Q_CHILD_RET
+		dl_runqueue_process_add(q, &s->proc, pid);
+#else
 		runqueue_process_add(q, &s->proc, pid);
+#endif
 		return;
 	}
 
@@ -110,9 +172,13 @@ static void q_sleep_complete(struct runqueue *q, struct runqueue_task *p)
 	free(s);
 }
 
-void dl_wait_handler(struct uloop_process *c, int ret)
+void dl_wait_handler(struct uloop_process *p, int ret)
 {
+	struct runqueue_process *t = container_of(p, struct runqueue_process, proc);
+
 	printf("xxxxxx ret(%d)\n",ret);
+
+	runqueue_task_complete(&t->task);
 }
 
 static void add_sleeper(int val)
@@ -135,7 +201,9 @@ static void add_sleeper(int val)
 	/***
 	 * Function "__runqueue_proc_cb" do not use arg ret, cannot get result of wait()!
 	 */
-	//s->proc.proc.cb = dl_wait_handler; //status of wait(pid), by dramalife ;-)  Failed ;-(
+#if DL_Q_CHILD_RET
+	s->proc.proc.cb = dl_wait_handler; //status of wait(pid), by dramalife ;-)  Failed ;-(  Succeed ;-)
+#endif
 
 	runqueue_task_add(&gv_queue, &s->proc.task, false);
 }

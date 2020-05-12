@@ -8,4 +8,5 @@
 
 ### 2 Problems of runqueue:
 1. timeout time is not accurate;  
-2. cannot get return vaule of child process;
+2. [fixed] cannot get return vaule of child process;
+	[2020.05.12] Fixed, test macro - DL_Q_CHILD_RET;
