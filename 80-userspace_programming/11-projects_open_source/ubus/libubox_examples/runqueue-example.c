@@ -24,6 +24,9 @@
  * 	COPY FROM : libubox-2018-11-16-4382c76d/examples;
  * Update : Tue May 12 10:55:42 CST 2020
  * 	Change global variable name (p => gv_queue);
+ *	*[ Note ] : Can not get return vaule of child process;
+ *	Update : Timeout related;
+ *	*[ Note ] : Timeout time is not accurate!
  *  
  * Update
  *
@@ -107,6 +110,11 @@ static void q_sleep_complete(struct runqueue *q, struct runqueue_task *p)
 	free(s);
 }
 
+void dl_wait_handler(struct uloop_process *c, int ret)
+{
+	printf("xxxxxx ret(%d)\n",ret);
+}
+
 static void add_sleeper(int val)
 {
 	static const struct runqueue_task_type sleeper_type = {
@@ -118,9 +126,17 @@ static void add_sleeper(int val)
 
 	s = calloc(1, sizeof(*s));
 	s->proc.task.type = &sleeper_type;
-	s->proc.task.run_timeout = 500;
+	s->proc.task.run_timeout = 1500;
 	s->proc.task.complete = q_sleep_complete;
 	s->val = val;
+
+	printf("Timeout time (%d) ms \n", s->proc.task.run_timeout);
+
+	/***
+	 * Function "__runqueue_proc_cb" do not use arg ret, cannot get result of wait()!
+	 */
+	//s->proc.proc.cb = dl_wait_handler; //status of wait(pid), by dramalife ;-)  Failed ;-(
+
 	runqueue_task_add(&gv_queue, &s->proc.task, false);
 }
 
@@ -128,16 +144,23 @@ int main(int argc, char **argv)
 {
 	uloop_init();
 
+//sleep(10);
+#if 1 /* runqueue related */
 	runqueue_init(&gv_queue);
+
 	gv_queue.empty_cb = q_empty;
+	//gv_queue.empty_cb = NULL;
+
 	gv_queue.max_running_tasks = 1;
 
 	if (argc > 1)
 		gv_queue.max_running_tasks = atoi(argv[1]);
 
 	add_sleeper(1);
+	add_sleeper(2);
 	add_sleeper(1);
-	add_sleeper(1);
+#endif
+
 	uloop_run();
 	uloop_done();
 
