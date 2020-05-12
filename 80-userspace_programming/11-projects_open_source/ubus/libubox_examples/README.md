@@ -9,4 +9,4 @@
 ### 2 Problems of runqueue:
 1. timeout time is not accurate;  
 2. [fixed] cannot get return vaule of child process;
-	[2020.05.12] Fixed, test macro - DL_Q_CHILD_RET;
+	[2020.05.12] Fixed, test macro - DL_Q_CHILD_RET, [details](/80-userspace_programming/11-projects_open_source/ubus/libubox_examples/README_runqueue_child_ret.md);
