@@ -22,6 +22,11 @@ enum{
 	DLSET_ARRAY,
 	__DLSET_MAX
 };
+enum{
+	ARRAY_MEM1,
+	ARRAY_MEM2,
+	__ARRAY_MEM_MAX,
+};
 
 static const struct blobmsg_policy dlsetarray_policy[__DLSET_MAX] = {
 	[DLSET_ARRAY] = { .name = "array1", .type = BLOBMSG_TYPE_ARRAY },
@@ -31,11 +36,6 @@ static const struct blobmsg_policy array_member_policy[__ARRAY_MEM_MAX] = {
 	[ARRAY_MEM2] = { .type = BLOBMSG_TYPE_STRING },
 };
 
-enum{
-	ARRAY_MEM1,
-	ARRAY_MEM2,
-	__ARRAY_MEM_MAX,
-};
 #define DLBUFFLEN128	128
 struct dlst
 {

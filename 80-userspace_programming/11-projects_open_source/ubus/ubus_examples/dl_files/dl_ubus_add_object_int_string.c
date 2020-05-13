@@ -55,6 +55,9 @@ static int test_dlset(struct ubus_context *ctx, struct ubus_object *obj,
 	blob_buf_init(&b, 0);
 	blobmsg_add_u32(&b, "rc", 1);
 	ubus_send_reply(ctx, req, b.head);
+#ifdef UBUS_SAMPLE_ADD_DRAMALIFE_SEND_EVENT
+	ubus_send_event(ctx, __func__, b.head);
+#endif
 
 	return 0;
 }
