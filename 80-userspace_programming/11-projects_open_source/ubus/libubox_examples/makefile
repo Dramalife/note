@@ -1,4 +1,4 @@
-INCLUDE=-I ./headers_libubox-2018-11-16-4382c76d/headers_libubox-2018-11-16-4382c76d
+INCLUDE=-I ./headers_libubox-2018-11-16-4382c76d/headers_libubox-2018-11-16-4382c76d/libubox
 
 runqueue-sample: .prepare
 	gcc -o runqueue-example.out runqueue-example.c $(INCLUDE) -lubox
