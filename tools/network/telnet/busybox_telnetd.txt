@@ -1,0 +1,1 @@
+sudo busybox telnetd -p 23 -F
