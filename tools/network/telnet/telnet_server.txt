@@ -1,0 +1,20 @@
+原文链接：https://blog.csdn.net/l370398095/article/details/70598632
+
+安装openbsd-inetd
+sudo apt-get install openbsd-inetd
+
+
+安装telnetd
+sudo apt-get install telnetd
+
+
+重启openbsd-inetd
+sudo /etc/init.d/openbsd-inetd restart
+
+
+查看telnet运行状态
+sudo netstat -a | grep telnet
+
+
+登录
+telnet IP address
