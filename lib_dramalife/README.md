@@ -12,6 +12,7 @@ makefile
 |2	|backtrace_lib      	 |v	|v |
 |3	|gcc_related_lib    	 |v	|v |
 |4	|option_config_lib  	 |v	|v |
+|5	|inet_lib		 |v	|v |
 |-	|---------------    	 |-	|- |
 |	|data_pub           	 |-	|- |
 |	|dthread_lib        	 |-	|- |
@@ -42,3 +43,10 @@ makefile
 - exec_files
 - lib_dramalife.sh
 - shell_script_lib
+
+### Changelog
+```
+... ...
+
+# 2020.06.05 Add inet_lib;
+```
