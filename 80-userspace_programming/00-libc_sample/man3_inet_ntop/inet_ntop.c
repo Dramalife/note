@@ -30,7 +30,7 @@ main(int argc, char *argv[])
 	int i;
 	for(i=0; i<16; i++)
 	{
-		printf("[%s,%d] (0x%2x)\n",__func__,__LINE__,buf.s6_addr[i]);
+		//printf("[%s,%d] (0x%2x)\n",__func__,__LINE__,(struct in6_addr)buf.s6_addr[i]);
 	}
 
 	if (inet_ntop(domain, buf, str, INET6_ADDRSTRLEN) == NULL) {
