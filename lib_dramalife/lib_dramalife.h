@@ -71,6 +71,7 @@
 
 #include "db_lib/db_lib.h"
 
+#include "inet_lib/inet_lib.h"
 
 
 #endif

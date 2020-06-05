@@ -20,7 +20,8 @@ SUBDIRS=system_lib\
 	gcc_related_lib\
 	option_config_lib\
 	db_lib\
-	terminal_lib
+	terminal_lib\
+	inet_lib
 
 CFLAGS_ROOT="-fPIC -shared -I../"
 DYNLIB_NAME:=lib_dramalife.so
