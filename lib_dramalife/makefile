@@ -13,15 +13,21 @@
 
 
 
+#####
 # Configuration for subdir make
-SUBDIRS=system_lib\
-	ipc_lib\
-	backtrace_lib\
-	gcc_related_lib\
-	option_config_lib\
-	db_lib\
-	terminal_lib\
-	inet_lib
+#
+SUBDIRS:=
+SUBDIRS+=system_lib
+SUBDIRS+=ipc_lib
+SUBDIRS+=backtrace_lib
+SUBDIRS+=gcc_related_lib
+SUBDIRS+=option_config_lib
+# SQLite3
+SUBDIRS+=db_lib
+SUBDIRS+=terminal_lib
+SUBDIRS+=inet_lib
+
+
 
 CFLAGS_ROOT="-fPIC -shared -I../"
 DYNLIB_NAME:=lib_dramalife.so
