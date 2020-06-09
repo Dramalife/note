@@ -1,0 +1,88 @@
+/*
+ * note "simple coreutils - ls" related file
+ * Copyright (C) 2019 Dramalife <dramalife@live.com>
+ * 
+ * This file is part of [note](https://github.com/Dramalife/note.git)
+ * 
+ * note is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * $ gcc --version
+ * gcc (Ubuntu 5.5.0-12ubuntu1) 5.5.0 20171010
+ * Copyright (C) 2015 Free Software Foundation, Inc.
+ * This is free software; see the source for copying conditions.  There is NO
+ * warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * 
+ * ;
+ * 
+ * $ uname -a
+ * Linux server 4.15.0-99-generic #100-Ubuntu SMP Wed Apr 22 20:32:56 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+ * ;
+ * 
+ * Init : Tue Jun  9 11:12:09 CST 2020
+ * 	Copy from : https://www.cnblogs.com/torres-9/p/5948635.html;
+ * Update : Tue Jun  9 11:12:09 CST 2020
+ * 	Change func name;
+ *  
+ * Update
+ *
+ */
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <dirent.h>
+#include <string.h>
+
+#define MAX_PATH 1024
+
+void show_dir(char *dir, void (*fcn)(char *))
+{
+	char name[MAX_PATH];
+	struct dirent *dp;
+	DIR *dfd;
+
+	if ((dfd = opendir(dir)) == NULL) {
+		fprintf(stderr, "show_dir:can not open %s\n", dir);
+		return;
+	}
+	while ((dp = readdir(dfd)) != NULL) {
+		if ((strcmp(dp->d_name, ".") == 0) || (strcmp(dp->d_name, "..") == 0))
+			continue;
+		if (strlen(dir)+strlen(dp->d_name)+2 > sizeof(name)) {
+			fprintf(stderr, "show_dir: name %s %s too long\n", dir, dp->d_name);
+		} else {
+			sprintf(name, "%s/%s", dir, dp->d_name);
+			(*fcn)(name);
+		}
+	}
+	closedir(dfd);
+}
+
+void show_file_or_dir(char *name)
+{
+	struct stat file_status;
+	if (stat(name, &file_status) != 0) {
+		fprintf(stderr, "show_file_or_dir:can not access to %s\n", name);
+		return;
+	}
+	if ((file_status.st_mode & S_IFMT) == S_IFDIR) {
+		show_dir(name, show_file_or_dir);
+	}
+	printf("%8ld %s\n", file_status.st_size, name);
+}
+
+int main(int argc, char *argv[])
+{
+	if (argc == 1)
+		show_file_or_dir(".");
+	else 
+		while (--argc > 0)
+			show_file_or_dir(*++argv);
+	return 0;
+}
