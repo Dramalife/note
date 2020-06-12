@@ -51,6 +51,17 @@ void show_dir(char *dir, void (*fcn)(char *))
 		fprintf(stderr, "show_dir:can not open %s\n", dir);
 		return;
 	}
+	
+#if JUST_FOR_REF______ && 0
+	struct dirent {
+		ino_t          d_ino;       /* Inode number */
+		off_t          d_off;       /* Not an offset; see below */
+		unsigned short d_reclen;    /* Length of this record */
+		unsigned char  d_type;      /* Type of file; not supported
+					       by all filesystem types */
+		char           d_name[256]; /* Null-terminated filename */
+	};
+#endif
 	while ((dp = readdir(dfd)) != NULL) {
 		if ((strcmp(dp->d_name, ".") == 0) || (strcmp(dp->d_name, "..") == 0))
 			continue;
