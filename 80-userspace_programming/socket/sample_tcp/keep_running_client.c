@@ -37,20 +37,30 @@ int main(int argc, char** argv){
 		return 0;
 	}
 
-	if(argc == 3)
+	int already_run = 0;
+	while(1)
 	{
-		printf("send msg to server: \n");
-		fgets(sendline, 4096, stdin);
-	}
-	else
-	{
-		strncpy(sendline, argv[3], sizeof(sendline));
+		if(argc == 3)
+		{
+			printf("send msg to server: \n");
+			fgets(sendline, 4096, stdin);
+		}
+		else
+		{
+			sleep(1);
+			if(!already_run)
+			{
+				already_run++;
+				strncpy(sendline, argv[3], sizeof(sendline));
+			}
+		}
+
+		if( send(sockfd, sendline, strlen(sendline), 0) < 0){
+			printf("send msg error: %s(errno: %d)\n", strerror(errno), errno);
+			return 0;
+		}
 	}
 
-	if( send(sockfd, sendline, strlen(sendline), 0) < 0){
-		printf("send msg error: %s(errno: %d)\n", strerror(errno), errno);
-		return 0;
-	}
 	close(sockfd);
 	return 0;
 }
