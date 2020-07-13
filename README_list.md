@@ -35,4 +35,6 @@
 |24|DOING|ubus(openwrt)|[ubus](/80-userspace_programming/11-projects_open_source/ubus) |2020.03.27~ |
 |25|PLAN |update lib_dramalife - backtrace(arm) | |2020.06.13~ |
 |26|PLAN |memory leak analysis tools | |2020.06.13~ |
+|27|PLAN |ucore | |2020.06.28~ |
+|28|DOING |Kernel link list | |2020.07.03~ |
 | | | | | |
