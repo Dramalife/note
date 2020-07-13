@@ -48,11 +48,11 @@
 #################################
 #	Sample - config.in	#
 #################################
-#RELATIVE_PATH_TO_LIB_DRAMALIFE=../../../lib_dramalife/
-#TARGET_PATH=./folder_headers
-#TARGET_DNAME=dl_headers
-###DATA_FILE_PWD=${RELATIVE_PATH_TO_LIB_DRAMALIFE}/data_pub/headers_gcc_userspace.ubuntuserver18.list
-#DATA_FILE_PWD=${RELATIVE_PATH_TO_LIB_DRAMALIFE}/data_pub/$(uname -r).list
+RELATIVE_PATH_TO_LIB_DRAMALIFE=~/note/lib_dramalife/
+TARGET_PATH=./folder_headers
+TARGET_DNAME=dl_headers
+##DATA_FILE_PWD=${RELATIVE_PATH_TO_LIB_DRAMALIFE}/data_pub/headers_gcc_userspace.ubuntuserver18.list
+DATA_FILE_PWD=${RELATIVE_PATH_TO_LIB_DRAMALIFE}/data_pub/$(uname -r).list
 #################################
 
 
@@ -62,14 +62,22 @@ GEN_PROGRAM="ln -s"
 # Suffix name of each auto-generated file.
 TARGET_DNAME=headers
 # Path of auto-generated file
-TARGET_PATH=
+#TARGET_PATH=
 
 # Relative path to directory "lib_dramalife"
-RELATIVE_PATH_TO_LIB_DRAMALIFE=../../lib_dramalife
+#RELATIVE_PATH_TO_LIB_DRAMALIFE=../../lib_dramalife
+RELATIVE_PATH_TO_LIB_DRAMALIFE=~/note/lib_dramalife
 
 # Including files
-source ./config.in
-source ${RELATIVE_PATH_TO_LIB_DRAMALIFE}/print_lib/dramalife_terminal_color.sh
+CONFIG_FILE=./config.in
+if [ -e ${CONFIG_FILE} ]
+then
+	source ${CONFIG_FILE}
+else
+	echo -e ${CLRED}"WARNING:"${CNONE}"!!..."
+fi
+
+source ${RELATIVE_PATH_TO_LIB_DRAMALIFE}/terminal_lib/dramalife_terminal_color.sh
 
 # PATH OF LIST FILE (headers_xxx.list)
 DATA_FILE_PWD=${RELATIVE_PATH_TO_LIB_DRAMALIFE}/data_pub/headers_gcc_userspace.ubuntuserver18.list
