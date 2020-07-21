@@ -9,6 +9,32 @@
 #include<unistd.h>
 #define MAXLINE 4096
 
+/*****
+ * Signal 
+ * typedef void (*sighandler_t)(int);
+ * sighandler_t signal(int signum, sighandler_t handler);
+ */
+#include <signal.h>
+#define RESTART(f,x)    do{\
+	dprintf(2, "(re)start socket!\n");\
+	if( f != -1)\
+	{\
+		if( -1 == close(f) )\
+		{\
+			perror("close!");\
+		}\
+	}\
+	sleep(x);\
+	goto start_sock;\
+}while(0)
+
+void handler_sigpipe(int signo)
+{
+	dprintf(2, "Receive signal (%d), Ignore! \n", signo);
+	return;
+}
+
+
 int main(int argc, char** argv){
 	int   sockfd, n;
 	char  recvline[4096], sendline[4096];
@@ -19,9 +45,16 @@ int main(int argc, char** argv){
 		return 0;
 	}
 
+	if( SIG_ERR == signal(SIGPIPE, handler_sigpipe) )
+	{
+		perror("signal!!");
+		return(2);
+	}
+
+start_sock:
 	if( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0){
 		printf("create socket error: %s(errno: %d)\n", strerror(errno),errno);
-		return 0;
+		RESTART(sockfd, 2);
 	}
 
 	memset(&servaddr, 0, sizeof(servaddr));
@@ -34,7 +67,7 @@ int main(int argc, char** argv){
 
 	if( connect(sockfd, (struct sockaddr*)&servaddr, sizeof(servaddr)) < 0){
 		printf("connect error: %s(errno: %d)\n",strerror(errno),errno);
-		return 0;
+		RESTART(sockfd, 2);
 	}
 
 	int already_run = 0;
@@ -57,7 +90,7 @@ int main(int argc, char** argv){
 
 		if( send(sockfd, sendline, strlen(sendline), 0) < 0){
 			printf("send msg error: %s(errno: %d)\n", strerror(errno), errno);
-			return 0;
+			RESTART(sockfd, 2);
 		}
 	}
 
