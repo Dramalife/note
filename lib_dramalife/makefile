@@ -16,20 +16,18 @@
 #####
 # Configuration for subdir make
 #
-SUBDIRS:=
+SUBDIRS:=			# Init.
 SUBDIRS+=system_lib
 SUBDIRS+=ipc_lib
 SUBDIRS+=backtrace_lib
 SUBDIRS+=gcc_related_lib
 SUBDIRS+=option_config_lib
-# SQLite3
-SUBDIRS+=db_lib
+SUBDIRS+=db_lib			# SQLite3
 SUBDIRS+=terminal_lib
 SUBDIRS+=inet_lib
 
 
 
-CFLAGS_ROOT="-fPIC -shared -I../"
 DYNLIB_NAME:=lib_dramalife.so
 DYNLIB_SLINK:=libdramalife.so
 
