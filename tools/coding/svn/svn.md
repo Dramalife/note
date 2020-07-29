@@ -96,3 +96,26 @@ svn revert -R .
 ```
 ### 4.2 revert commit
 TODO
+
+## 4 Diff
+### 4.1 svn diff 
+```
+-i, --ignore-case
+ignore case differences in file contents
+
+-E, --ignore-tab-expansion
+ignore changes due to tab expansion
+
+-Z, --ignore-trailing-space
+ignore white space at line end
+
+-b, --ignore-space-change
+ignore changes in the amount of white space
+
+-w, --ignore-all-space
+ignore all white space
+```
+sample
+```bash
+svn diff -x -w
+```
