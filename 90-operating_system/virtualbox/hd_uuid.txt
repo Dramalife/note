@@ -1,0 +1,5 @@
+# 1 Change Directory
+cd 'C:\Program Files\Oracle\VirtualBox'
+
+# 2 Set hd uuid
+PS C:\Program Files\Oracle\VirtualBox> .\VBoxManage.exe internalcommands sethduuid "D:\vmdisk_ipason_local\ubuntu-server18\Ubuntu18.vmdk"
