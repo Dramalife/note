@@ -1,0 +1,23 @@
+######
+# jansson-2.10
+######
+#
+# 1) Download
+#   wget https://digip.org/jansson/releases/jansson-2.10.tar.gz
+# 
+# 2) Configure
+# 
+#   2.1 Cross (armv7)
+#     ./configure --host=arm-linux-gnueabihf
+#     make
+#   
+#   2.2 Local
+#     ./configure
+#     make
+# 
+# 3) ELF
+#   file ./src/.libs/libjansson.so
+# 
+######
+
+
