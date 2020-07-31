@@ -58,7 +58,7 @@ SYSLOG(3)  \
        syslog().  The values that may be specified for option and facility are described below.  \
   \
        The use of openlog() is **optional**; it will automatically be called by syslog() if necessary, in which case ident will default to NULL.  
-  
+
 #### 2.1.2 Values for option
 &emsp;  The option argument to openlog() is a bit mask constructed by ORing together any of the following values: 
 | Flag  | Description|
@@ -74,19 +74,19 @@ SYSLOG(3)  \
 &emsp;  The facility argument is used to specify what type of program is logging the message.  This lets the configuration file specify that messages from different facilities will be handled differently.
 | Vaule  | Description   | SUSv3 |
 |:--|:--|:--|
-|LOG_AUTH                       |security/authorization messages                                         |      |                                                                                                               
-|LOG_AUTHPRIV                   |security/authorization messages (private)                               |      |   
-|LOG_CRON                       |clock daemon (cron and at)                                              |      |   
-|LOG_DAEMON                     |system daemons without separate facility value                          |      |   
-|LOG_FTP                        |ftp daemon                                                              |      |   
-|LOG_KERN                       |kernel messages (these can't be generated from user processes)          |      |   
-|LOG_LOCAL0 through LOG_LOCAL7  |reserved for local use                                                  |      |   
-|LOG_LPR                        |line printer subsystem                                                  |      |   
-|LOG_MAIL                       |mail subsystem                                                          |      |   
-|LOG_NEWS                       |USENET news subsystem                                                   |      |   
-|LOG_SYSLOG                     |messages generated internally by syslogd(8)                             |      |   
-|LOG_USER (default)             |generic user-level messages                                             |      |   
-|LOG_UUCP                       |UUCP subsystem                                                          |      |   
+|LOG_AUTH                       |security/authorization messages                                         |      |
+|LOG_AUTHPRIV                   |security/authorization messages (private)                               |      |
+|LOG_CRON                       |clock daemon (cron and at)                                              |      |
+|LOG_DAEMON                     |system daemons without separate facility value                          |      |
+|LOG_FTP                        |ftp daemon                                                              |      |
+|LOG_KERN                       |kernel messages (these can't be generated from user processes)          |      |
+|LOG_LOCAL0 through LOG_LOCAL7  |reserved for local use                                                  |      |
+|LOG_LPR                        |line printer subsystem                                                  |      |
+|LOG_MAIL                       |mail subsystem                                                          |      |
+|LOG_NEWS                       |USENET news subsystem                                                   |      |
+|LOG_SYSLOG                     |messages generated internally by syslogd(8)                             |      |
+|LOG_USER (default)             |generic user-level messages                                             |      |
+|LOG_UUCP                       |UUCP subsystem                                                          |      |
 
 
 
@@ -110,14 +110,14 @@ void syslog(int priority, const char *format, ...);
 &emsp;  This determines the importance of the message.  The levels are, in order of decreasing importance:
 | Vaule  | Description    |
 |:--|:--|
-|LOG_EMERG      |system is unusable                     |                                                                                                                                                                       
+|LOG_EMERG      |system is unusable                     |
 |LOG_ALERT      |action must be taken immediately|
 |LOG_CRIT       |critical conditions|
 |LOG_ERR        |error conditions|
 |LOG_WARNING    |warning conditions|
 |LOG_NOTICE     |normal, but significant, condition|
 |LOG_INFO       |informational message|
-|LOG_DEBUG      |debug-level message                    |   
+|LOG_DEBUG      |debug-level message                    |
 The function setlogmask(3) can be used to restrict logging to specified levels only.
 
 
@@ -154,8 +154,27 @@ void vsyslog(int priority, const char *format, va_list ap);
 + local6.* /tmp/iec104.log
 ```
 
+- WARNING : man 1 busybox - (this version of syslogd ignores /etc/syslog.conf)
+
+```
+       syslogd
+           syslogd [OPTIONS]
+
+           System logging utility (this version of syslogd ignores /etc/syslog.conf)
+
+                   -n              Run in foreground
+                   -R HOST[:PORT]  Log to HOST:PORT (default PORT:514)
+                   -L              Log locally and via network (default is network only if -R)
+                   -C[size_kb]     Log to shared mem buffer (use logread to read it)
+                   -O FILE         Log to FILE (default: /var/log/messages, stdout if -)
+                   -l N            Log only messages more urgent than prio N (1-8)
+                   -S              Smaller output
+```
+
+
 
 ## 4 Sample(示例)
+
 Source code
 ```c
 
@@ -187,4 +206,65 @@ user.debug /tmp/user_debug.log
 facility = LOG_LOCAL6; level = LOG_ERR;
 local6.err /tmp/local6_err.log
 
+
+
+## 6 logrotate
+
+ **logrotate：**系统中进行日志滚动（切割）的工具 
+
+### 6.1 Refs
+
+[ref_url_1](https://www.cnblogs.com/silenceli/p/3505404.html)
+
+### 6.2 CONFIGURATION FILE PATH
+
+/etc/logrotate.d 
+
+### 6.3 Samples
+
+#### 6.3.1 sample 1 (/etc/logrotate.d/mylog)
+
+```
+/var/log/mylog {
+	hourly
+	size 100K
+	rotate 5
+	create
+	nodateext
+}
+```
+
+#### 6.3.2 sample 2 (/etc/logrotate.d/rsyslog)
+
+```
+/var/log/syslog                                                                                                                                  
+{
+        rotate 7
+        daily
+        missingok
+        notifempty
+        delaycompress
+        compress
+        postrotate
+                /usr/lib/rsyslog/rsyslog-rotate
+        endscript
+}
+
+... ...
+
+/var/log/debug
+/var/log/messages
+{
+        rotate 4
+        weekly
+        missingok
+        notifempty
+        compress
+        delaycompress
+        sharedscripts
+        postrotate
+                /usr/lib/rsyslog/rsyslog-rotate
+        endscript
+}  
+```
 
