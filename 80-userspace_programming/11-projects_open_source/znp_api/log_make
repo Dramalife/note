@@ -1,0 +1,27 @@
+CC?=gcc
+
+
+INCLUDES:="-I ./librs232-luajit/"
+LIBS:="-lpthread"
+
+all:
+	-git clone https://gitee.com/Dramalife/librs232-luajit.git --depth=1
+	$(CC) -c librs232-luajit/librs232.c
+	$(CC) -c ./*.c \
+		    $(INCLUDES) \
+		    $(LIBS)
+
+clean:
+	rm -rvf ./*.o ./*.out
+	
+git clone https://gitee.com/Dramalife/librs232-luajit.git --depth=1
+fatal: destination path 'librs232-luajit' already exists and is not an empty directory.
+makefile:8: recipe for target 'all' failed
+make: [all] Error 128 (ignored)
+cc -c librs232-luajit/librs232.c
+make: execvp: cc: Too many levels of symbolic links
+makefile:8: recipe for target 'all' failed
+make: *** [all] Error 127
+
+
+make CC=gcc
