@@ -1,0 +1,27 @@
+dramalife@server:~/note/80-userspace_programming/11-projects_open_source/znp_api $ make
+git clone https://gitee.com/Dramalife/librs232-luajit.git --depth=1
+fatal: destination path 'librs232-luajit' already exists and is not an empty directory.
+makefile:6: recipe for target 'all' failed
+make: [all] Error 128 (ignored)
+cc -c librs232-luajit/librs232.c
+make: execvp: cc: Too many levels of symbolic links
+makefile:6: recipe for target 'all' failed
+make: *** [all] Error 127
+
+
+
+dramalife@server:~ $ whereis cc
+cc: /usr/bin/cc /usr/local/bin/cc /usr/share/man/man1/cc.1.gz
+dramalife@server:~ $ ll /usr/bin/cc
+lrwxrwxrwx 1 root root 20 Sep 28  2019 /usr/bin/cc -> /etc/alternatives/cc*
+dramalife@server:~ $ ll /etc/alternatives/cc
+lrwxrwxrwx 1 root root 12 Sep 28  2019 /etc/alternatives/cc -> /usr/bin/gcc*
+dramalife@server:~ $ ll /usr/bin/gcc
+lrwxrwxrwx 1 root root 5 Apr  2 10:26 /usr/bin/gcc -> gcc-5*
+dramalife@server:~ $ ll /usr/bin/gcc-5
+-rwxr-xr-x 1 root root 887K Apr 12  2018 /usr/bin/gcc-5*
+
+
+
+Solve:
+make CC=gcc
