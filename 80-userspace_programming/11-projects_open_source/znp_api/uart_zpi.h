@@ -34,6 +34,7 @@
 #define _UART_ZPI_H_
 
 #define ZPI_SERIAL_DEV 	"/dev/ttyS1"
+#define ZPI_BANDRATE	115200
 
 #define SIZE_RX_BUFF	1024
 

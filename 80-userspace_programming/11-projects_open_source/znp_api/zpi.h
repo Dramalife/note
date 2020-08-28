@@ -39,10 +39,55 @@
 #include <pthread.h>
 #include <string.h>
 
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+
+#include <signal.h>
+
 #include "librs232.h"
 
 #include "uart_zpi.h"
 #include "znp_api.h"
+
+#define ZPI_SOCKET_PATH	"/tmp/.znp_api"
+
+enum zpi_cmd_type{
+	CMD_TYPE_POLL = 0,
+	CMD_TYPE_SREQ,
+	CMD_TYPE_AREQ,
+	CMD_TYPE_SRSP,
+	CMD_TYPE_MAX__,
+};
+enum zpi_cmd_sub{
+	CMD_SUB_RPC_ERR = 0,
+	CMD_SUB_SYS_IF,
+
+
+	CMD_SUB_AF_IF = 4,
+	CMD_SUB_ZDO_IF,
+	CMD_SUB_SIMPLE,
+	CMD_SUB_UTIL_IF,
+	CMD_SUB_MAX__,
+};
+struct zpi_frame_general
+{
+	uint8_t len;
+	uint8_t cmd[2];
+	uint8_t data[0];
+};
+struct zpi_transport_uart
+{
+#define ZPI_FRAME_UART_SOF	0xfe
+	uint8_t sof;
+	struct zpi_frame_general gen;
+	//uint8_t fcs;
+};
+struct zpi_frame_st
+{
+	struct zpi_transport_uart *fix;
+	uint8_t fcs;
+};
 
 
 
