@@ -1,1 +1,0 @@
-../../tools/00-source_code_of_tools/wget-crosstool-ng-1.23.0.sh
