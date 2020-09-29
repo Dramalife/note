@@ -1,0 +1,18 @@
+# Create Partition
+sudo fdisk /dev/sdb
+
+# Make FileSystem
+sudo mkfs.ext4 /dev/sdb1
+
+# Get UUID
+sudo lsblk -f
+
+# Update "/etc/fstab" for auto-mount
+diff:
+UUID=c04ed5af-f666-xxxx-xxxx-a2cbaae8cf20 /mnt/disk_data_qq20200929	ext4	user,rw	0	0
+
+# Mount /etc/fstab NOW
+sudo mount -a
+
+# Purview
+sudo chmod 777 /mnt/disk_data_qq20200929
