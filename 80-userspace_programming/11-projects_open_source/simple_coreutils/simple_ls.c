@@ -41,6 +41,11 @@
 
 #define MAX_PATH 1024
 
+#define SIZE_STACK_LS_ARRAY_MEMBER	128
+char stack_ls_array[26][SIZE_STACK_LS_ARRAY_MEMBER] = {0};
+int stack_ls_index = 0;
+
+
 void show_dir(char *dir, void (*fcn)(char *))
 {
 	char name[MAX_PATH];
@@ -48,7 +53,7 @@ void show_dir(char *dir, void (*fcn)(char *))
 	DIR *dfd;
 
 	if ((dfd = opendir(dir)) == NULL) {
-		fprintf(stderr, "show_dir:can not open %s\n", dir);
+		fprintf(stderr, "%s:can not open %s\n", __func__, dir);
 		return;
 	}
 	
@@ -66,20 +71,71 @@ void show_dir(char *dir, void (*fcn)(char *))
 		if ((strcmp(dp->d_name, ".") == 0) || (strcmp(dp->d_name, "..") == 0))
 			continue;
 		if (strlen(dir)+strlen(dp->d_name)+2 > sizeof(name)) {
-			fprintf(stderr, "show_dir: name %s %s too long\n", dir, dp->d_name);
+			fprintf(stderr, "%s: name %s %s too long\n", __func__, dir, dp->d_name);
 		} else {
 			sprintf(name, "%s/%s", dir, dp->d_name);
-			(*fcn)(name);
+			if( fcn )
+			{
+				(*fcn)(name);
+			}
 		}
 	}
 	closedir(dfd);
+}
+
+void show_files(char *name)
+{
+	printf("%s\n", name?name:"nullptr");
+}
+
+
+void show_file_or_dir_ls_dir_no_recursion(char *name)
+{
+	struct stat file_status;
+	if (stat(name, &file_status) != 0) {
+		fprintf(stderr, "%s:can not access to %s\n", __func__, name);
+		return;
+	}
+	if ((file_status.st_mode & S_IFMT) == S_IFDIR) {
+		//show_dir(name, show_file_or_dir_ls);
+	}
+	//printf("%8ld %s\n", file_status.st_size, name);
+	sprintf(stack_ls_array[stack_ls_index++], "%8ld %s", file_status.st_size, name);
+	if(stack_ls_index >= sizeof(stack_ls_array))
+		stack_ls_index = 0;
+}
+void show_file_or_dir_ls(char *name)
+{
+	struct stat file_status;
+	printf("[%s]\n", name);
+	if (stat(name, &file_status) != 0) {
+		fprintf(stderr, "%s:can not access to %s\n", __func__, name);
+		return;
+	}
+	if ((file_status.st_mode & S_IFMT) == S_IFDIR) {
+		show_dir(name, show_file_or_dir_ls_dir_no_recursion);
+	}
+	//printf("%8ld %s\n", file_status.st_size, name);
+	memset(stack_ls_array[stack_ls_index++], 0, SIZE_STACK_LS_ARRAY_MEMBER);
+	sprintf(stack_ls_array[stack_ls_index++], "%8ld %s", file_status.st_size, name);
+	if(stack_ls_index >= sizeof(stack_ls_array))
+		stack_ls_index = 0;
+	while(stack_ls_index>=0)
+	{
+		if( 0 == strncmp(name, stack_ls_array[stack_ls_index], strlen(name)))
+			printf("%s :\n", stack_ls_array[stack_ls_index]);
+		else
+			printf("%s\n", stack_ls_array[stack_ls_index]);
+		stack_ls_index--;
+	}
+	stack_ls_index = 0;
 }
 
 void show_file_or_dir(char *name)
 {
 	struct stat file_status;
 	if (stat(name, &file_status) != 0) {
-		fprintf(stderr, "show_file_or_dir:can not access to %s\n", name);
+		fprintf(stderr, "%s:can not access to %s\n", __func__, name);
 		return;
 	}
 	if ((file_status.st_mode & S_IFMT) == S_IFDIR) {
@@ -88,12 +144,15 @@ void show_file_or_dir(char *name)
 	printf("%8ld %s\n", file_status.st_size, name);
 }
 
+
+//#define MAIN_FUNC_CALL	show_file_or_dir
+#define MAIN_FUNC_CALL	show_file_or_dir_ls
 int main(int argc, char *argv[])
 {
 	if (argc == 1)
-		show_file_or_dir(".");
+		MAIN_FUNC_CALL(".");
 	else 
 		while (--argc > 0)
-			show_file_or_dir(*++argv);
+			MAIN_FUNC_CALL(*++argv);
 	return 0;
 }
