@@ -75,4 +75,6 @@
 
 #include "data_struct_lib/data_struct_lib.h"
 
+#include "md5sum_lib/md5sum_lib.h"
+
 #endif

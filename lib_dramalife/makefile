@@ -25,6 +25,7 @@ SUBDIRS+=option_config_lib
 SUBDIRS+=db_lib			# SQLite3
 SUBDIRS+=terminal_lib
 SUBDIRS+=inet_lib
+SUBDIRS+=md5sum_lib
 
 
 
