@@ -72,9 +72,10 @@ CFLAGS+=-I$(PATH_ABS)
 
 # Library Code compile switch, for mode-lib only.
 CFLAGS_DYNLIB+=-D_DL_88888888_LIB_ENABLE_
+CFLAGS_DEMO+=  -D_DL_88888888_LIB_ENABLE_
 
 # Demo Code compile switch, for mode-demo only.
-# Command "make demo_of_dynlib" will enable this automatically.
+# Command "make demo_of_dynlib" or "make compile-files-to-one" will enable this automatically.
 #CFLAGS_DEMO+=_DRAMALIFE_LIB_HAS_FUNC_MAIN_
 
 # Extra CFLAGS SWITCH

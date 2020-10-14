@@ -52,6 +52,13 @@ $(OBJS) : %.o:%.c
 
 $(BUILD) : %.out:%.o
 	$(CC) $< -o $@ $(CFLAGS) $(DEF_MACROS)
+
+
+# *.c -> a.out
+.one_exec: $(OBJS)
+	$(CC) $(OBJS) -o a.out $(CFLAGS) $(DEF_MACROS)
+compile-files-to-one: clean
+	make .one_exec CFLAGS="$(CFLAGS_DEMO)"
 	
 
 ###############################################################################
