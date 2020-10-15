@@ -28,11 +28,14 @@ CFLAGS_DYNLIB+=-D_DLCJSON_DEBUG_ENABLED_
 
 # Extra Source File
 EXTRA_GIT_FOLDER666666:=cJSON
-SOURCE_EXIST:=$(shell test -d $(EXTRA_GIT_FOLDER666666))
+
+SOURCE_EXIST:=$(shell ls $(EXTRA_GIT_FOLDER666666))
+
 .dllib_get_source:
 ifeq ("$(SOURCE_EXIST)","")
 	../exec_files/git_sparse_clone.sh cJSON https://gitee.com/Dramalife/tools_note.git
 endif
+
 .dllib_clean_source:
 	echo "Clean $(EXTRA_GIT_FOLDER666666)..."
 	-rm -rf $(EXTRA_GIT_FOLDER666666)
