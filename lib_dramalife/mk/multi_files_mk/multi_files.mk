@@ -60,6 +60,8 @@ endif
 ifdef __________JUST_SHOW_NOT_USED______________________________________________
 ######################################################START#####################
 # Sample - config.mk (For Library & Demo)
+# Update : 2020/10/14
+# Update : 2020/10/15
 ######################################################START#####################
 # Makefile Library
 include $(PATH_ABS)/mk/multi_lib.mk
@@ -86,13 +88,19 @@ CFLAGS_DEMO+=  -D_DL88888888_DEBUG_ENABLED_
 CFLAGS_DYNLIB+=-D_DL88888888_DEBUG_ENABLED_
 
 # Extra Source File
-SOURCE_EXIST:=$(shell test -d EXTRA_GIT_FOLDER666666)
+EXTRA_GIT_FOLDER666666:=note_sqlite3
+
+# TODO : "test" echo none !
+#SOURCE_EXIST:=$(shell test -d $(EXTRA_GIT_FOLDER666666))
+SOURCE_EXIST:=$(shell ls $(EXTRA_GIT_FOLDER666666))
+
 .dllib_get_source:
 ifeq ("$(SOURCE_EXIST)","")
 	#git clone https://gitee.com/Dramalife/note_sqlite3.git --depth=1
 endif
 	#ln -sf note_sqlite3/sqlite3.c .
 .dllib_clean_source:
+	#rm -rf $(EXTRA_GIT_FOLDER666666)
 	#rm -rf sqlite3.c
 ##########################################################END###################
 endif
