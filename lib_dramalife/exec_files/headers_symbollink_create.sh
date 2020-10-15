@@ -24,6 +24,8 @@
 # Update : 2019.11.20, 
 #		Using new shell lib "note/../dramalife_terminal_color.sh";
 #		Change variable name : PATH_ABS => RELATIVE_PATH_TO_LIB_DRAMALIFE;
+# Update : 2020.10.15:
+#		Using new shell lib "note/lib_dramalife/lib_dramalife.sh";
 # Update :
 #
 
@@ -77,7 +79,12 @@ else
 	echo -e ${CLRED}"WARNING:"${CNONE}"!!..."
 fi
 
-source ${RELATIVE_PATH_TO_LIB_DRAMALIFE}/terminal_lib/dramalife_terminal_color.sh
+
+
+export LIB_DRAMALIFE_PWD=${RELATIVE_PATH_TO_LIB_DRAMALIFE}
+export LIB_DRAMALIFE_TERMINAL_COLOR_VERSION=5001
+source ${LIB_DRAMALIFE_PWD}/lib_dramalife.sh
+
 
 # PATH OF LIST FILE (headers_xxx.list)
 DATA_FILE_PWD=${RELATIVE_PATH_TO_LIB_DRAMALIFE}/data_pub/headers_gcc_userspace.ubuntuserver18.list

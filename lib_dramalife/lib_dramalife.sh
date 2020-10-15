@@ -28,19 +28,36 @@
 #########################################################
 # 		Tips for VIM only			#
 #########################################################
-# :match DiffText /LIB_DRAMALIFE_SHELL_RELATIVE_PWD/
+# :match DiffText /LIB_DRAMALIFE_PWD/
 
 #########################################################
 # 			Note				#
 #########################################################
-# The variable "LIB_DRAMALIFE_SHELL_RELATIVE_PWD" 
+# The variable "LIB_DRAMALIFE_PWD" 
 # used to determined path from user to this library 
 # is managed by user.
 
 #########################################################
-# Usage - Add below to the head of your shell script	#
+#		Usage (Shell)				#
 #########################################################
-#LIB_DRAMALIFE_SHELL_RELATIVE_PWD=../../lib_dramalife/
-#source ${LIB_DRAMALIFE_SHELL_RELATIVE_PWD}/lib_dramalife.sh
+#export LIB_DRAMALIFE_PWD=../../lib_dramalife/
+#export LIB_DRAMALIFE_TERMINAL_COLOR_VERSION=5001
+#export LIB_DRAMALIFE_TERMINAL_COLOR_VERSION=5002
+#source ${LIB_DRAMALIFE_PWD}/lib_dramalife.sh
 
-source ${LIB_DRAMALIFE_SHELL_RELATIVE_PWD}/print_lib/dramalife_terminal_color.sh
+
+if [ ! ${LIB_DRAMALIFE_TERMINAL_COLOR_VERSION} ]
+then
+	LIB_DRAMALIFE_TERMINAL_COLOR_VERSION=0
+fi
+
+if [ ${LIB_DRAMALIFE_TERMINAL_COLOR_VERSION} = 5001 ]
+then
+source ${LIB_DRAMALIFE_PWD}/terminal_lib/dlterm_5001.sh
+fi
+
+if [ ${LIB_DRAMALIFE_TERMINAL_COLOR_VERSION} = 5002 ]
+then
+source ${LIB_DRAMALIFE_PWD}/terminal_lib/dlterm_5002.sh
+fi
+

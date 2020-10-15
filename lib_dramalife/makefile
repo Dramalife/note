@@ -12,6 +12,11 @@
 ###############################################################################
 
 
+####
+# Terminal Color Library
+#
+include ./terminal_lib/dlterm_5002
+
 
 #####
 # Configuration for subdir make
@@ -53,7 +58,7 @@ endif
 $(SUBDIRS): .print
 	make .process TEMP_OBJ_PATH=$@/build/object/$@.o TEMP_TARGET=$@ \
 	ACTION=$(ACTION)
-	@echo "----------------------TARGET $@ DONE----------------------"
+	@echo $(DLTERM_LGREEN)"----------------------TARGET $@ DONE----------------------"$(DLTERM_NONE)
 
 .process:
 	@echo "***********************.process***********************"
@@ -86,4 +91,5 @@ clean:
 	-@rm -f $(DYNLIB_NAME)
 	-@rm -f $(DYNLIB_SLINK)
 	make action ACTION=clean
+
 

@@ -20,6 +20,7 @@
 #
 # Init : 2019.09.18;
 # Update : 2019.11.14, as lib-tool;
+# Update : 2020.10.15, Use new terminal color lib - "lib_dramalife.sh";
 # Update :
 #
 
@@ -60,7 +61,11 @@ PATH_ABS=../../lib_dramalife
 
 # Including files
 source ./config.in
-source ${PATH_ABS}/terminal_color_bash.sh
+
+#source ${PATH_ABS}/terminal_color_bash.sh
+export LIB_DRAMALIFE_PWD=../../lib_dramalife/
+export LIB_DRAMALIFE_TERMINAL_COLOR_VERSION=5001
+source ${LIB_DRAMALIFE_PWD}/lib_dramalife.sh
 
 
 # CASE : NO ARG IN - CLEAN ALL

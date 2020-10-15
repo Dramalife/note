@@ -34,7 +34,7 @@ makefile
 - README.md
 
 ### Shell script library
-- terminal_color_bash.sh
+- lib_dramalife.sh
 
 ### THE LINUX PROGRAMMING INTERFACE
 - tlpi
