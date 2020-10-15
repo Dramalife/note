@@ -26,6 +26,7 @@ SUBDIRS+=db_lib			# SQLite3
 SUBDIRS+=terminal_lib
 SUBDIRS+=inet_lib
 SUBDIRS+=md5sum_lib
+SUBDIRS+=cjson_lib
 
 
 

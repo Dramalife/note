@@ -77,4 +77,6 @@
 
 #include "md5sum_lib/md5sum_lib.h"
 
+#include "cjson_lib/cjson_lib.h"
+
 #endif
