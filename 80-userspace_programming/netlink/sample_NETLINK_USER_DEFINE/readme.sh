@@ -1,5 +1,10 @@
 #! /bin/bash
-source ~/note/lib_dramalife/terminal_color_bash.sh
+
+#source ~/note/lib_dramalife/terminal_color_bash.sh
+export LIB_DRAMALIFE_PWD=~/note/lib_dramalife/
+export LIB_DRAMALIFE_TERMINAL_COLOR_VERSION=5001
+source ${LIB_DRAMALIFE_PWD}/lib_dramalife.sh
+
 # kernel source
 # --------
 # struct user_msghdr

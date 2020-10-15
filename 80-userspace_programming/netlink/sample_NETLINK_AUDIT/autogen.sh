@@ -22,12 +22,16 @@
 #
 # Init : 2019.11.02;
 # Update : 2019.11.08;
+# Update : 2020.10.15; Change terminal color lib to "lib_dramalife.sh";
 # Update :
 #
 
 
 
-source ../../lib_dramalife/terminal_color_bash.sh
+#source ../../lib_dramalife/terminal_color_bash.sh
+export LIB_DRAMALIFE_PWD=~/note/lib_dramalife/
+export LIB_DRAMALIFE_TERMINAL_COLOR_VERSION=5001
+source ${LIB_DRAMALIFE_PWD}/lib_dramalife.sh
 
 
 AUDIT_SOURCE_ROOT=/home/dramalife/temp2/audit-userspace

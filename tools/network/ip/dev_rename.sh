@@ -19,13 +19,17 @@
 # ;
 #
 # Init : 2019.10.23;
+# Update : 2020.10.15; Change terminal color lib to "lib_dramalife.sh";
 # Update :
 #
 
 
 
 # LIB FOR COLOUR
-source ../../../lib_dramalife/terminal_color_bash.sh
+#source ../../../lib_dramalife/terminal_color_bash.sh
+export LIB_DRAMALIFE_PWD=~/note/lib_dramalife/
+export LIB_DRAMALIFE_TERMINAL_COLOR_VERSION=5001
+source ${LIB_DRAMALIFE_PWD}/lib_dramalife.sh
 
 
 # ARG1 - DEV NAME NOW

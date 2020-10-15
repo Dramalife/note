@@ -20,13 +20,18 @@
 #
 # Init : 2019.12.07;
 #	Ref : THE LINUX PROGRAMMING INTERFACE ;
+# Update : 2020.10.15
+#	Change terminal color lib to "lib_dramalife.sh";
 # Update :
 #
 
 
 
 # Source print related library
-source ../../../lib_dramalife/print_lib/dramalife_terminal_color.sh
+#source ../../../lib_dramalife/print_lib/dramalife_terminal_color.sh
+export LIB_DRAMALIFE_PWD=~/note/lib_dramalife
+export LIB_DRAMALIFE_TERMINAL_COLOR_VERSION=5001
+source ${LIB_DRAMALIFE_PWD}/lib_dramalife.sh
 
 # Show and Exec the command
 CMD='ls | wc -l'

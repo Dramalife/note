@@ -13,13 +13,18 @@
 #		Source "note/lib_dramalife/terminal_color_bash.sh";
 #		Add color;
 #		Append file name(auto generated) to gitignore;
+# Update : 2020.10.15
+#		Change terminal color lib to "lib_dramalife.sh";
 # Update
 #
-# DEPENDS : note/lib_dramalife/terminal_color_bash.sh
+# DEPENDS : note/lib_dramalife/lib_dramalife.sh
 #
 
-ROOT_NOTE=../../../
-source ${ROOT_NOTE}lib_dramalife/terminal_color_bash.sh
+ROOT_NOTE=~/note/
+#source ${ROOT_NOTE}lib_dramalife/terminal_color_bash.sh
+export LIB_DRAMALIFE_PWD=${ROOT_NOTE}/lib_dramalife/
+export LIB_DRAMALIFE_TERMINAL_COLOR_VERSION=5001
+source ${LIB_DRAMALIFE_PWD}/lib_dramalife.sh
 
 ARG_FILENAME=git_cherry_pick.man
 

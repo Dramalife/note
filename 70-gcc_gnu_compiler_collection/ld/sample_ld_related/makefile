@@ -9,10 +9,13 @@
 #	Version of dynlib !
 #	Change target name : test_old_app__new_dynlib -> test2_old_app__new_dynlib 
 #	Add target - test3_found_wrong_dynlib
+# Update : 2020.10.15
+#	Change terminal color lib to "lib_dramalife.sh - dlterm_5002.sh";
 # 
 
 
-include ../../../lib_dramalife/print_lib/dramalife_terminal_color.sh
+#include ../../../lib_dramalife/print_lib/dramalife_terminal_color.sh
+include ../../../lib_dramalife/terminal_lib/dlterm_5002.sh
 
 ###########################################
 APP_NAME:=app.out
