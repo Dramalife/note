@@ -62,10 +62,8 @@ ifdef __________JUST_SHOW_NOT_USED______________________________________________
 # Sample - config.mk (For Library & Demo)
 # Update : 2020/10/14
 # Update : 2020/10/15
-######################################################START#####################
-# Makefile Library
-include $(PATH_ABS)/mk/multi_lib.mk
-
+# Update : 2020/10/20, Add config "DLLIB_USE_CUSTOM_DEFAULT"
+################################################################################
 # Header Files` Path
 CFLAGS+=-I$(PATH_ABS)
 
@@ -99,9 +97,18 @@ ifeq ("$(SOURCE_EXIST)","")
 	#git clone https://gitee.com/Dramalife/note_sqlite3.git --depth=1
 endif
 	#ln -sf note_sqlite3/sqlite3.c .
+
 .dllib_clean_source:
 	#rm -rf $(EXTRA_GIT_FOLDER666666)
 	#rm -rf sqlite3.c
+
+# The "make demo_..." will call "make .dllib_demo_default" if DLLIB_USE_CUSTOM_DEFAULT is set to 1
+#DLLIB_USE_CUSTOM_DEFAULT:=1
+#.dllib_demo_default:
+#	make -C . .compile-files-to-one
+
+# Makefile Library
+include $(PATH_ABS)/mk/multi_lib.mk
 ##########################################################END###################
 endif
 

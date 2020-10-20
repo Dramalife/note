@@ -1,6 +1,3 @@
-# Makefile Library
-include $(PATH_ABS)/mk/multi_lib.mk
-
 # Header Files` Path
 CFLAGS+=-I$(PATH_ABS)
 
@@ -32,3 +29,10 @@ endif
 .dllib_clean_source:
 	#rm -rf sqlite3.c
 
+
+DLLIB_USE_CUSTOM_DEFAULT:=1
+.dllib_demo_default:
+	make -C . .compile-files-to-one
+
+# Makefile Library
+include $(PATH_ABS)/mk/multi_lib.mk

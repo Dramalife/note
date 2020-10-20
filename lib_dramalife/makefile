@@ -15,7 +15,7 @@
 ####
 # Terminal Color Library
 #
-include ./terminal_lib/dlterm_5002
+include ./terminal_lib/dlterm_5002.sh
 
 
 #####

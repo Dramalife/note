@@ -57,7 +57,7 @@ $(BUILD) : %.out:%.o
 # *.c -> a.out
 .one_exec: $(OBJS)
 	$(CC) $(OBJS) -o a.out $(CFLAGS) $(DEF_MACROS)
-compile-files-to-one: clean
+.compile-files-to-one: clean
 	make .one_exec CFLAGS="$(CFLAGS_DEMO)"
 	
 
@@ -83,6 +83,11 @@ CFLAGS_DEMO+= $(CFLAGS) -D_DRAMALIFE_LIB_HAS_FUNC_MAIN_
 demo_of_dynlib :
 	@echo "CFLAGS: $(CFLAGS)"
 	make clean
+ifeq ($(DLLIB_USE_CUSTOM_DEFAULT),1)
+	@echo "Custom target"
+	make .compile-files-to-one
+else
+	@echo "Default target"
 	make .demo_of_dynlib_compile CFLAGS="$(CFLAGS_DEMO)"
 	@echo "SRCS: \n$(SRCS)"
 	@echo "OBJS: \n$(OBJS)"
@@ -92,6 +97,7 @@ demo_of_dynlib :
 	-mkdir $(OBJ_DIR)
 	mv -f $(BUILD) $(BUILD_DIR)
 	mv -f $(OBJS) $(OBJ_DIR)
+endif
 ###############################################################################
 
 

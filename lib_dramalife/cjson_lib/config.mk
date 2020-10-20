@@ -2,8 +2,6 @@
 # Sample - config.mk (For Library & Demo)
 # Update : 2020/10/14
 ######################################################START#####################
-# Makefile Library
-include $(PATH_ABS)/mk/multi_lib.mk
 
 # Header Files` Path
 CFLAGS+=-I$(PATH_ABS)
@@ -24,6 +22,7 @@ CFLAGS_DEMO+=  -D_DL_CJSON_LIB_ENABLE_
 
 # Debug Print Switch - TODO
 CFLAGS_DEMO+=  -D_DLCJSON_DEBUG_ENABLED_
+CFLAGS_DEMO+=-I.. -ldramalife -L.. -Wl,-rpath=..
 CFLAGS_DYNLIB+=-D_DLCJSON_DEBUG_ENABLED_
 
 # Extra Source File
@@ -39,4 +38,11 @@ endif
 .dllib_clean_source:
 	echo "Clean $(EXTRA_GIT_FOLDER666666)..."
 	-rm -rf $(EXTRA_GIT_FOLDER666666)
+
+DLLIB_USE_CUSTOM_DEFAULT:=1
+.dllib_demo_default:
+	make -C . .compile-files-to-one
+
+# Makefile Library
+include $(PATH_ABS)/mk/multi_lib.mk
 ##########################################################END###################
