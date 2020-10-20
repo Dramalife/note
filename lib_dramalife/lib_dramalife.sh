@@ -46,6 +46,11 @@
 #source ${LIB_DRAMALIFE_PWD}/lib_dramalife.sh
 
 
+if [ ! ${LIB_DRAMALIFE_PWD} ]
+then
+	LIB_DRAMALIFE_PWD=~/note/
+fi
+
 if [ ! ${LIB_DRAMALIFE_TERMINAL_COLOR_VERSION} ]
 then
 	LIB_DRAMALIFE_TERMINAL_COLOR_VERSION=0
