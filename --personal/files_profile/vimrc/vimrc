@@ -1,6 +1,10 @@
 """""""""""""""""""Dramalife add start"""""""""""""""""""""""""""""""
 set termencoding=utf-8
-set fileencoding=chinese
+
+"set fileencoding=chinese
+"set fileencoding=utf-8
+"set fileencoding=gb2312
+
 set fileencodings=ucs-bom,utf-8,chinese 
 set langmenu=zh_CN.utf-8
 "set mouse=a
