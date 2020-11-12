@@ -1,0 +1,16 @@
+Ref : https://blog.csdn.net/scaleqiao/article/details/44278719#
+
+
+[Generate data base]
+find . -name "*.[h|c]" > cscope.files
+cscope -bkq -i cscope.files
+
+
+[Update vim config]
+Add to ~/.vimrc
+```diff
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+```
