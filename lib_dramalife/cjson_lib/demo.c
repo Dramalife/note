@@ -58,9 +58,7 @@
 
 
 
-//create a monitor with a list of supported resolutions
-//NOTE: Returns a heap allocated string, you are required to free it after use.
-char *create_monitor(void)
+char *add_info_to_object(cJSON *argm)
 {
     const unsigned int resolution_numbers[3][2] = {
         {1280, 720},
@@ -75,8 +73,7 @@ char *create_monitor(void)
     cJSON *height = NULL;
     size_t index = 0;
 
-    cJSON *monitor = cJSON_CreateObject();
-    if (monitor == NULL)
+    if (argm == NULL)
     {
         goto end;
     }
@@ -86,16 +83,15 @@ char *create_monitor(void)
     {
         goto end;
     }
-    /* after creation was successful, immediately add it to the monitor,
-     * thereby transferring ownership of the pointer to it */
-    cJSON_AddItemToObject(monitor, "name", name);
+
+    cJSON_AddItemToObject(argm, "name", name);
 
     resolutions = cJSON_CreateArray();
     if (resolutions == NULL)
     {
         goto end;
     }
-    cJSON_AddItemToObject(monitor, "resolutions", resolutions);
+    cJSON_AddItemToObject(argm, "resolutions", resolutions);
 
     for (index = 0; index < (sizeof(resolution_numbers) / (2 * sizeof(int))); ++index)
     {
@@ -121,23 +117,35 @@ char *create_monitor(void)
         cJSON_AddItemToObject(resolution, "height", height);
     }
 
-    string = cJSON_Print(monitor);
-    if (string == NULL)
-    {
-        fprintf(stderr, "Failed to print monitor.\n");
-    }
 
 end:
-    cJSON_Delete(monitor);
     return string;
+}
+
+void dl_cjson_print(cJSON *argm)
+{
+	char *string = cJSON_Print(argm);
+	printf("********\n%s\n********\n", string?string:"null");
+	free(string); // !!!
 }
 
 int main(void)//int argc, char **argv)
 {
 	printf("%s\n", FINAL_SHOW);
 
-	// Add & Print
-	printf("%s \n", create_monitor());
+	// Init
+	cJSON *monitor = cJSON_CreateObject();
+
+	// Add
+	add_info_to_object(monitor);
+
+	// Print
+	dl_cjson_print(monitor);
+
+	// Parse
+
+	// Clean
+	cJSON_Delete(monitor);
 
 	return 0;
 }
