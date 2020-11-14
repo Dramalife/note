@@ -2,6 +2,7 @@ Ref : https://blog.csdn.net/scaleqiao/article/details/44278719#
 
 
 [Generate data base]
+Exit vim first!!
 find . -name "*.[h|c]" > cscope.files
 cscope -bkq -i cscope.files
 
@@ -25,3 +26,17 @@ nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 :cs find e ---- 查找egrep模式，相当于egrep功能，但查找速度快多了
 :cs find f ---- 查找并打开文件，类似vim的find功能
 :cs find i ---- 查找包含本文件的文
+
+
+
+[Script]
+#! /bin/bash
+#
+# Auto-gen files:
+# 	cscope.files  cscope.in.out  cscope.out  cscope.po.out
+###
+# Check using
+ls cscope.* | xargs lsof
+# Create
+find . -name "*.[h|c]" > cscope.files
+cscope -bkq -i cscope.files
