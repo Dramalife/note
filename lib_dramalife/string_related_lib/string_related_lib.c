@@ -21,8 +21,24 @@
  * Init : 2019.11.18-22:27;
  * Update 
  *
+ * 2020.12.28 Update
+ *	Add func "_zpi_show_n_bytes";
+ *
  */
 
 
 
 #include "string_related_lib.h"
+
+void _zpi_show_n_bytes(int (*print_func)(const char *format, ...), const char *buff, uint32_t len)
+{       
+	int index = 0;
+
+	for(index=0; index<len; index++){
+		print_func("%02x", *(buff + index) & 0xff );
+	}       
+
+	print_func("\n");
+
+	return;
+}
