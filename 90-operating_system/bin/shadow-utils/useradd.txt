@@ -1,0 +1,1 @@
+useradd -m -g root -s /bin/bash dramalife
