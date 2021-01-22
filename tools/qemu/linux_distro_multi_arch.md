@@ -19,8 +19,8 @@ sudo sysctl vm.overcommit_memory=1
 ```bash
 # Problem
 $ qemu-system-x86_64 -hda debian_wheezy_amd64_standard.qcow2
-qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.vmx [bit 5]
-Could not initialize SDL(No available video device) - exiting
+## qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.vmx [bit 5]
+## Could not initialize SDL(No available video device) - exiting
 
 # Solve
 # ref : https://chuiwenchiu.wordpress.com/2014/12/10/qemu-could-not-initialize-sdlno-available-video-device-exiting/
