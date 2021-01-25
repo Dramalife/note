@@ -1,5 +1,5 @@
 /*
- * note "NULL" related file
+ * note "HTTP Range" related file
  * Copyright (C) 2019 Dramalife <dramalife@live.com>
  * 
  * This file is part of [note](https://github.com/Dramalife/note.git)
@@ -20,8 +20,9 @@
  * ;
  * 
  * Init : Fri Jan 22 17:26:11 CST 2021
- *  * ;
- * Update : Fri Jan 22 17:26:11 CST 2021
+ * 	COPY FROM : https://blog.csdn.net/y15713080686/article/details/107520296
+ * Update : Mon, 25 Jan 2021 19:22:57 +0800
+ * 	Support HTTP Range;
  *  
  * Update
  *
@@ -29,9 +30,6 @@
 
 
 
-/*
- * SOURCE URL : https://blog.csdn.net/y15713080686/article/details/107520296
- */
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
