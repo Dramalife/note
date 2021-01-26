@@ -10,7 +10,7 @@ compilation terminated.
 
 Fix [Ref](https://blog.csdn.net/zhangjun1992/article/details/26029959)
 ```bash
-sudo apt intall libc6-dev
+sudo apt install libc6-dev
 ```
 
 
