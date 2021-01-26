@@ -43,6 +43,9 @@ qemu-system-mips64 -M malta -kernel vmlinux-3.2.0-4-5kc-malta -hda debian_wheezy
 
 # Fix - No available video device
 qemu-system-mips64 -M malta -kernel vmlinux-3.2.0-4-5kc-malta -hda debian_wheezy_mips_standard.qcow2 -append "root=/dev/sda1 console=tty0" -curses
+
+# Specific net dev & mem size
+qemu-system-mips64.exe -M malta -kernel vmlinux-3.2.0-4-5kc-malta -hda debian_wheezy_mips_standard.qcow2 -append "root=/dev/sda1 console=ttyS0"  -nographic --net nic -net tap,ifname=tap -m 2048m
 ```
 
 ### Run Debian wheezy x86_64 on aarch64
