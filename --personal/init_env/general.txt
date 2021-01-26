@@ -1,0 +1,18 @@
+sudo apt install screen
+sudo apt install htop
+
+sudo apt install bash-completion
+source ~/.bashrc
+
+
+# manual pager
+git clone  https://github.com/mkerrisk/man-pages --depth=1
+cd man-pages
+sudo make install
+
+# apt source
+# ubuntu-ports (arm64, armhf, PowerPC, ppc64el, s390x)
+cp ~/note/--personal/files_profile/apt/sources.list.port.ustc.edu /etc/apt/sources.list
+
+sudo unminimize
+
