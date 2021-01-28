@@ -87,20 +87,15 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |0|GEC 51 MCU|2016.08.17||
 |1|Arduino UNO|2016.10.16||
 |2|Arduino MEGA 2560|2017.05.03||
-| |AIO-3399J| |Drivers:DP83867,LTC2941,|
-| |STM32F107VCT6|ethernet,NB-Iot/GSM|
+|-|AIO-3399J| |Drivers:DP83867,LTC2941,|
+|-|STM32F107VCT6| |ethernet,NB-Iot/GSM|
 |3|Raspberry Pi 3B |2018.07|Arm v7|
-|4|Orange Pi Zero |2018.12.27|SoC:sunxi(Allwinner H2),Architecture:Cortex-A7,Instruction Set:ARMv7;|
-| |+1|2020.10.29||
-| |+1|2020.11.09||
-|5|Banana Pi R2 |2020.01.10 |SoC:MediaTek MT7623N,Architecture:Cortex-A7,Introduction Set:ARMv7; RAM:2GB,EMMC:8GB; 5\*Gigabit Ethernet,2\*SATA,1\*PCIE,2\*USB3.0;|
-|6|ROC-RK3328-CC|2020.04.04 |SoC:RK3328,Architecture:Cortex-A53,Introduction Set:ARMv8;|
-|7|Banana Pi R1 |2020.05.12 |SoC:sunxi(Allwinner A20),Architecture:ARM Cortex -A7 Dual-Core,Introduction Set:ARMv7; RAM:1GB; 5\*Gigabit Ethernet,1\*SATA;|
-| |+1|2020.05.12||
-|8|Orange Pi One|2020.11.09|SoC:sunxi(Allwinner H3),Architecture:Cortex-A7,Introduction Set:ARMv7; RAM:512MB;|
-| |+1|2020.11.09||
-|9|Nano Pi M4|2021.01.27|SoC:RK3399,Architecture:Cortex-A72+Cortex-A53,Introduction Set:ARMv8; RAM:2GB,EMMC:16GB; 1\*Gigabit Ethernet,4\*USB3.0(hub);|
-| |+1|2021.01.27||
+|4|[Orange Pi Zero](http://www.orangepi.cn/orangepizero/index_cn.html) |2018.12.27<br>2020.10.29 +1<br>2020.11.09 +1 |SoC:sunxi(Allwinner H2),Architecture:Cortex-A7,Instruction Set:ARMv7;|
+|5|[Banana Pi BPI-R2](http://wiki.banana-pi.org/Banana_Pi_BPI-R2) |2020.01.10 |SoC:MediaTek MT7623N,Architecture:Cortex-A7,Introduction Set:ARMv7; RAM:2GB,EMMC:8GB; 5\*Gigabit Ethernet,2\*SATA,1\*PCIE,2\*USB3.0;|
+|6|[ROC-RK3328-CC](http://wiki.t-firefly.com/zh_CN/ROC-RK3328-CC/intro.html)|2020.04.04 |SoC:RK3328,Architecture:Cortex-A53,Introduction Set:ARMv8;|
+|7|[Banana Pi BPI-R1](http://wiki.banana-pi.org/Banana_Pi_BPI-R1) |2020.05.12 +2 |SoC:sunxi(Allwinner A20),Architecture:ARM Cortex -A7 Dual-Core,Introduction Set:ARMv7; RAM:1GB; 5\*Gigabit Ethernet,1\*SATA;|
+|8|[Orange Pi One](http://www.orangepi.cn/orangepione/index_cn.html) |2020.11.09 +2 |SoC:sunxi(Allwinner H3),Architecture:Cortex-A7,Introduction Set:ARMv7; RAM:512MB;|
+|9|[Nano Pi M4](http://wiki.friendlyarm.com/wiki/index.php/NanoPi_M4/zh)|2021.01.27 +2 |SoC:RK3399,Architecture:Cortex-A72+Cortex-A53,Introduction Set:ARMv8; RAM:2GB,EMMC:16GB; 1\*Gigabit Ethernet,4\*USB3.0(hub);|
 
 ### 3.2 Devices
 |No|Name|Date|Details|
