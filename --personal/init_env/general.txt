@@ -1,6 +1,8 @@
 sudo apt install screen
 sudo apt install htop
 
+sudo apt install lsof
+
 sudo apt install bash-completion
 source ~/.bashrc
 

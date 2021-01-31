@@ -1,0 +1,40 @@
+
+# Fdisk
+opkg install fdisk
+
+# fstab
+# blkid /dev/sda1
+
+# Mount Point
+opkg update 
+opkg install block-mount
+
+# HDD auto sleep
+opkg update
+opkg install hd-idle
+opkg install luci-i18n-hd-idle-zh-cn
+
+# Samba
+opkg install luci-app-samba
+/etc/init.d/samba enable
+/etc/init.d/samba restart
+
+# NFS
+opkg install nfs-kernel-server
+/etc/init.d/nfsd start
+#opkg install nfs-kernel-server --force-depends
+
+
+# tftp client
+opkg install atftp
+#atftp -pl distfeeds.conf 192.168.0.122
+
+
+# opkg source list
+#cp /etc/opkg/distfeeds.conf /etc/opkg/distfeeds.conf.bakup
+#vi /etc/opkg/distfeeds.conf
+# src/gz openwrt_core http://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/19.07.6/targets/sunxi/cortexa7/packages
+
+
+# firmwares
+# https://openwrt.org/toh/hwdata/lamobo/lamobo_bananapi_r1
