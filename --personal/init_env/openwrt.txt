@@ -18,6 +18,9 @@ opkg install luci-i18n-hd-idle-zh-cn
 opkg install luci-app-samba
 /etc/init.d/samba enable
 /etc/init.d/samba restart
+# Diff (/etc/samba/smb.conf OR WEB-OpenWRT-Network Shares-Edit Template)
+# #bind interfaces only = yes
+# #invalid users = root
 
 # NFS
 opkg install nfs-kernel-server
@@ -38,3 +41,7 @@ opkg install atftp
 
 # firmwares
 # https://openwrt.org/toh/hwdata/lamobo/lamobo_bananapi_r1
+
+
+# Add User
+opkg update;opkg install shadow-utils
