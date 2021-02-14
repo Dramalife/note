@@ -1,0 +1,5 @@
+CONFIG_IKCONFIG_PROC
+
+modprobe configfs
+
+cat /proc/config.gz | gzip -d > config.txt
