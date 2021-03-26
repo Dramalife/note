@@ -64,7 +64,8 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |0E|2019|IPC :: [ipc&mylib_ipc](/80-userspace_programming/ipc), [ipc_old](/80-userspace_programming/thread_process/31-com_process) |
 |0F|2020.01.05|[I/O - signal/multiplexing](/80-userspace_programming/io) |
 |10|2020.04.19|[kerberos(network security)](/80-userspace_programming/network/network_security/kerberos_sample) TODO:encrypt,auth |
-|11|2020.04.26|[simple shell(TODO-upload)](/) Bug:pipe,job control;|
+|11|2020.04.26|[simple shell(named - mysh)](/80-userspace_programming/11-projects_open_source/my_shell_2020) Bug:pipe,job control;|
+|12|2020.05.10|[program protection (todo - opensource)](/80-userspace_programming/11-projects_open_source/program_protection)|
 |  | | |
 
 ### 2.2 RECALL
