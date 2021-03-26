@@ -1,0 +1,68 @@
+1) Code version
+---------------------------
+commit 01c6542268332e2a0b5baa379bd0ad581eb6c37d (HEAD -> master)
+Author: dramalife_ubuntu18_AliCloud <dramalife@live.com>
+Date:   Thu Oct 29 10:39:19 2020 +0800
+
+    TODO : CMD which - Seg Fault.
+
+    :100644 100644 59f88ed 27ae4aa M        simple_shell/simple_shell_/mysh_plus_20201027/.gitignore
+    :100644 100644 58aab28 d16d831 M        simple_shell/simple_shell_/mysh_plus_20201027/Makefile
+    :100644 100644 cc85171 5690a07 M        simple_shell/simple_shell_/mysh_plus_20201027/dl_builtin.c
+    :000000 100644 0000000 122e1e4 A        simple_shell/simple_shell_/mysh_plus_20201027/dl_port.h
+    :000000 100644 0000000 d061cf9 A        simple_shell/simple_shell_/mysh_plus_20201027/os_shell_a.c
+    :100644 100644 1130afd 5856278 M        simple_shell/simple_shell_/mysh_plus_20201027/sh.h
+    :100644 100644 1a798dc 4fb0c9d M        simple_shell/simple_shell_/mysh_plus_20201027/shell-with-builtin.c
+    :100644 100644 f30eff2 e4cf674 M        simple_shell/simple_shell_/mysh_plus_20201027/which.c
+
+---------------------------
+
+os_shell_a.c
+=================
+822 printf("%s,%d \n",__func__,__LINE__);
+823         cmd = which(arg[1], p);
+824 printf("%s,%d cmd_addr=%p \n",__func__,__LINE__,cmd);
+825         if (cmd) {
+826                 printf("%s\n", cmd?cmd:"null");
+827                 free(cmd);
+828         }
+
+
+which.c
+=================
+22         if (found) {
+23         printf("ch_addr=%p\n", ch);
+24                 ch = malloc(strlen(cmd)+1);
+25         printf("ch_addr=%p\n", ch);
+26                 strncpy(ch, cmd, strlen(cmd));
+27         printf("ch_addr=%p\n", ch);
+28                 return ch;
+29         }
+
+
+
+Terminal
+=================
+$ which ls
+command (which) has handler!
+Executing built-in [which]
+builtin_which,822 
+which,10 , path_addr=0x5587cbdc8cb0.
+CMD:/usr/local/sbin/ls
+CMD:/usr/local/bin/ls
+CMD:/usr/sbin/ls
+CMD:/usr/bin/ls
+CMD:/sbin/ls
+CMD:/bin/ls
+ch_addr=(nil)
+ch_addr=0x5587cbdc8fa0
+ch_addr=0x5587cbdc8fa0
+builtin_which,824 cmd_addr=0xffffffffcbdc8fa0 
+Segmentation fault
+
+
+=================
+
+NOTE : 
+ch_addr=0x5587cbdc8fa0
+cmd_addr=0xffffffffcbdc8fa0
