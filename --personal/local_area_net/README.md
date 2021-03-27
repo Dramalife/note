@@ -15,25 +15,25 @@
 
 
 #### 实物图
-总览
+总览  
 <img src="https://gitee.com/Dramalife/blog_note/raw/master/network/dl_local_net_pic/overview_all.png" width="70%" height="70%" alt="overview" align=center />
 
 
 
-ROC-RK3328-CC, Orange Pi Zero， RPI
+ROC-RK3328-CC, Orange Pi Zero， RPI  
 <img src="https://gitee.com/Dramalife/blog_note/raw/master/network/dl_local_net_pic/3328_zero_raspberry_0000.png" width="70%" height="70%" alt="3328_opi0_rpi2b" align=center />
 
 
 
-BananaPi R2
+BananaPi R2  
 <img src="https://gitee.com/Dramalife/blog_note/raw/master/network/dl_local_net_pic/bpi_r2_0000.png" width="70%" height="70%" alt="BananaPi R2" align=center />
 
 
 
-BananaPi R1
+BananaPi R1  
 <img src="https://gitee.com/Dramalife/blog_note/raw/master/network/dl_local_net_pic/bpi_ri_0000.png" width="70%" height="70%" alt="BananaPi R1" align=center />
 
 
 
-NanoPi M4
+NanoPi M4  
 <img src="https://gitee.com/Dramalife/blog_note/raw/master/network/dl_local_net_pic/nanopi_m4_0000.png" width="70%" height="70%" alt="NanoPi M4" align=center />
