@@ -37,4 +37,5 @@
 |26|PLAN |memory leak analysis tools | |2020.06.13~ |
 |27|PLAN |ucore | |2020.06.28~ |
 |28|DOING |Kernel link list | |2020.07.03~ |
+|29|**KEEP DOING**|C++ basic|[50-books/C++](/50-books/C++/) |2021.04.10~ |
 | | | | | |
