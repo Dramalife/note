@@ -3,4 +3,11 @@
 
 #include "./sqlite3.h"
 
+/****
+ * DLTYPE_DB_0001
+ */
+enum{
+	DLDB_TYPE_SQLITE3 = 0,
+};
+
 #endif
