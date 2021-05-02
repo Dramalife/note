@@ -20,6 +20,8 @@
  * 
  * Init : Sat Apr 24 13:14:44 CST 2021
  *  	COPY FROM : https://www.runoob.com/cplusplus/cpp-friend-functions.html;
+ * Update : Sat Apr 24 13:14:44 CST 2021
+ * 	Add pri
  *
  */
 
@@ -31,11 +33,12 @@ using namespace std;
 
 class Box
 {
-	double width;
+	private:	// default
+		double width;
 	public:
-	friend void printWidth(Box box);
-	friend class BigBox;
-	void setWidth(double wid);
+		friend void printWidth(Box box);
+		friend class BigBox;
+		void setWidth(double wid);
 };
 
 class BigBox
