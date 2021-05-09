@@ -23,7 +23,8 @@
  *  	COPY FROM : https://www.runoob.com/cplusplus/cpp-constructor-destructor.html;
  * Update : Sun Apr 18 18:55:16 CST 2021
  * 	Add debug printing before "constructor" and after "destructor";
- *  
+ * Update : Sun May 09 15:00:00 CST 2021, by [Q_uan](quan_qixian@163.com), [gitee](https://gitee.com/Q_uan);
+ * 	Smart Pointer;
  * Update
  *
  */
@@ -80,11 +81,40 @@ int test_func( void )
 	return 0;
 }
 
+
+class Pointer
+{
+	private:
+		int * m_p ;
+	public:
+		Pointer(int * p):m_p(NULL)
+		{
+			m_p = p;
+		}
+		int & operator * ()
+		{
+			return * m_p;
+		}
+		~Pointer()
+		{
+#ifndef TEST_SMART_POINTER_ERR
+			delete m_p;
+#endif
+		}
+};
+void test_smart_pointer(void)
+{
+	Pointer p = new int;
+	*p = 100;
+}
+
 // 程序的主函数
 int main( void )
 {
 	cout << __func__ << ", " <<__LINE__ << endl;
 	test_func();
+	cout << __func__ << ", " <<__LINE__ << endl;
+	test_smart_pointer();
 	cout << __func__ << ", " <<__LINE__ << endl;
 
 	return 0;
