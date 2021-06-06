@@ -3,9 +3,13 @@
 
 
 #### 1 Reference
-[The Cargo Book](https://doc.rust-lang.org/cargo/index.html)
-[Install Rust](https://www.rust-lang.org/zh-CN/tools/install)
-[crates.io](crates.io)
+[The Cargo Book](https://doc.rust-lang.org/cargo/index.html)  
+[Install Rust](https://www.rust-lang.org/tools/install)  
+[crates.io](crates.io)  
+  
+[Getting started](https://www.rust-lang.org/learn/get-started)  
+  
+[Home of Ferris the Crab](https://rustacean.net/)  
 
 
 
@@ -60,12 +64,14 @@ cargo run
 ##### Dependents
 ```
 # crates.io
+```
 
 vi Cargo.toml
-#+ [dependencies]
-#+ ferris-says = "0.2"
-
+```diff
++ [dependencies]
++ ferris-says = "0.2"
 ```
+
 
 
 
