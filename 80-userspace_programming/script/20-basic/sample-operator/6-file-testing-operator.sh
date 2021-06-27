@@ -10,6 +10,7 @@ echo -e "\nNOTE:
 | -b file | block?	| [ -b $file ] return false.|
 | -c file | char?	| [ -c $file ] return false.|
 | -d file | directory?	| [ -d $file ] return false.|
+| -L 	  | symbol link?|	|
 | -f file | neither directory nor device
 	    		| [ -f $file ] return true .|
 | -g file | SGID?	| [ -g $file ] return false.|
@@ -56,6 +57,13 @@ then
 echo "The file is a DIRECTORY"
 else
 echo "The file is not a DIRECTORY"
+fi
+
+if [ -L $file ]
+then
+echo "The file is a symbol link"
+else
+echo "The file is not a symbol link"
 fi
 
 if [ -s $file ]
