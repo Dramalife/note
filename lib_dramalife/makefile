@@ -33,6 +33,7 @@ SUBDIRS+=inet_lib
 SUBDIRS+=md5sum_lib
 SUBDIRS+=cjson_lib
 SUBDIRS+=string_related_lib
+SUBDIRS+=debug_lib
 
 
 

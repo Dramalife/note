@@ -79,4 +79,6 @@
 
 #include "cjson_lib/cjson_lib.h"
 
+#include "debug_lib/debug_lib.h"
+
 #endif
