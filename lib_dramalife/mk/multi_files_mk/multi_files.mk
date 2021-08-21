@@ -38,81 +38,9 @@
 # STEP 2 : ln -s path/to/libMakefile.mk ./Makefile
 # STEP 3 : Enjoy your self :)
 
-ifdef __________JUST_SHOW_NOT_USED______________________________________________
-######################################################START#####################
-# TODO : OUTDATED !! Sample - config.mk (split make multi files)
-######################################################START#####################
-# Using default(multi_files.mk) if not set.
-#PATH_ABS=../../../../lib_dramalife/
-include $(PATH_ABS)/mk/multi_lib.mk
-# Flags used by all(dyblib & app/demo)
-CFLAGS+="-I$(PATH_ABS)"
-# Flags used only by app/demo.
-#CFLAGS_DEMO+=-ldramalife -L$(PATH_ABS) -Wl,-rpath=$(PATH_ABS)
-#DEF_MACROS +="-lpthread"
-#DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=0
-#EXTERA_FILES2DEL:=$(CURRENT_DIR)/build
-##########################################################END###################
-endif
-
-
-
-ifdef __________JUST_SHOW_NOT_USED______________________________________________
-######################################################START#####################
-# Sample - config.mk (For Library & Demo)
-# Update : 2020/10/14
-# Update : 2020/10/15
-# Update : 2020/10/20, Add config "DLLIB_USE_CUSTOM_DEFAULT"
-################################################################################
-# Header Files` Path
-CFLAGS+=-I$(PATH_ABS)
-
-# Library Path for Demo (compile & runtime)
-#CFLAGS_DEMO+=-ldramalife -L$(PATH_ABS) -Wl,-rpath=$(PATH_ABS)
-
-# Library Code compile switch, for mode-lib only.
-CFLAGS_DYNLIB+=-D_DL_88888888_LIB_ENABLE_
-CFLAGS_DEMO+=  -D_DL_88888888_LIB_ENABLE_
-
-# Demo Code compile switch, for mode-demo only.
-# Command "make demo_of_dynlib" or "make compile-files-to-one" will enable this automatically.
-#CFLAGS_DEMO+=_DRAMALIFE_LIB_HAS_FUNC_MAIN_
-
-# Extra CFLAGS SWITCH
-#DO_NOT_USE_CFLAGS_IN_LIBMAKEFILE:=1
-
-# Debug Print Switch - TODO
-CFLAGS_DEMO+=  -D_DL88888888_DEBUG_ENABLED_
-CFLAGS_DYNLIB+=-D_DL88888888_DEBUG_ENABLED_
-
-# Extra Source File
-EXTRA_GIT_FOLDER666666:=note_sqlite3
-
-# TODO : "test" echo none !
-#SOURCE_EXIST:=$(shell test -d $(EXTRA_GIT_FOLDER666666))
-SOURCE_EXIST:=$(shell ls $(EXTRA_GIT_FOLDER666666))
-
-.dllib_get_source:
-ifeq ("$(SOURCE_EXIST)","")
-	#git clone https://gitee.com/Dramalife/note_sqlite3.git --depth=1
-endif
-	#ln -sf note_sqlite3/sqlite3.c .
-
-.dllib_clean_source:
-	#rm -rf $(EXTRA_GIT_FOLDER666666)
-	#rm -rf sqlite3.c
-
-# The "make demo_..." will call "make .dllib_demo_default" if DLLIB_USE_CUSTOM_DEFAULT is set to 1
-#DLLIB_USE_CUSTOM_DEFAULT:=1
-#.dllib_demo_default:
-#	make -C . .compile-files-to-one
-
-# Makefile Library
-include $(PATH_ABS)/mk/multi_lib.mk
-##########################################################END###################
-endif
-
-
+#
+# See the "NOTE/lib_dramalife/mk/config_mk" folder for examples of config.mk
+#
 
 # Path where the Makefile is
 CURRENT_DIR:=$(shell pwd)
@@ -155,7 +83,9 @@ default:
 
 include $(CONFIG_MK_DIR)/config.mk
 # pub_lib.mk
-include $(PATH_ABS)libMakefile.mk
+include $(PATH_ABS)/libMakefile.mk
+include $(PATH_ABS)/mk/vim.mk
+include $(PATH_ABS)/mk/format.mk
 
 
 # Backup && Clean
