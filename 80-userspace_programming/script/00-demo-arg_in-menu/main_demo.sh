@@ -34,7 +34,7 @@ shift
 ;;
 
 *)
-echo "*"
+echo "ARG_*: $1"
 shift
 ;;
 
