@@ -1,0 +1,23 @@
+# socket	# socket
+# bind
+# listen
+# accept
+# 		# connect:
+09:54:20.513287 IP localhost.36642 > localhost.10008: Flags [S], seq 675015958, win 65495, options [mss 65495,sackOK,TS val 2221406597 ecr 0,nop,wscale 7], length 0
+09:54:20.513298 IP localhost.10008 > localhost.36642: Flags [S.], seq 1965082011, ack 675015959, win 65483, options [mss 65495,sackOK,TS val 2221406597 ecr 2221406597,nop,wscale 7], length 0
+09:54:20.513308 IP localhost.36642 > localhost.10008: Flags [.], ack 1, win 512, options [nop,nop,TS val 2221406598 ecr 2221406597], length 0
+
+# 		# write:
+# (read)
+09:54:22.513910 IP localhost.36642 > localhost.10008: Flags [P.], seq 1:4, ack 1, win 512, options [nop,nop,TS val 2221408598 ecr 2221406597], length 3
+09:54:22.513924 IP localhost.10008 > localhost.36642: Flags [.], ack 4, win 512, options [nop,nop,TS val 2221408598 ecr 2221408598], length 0
+
+# 		# write:
+# (no action - normal)
+10:10:01.603961 IP localhost.36814 > localhost.10008: Flags [P.], seq 67:70, ack 1, win 512, options [nop,nop,TS val 2222347655 ecr 2222345655], length 3
+10:10:01.603978 IP localhost.10008 > localhost.36814: Flags [.], ack 70, win 512, options [nop,nop,TS val 2222347655 ecr 2222347655], length 0
+
+# 		# close:
+10:06:36.236410 IP localhost.36778 > localhost.10008: Flags [F.], seq 4, ack 1, win 512, options [nop,nop,TS val 2222142295 ecr 2222142295], length 0
+10:06:36.277490 IP localhost.10008 > localhost.36778: Flags [.], ack 5, win 512, options [nop,nop,TS val 2222142336 ecr 2222142295], length 0
+

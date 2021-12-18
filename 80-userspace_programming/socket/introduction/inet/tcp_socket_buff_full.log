@@ -1,0 +1,6 @@
+15:11:49.205459 IP localhost.37018 > localhost.10008: Flags [.], ack 1, win 512, options [nop,nop,TS val 2240454624 ecr 2240333796], length 0
+15:11:49.205501 IP localhost.10008 > localhost.37018: Flags [.], ack 80908, win 0, options [nop,nop,TS val 2240454624 ecr 2223319479], length 0
+15:13:50.037453 IP localhost.37018 > localhost.10008: Flags [.], ack 1, win 512, options [nop,nop,TS val 2240575452 ecr 2240454624], length 0
+15:13:50.037490 IP localhost.10008 > localhost.37018: Flags [.], ack 80908, win 0, options [nop,nop,TS val 2240575452 ecr 2223319479], length 0
+15:15:50.869455 IP localhost.37018 > localhost.10008: Flags [.], ack 1, win 512, options [nop,nop,TS val 2240696279 ecr 2240575452], length 0
+15:15:50.869499 IP localhost.10008 > localhost.37018: Flags [.], ack 80908, win 0, options [nop,nop,TS val 2240696279 ecr 2223319479], length 0
