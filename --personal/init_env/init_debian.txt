@@ -1,0 +1,9 @@
+apt install make -y;
+apt install gcc -y;
+apt install libc6-dev -y;
+
+sudo apt install libdbus-1-dev -y;
+ln -s /usr/lib/x86_64-linux-gnu/dbus-1.0/include/dbus/dbus-arch-deps.h /usr/include/dbus-1.0/dbus/
+
+sudo apt install file -y ;
+sudo apt install tree -y;
