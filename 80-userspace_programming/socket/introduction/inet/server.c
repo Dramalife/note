@@ -33,7 +33,8 @@ int main(int argc, char** argv) {
   memset(&my_addr, 0, sizeof(struct sockaddr_in));
   my_addr.sin_family = AF_INET;
   my_addr.sin_port = htons(10008);
-  inet_aton("127.0.0.1", &my_addr.sin_addr);
+  // inet_aton("127.0.0.1", &my_addr.sin_addr);
+  my_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
 
   printf("bind\n");
   if (-1 ==

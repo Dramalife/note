@@ -29,14 +29,30 @@ int main(int argc, char** argv) {
     exit(2);
   }
 
+#if 1 /* BIND, optional for client. */
   struct sockaddr_in my_addr;
   memset(&my_addr, 0, sizeof(struct sockaddr_in));
   my_addr.sin_family = AF_INET;
-  my_addr.sin_port = htons(10008);
-  inet_aton("127.0.0.1", &my_addr.sin_addr);
+  my_addr.sin_port = htons(10009);
+  my_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+
+  printf("bind\n");
+  if (-1 ==
+      bind(fd_sock, (struct sockaddr*)&my_addr, sizeof(struct sockaddr_in))) {
+    printf("Error:%s\n", strerror(errno));
+    exit(2);
+  }
+#endif
+
+  struct sockaddr_in server_addr;
+  memset(&server_addr, 0, sizeof(struct sockaddr_in));
+  server_addr.sin_family = AF_INET;
+  server_addr.sin_port = htons(10008);
+  // inet_aton("127.0.0.1", &server_addr.sin_addr);
+  server_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
 
   printf("connect\n");
-  if (-1 == connect(fd_sock, (struct sockaddr*)&my_addr,
+  if (-1 == connect(fd_sock, (struct sockaddr*)&server_addr,
                     sizeof(struct sockaddr_in))) {
     exit(2);
   }
