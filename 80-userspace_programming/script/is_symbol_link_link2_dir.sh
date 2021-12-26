@@ -32,7 +32,7 @@ file=$1
 
 if [ -L $file -a -d $file ] ; then
 	echo "$file is a symbol link linking to directory!"
-elif [ ! -L $file -a -d $file ] ; then
+elif [ -d $file ] ; then
 	echo "$file is a directory, not symbol link!"
 else
 	echo "$file is neither a directory nor symbol link!"
