@@ -64,6 +64,7 @@ echo "Current ver backup to ($TEMP)"
 ALL_SOURCE="${ALL_SOURCE}$(find -P . -name "*.h")"
 ALL_SOURCE="${ALL_SOURCE}$(find -P . -name "*.c")"
 ALL_SOURCE="${ALL_SOURCE}$(find -P . -name "*.cc")"
+ALL_SOURCE="${ALL_SOURCE}$(find -P . -name "*.cpp")"
 #echo "$ALL_SOURCE"
 
 for i in $ALL_SOURCE ; do
