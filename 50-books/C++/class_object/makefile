@@ -19,3 +19,6 @@ contor_destor_smart_pointer_err:
 
 clean_all:
 	-mv ./*.out /tmp/
+
+format:
+	$(HOME)/note/lib_dramalife/exec_files/format_c_cpp.sh
