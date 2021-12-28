@@ -82,7 +82,7 @@ git clone https://github.com/Dramalife/note.git --depth=1
 [move_to_README_list.md](/README_list.md)
 
 ## 3 Hardware
-### 3.1 Development Boards
+### 3.1 Development Boards (MCU, SBC ...)
 |No|Name|Date|Details|
 |--|--|--|--|
 |0|GEC 51 MCU|2016.08.17||
@@ -97,6 +97,7 @@ git clone https://github.com/Dramalife/note.git --depth=1
 |7|[Banana Pi BPI-R1](http://wiki.banana-pi.org/Banana_Pi_BPI-R1) |2020.05.12 +2 |SoC:sunxi(Allwinner A20),Architecture:ARM Cortex -A7 Dual-Core,Introduction Set:ARMv7; RAM:1GB; 5\*Gigabit Ethernet,1\*SATA;|
 |8|[Orange Pi One](http://www.orangepi.cn/orangepione/index_cn.html) |2020.11.09 +2 |SoC:sunxi(Allwinner H3),Architecture:Cortex-A7,Introduction Set:ARMv7; RAM:512MB;|
 |9|[Nano Pi M4](http://wiki.friendlyarm.com/wiki/index.php/NanoPi_M4/zh)|2021.01.27 +2 |SoC:RK3399,Architecture:Cortex-A72+Cortex-A53,Introduction Set:ARMv8; RAM:2GB,EMMC:16GB; 1\*Gigabit Ethernet,4\*USB3.0(hub);|
+|10|[HP ProLiant MicroServer Gen8](https://techhub.hpe.com/eginfolib/servers/docs/enterprise/MicroServerGen8/zh_cn/system_setup_overview/Setup.htm)|2021.11.20|CPU:Intel(R) Xeon(R) CPU E31260L,Architecture:x86_64,Introduction Set:; RAM:16GB(ECC);2\*Gigabit Ethernet,1\*Gigabit Ethernet(iLO),4\*SATA ...|
 
 ### 3.2 Devices
 |No|Name|Date|Details|
