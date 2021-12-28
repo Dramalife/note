@@ -48,6 +48,9 @@ do_compile(){
     echo "err!"
     exit 2;
   fi
+  if ! $compiler --version >/dev/null 2>&1 ; then
+    echo -e $DLTERM_LRED"Error"$DLTERM_NONE":Compiler:($compiler)!"; exit 3;
+  fi
   # ${1/%${suffix}/.out}
   cmd="${compiler} -o ${1}.out $1 ${ADD_FLAGS} >/dev/null 2>&1"
   echo "    $1:::$cmd"
@@ -86,6 +89,7 @@ for i in $srcs ; do
     wait;
   fi
 done
+wait;
 
 [[ -e $FILE_FAIL_LIST ]] && echo "Fail list: ($(cat $FILE_FAIL_LIST))" && rm -v $FILE_FAIL_LIST;
 
