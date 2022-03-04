@@ -1,29 +1,67 @@
+mod command_line;
+mod function;
+mod loop_dl;
+mod ownership;
+mod project_management;
+mod slice;
+mod struct_tuple;
+
 fn main() {
-  println !("Hello, world!");
+    println!("Hello, world!");
 
-  command_line();
+    /*
+     * Project Management
+     */
+    project_management::module_dl::sample1_dl::func1_dl();
 
-  let ret = func_arg_int(77, 88);
-  println !("ret={}", ret);
-}
+    use project_management::module_dl::sample1_dl::func1_dl;
+    func1_dl();
 
-fn command_line() {
-  println !("------------------");
-  println !("1. Command line printing;");
-  println !("2. Is a func;");
+    use project_management::module_dl::sample1_dl::func1_dl as pm_m_s_func1_dl;
+    pm_m_s_func1_dl();
 
-  let a = 66;
-  println !("{{");
-  println !("a is {0}, again is {0}", a);
-}
+    /*
+     * Print To Command Line
+     */
+    command_line::command_line();
+    command_line::print_to_cmdline::print_var();
 
-fn func_arg_int(ax : i32, ay : i32)->i32 {
-  println !("------------------");
-  println !("1. Func with arg;");
-  println !("2. Func with ret;");
+    /*
+     * Function
+     */
+    use function::example::arg_int as func_arg_int;
+    use function::example::body_exp as func_body_exp;
+    /*  Arg & Ret; */
+    println!("ret={}", func_arg_int(77, 88));
+    /*  Function Body */
+    println!("func body exp: {}", func_body_exp());
 
-  println !("ax={}", ax);
-  println !("ay={}", ay);
+    /*
+     * Loop
+     */
+    println!("Loop");
+    loop_dl::func_loop();
 
-  return ax + ay;
+    /*
+     * Ownership
+     */
+    use ownership::ownership::func as ososfunc;
+    ososfunc::sample_basic();
+    ososfunc::funcall_arg();
+    ososfunc::funcall_ret();
+    ownership::ownership::ref_b::func_ref_borrow();
+
+    /*
+     * Slice
+     */
+    slice::string_dl();
+    slice::convert_string_to_refstr();
+    slice::array_dl();
+
+    /*
+     * Struce
+     */
+    struct_tuple::struct_dl();
+    struct_tuple::tuple_struct();
+    struct_tuple::ownership_of_struct();
 }

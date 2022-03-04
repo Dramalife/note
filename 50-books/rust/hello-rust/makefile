@@ -4,7 +4,7 @@ all:
 	cargo build
 
 format:
-	find . -name "*.rs" | xargs clang-format -style="Chromium" -i
+	cargo fmt
 
 clean:
 	cargo clean
