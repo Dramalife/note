@@ -1,0 +1,9 @@
+
+
+# tracer: function 
+ # 
+ #  TASK-PID   CPU#    TIMESTAMP        FUNCTION 
+ #   |  |       |          |                | 
+  bash-4251  [01]  10152.583854:    path_put <-path_walk 
+  bash-4251  [01] 10152.583855: dput <-path_put 
+  bash-4251  [01] 10152.583855: _atomic_dec_and_lock <-dput

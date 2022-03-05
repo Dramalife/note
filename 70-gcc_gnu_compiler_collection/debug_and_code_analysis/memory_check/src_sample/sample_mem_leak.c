@@ -14,5 +14,6 @@ int main(void)
 {
 	func1();
 	func2();
+	printf("1111\n");
 	return 0;
 }
