@@ -124,7 +124,8 @@ git clone https://github.com/Dramalife/note.git --depth=1
 <div align=right>
   <img src="http://www.tcpdump.org/images/logo.png" width="10%" alt="tcmdump">
 </div>
-  
-    
+<div align=right>
+  <img src="https://www.rust-lang.org/static/images/rust-logo-blk.svg" width="10%" alt="rust">
+</div>
 
 EOF
