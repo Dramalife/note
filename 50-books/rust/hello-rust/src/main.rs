@@ -1,4 +1,8 @@
 mod command_line;
+mod comments;
+mod enum_dl;
+mod error_handle;
+mod file_io;
 mod function;
 mod loop_dl;
 mod ownership;
@@ -64,4 +68,22 @@ fn main() {
     struct_tuple::struct_dl();
     struct_tuple::tuple_struct();
     struct_tuple::ownership_of_struct();
+
+    /*
+     * File & IO
+     */
+    file_io::command_line::get_args();
+    file_io::command_line::read_line();
+    file_io::file_io::read_file();
+    file_io::file_io::write_file();
+
+    /*
+     * Enum
+     */
+    enum_dl::enum_dl();
+
+    /*
+     * Error Handle
+     */
+    error_handle::error_handle();
 }
