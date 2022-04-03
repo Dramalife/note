@@ -26,4 +26,7 @@ git checkout -b BRANCH_NAME
 ```bash
 git branch -d BRANCH_NAME
 git branch -D BRANCH_NAME
+
+# del remote
+git push origin --delete BRANCH_NAME
 ```
