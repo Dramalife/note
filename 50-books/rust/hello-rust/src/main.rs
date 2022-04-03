@@ -4,6 +4,7 @@ mod enum_dl;
 mod error_handle;
 mod file_io;
 mod function;
+mod generics_trait_dl;
 mod loop_dl;
 mod ownership;
 mod project_management;
@@ -86,4 +87,9 @@ fn main() {
      * Error Handle
      */
     error_handle::error_handle();
+
+    /*
+     * Generics & Trait
+     */
+    generics_trait_dl::generics_trait_main();
 }
