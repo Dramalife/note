@@ -10,4 +10,6 @@ enum{
 	DLDB_TYPE_SQLITE3 = 0,
 };
 
+extern int dldb_open(int dltype, void *handle, const char *filename);
+extern int dldb_exec(int dltype, void *handle, const char *cmd);
 #endif
