@@ -1,0 +1,28 @@
+sudo apt install mdadm
+
+fdisk
+p
+t > fd
+p
+w
+
+mdadm -E /dev/sd[b-c]
+
+# info
+mdadm -D /dev/md1
+
+mkfs.ext4 /dev/md1
+
+
+# deactivate array, releasing all resources.
+mdadm -S /dev/md127
+
+# recovery md, stopped by "mdadm -S"
+mdadm -A -v /dev/md1 /dev/sd[c,b]1
+
+# set partition fault
+mdadm /dev/md1 -f /dev/sdc1
+mdadm /dev/md1 -r /dev/sdb1
+ 
+# add partition
+mdadm /dev/md1 -a /dev/sda1
