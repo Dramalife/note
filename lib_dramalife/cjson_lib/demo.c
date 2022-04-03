@@ -143,6 +143,29 @@ int main(void)//int argc, char **argv)
 	dl_cjson_print(monitor);
 
 	// Parse
+	#if 1
+	cJSON * test_json;
+	char *string = cJSON_Print(monitor);
+	printf("********\n%s\n********\n", string?string:"null");
+	test_json=cJSON_Parse(string);
+	cJSON * testitem_json=cJSON_GetObjectItem(test_json,"name");
+	while (testitem_json->next!=NULL)
+	{
+		printf("%s,%s\n",testitem_json->string, testitem_json->valuestring);
+		testitem_json=testitem_json->next;
+	}
+
+	free(string); // !!!
+	#endif
+	#if 1
+	const char *str2parse="{\"type\":\"tttttt\",\"data\":{\"item\":\"111111\"}}";
+	cJSON *json = cJSON_Parse(str2parse);
+	cJSON *loop = cJSON_GetObjectItem(json, "type");
+	while(loop){
+	    printf("Item: %s,%s\n",loop->string, loop->valuestring);
+	    loop=loop->next;
+	}
+	#endif
 
 	// Clean
 	cJSON_Delete(monitor);
