@@ -83,6 +83,12 @@ sudo chmod 600 /dev/net/tun
 sysctl -w net.ipv4.ip_forward=1
 ```
 
+#### qemu-system-mips: -hda debian_wheezy_mips_standard.qcow2: Failed to lock byte 100
+```
+// nfs? move to ext4 filesystem
+```
+
+
 ### Login
 Debian 7 Default password
 root/root
