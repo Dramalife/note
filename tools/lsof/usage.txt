@@ -1,0 +1,5 @@
+# PID
+lsof -p $$
+
+# File
+lsof /usr/bin/bash

@@ -1,1 +1,1 @@
-../gcc/lsof_cross_compile.md
+../../70-gcc_gnu_compiler_collection/compile_open_source/lsof_cross_compile.md
