@@ -1,0 +1,5 @@
+2022/03 Init
+
+
+Get repo
+  git clone http://mirrors.ustc.edu.cn/aosp/git-repo.git
