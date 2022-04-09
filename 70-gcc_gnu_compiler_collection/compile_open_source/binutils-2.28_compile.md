@@ -16,6 +16,7 @@ sudo make install
 ```bash
 ./configure --host=arm-linux-gnueabihf --disable-werror --prefix=/usr LDFLAGS="--static -s"
 make
+mkdir ./output && make install DESTDIR=`pwd`/output
 
 ## GCC Version
 ## arm-linux-gnueabihf-gcc (Linaro GCC 7.4-2019.02) 7.4.1 20181213 [linaro-7.4-2019.02 revision 56ec6f6b99cc167ff0c2f8e1a2eed33b1edc85d4]
