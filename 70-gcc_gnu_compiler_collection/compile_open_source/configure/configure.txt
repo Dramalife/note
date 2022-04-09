@@ -1,0 +1,7 @@
+cross + static + prefix + ?strip
+    ./configure --host=arm-linux-gnueabihf --disable-werror --prefix=/usr LDFLAGS="--static -pthread"
+      # "-s": strip
+      # "--static": statically link
+
+Install
+    make install DESTDIR=`pwd`/output
