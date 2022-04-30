@@ -1,3 +1,5 @@
+# Default IP Address
+192.168.1.1
 
 # Fdisk
 opkg install fdisk
