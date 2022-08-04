@@ -1,0 +1,6 @@
+func = $(1) $(2)
+
+foo = $(call func, aa, bb)
+
+default:
+	echo ::::$(foo)

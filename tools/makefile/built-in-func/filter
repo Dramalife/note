@@ -1,0 +1,17 @@
+all := \
+  main.c \
+  README.md \
+  lib.c \
+  main.s \
+  lib.h \
+
+default:
+	@echo "All :" $(all)
+	@echo "*.c :" $(filter %.c,$(all))
+	@echo "*.h :" $(filter %.h,$(all))
+	@echo "*.s :" $(filter %.s,$(all))
+	@echo "!.c :" $(filter-out %.c,$(all))
+	@echo "!.h :" $(filter-out %.h,$(all))
+	@echo "!.s :" $(filter-out %.s,$(all))
+	@echo "*.c|h :" $(filter %.c %.h,$(all))
+	@echo "!.c|h :" $(filter-out %.c %.h,$(all))

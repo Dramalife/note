@@ -1,0 +1,4 @@
+names := test main log
+
+default:
+	@echo "::: $(foreach n, $(names), >>>$(n).o)"
