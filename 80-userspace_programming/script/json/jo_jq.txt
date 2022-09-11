@@ -1,0 +1,6 @@
+jo -a $(jo name=aaa age=1) $(jo name=bbb age=3) $(jo name=ccc age=2)
+jo -a $(jo name=aaa age=1) $(jo name=bbb age=3) $(jo name=ccc age=2) -p
+
+jo -a $(jo name=aaa age=1) $(jo name=bbb age=3) $(jo name=ccc age=2) | jq 'length'
+jo -a $(jo name=aaa age=1) $(jo name=bbb age=3) $(jo name=ccc age=2) | jq '.[1].name'
+jo -a $(jo name=aaa age=1) $(jo name=bbb age=3) $(jo name=ccc age=2) | jq -r '.[1].name'
