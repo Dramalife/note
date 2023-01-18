@@ -1,0 +1,18 @@
+1. no permissions
+   Details: no permissions (user in plugdev group; are your udev rules wrong?); see [http://developer.android.com/tools/device.html]
+   Ref: https://blog.csdn.net/qq_44885775/article/details/124272676
+   Fix steps:
+	# Get ProductId (& VendorId)
+	# eg. Bus 003 Device 004: ID VVVV:PPPP ???????, Inc. ??
+	lsusb
+	# Append to file below
+	# ATTR{idProduct}=="PPPP", SYMLINK+="android_adb", MODE="0660", GROUP="plugdev", TAG+="uaccess", SYMLINK+="android"
+	vi /etc/udev/rules.d/51-android.rules
+	# Apply
+	sudo usermod -a -G plugdev $(id -u -n)
+	sudo udevadm control --reload-rules
+	sudo service udev restart
+	sudo udevadm trigger
+	adb kill-server 
+	adb start-server
+	adb devices
