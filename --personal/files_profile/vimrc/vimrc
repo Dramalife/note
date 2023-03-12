@@ -11,6 +11,11 @@ set langmenu=zh_CN.utf-8
 set mouse=
 set cursorline
 set encoding=utf-8 
+
+"" Tab = 4 Space
+set expandtab
+set tabstop=4
+set shiftwidth=4
 """""""""""""""""""Dramalife add end"""""""""""""""""""""""""""""""""
 
 set wildmenu
