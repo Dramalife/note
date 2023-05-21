@@ -1,0 +1,4 @@
+git clone --bare --mirror $GITURL_SOURCE
+git remote add remote_new $GITURL_TARGET
+git push remote_new --all
+git push remote_new --tags

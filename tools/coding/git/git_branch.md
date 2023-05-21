@@ -21,6 +21,11 @@ git branch BRANCH_NAME
 git checkout -b BRANCH_NAME
 ```
 
+- Create Blank Branch
+```bash
+git checkout --orphan br_master_blank
+```
+
 
 - Delete Branch
 ```bash
