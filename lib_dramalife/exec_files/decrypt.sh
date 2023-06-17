@@ -1,1 +1,1 @@
-../../80-userspace_programming/script/decrypt.sh
+../../contents/userspace/script/file_crypto/crypto_des.sh

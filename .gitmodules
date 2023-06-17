@@ -1,0 +1,4 @@
+[submodule "80-userspace_programming/script/file_crypto"]
+	path = 80-userspace_programming/script/file_crypto
+	url = https://gitee.com/script-tools/file_crypto.git
+	branch = master
