@@ -2,3 +2,7 @@
 	path = 80-userspace_programming/script/file_crypto
 	url = https://gitee.com/script-tools/file_crypto.git
 	branch = master
+[submodule "80-userspace_programming/script/filefile"]
+	path = 80-userspace_programming/script/filefile
+	url = https://gitee.com/script-tools/filefile.git
+	branch = master
